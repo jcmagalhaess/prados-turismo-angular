@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from "@angular/animations";
 import { NgFor } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { RouterLink } from "@angular/router";
@@ -25,6 +26,17 @@ import {
   ],
   templateUrl: "./banner.component.html",
   styleUrl: "./banner.component.scss",
+  animations: [
+    trigger('slideAnimation', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('300ms ease-out', style({ transform: 'translateX(0)' }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-in', style({ transform: 'translateX(100%)' }))
+      ])
+    ])
+  ]
 })
 export class BannerComponent implements OnInit {
 

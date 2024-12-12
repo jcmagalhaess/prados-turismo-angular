@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AuthMasterService } from './core/auth/services/auth-master.service';
 import { FooterComponent } from './core/footer/footer.component';
 import { HeaderComponent } from './core/header/header.component';
 
@@ -12,4 +13,8 @@ import { HeaderComponent } from './core/header/header.component';
 })
 export class AppComponent {
   title = 'prados-turismo-angular';
+
+  constructor(private readonly _auth: AuthMasterService) {
+    this._auth.authenticationMaster();
+  }
 }
