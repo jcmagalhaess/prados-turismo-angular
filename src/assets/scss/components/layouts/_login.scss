@@ -1,0 +1,10 @@
+$component-name: 'login';
+
+.#{$component-name} {
+    padding-block: 40px;
+    &__box {
+        border: 1px solid #d5d8dc;
+        border-radius: 3px;
+        padding: 30px;
+    }
+}

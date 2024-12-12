@@ -1,0 +1,25 @@
+$component-name: 'dashboard';
+
+.#{$component-name} {
+    &__menu {
+        width: 300px;
+        margin-inline-end: 30px;
+    }
+    &__item {
+        a {
+            display: block;
+            width: 100%;
+            padding-inline: 30px;
+            padding-block: 20px;
+            border-right: 3px solid transparent;
+            &:hover,
+            &:focus,
+            &:active,
+            &.#{$component-name}--activated {
+                background-color: rgba($color: #ed7b1d, $alpha: 0.05);
+                color: var(--color-primary);
+                border-color: var(--color-primary);
+            }
+        }
+    }
+}

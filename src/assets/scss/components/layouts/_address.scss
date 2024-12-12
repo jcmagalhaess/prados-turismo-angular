@@ -1,0 +1,10 @@
+$component-name: 'address';
+
+.#{$component-name} {
+    &__card {
+        width: calc((100% / 3) - 30px);
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 15px;
+    }
+}

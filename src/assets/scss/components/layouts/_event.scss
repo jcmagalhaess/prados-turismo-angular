@@ -1,0 +1,93 @@
+$component-name: 'card-event';
+
+.#{$component-name} {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 100%;
+    overflow: hidden;
+
+    &__content {
+        padding: 10px;
+        width: 100%;
+        height: 515px;
+        overflow: hidden;
+    }
+
+    &__thumbnail {
+        width: 100%;
+        border-radius: 5px;
+        height: 250px;
+        background-color: #ccc;
+        margin-block-end: 20px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        justify-content: center;
+        position: relative;
+        transition: .3s ease;
+        cursor: pointer;
+        &:hover {
+            &::before {
+                content: '';
+                width: 100%;
+                height: 100%;
+                background-color: rgba($color: #000000, $alpha: .4);
+                position: absolute;
+            }
+            .#{$component-name}__date {
+                color: var(--color-secondary);
+                background-color: var(--color-light);
+            }
+        }
+    }
+
+    &__category {
+        color: var(--color-primary);
+        text-transform: uppercase;
+    }
+
+    &__title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 1.6rem;
+    }
+
+    &__actions {
+        border-top: 1px solid #ccc;
+        display: flex;
+    }
+
+    &__price {
+        width: 100%;
+        border-right: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    &__cart {
+        width: 80px;
+        height: 45px;
+        padding: 10px;
+        background: none;
+        border: none;
+        transition: .3s ease;
+        text-align: center;
+        color: var(--color-secondary);
+        &:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+        }
+    }
+    
+    &__date {
+        position: absolute;
+        bottom: 10px;
+        background-color: var(--color-secondary);
+        padding: 10px 15px;
+        border-radius: 5px;
+        left: 10px;
+        color: var(--color-light);
+        transition: .3s ease;
+    }
+}

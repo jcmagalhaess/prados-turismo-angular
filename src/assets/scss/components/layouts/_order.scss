@@ -1,0 +1,10 @@
+$component-name: 'order';
+
+.#{$component-name} {
+    &__resume {
+        &:not(:last-child) {
+            border-block-end: 1px dashed;
+            padding-block-end: 15px;
+        }
+    }
+}   

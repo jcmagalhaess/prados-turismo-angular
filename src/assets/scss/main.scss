@@ -1,0 +1,14 @@
+@use './components/variables/colors';
+@use './components/vendor/vendor';
+
+@use './components/layouts/header';
+@use './components/layouts/home';
+@use './components/layouts/login';
+@use './components/layouts/dashboard-menu';
+@use './components/layouts/event';
+@use './components/layouts/single-event';
+@use './components/layouts/panel';
+@use './components/layouts/address';
+@use './components/layouts/order';
+@use './components/layouts/footer';
+@use './components/layouts/banner';

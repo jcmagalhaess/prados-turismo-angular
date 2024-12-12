@@ -1,0 +1,84 @@
+$component-name: 'my-account';
+
+.#{$component-name} {
+    &__panel {}
+    &__avatar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h5 {
+            font-weight: 400;
+            margin-block: 5px;
+        }
+        p {
+            margin: 0;
+            font-size: 90%;
+            color: #69727d;
+        }
+    }
+    &__image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        img {
+            height: auto;
+            max-width: 100%;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+    }
+    &__title {
+        padding-left: 10px;
+        border-left: 3px solid;
+        color: var(--color-secondary-dark);
+        text-transform: uppercase;
+        font-size: 180%;
+        font-weight: 400;
+        margin-block: 20px;
+    }
+    &__resume {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    &__order-infos {
+        background-color: var(--color-secondary-dark);
+        color: var(--color-light);
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+    }
+    &__item {
+        display: flex;
+        flex-direction: column;
+        text-transform: uppercase;
+    }
+    &__order-content {
+        display: flex;
+        padding: 20px;
+        gap: 20px;
+        align-items: center;
+    }
+    &__thumb {
+        width: 160px;
+        height: 80px;
+        overflow: hidden;
+    }
+    &__shortcuts {
+        display: flex;
+        gap: 30px;
+        a {
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+    }
+}
