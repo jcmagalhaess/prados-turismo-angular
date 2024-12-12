@@ -4,16 +4,17 @@
   data-bs-ride="carousel"
 >
   <div class="carousel-inner">
+    @for (slide of slides; track $index) {
     <div
-      *ngFor="let slide of slides; let i = index"
       class="carousel-item"
       style="background-image: url({{ slide.src }});"
-      [class.active]="i === 0"
+      [class.active]="$index === 0"
     >
       <div class="carousel-caption d-none d-md-block">
         <h5>{{ slide.alt }}</h5>
       </div>
     </div>
+    }
   </div>
   <button
     class="carousel-control-prev"
