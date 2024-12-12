@@ -10,5 +10,10 @@ export const routes: Routes = [
         path: 'pacotes',
         pathMatch: 'full',
         loadComponent: () => import('./features/pacotes/containers/pacotes-index/pacotes-index.component').then(c => c.PacotesIndexComponent)
+    },
+    {
+        path: 'pacotes/:id',
+        pathMatch: 'full',
+        loadComponent: () => import('./features/pacotes/containers/pacotes-single/pacotes-single.component').then(c => c.PacotesSingleComponent)
     }
 ];

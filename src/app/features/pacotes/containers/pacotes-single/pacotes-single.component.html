@@ -1,0 +1,196 @@
+<main id="excursao-loaded">
+  <div class="container">
+    <div class="d-flex mb-3">
+      <button type="button" class="btn btn-secondary me-3">
+        <i class="fa-solid fa-arrow-left-long me-2"></i>Voltar
+      </button>
+      <div class="spacer"></div>
+      <button type="button" class="btn btn-primary">
+        <i class="fa-solid fa-share me-2"></i>Compartilhar
+      </button>
+    </div>
+
+    <div class="d-flex">
+      <div class="event__main">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="display-6">{{ excursao()?.nome }}</h2>
+            <span class="event__price">
+                {{ excursao()?.valor | currency : "BRL" : true : "1.2-2" }}
+            </span>
+            <p>{{ formatandoDescricao(excursao()?.observacoes!) }}</p>
+            <table class="event__table table">
+              <tbody>
+                <tr>
+                  <th scope="row">Destino</th>
+                  <td>{{ excursao()?.Pacotes?.nome }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Partida</th>
+                  <td id="event-departure">
+                    Tolerancia de 10 minutos a partir do horario escolhido
+                  </td>
+                </tr>
+                <tr>
+                    <th scope="row">Incluso</th>
+                    <td>
+                        <ul class="d-flex flex-wrap">
+                            @for (item of formatandoItensInclusos(excursao()?.observacoes!); track $index) {
+                                <li><i class="fa-solid fa-check text-success me-3"></i>{{ item }}</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                  <th scope="row">Não incluso</th>
+                  <td>
+                    <ul class="d-flex flex-wrap">
+                      <li>
+                        <!-- <i class="fa-solid fa-xmark text-danger me-3"></i> -->
+                        ----
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        @if (excursao()?.Pacotes?.Galeria?.length) {
+        <div class="row">
+          <h5 class="display-6">Nossa galeria</h5>
+          <p>{{ excursao()?.Pacotes?.descricao }}</p>
+          <ul class="event__gallery">
+            @for (item of excursao()?.Pacotes?.Galeria; track $index) {
+                <li
+                    class="event__item"
+                    style="background-image: url({{ item.url }})"
+                    (click)="open(formatGallery(excursao()?.Pacotes?.Galeria!), $index)"
+                    >
+                    <a href="Javascript:;" data-lightbox="roadtrip" data-title="{{ item.nome }}"></a>
+                </li>
+            }
+          </ul>
+        </div>
+        }
+      </div>
+      <div class="event__sidebar">
+        <form id="form-period-event">
+          <div class="row">
+            <div class="col-md-12">
+              <label for="period"
+                ><i class="fa-regular fa-clock me-3 mb-3"></i>Selecione o
+                período</label
+              >
+              <select
+                class="form-select"
+                id="period-event"
+                required
+                name="period"
+                aria-label="Default select example"
+              >
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-12">
+              <div
+                class="event__accordion accordion accordion-flush"
+                id="accordionFlushExample"
+              >
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <div
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapseOne"
+                      aria-expanded="false"
+                      aria-controls="flush-collapseOne"
+                    >
+                      <div class="d-flex flex-column">
+                        <div>
+                          <i class="fa-regular fa-user me-3"></i> Quantidade de
+                          pessoas
+                        </div>
+                        <span id="selected-amount-label">Selecione</span>
+                      </div>
+                    </div>
+                  </h2>
+                  <div
+                    id="flush-collapseOne"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlushExample"
+                  >
+                    <div class="accordion-body">
+                      <?php foreach ($enumCategories as $category): ?>
+                      <div class="event__accordion-item">
+                        <div class="event__accordion-type">
+                          <span>
+                            <?php echo $category['value']; ?>
+                            <span class="event__accordion-type--feature"
+                              >(<?php echo $category['age']; ?>)</span
+                            >
+                          </span>
+                          <span class="event__accordion-type--category"
+                            >R$
+                            <?php echo $category['price']; ?></span
+                          >
+                        </div>
+                        <div class="event__accordion-count">
+                          <div class="input-group">
+                            <button
+                              type="button"
+                              class="input-group-text"
+                              id="btn-plus-<?php echo $category['key']; ?>-count"
+                            >
+                              <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <input
+                              type="text"
+                              class="form-control text-center"
+                              id="input-<?php echo $category['key']; ?>-count"
+                              value="0"
+                            />
+                            <button
+                              type="button"
+                              class="input-group-text"
+                              id="btn-minus-<?php echo $category['key']; ?>-count"
+                            >
+                              <i class="fa-solid fa-minus"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <?php endforeach; ?>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button
+                type="button"
+                class="btn btn-primary w-100"
+                id="btn-reservation-now"
+                disabled="true"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                onClick="createReservation(<?php echo $excursoesDetalhes['valor']; ?>)"
+              >
+                Reservar agora
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="event__totalizers">
+          <div id="subtotal-label"></div>
+          <div id="payment-label"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -10,7 +10,7 @@
     </div>
     <div class="card-event__actions">
         <span class="card-event__price">{{ price | currency:'BRL':true:'1.2-2' }}</span>
-        <a [routerLink]="id" class="card-event__cart">
+        <a routerLink="pacotes/{{ id }}" class="card-event__cart">
             <i class="fa-solid fa-basket-shopping"></i>
         </a>
     </div>
