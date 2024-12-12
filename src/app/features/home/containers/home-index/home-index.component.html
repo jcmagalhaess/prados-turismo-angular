@@ -7,7 +7,19 @@
     <div class="container">
         <h3 class="home__title">Nossos Pacotes</h3>
         <div class="row">
-            <!-- <app-excursao-card></app-excursao-card> -->
+            @for (item of excursoes; track $index) {
+                <div class="col-md-4">
+                    <app-excursao-card
+                        [id]="item.id"
+                        [thumbnail]="hasUrl(item.Pacotes.Imagem)"
+                        [title]="item.nome"
+                        [duration]="item.duracao"
+                        [category]="item.Pacotes.categoria"
+                        [resume]="item.observacoes"
+                        [price]="item.valor">
+                    </app-excursao-card>
+                </div>
+            }
         </div>
     </div>
 </section>

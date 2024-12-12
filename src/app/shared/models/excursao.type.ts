@@ -3,6 +3,7 @@ export type Excursao = {
   nome: string;
   dataInicio: string;
   dataFim: string;
+  duracao: string;
   observacoes: string;
   dataCadastro: string;
   ativo: boolean;
@@ -23,10 +24,9 @@ export type ExcursaoPacote = {
   descricao: string;
   ativo: boolean;
   dataCadastro: string;
-  origem: number;
+  origem: OrigemType;
   tipoTransporte: number;
-  idWP: null;
-  categoria: null;
+  categoria: string;
   urlImagem: string;
   urlImgEsgotado: string;
   usuarioCadastro: string;
@@ -67,3 +67,10 @@ export type ExcursaoLocalEmbarque = {
   codigoEndereco: string;
   usuarioCadastro: string;
 };
+
+export enum OrigemEnum {
+  '_1' = 'Fortaleza',
+  '_2' = 'Tianguá'
+}
+
+export type OrigemType = keyof typeof OrigemEnum;
