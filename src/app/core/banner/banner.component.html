@@ -1,21 +1,36 @@
-<div class="banner">
-    <c-carousel [dark]="true" [wrap]="false">
-        <c-carousel-indicators></c-carousel-indicators>
-        <c-carousel-inner>
-          <c-carousel-item *ngFor="let slide of slides; index as i;">
-            <img
-              [src]="slide.src"
-              alt="{{slide.title}}"
-              class="d-block w-100"
-              loading="lazy"
-            />
-            <c-carousel-caption class="d-none d-md-block">
-              <h3>{{slide.title}}</h3>
-              <p>{{slide.subtitle}}</p>
-            </c-carousel-caption>
-          </c-carousel-item>
-        </c-carousel-inner>
-        <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
-        <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
-    </c-carousel>
+<div
+  id="carouselExampleDynamic"
+  class="banner carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div
+      *ngFor="let slide of slides; let i = index"
+      class="carousel-item"
+      style="background-image: url({{ slide.src }});"
+      [class.active]="i === 0"
+    >
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ slide.alt }}</h5>
+      </div>
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleDynamic"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleDynamic"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
