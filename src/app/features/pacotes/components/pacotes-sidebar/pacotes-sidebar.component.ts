@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, signal } from "@angular/core";
+import { Component, effect, Input, signal } from "@angular/core";
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TipoPassageiroEnum, TipoPassageiroType } from '../../../../shared/models/excursao.type';
 import { PacotesCountComponent } from "../pacotes-count/pacotes-count.component";
 
 @Component({
   selector: "app-pacotes-sidebar",
   standalone: true,
-  imports: [CommonModule, PacotesCountComponent],
+  imports: [CommonModule, PacotesCountComponent, ReactiveFormsModule],
   templateUrl: "./pacotes-sidebar.component.html",
   styleUrl: "./pacotes-sidebar.component.scss",
 })
@@ -19,8 +20,15 @@ export class PacotesSidebarComponent {
     { key: "babies", value: "Crianças de Colo", age: "0 a 5 anos" },
   ];
 
+  @Input() form = new FormGroup<any>({});
   @Input() periodo: string = "";
   @Input() valor: number = 0;
+
+  constructor() {
+    effect(() => {
+      this.form.controls['tickets'].setValue(this.amountTickets());
+    })
+  }
 
   public amountHandle(values: any) {
     if (this.amountTickets().find((item: any) => item.key === values.key)) {

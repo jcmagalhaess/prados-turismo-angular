@@ -1,4 +1,4 @@
-<form id="form-period-event">
+<form [formGroup]="form">
   <div class="row">
     <div class="col-md-12">
         <label for="period">
@@ -6,11 +6,12 @@
         </label>
         <select
             class="form-select"
-            id="period-event"
             required
             name="period"
+            formControlName="period"
             aria-label="Default select example"
         >
+            <option value="null"></option>
             <option [value]="periodo">{{ periodo }}</option>
         </select>
     </div>
@@ -67,7 +68,7 @@
         type="button"
         class="btn btn-primary w-100"
         id="btn-reservation-now"
-        disabled="true"
+        [disabled]="form.invalid"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         onClick="createReservation()"
