@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from "ngx-currency-mask/src/currency-mask.config";
 import { routes } from './app.routes';
 import { AuthMasterInterceptor } from './core/auth/interceptos/auth-master.interceptos';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 registerLocaleData(localePt);
  
@@ -33,6 +34,6 @@ export const appConfig: ApplicationConfig = {
       useValue: 'pt-BR',  // Definindo o locale para pt-BR
     },
     CurrencyPipe,
-    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }, provideAnimationsAsync()
   ]
 };

@@ -74,3 +74,11 @@ export enum OrigemEnum {
 }
 
 export type OrigemType = keyof typeof OrigemEnum;
+
+export enum TipoPassageiroEnum {
+  adults = 'Adulto',
+  children = 'Criança',
+  babies = 'Crianças de colo'
+}
+
+export type TipoPassageiroType = keyof typeof TipoPassageiroEnum;

@@ -3,13 +3,15 @@ import { Component, effect } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Lightbox, LightboxModule } from 'ngx-lightbox';
 import { AuthMasterService } from '../../../../core/auth/services/auth-master.service';
+import { formatarData } from '../../../../shared/helpers/formatar-data.helper';
 import { ExcursaoImagem } from '../../../../shared/models/excursao.type';
+import { PacotesSidebarComponent } from '../../components/pacotes-sidebar/pacotes-sidebar.component';
 import { ExcursoesSingleUsecase } from '../../services/excursoes-single.usecase';
 
 @Component({
   selector: 'app-pacotes-single',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, LightboxModule],
+  imports: [CommonModule, CurrencyPipe, LightboxModule, PacotesSidebarComponent],
   templateUrl: './pacotes-single.component.html',
   styleUrl: './pacotes-single.component.scss',
   providers: [Lightbox]
@@ -77,6 +79,11 @@ export class PacotesSingleComponent {
 
     return this._buildItensInclusos(splitDescription[1].split(';'));
   }
+
+  public formatandoPeriodo(dataInicio: string, dataFim: string) {
+    return `${formatarData(new Date(dataInicio))} a ${formatarData(new Date(dataFim))}`;
+  }
+  
   private _buildItensInclusos(itens: Array<any>) {
       let itensFilted = itens.filter(item => item !== '');
   

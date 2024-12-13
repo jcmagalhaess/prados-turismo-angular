@@ -1,0 +1,40 @@
+
+<div class="event__accordion-item">
+    <div class="event__accordion-type">
+        <span>
+            {{ type }}
+            <span class="event__accordion-type--feature">
+                ({{ age }})
+            </span>
+        </span>
+        <span class="event__accordion-type--category">
+            {{ formatValue(valor) | currency : "BRL" : true : "1.2-2" }}
+        </span>
+    </div>
+    <div class="event__accordion-count">
+      <div class="input-group">
+        <button
+          type="button"
+          class="input-group-text"
+          (click)="increment()"
+        >
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <input
+          type="text"
+          matInput
+          min="0"
+          [formControl]="control"
+          class="form-control text-center"
+        />
+        <button
+          type="button"
+          class="input-group-text"
+          [disabled]="control.value === 0"
+          (click)="decrement()"
+        >
+          <i class="fa-solid fa-minus"></i>
+        </button>
+      </div>
+    </div>
+  </div>

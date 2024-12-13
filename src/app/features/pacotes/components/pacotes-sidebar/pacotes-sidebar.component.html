@@ -1,0 +1,84 @@
+<form id="form-period-event">
+  <div class="row">
+    <div class="col-md-12">
+        <label for="period">
+            <i class="fa-regular fa-clock me-3 mb-3"></i>Selecione o período
+        </label>
+        <select
+            class="form-select"
+            id="period-event"
+            required
+            name="period"
+            aria-label="Default select example"
+        >
+            <option [value]="periodo">{{ periodo }}</option>
+        </select>
+    </div>
+  </div>
+  <div class="row my-4">
+    <div class="col-md-12">
+      <div
+        class="event__accordion accordion accordion-flush"
+        id="accordionFlushExample"
+      >
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <div
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne"
+              aria-expanded="false"
+              aria-controls="flush-collapseOne"
+            >
+              <div class="d-flex flex-column">
+                <div>
+                  <i class="fa-regular fa-user me-3"></i> Quantidade de pessoas
+                </div>
+                <span>{{ amountLabel() }}</span>
+              </div>
+            </div>
+          </h2>
+          <div
+            id="flush-collapseOne"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+                @for (item of enumCategory; track $index) {
+                    <div class="my-3">
+                        <app-pacotes-count
+                            [key]="item.key"
+                            [type]="item.value"
+                            [age]="item.age"
+                            [valor]="valor"
+                            (amountEmit)="amountHandle($event)">
+                        </app-pacotes-count>
+                    </div>
+                }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button
+        type="button"
+        class="btn btn-primary w-100"
+        id="btn-reservation-now"
+        disabled="true"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        onClick="createReservation()"
+      >
+        Reservar agora
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="event__totalizers">
+  <div id="subtotal-label"></div>
+  <div id="payment-label"></div>
+</div>
