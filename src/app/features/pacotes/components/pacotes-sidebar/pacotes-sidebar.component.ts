@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, Input, signal } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { TipoPassageiroEnum, TipoPassageiroType } from '../../../../shared/models/excursao.type';
 import { PacotesCountComponent } from "../pacotes-count/pacotes-count.component";
+import { PacotesModalComponent } from '../pacotes-modal/pacotes-modal.component';
 
 @Component({
   selector: "app-pacotes-sidebar",
@@ -24,7 +26,7 @@ export class PacotesSidebarComponent {
   @Input() periodo: string = "";
   @Input() valor: number = 0;
 
-  constructor() {
+  constructor(private readonly _dialog: MatDialog) {
     effect(() => {
       this.form.controls['tickets'].setValue(this.amountTickets());
     })
@@ -48,5 +50,15 @@ export class PacotesSidebarComponent {
       .sort((a: any, b: any) => a.localeCompare(b));
 
     return amount.join(', ');
+  }
+
+  public createReservation() {
+    this._dialog.open(
+      PacotesModalComponent,
+      {
+        minWidth: '800px',
+        data: 'hue'
+      }
+    );
   }
 }

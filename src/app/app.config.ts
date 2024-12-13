@@ -4,11 +4,12 @@ import { provideRouter } from '@angular/router';
 import { CurrencyPipe, registerLocaleData } from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt'; // Importando o locale pt-BR
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from "ngx-currency-mask/src/currency-mask.config";
 import { routes } from './app.routes';
 import { AuthMasterInterceptor } from './core/auth/interceptos/auth-master.interceptos';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 registerLocaleData(localePt);
  
@@ -28,6 +29,7 @@ export const appConfig: ApplicationConfig = {
     BrowserAnimationsModule,
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    MatDialogModule,
     provideHttpClient(withInterceptors([AuthMasterInterceptor])),
     {
       provide: LOCALE_ID,

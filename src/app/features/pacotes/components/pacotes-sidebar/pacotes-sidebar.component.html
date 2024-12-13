@@ -69,9 +69,7 @@
         class="btn btn-primary w-100"
         id="btn-reservation-now"
         [disabled]="form.invalid"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-        onClick="createReservation()"
+        (click)="createReservation()"
       >
         Reservar agora
       </button>
