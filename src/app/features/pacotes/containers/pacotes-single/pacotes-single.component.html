@@ -14,7 +14,7 @@
       <div class="event__main">
         <div class="row">
           <div class="col-md-12">
-            <h2 class="display-6">{{ excursao()?.nome }}</h2>
+            <span class="display-6">{{ excursao()?.nome }}</span>
             <span class="event__price">
               {{ excursao()?.valor | currency : "BRL" : true : "1.2-2" }}
             </span>
@@ -90,6 +90,7 @@
           [form]="form"
           [periodo]="formatandoPeriodo(excursao()?.dataInicio!, excursao()?.dataFim!)"
           [valor]="excursao()?.valor!"
+          [locais]="excursao()?.LocalEmbarque!"  
         ></app-pacotes-sidebar>
       </div>
     </div>

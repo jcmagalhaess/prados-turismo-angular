@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, effect, Input, signal } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { TipoPassageiroEnum, TipoPassageiroType } from '../../../../shared/models/excursao.type';
+import { ExcursaoLocalEmbarque, TipoPassageiroEnum, TipoPassageiroType } from '../../../../shared/models/excursao.type';
 import { PacotesCountComponent } from "../pacotes-count/pacotes-count.component";
 import { PacotesModalComponent } from '../pacotes-modal/pacotes-modal.component';
 
@@ -25,6 +25,7 @@ export class PacotesSidebarComponent {
   @Input() form = new FormGroup<any>({});
   @Input() periodo: string = "";
   @Input() valor: number = 0;
+  @Input() locais: ExcursaoLocalEmbarque[] = [];
 
   constructor(private readonly _dialog: MatDialog) {
     effect(() => {
@@ -56,9 +57,23 @@ export class PacotesSidebarComponent {
     this._dialog.open(
       PacotesModalComponent,
       {
-        minWidth: '800px',
-        data: 'hue'
+        minWidth: '90vw',
+        data: {
+          tickets: this._takeAmountTickets(this.amountTickets()),
+          price: this._takeTotalPrices(this.amountTickets(), this.valor),
+          locales: this.locais
+        }
       }
     );
+  }
+
+  private _takeAmountTickets(list: Array<any>) {
+    return list.reduce((acc: any, item: any) => acc + item.value, 0);
+  }
+
+  private _takeTotalPrices(tickets: Array<any>, price: number) {
+    let filter = tickets.filter((item: any) => item.key !== 'babies');
+    
+    return this._takeAmountTickets(filter) * price;
   }
 }
