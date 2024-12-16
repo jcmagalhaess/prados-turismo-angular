@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, effect, Input, signal } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ExcursaoLocalEmbarque, TipoPassageiroEnum, TipoPassageiroType } from '../../../../shared/models/excursao.type';
+import { Router } from '@angular/router';
+import { formatarData } from '../../../../shared/helpers/formatar-data.helper';
+import { Excursao, TipoPassageiroEnum, TipoPassageiroType } from '../../../../shared/models/excursao.type';
 import { PacotesCountComponent } from "../pacotes-count/pacotes-count.component";
 import { PacotesModalComponent } from '../pacotes-modal/pacotes-modal.component';
 
@@ -24,13 +26,26 @@ export class PacotesSidebarComponent {
 
   @Input() form = new FormGroup<any>({});
   @Input() periodo: string = "";
-  @Input() valor: number = 0;
-  @Input() locais: ExcursaoLocalEmbarque[] = [];
+  @Input() excursao: Excursao | null = null;
 
-  constructor(private readonly _dialog: MatDialog) {
+  get valor() {
+    return this.excursao?.valor ?? 0;
+  }
+
+  get locais() {
+    return this.excursao?.LocalEmbarque;
+  }
+
+  constructor(
+    private readonly _dialog: MatDialog,
+    private readonly _router: Router
+  ) {
     effect(() => {
       this.form.controls['tickets'].setValue(this.amountTickets());
     })
+  }
+  public formatandoPeriodo(dataInicio: string, dataFim: string) {
+    return `${formatarData(new Date(dataInicio))} a ${formatarData(new Date(dataFim))}`;
   }
 
   public amountHandle(values: any) {
@@ -54,7 +69,7 @@ export class PacotesSidebarComponent {
   }
 
   public createReservation() {
-    this._dialog.open(
+    const dialogRef = this._dialog.open(
       PacotesModalComponent,
       {
         minWidth: '90vw',
@@ -66,6 +81,25 @@ export class PacotesSidebarComponent {
         }
       }
     );
+
+    dialogRef.afterClosed().subscribe((res: any) => {
+      if (!res) return;
+      
+      let item = {
+        id: this.excursao?.id,
+        price: this.excursao?.valor,
+        periodo: {
+          dataInicio: this.excursao?.dataInicio,
+          dataFim: this.excursao?.dataFim
+        },
+        tickets: this.amountTickets().filter((item: any) => item.value > 0),
+        participantes: res
+      };
+
+      sessionStorage.setItem('pacote', JSON.stringify(item));
+
+      this._router.navigateByUrl('checkout');
+    });
   }
 
   private _takeAmountTickets(list: Array<any>) {

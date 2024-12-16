@@ -19,10 +19,10 @@
 <div class="row my-4">
     <div class="col-md-12">
         <form [formGroup]="form">
-            <div formArrayName="rows">
+            <div formArrayName="participantes">
                 <mat-accordion>
-                    @for (item of rows.controls; track $index) {
-                        <mat-expansion-panel hideToggle>
+                    @for (item of participantes.controls; track $index) {
+                        <mat-expansion-panel>
                             <mat-expansion-panel-header>
                                 <mat-panel-title>Participantes {{ $index + 1 }}</mat-panel-title>
                             </mat-expansion-panel-header>
@@ -39,13 +39,13 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="phone" class="form-label">Telefone *</label>
-                                            <input type="text" class="form-control" formControlName="phone">
+                                            <input type="text" class="form-control" formControlName="phone" mask="(00) 00000-0000">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="cpf" class="form-label">CPF *</label>
-                                            <input type="text" class="form-control" formControlName="cpf">
+                                            <input type="text" class="form-control" formControlName="cpf" mask="000.000.000-00">
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="rg" class="form-label">RG *</label>
-                                            <input type="text" class="form-control" formControlName="rg">
+                                            <input type="text" class="form-control" formControlName="rg" maxlength="14">
                                         </div>
                                     </div>
                                     <div class="col-md-6">

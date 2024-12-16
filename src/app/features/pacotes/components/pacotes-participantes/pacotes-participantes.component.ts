@@ -8,9 +8,10 @@ import {
   Validators,
 } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatInputModule } from "@angular/material/input";
+import { NgxMaskDirective } from "ngx-mask";
 import { yearList } from "../../../../shared/helpers/year-list.helper";
 import { ExcursaoLocalEmbarque } from "../../../../shared/models/excursao.type";
 import { Months } from "../../../../shared/models/global.type";
@@ -25,7 +26,8 @@ import { Months } from "../../../../shared/models/global.type";
     CurrencyPipe,
     MatExpansionModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxMaskDirective
   ],
   templateUrl: "./pacotes-participantes.component.html",
   styleUrl: "./pacotes-participantes.component.scss",
@@ -34,30 +36,29 @@ export class PacotesParticipantesComponent implements OnChanges {
   public months = Months;
   public years = yearList(1900);
   public form = new FormGroup<any>({
-    rows: new FormArray<any>([]),
+    participantes: new FormArray<any>([]),
   });
 
-  get rows() {
-    return this.form.get("rows") as FormArray;
+  get participantes() {
+    return this.form.get("participantes") as FormArray;
   }
 
   @Input() amountTickets: number = 0;
   @Input() valor: number = 0;
   @Input() localEmbarque: ExcursaoLocalEmbarque[] = [];
 
+  constructor(private readonly _dialog: MatDialogRef<any>) {}
+
   public ngOnChanges() {
     if (this.amountTickets) {
       for (let index = 0; index < this.amountTickets; index++) {
-        console.log("teste");
-        this.rows.push(this._createForm());
+        this.participantes.push(this._createForm());
       }
     }
   }
 
   public createReservation() {
-    console.log({
-      ...this.form.getRawValue(),
-    });
+    this._dialog.close(this.participantes.getRawValue());
   }
 
   private _createForm() {
@@ -65,7 +66,7 @@ export class PacotesParticipantesComponent implements OnChanges {
       name: new FormControl("", Validators.required),
       email: new FormControl("", Validators.required),
       phone: new FormControl("", Validators.required),
-      rg: new FormControl("", Validators.required),
+      rg: new FormControl("", [Validators.required, Validators.maxLength(14)]),
       cpf: new FormControl("", Validators.required),
       orgaoEmissor: new FormControl("", Validators.required),
       dataNascimento: new FormGroup<any>({

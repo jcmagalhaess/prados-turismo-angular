@@ -88,9 +88,7 @@
       <div class="event__sidebar">
         <app-pacotes-sidebar
           [form]="form"
-          [periodo]="formatandoPeriodo(excursao()?.dataInicio!, excursao()?.dataFim!)"
-          [valor]="excursao()?.valor!"
-          [locais]="excursao()?.LocalEmbarque!"  
+          [excursao]="excursao()"
         ></app-pacotes-sidebar>
       </div>
     </div>
