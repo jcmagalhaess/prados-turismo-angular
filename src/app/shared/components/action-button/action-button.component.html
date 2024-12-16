@@ -1,0 +1,13 @@
+<button
+    type="submit"
+    (click)="emitter()"
+    [disabled]="disabled || loading"
+    class="btn btn-primary me-3">
+    @if (loading) {
+        <div class="d-flex align-items-center">
+            <mat-spinner class="me-2" [diameter]="20"></mat-spinner> {{ labelLoading }}
+        </div>
+    } @else {
+        {{ label }}
+    }
+</button>

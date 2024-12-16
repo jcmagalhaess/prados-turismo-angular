@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,5 +13,11 @@ export class HeaderComponent {
   public menu = [
     { label: 'Home', route: '' },
     { label: 'Pacotes', route: 'pacotes' },
-  ]
+  ];
+
+  constructor(private readonly _router: Router) { }
+
+  public navigate(route: string) {
+    this._router.navigate([route]);
+  }
 }

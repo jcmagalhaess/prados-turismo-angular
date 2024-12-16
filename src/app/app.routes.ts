@@ -15,5 +15,10 @@ export const routes: Routes = [
         path: 'pacotes/:id',
         pathMatch: 'full',
         loadComponent: () => import('./features/pacotes/containers/pacotes-single/pacotes-single.component').then(c => c.PacotesSingleComponent)
+    },
+    {
+        path: 'login',
+        pathMatch: 'full',
+        loadComponent: () => import('./core/acesso/containers/acesso-index/acesso-index.component').then(c => c.AcessoIndexComponent)
     }
 ];
