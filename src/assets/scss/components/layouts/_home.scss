@@ -37,7 +37,8 @@ $component-name: "home";
         justify-content: center;
         align-items: center;
         text-align: center;
-        margin-block: 20px;
+        margin-block: 20px !important;
+        font-size: 1.75rem !important;
         text-transform: uppercase;
         &:after {
             content: '';
