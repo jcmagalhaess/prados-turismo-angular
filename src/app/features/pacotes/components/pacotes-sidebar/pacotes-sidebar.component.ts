@@ -58,6 +58,7 @@ export class PacotesSidebarComponent {
       PacotesModalComponent,
       {
         minWidth: '90vw',
+        disableClose: true,
         data: {
           tickets: this._takeAmountTickets(this.amountTickets()),
           price: this._takeTotalPrices(this.amountTickets(), this.valor),

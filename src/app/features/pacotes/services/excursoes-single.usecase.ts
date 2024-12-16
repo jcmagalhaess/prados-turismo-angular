@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, signal } from "@angular/core";
 import { lastValueFrom, map } from "rxjs";
 import { env } from "../../../../env/env";
-import { calcularDiasENoites } from "../../../shared/helpers/calcular-dias-noites.helpers";
+import { calcularDiasENoites } from "../../../shared/helpers/calcular-dias-noites.helper";
 import { Excursao, OrigemEnum } from "../../../shared/models/excursao.type";
 
 @Injectable({
