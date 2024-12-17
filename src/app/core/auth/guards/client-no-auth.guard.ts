@@ -10,10 +10,10 @@ export const clientNoAuthGuard: CanActivateFn = (route, state) => {
   console.log(authService.clientAuthenticated);
   
   
-  if (!authService.isAuthenticated) {
-    return true;
-  } else {
+  if (authService.isAuthenticated) {
     router.navigate(['/minha-conta']);
     return false;
+  } else {
+    return true;
   }
 };

@@ -26,7 +26,6 @@ export const routes: Routes = [
     },
     {
         path: 'minha-conta',
-        pathMatch: 'full',
         canActivate: [clientAuthGuard],
         loadChildren: () => import('./core/minha-conta/minha-conta.routes').then(c => c.routes)
     }

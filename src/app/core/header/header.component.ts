@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AcessoClientAuthenticatedUsecase } from '../acesso/services/acesso-client-authenticated.usecase';
 
@@ -23,7 +23,12 @@ export class HeaderComponent {
   constructor(
     private readonly _router: Router,
     private readonly _user: AcessoClientAuthenticatedUsecase
-  ) { }
+  ) {
+    effect(() => {
+      console.log(this.client());
+      
+    })
+  }
 
   public navigate(route: string) {
     this._router.navigate([route]);

@@ -4,7 +4,7 @@
             <ul class="dashboard__menu">
                 @for (item of menu; track $index) {
                     <li class="dashboard__item">
-                        <a [routerLink]="[item.route]">{{ item.label }}</a>
+                        <a [routerLink]="[item.route]" routerLinkActive="dashboard--activated">{{ item.label }}</a>
                     </li>
                 }
                 <li class="dashboard__item">

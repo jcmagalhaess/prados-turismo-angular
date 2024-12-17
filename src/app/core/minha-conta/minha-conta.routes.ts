@@ -4,7 +4,6 @@ import { MinhaContaComponent } from "./minha-conta.component";
 export const routes: Routes = [
     {
         path: '',
-        pathMatch: 'full',
         component: MinhaContaComponent,
         children: [
             {

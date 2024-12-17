@@ -13,8 +13,8 @@
                 <div class="spacer"></div>
                 <div class="header__account">
                     <i class="fa-regular fa-user me-2"></i>
-                    @if (client) {
-                        <a routerLink="/minha-conta">{{ client.nome }}</a>
+                    @if (client()) {
+                        <a routerLink="/minha-conta">{{ client()!.nome }}</a>
                     } @else {
                         <a routerLink="/login">Entre ou Cadastre-se</a>
                     }
