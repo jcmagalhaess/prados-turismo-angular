@@ -3,22 +3,26 @@
 <app-features></app-features>
 
 
-<section class="home__pacotes mb-5">
+<section class="home__pacotes my-5">
     <div class="container">
-        <h3 class="home__title">Nossos Pacotes</h3>
+        <div class="home__title display-6">Nossos Pacotes</div>
         <div class="row">
-            @for (item of excursoes; track $index) {
-                <div class="col-md-4">
-                    <app-excursao-card
-                        [id]="item.id"
-                        [thumbnail]="hasUrl(item.Pacotes.Imagem)"
-                        [title]="item.nome"
-                        [duration]="item.duracao"
-                        [category]="item.Pacotes.categoria"
-                        [resume]="item.observacoes"
-                        [price]="item.valor">
-                    </app-excursao-card>
-                </div>
+            @if (excursoes.length > 0) {
+                @for (item of excursoes; track $index) {
+                    <div class="col-md-4">
+                        <app-excursao-card
+                            [id]="item.id"
+                            [thumbnail]="hasUrl(item.Pacotes.Imagem)"
+                            [title]="item.nome"
+                            [duration]="item.duracao"
+                            [category]="item.Pacotes.categoria"
+                            [resume]="item.observacoes"
+                            [price]="item.valor">
+                        </app-excursao-card>
+                    </div>
+                }
+            } @else {
+                <p class="text-center">Nenhuma excursão encontrada.</p>
             }
         </div>
     </div>

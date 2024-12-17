@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { clientAuthGuard } from './core/auth/guards/client-auth.guard';
 import { clientNoAuthGuard } from './core/auth/guards/client-no-auth.guard';
+import { NotFoundComponent } from './features/not-found/not-found.component';
 
 export const routes: Routes = [
     {
@@ -28,5 +29,9 @@ export const routes: Routes = [
         path: 'minha-conta',
         canActivate: [clientAuthGuard],
         loadChildren: () => import('./core/minha-conta/minha-conta.routes').then(c => c.routes)
-    }
+    },
+    {
+        path: '**',
+        component: NotFoundComponent
+    },
 ];

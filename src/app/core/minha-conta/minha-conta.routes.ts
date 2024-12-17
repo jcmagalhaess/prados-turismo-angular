@@ -24,7 +24,7 @@ export const routes: Routes = [
             {
                 path: 'enderecos',
                 pathMatch: 'full',
-                loadComponent: () => import('../enderecos/enderecos.component').then(c => c.EnderecosComponent)
+                loadComponent: () => import('../enderecos/containers/enderecos-index/enderecos-index.component').then(c => c.EnderecosIndexComponent)
             },
             {
                 path: 'perfil',
