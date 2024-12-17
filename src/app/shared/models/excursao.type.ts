@@ -1,3 +1,5 @@
+import { EnumType } from "./global.type";
+
 export type Excursao = {
   id: string;
   nome: string;
@@ -24,9 +26,8 @@ export type ExcursaoPacote = {
   descricao: string;
   ativo: boolean;
   dataCadastro: string;
-  origem: OrigemType;
+  origem: any;
   tipoTransporte: number;
-  categoria: string;
   urlImagem: string;
   urlImgEsgotado: string;
   usuarioCadastro: string;
@@ -68,12 +69,10 @@ export type ExcursaoLocalEmbarque = {
   usuarioCadastro: string;
 };
 
-export enum OrigemEnum {
-  '_1' = 'Fortaleza',
-  '_2' = 'Tianguá'
-}
-
-export type OrigemType = keyof typeof OrigemEnum;
+export const Origem: EnumType<string>[] = [
+  { key: '1', value: 'Fortaleza' },
+  { key: '2', value: 'Tianguá' }
+]
 
 export enum TipoPassageiroEnum {
   adults = 'Adulto',

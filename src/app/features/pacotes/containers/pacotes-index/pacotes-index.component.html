@@ -1,1 +1,31 @@
-<p>pacotes-index works!</p>
+<main>
+    <div class="container">
+        <div class="display-3">Pacotes</div>
+
+        <app-pacotes-filter (formEmit)="getFilter($event)"></app-pacotes-filter>
+
+        <div class="row">
+            @if (loading) {
+                <mat-progress-bar class="w-100" mode="indeterminate"></mat-progress-bar>
+            } @else {
+                <div class="excursao__list">
+                    @if (excursoes.length == 0) {
+                        <p class="display-6 text-center w-100 my-3">Nenhuma excursão encontrada.</p>    
+                    }
+
+                    @for (item of excursoes; track $index) {
+                        <app-excursao-card
+                            [id]="item.id"
+                            [thumbnail]="hasUrl(item.Pacotes.Imagem)"
+                            [title]="item.nome"
+                            [duration]="item"
+                            [category]="item.Pacotes.origem"
+                            [resume]="item.observacoes"
+                            [price]="item.valor">
+                        </app-excursao-card>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</main>

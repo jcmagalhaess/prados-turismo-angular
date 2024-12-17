@@ -1,0 +1,11 @@
+.excursao {
+    &__list {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 20px;
+        ::ng-deep app-excursao-card {
+            width: calc((100% - 40px) / 3);
+        }
+    }
+}

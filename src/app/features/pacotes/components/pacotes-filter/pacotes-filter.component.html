@@ -1,0 +1,18 @@
+<form [formGroup]="form" class="my-3">
+    <div class="input-group">
+        <select class="form-select" formControlName="origem">
+            <option [value]="null" disabled selected>Origem</option>
+            <option value="1">Fortaleza</option>
+            <option value="2">Tianguá</option>
+        </select>
+
+        <select class="form-select" formControlName="pacoteId">
+            <option [value]="null" disabled selected>Destino</option>
+            @for (item of destinos; track $index) {
+                <option [value]="item.key">{{ item.value }}</option>
+            }
+        </select>
+
+        <button class="btn btn-primary" [disabled]="!form.dirty" type="button" (click)="form.reset()">Resetar Filtros</button>
+    </div>
+</form>

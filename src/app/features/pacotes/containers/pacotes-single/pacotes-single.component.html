@@ -63,8 +63,8 @@
         </div>
         @if (excursao()?.Pacotes?.Galeria?.length) {
         <div class="row">
-          <h5 class="display-6">Nossa galeria</h5>
-          <p>{{ excursao()?.Pacotes?.descricao }}</p>
+          <div class="display-6">Nossa galeria</div>
+          <p class="my-3">{{ excursao()?.Pacotes?.descricao }}</p>
           <ul class="event__gallery">
             @for (item of excursao()?.Pacotes?.Galeria; track $index) {
             <li

@@ -14,8 +14,8 @@
                             [id]="item.id"
                             [thumbnail]="hasUrl(item.Pacotes.Imagem)"
                             [title]="item.nome"
-                            [duration]="item.duracao"
-                            [category]="item.Pacotes.categoria"
+                            [duration]="item"
+                            [category]="item.Pacotes.origem"
                             [resume]="item.observacoes"
                             [price]="item.valor">
                         </app-excursao-card>

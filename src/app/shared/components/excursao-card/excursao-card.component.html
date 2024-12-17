@@ -2,7 +2,7 @@
     <div class="card-event__content">
         <figure class="card-event__thumbnail">
             <img [src]="thumbnail" [alt]="title">
-            <span class="card-event__date">{{ duration }}</span>
+            <span class="card-event__date">{{ duration | calcularDiasNoites }}</span>
         </figure>
         <span class="card-event__category">{{ category }}</span>
         <h2 class="card-event__title" [title]="title">{{ title }}</h2>
@@ -10,7 +10,7 @@
     </div>
     <div class="card-event__actions">
         <span class="card-event__price">{{ price | currency:'BRL':true:'1.2-2' }}</span>
-        <a routerLink="pacotes/{{ id }}" class="card-event__cart">
+        <a routerLink="/pacotes/{{ id }}" class="card-event__cart">
             <i class="fa-solid fa-basket-shopping"></i>
         </a>
     </div>
