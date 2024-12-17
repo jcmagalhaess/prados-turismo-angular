@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './pedidos.component.scss'
 })
 export class PedidosComponent {
-
+  public orderNumber(index: number) {
+    let order = (index + 1).toString();
+    
+    return `#${order.padStart(4, '0')}`;
+  }
 }

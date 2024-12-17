@@ -1,1 +1,24 @@
-<p>pedidos works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Pedido</th>
+      <th scope="col">Data</th>
+      <th scope="col">Status</th>
+      <th scope="col">Total</th>
+      <th scope="col" class="text-center">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of [].constructor(5); track $index) {
+        <tr>
+          <th scope="row">{{ orderNumber($index) }}</th>
+          <td>17/12/2024</td>
+          <td>Processando</td>
+          <td>R$ 250,00 de 2 ingressos</td>
+          <td class="text-center">
+            <button class="btn btn-primary">Visualizar</button>
+          </td>
+        </tr>
+    }
+  </tbody>
+</table>

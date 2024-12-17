@@ -1,0 +1,14 @@
+table {
+    margin: 0 !important;
+    tbody tr {
+        vertical-align: middle;
+        &:last-child {
+            th, td {
+                border: none !important;
+            }
+        }
+    }
+    th, td {
+        padding-block: 10px;
+    }
+}
