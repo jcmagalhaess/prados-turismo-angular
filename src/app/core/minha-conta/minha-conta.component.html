@@ -1,0 +1,21 @@
+<main class="my-account">
+    <div class="container">
+        <div class="d-flex">
+            <ul class="dashboard__menu">
+                @for (item of menu; track $index) {
+                    <li class="dashboard__item">
+                        <a [routerLink]="[item.route]">{{ item.label }}</a>
+                    </li>
+                }
+                <li class="dashboard__item">
+                    <a class="pointer" (click)="logout()">Sair</a>
+                </li>
+            </ul>
+            <div class="login__box w-75">
+                <div class="my-account__panel">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

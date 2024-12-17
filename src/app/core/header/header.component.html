@@ -12,7 +12,12 @@
                 </ul>
                 <div class="spacer"></div>
                 <div class="header__account">
-                    <i class="fa-regular fa-user me-2"></i> <a routerLink="/login">Entre ou Cadastre-se</a>
+                    <i class="fa-regular fa-user me-2"></i>
+                    @if (client) {
+                        <a routerLink="/minha-conta">{{ client.nome }}</a>
+                    } @else {
+                        <a routerLink="/login">Entre ou Cadastre-se</a>
+                    }
                 </div>
                 <div class="header__cart">
                     <div class="header__value">R$ 0,00</div>

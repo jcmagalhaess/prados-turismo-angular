@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { clientAuthGuard } from './core/auth/guards/client-auth.guard';
+import { clientNoAuthGuard } from './core/auth/guards/client-no-auth.guard';
 
 export const routes: Routes = [
     {
@@ -19,6 +21,13 @@ export const routes: Routes = [
     {
         path: 'login',
         pathMatch: 'full',
+        canActivate: [clientNoAuthGuard],
         loadComponent: () => import('./core/acesso/containers/acesso-index/acesso-index.component').then(c => c.AcessoIndexComponent)
+    },
+    {
+        path: 'minha-conta',
+        pathMatch: 'full',
+        canActivate: [clientAuthGuard],
+        loadChildren: () => import('./core/minha-conta/minha-conta.routes').then(c => c.routes)
     }
 ];
