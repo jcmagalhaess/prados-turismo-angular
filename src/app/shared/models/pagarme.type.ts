@@ -12,14 +12,7 @@ export type PagarmeLinkRequestBody = {
     accepted_payment_methods: string[]
   },
   cart_settings: {
-    items: Array<
-      {
-        amount: number
-        name: string,
-        description: string,
-        default_quantity: number
-      }
-    >
+    items: PagarmeLinkItem[];
   },
   name: string,
   type: string,
@@ -48,4 +41,11 @@ export type PagarmeLinkRequestBody = {
     image_url: string,
     primary_color: string
   }
+}
+
+export type PagarmeLinkItem = {
+  amount: number
+  name: string,
+  description: string,
+  default_quantity: number
 }
