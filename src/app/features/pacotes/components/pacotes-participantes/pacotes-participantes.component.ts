@@ -57,7 +57,7 @@ export class PacotesParticipantesComponent implements OnChanges {
     }
   }
 
-  public createReservation() {
+  public createReservation() {    
     this._dialog.close(this.participantes.getRawValue());
   }
 

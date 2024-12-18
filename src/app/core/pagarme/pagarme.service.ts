@@ -1,26 +1,26 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { env } from '../../../env/env';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { env } from '../../../env/env';
 import { PagarmeLinkRequestBody } from '../../shared/models/pagarme.type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PagarMeService {
-  private apiUrl = env.pagarmeApiUrl;
-  private apiKey = env.pagarmeApiKey;
+  private _apiUrl = env.pagarmeApiUrl;
+  private _apiKey = env.pagarmeApiKey;
 
   constructor(private http: HttpClient) { }
 
   generatePaymentLink(data: PagarmeLinkRequestBody): Observable<any> {
     const headers = this.getHeaders();
-    return this.http.post(`${this.apiUrl}/paymentlinks`, data, { headers });
+    return this.http.post(`${this._apiUrl}/paymentlinks`, data, { headers });
   }
 
   private getHeaders() {
     return new HttpHeaders({
-      'Authorization': `Basic ${btoa(this.apiKey + ':')}`,
+      'Authorization': `Basic ${btoa(this._apiKey + ':')}`,
       'Content-Type': 'application/json'
     });
   }

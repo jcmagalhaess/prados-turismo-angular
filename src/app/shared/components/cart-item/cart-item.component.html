@@ -1,0 +1,46 @@
+<div class="card-event mw-100">
+    <div class="card-event__content overflow-y-scroll px-4" style="height: 300px">
+        @for (item of cart; track $index) {
+            <div class="order__resume">
+                <span class="event__price">{{ item.nome }}</span>
+                <ul class="event__category">
+                    @for (item of item.tickets; track $index) {
+                        <li class="d-flex justify-content-between">
+                            <span>{{ item.value }}x {{ formatPassageiroTypeLabel(item.key) }}</span>
+                            <span>{{ item.price | currency:'BRL':true:'1.2-2' }}</span>
+                        </li>
+                        <hr>
+                    }
+                </ul>
+                <ul class="d-flex gap-4">
+                    <li class="d-flex flex-column">
+                        <strong>Data de embarque</strong>
+                        {{ item.periodo?.dataInicio | date: 'dd/MM/yyyy' }}
+                    </li>
+                    <li class="d-flex flex-column">
+                        <strong>Data de retorno</strong>
+                        {{ item.periodo?.dataFim | date: 'dd/MM/yyyy' }}
+                    </li>
+                    @if (item.tickets.length > 1) {
+                        <li class="d-flex flex-column ms-auto text-end">
+                            <strong>Subtotal</strong>
+                            {{ buildPrice(item.tickets) | currency:'BRL':true:'1.2-2' }}
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+    <div id="order-resume-price" class="card-event__actions align-items-center py-2">
+        <div class="event__totalizers--order-resume w-100">
+            <div id="subtotal-label" class="d-flex justify-content-between py-2 w-100">
+                <strong>Total: </strong> {{ totalValue() | currency:'BRL':true:'1.2-2' }}
+            </div>
+            <!-- <div id="payment-label">
+                <div class="d-flex justify-content-between text-success">
+                    <span>Pagando à vista:</span> {{ totalValueWithDiscount() | currency:'BRL':true:'1.2-2' }}
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

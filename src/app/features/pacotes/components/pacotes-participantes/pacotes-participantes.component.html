@@ -4,7 +4,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h5 class="card-title">Quantidade de tickets</h5>
+                        <div class="card-title">Quantidade de tickets</div>
                         <p class="card-text">
                             <span id="tickets-count">{{ amountTickets }}</span>
                         </p>
@@ -20,91 +20,95 @@
     <div class="col-md-12">
         <form [formGroup]="form">
             <div formArrayName="participantes">
-                <mat-accordion>
+                <div class="accordion">
                     @for (item of participantes.controls; track $index) {
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>Participantes {{ $index + 1 }}</mat-panel-title>
-                            </mat-expansion-panel-header>
-                            <div [formGroupName]="$index" class="py-3">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Nome completo *</label>
-                                    <input type="text" class="form-control" formControlName="name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">E-mail *</label>
-                                    <input type="email" class="form-control" formControlName="email">
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="phone" class="form-label">Telefone *</label>
-                                            <input type="text" class="form-control" formControlName="phone" mask="(00) 00000-0000">
-                                        </div>
+                        <div [formGroupName]="$index" class="accordion-item">
+                            <div class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + $index" aria-expanded="true" [attr.aria-controls]="'collapse' + $index">
+                                    Participante {{ $index + 1 }}
+                                </button>
+                            </div>
+                            <div [id]="'collapse' + $index" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                                <div class="accordion-body">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nome completo *</label>
+                                        <input type="text" class="form-control" formControlName="name">
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="cpf" class="form-label">CPF *</label>
-                                            <input type="text" class="form-control" formControlName="cpf" mask="000.000.000-00">
-                                        </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">E-mail *</label>
+                                        <input type="email" class="form-control" formControlName="email">
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="rg" class="form-label">RG *</label>
-                                            <input type="text" class="form-control" formControlName="rg" maxlength="14">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="name" class="form-label">Órgão emissor *</label>
-                                            <input type="text" class="form-control" formControlName="orgaoEmissor">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div formGroupName="dataNascimento">
                                     <div class="row">
-                                        <label for="name" class="form-label">Data de nascimento *</label>
-                                        <div class="col-md-4">
-                                            <select class="form-select" formControlName="dia" aria-label="Default select example">
-                                                <option [value]="null" selected>Dia</option>
-                                                @for (item of [].constructor(31); track $index) {
-                                                    <option [value]="$index + 1">{{  $index + 1 }}</option>
-                                                }
-                                            </select>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="phone" class="form-label">Telefone *</label>
+                                                <input type="text" class="form-control" formControlName="phone" mask="(00) 00000-0000">
+                                            </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <select class="form-select" formControlName="mes" aria-label="Default select example">
-                                                <option [value]="null" selected>Mês</option>
-                                                @for (item of months; track $index) {
-                                                    <option [value]="item">{{ item }}</option>
-                                                }
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <select class="form-select" formControlName="ano" aria-label="Default select example">
-                                                <option [value]="null" selected>Ano</option>
-                                                @for (item of years; track $index) {
-                                                    <option [value]="item">{{ item }}</option>
-                                                }
-                                            </select>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="cpf" class="form-label">CPF *</label>
+                                                <input type="text" class="form-control" formControlName="cpf" mask="000.000.000-00">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="my-3">
-                                    <label for="email" class="form-label">Locais de embarque: *</label>
-                                    @for (item of localEmbarque; track $index) {
-                                        <div class="form-check">
-                                            <input class="form-check-input" [value]="item.codigoEndereco" type="radio" formControlName="localEmbarque" checked>
-                                            <label class="form-check-label" for="locale-1">{{ item.horaEmbarque }} – {{ item.nome }}</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="rg" class="form-label">RG *</label>
+                                                <input type="text" class="form-control" formControlName="rg" maxlength="14">
+                                            </div>
                                         </div>
-                                    }
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="name" class="form-label">Órgão emissor *</label>
+                                                <input type="text" class="form-control" formControlName="orgaoEmissor">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div formGroupName="dataNascimento">
+                                        <div class="row">
+                                            <label for="name" class="form-label">Data de nascimento *</label>
+                                            <div class="col-md-4">
+                                                <select class="form-select" formControlName="dia" aria-label="Default select example">
+                                                    <option [value]="null" selected>Dia</option>
+                                                    @for (item of [].constructor(31); track $index) {
+                                                        <option [value]="$index + 1">{{  $index + 1 }}</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select class="form-select" formControlName="mes" aria-label="Default select example">
+                                                    <option [value]="null" selected>Mês</option>
+                                                    @for (item of months; track $index) {
+                                                        <option [value]="$index + 1">{{ item }}</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select class="form-select" formControlName="ano" aria-label="Default select example">
+                                                    <option [value]="null" selected>Ano</option>
+                                                    @for (item of years; track $index) {
+                                                        <option [value]="item">{{ item }}</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="my-3">
+                                        <label for="email" class="form-label">Locais de embarque: *</label>
+                                        @for (item of localEmbarque; track $index) {
+                                            <div class="form-check">
+                                                <input class="form-check-input" [id]="item.id" [value]="item.id" type="radio" formControlName="localEmbarque" checked>
+                                                <label class="form-check-label" for="{{ item.id }}">{{ item.horaEmbarque }} – {{ item.nome }}</label>
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
-                        </mat-expansion-panel>
+                        </div>
                     }
-                </mat-accordion>
+                </div>
             </div>
         </form>
     </div>
@@ -112,7 +116,7 @@
 
 <div class="row">
     <div class="col-md-12" align="end">
-        <button mat-raised-button color="" mat-dialog-close>Fechar</button>
-        <button mat-raised-button color="primary" [disabled]="form.invalid" class="btn btn-primary ms-3" (click)="createReservation()">Pagar</button>
+        <button class="btn btn-light"  mat-dialog-close>Fechar</button>
+        <button class="btn btn-primary ms-3" [disabled]="form.invalid" (click)="createReservation()">Pagar</button>
     </div>
 </div>

@@ -31,6 +31,14 @@ export const routes: Routes = [
         loadChildren: () => import('./core/minha-conta/minha-conta.routes').then(c => c.routes)
     },
     {
+        path: 'checkout',
+        loadComponent: () => import('./core/checkout/checkout.component').then(c => c.CheckoutComponent)
+    },
+    {
+        path: 'meu-carrinho',
+        loadComponent: () => import('./core/meu-carrinho/meu-carrinho.component').then(c => c.MeuCarrinhoComponent)
+    },
+    {
         path: '**',
         component: NotFoundComponent
     },
