@@ -211,44 +211,7 @@
                 <div class="display-6">Resumo da compra</div>
                 <hr>
                 
-                <div class="card-event mw-100">
-                    <div class="card-event__content overflow-y-scroll px-4" style="height: 300px">
-                        <div class="order__resume">
-                            <span class="event__price">{{ excursao()?.nome }}</span>
-                            <ul class="event__category">
-                                @for (item of tickets(); track $index) {
-                                    <li class="d-flex justify-content-between">
-                                        <span>{{ item.value }}x {{ formatPassageiroTypeLabel(item.key) }}</span>
-                                        <span>{{ item.price | currency:'BRL':true:'1.2-2' }}</span>
-                                    </li>
-                                    <hr>
-                                }
-                            </ul>
-                            <ul class="d-flex gap-4">
-                                <li class="d-flex flex-column">
-                                    <strong>Data de embarque</strong>
-                                    {{ excursao()?.dataInicio | date: 'dd/MM/yyyy' }}
-                                </li>
-                                <li class="d-flex flex-column">
-                                    <strong>Data de retorno</strong>
-                                    {{ excursao()?.dataFim | date: 'dd/MM/yyyy' }}
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="order-resume-price" class="card-event__actions align-items-center py-2">
-                        <div class="event__totalizers--order-resume w-100">
-                            <div id="subtotal-label" class="d-flex justify-content-between w-100">
-                                <strong>Subtotal: </strong> {{ totalValue() | currency:'BRL':true:'1.2-2' }}
-                            </div>
-                            <div id="payment-label">
-                                <div class="d-flex justify-content-between text-success">
-                                    <span>Pagando à vista:</span> {{ totalValueWithDiscount() | currency:'BRL':true:'1.2-2' }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <app-cart-item [excursao]="excursao()" [pacote]="pacote" [participantes]="participantes()"></app-cart-item>
             </div>
         </div>
 
