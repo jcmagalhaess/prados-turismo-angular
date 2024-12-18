@@ -31,6 +31,10 @@ export const routes: Routes = [
         loadChildren: () => import('./core/minha-conta/minha-conta.routes').then(c => c.routes)
     },
     {
+        path: 'checkout',
+        loadComponent: () => import('./core/checkout/checkout.component').then(c => c.CheckoutComponent)
+    },
+    {
         path: '**',
         component: NotFoundComponent
     },
