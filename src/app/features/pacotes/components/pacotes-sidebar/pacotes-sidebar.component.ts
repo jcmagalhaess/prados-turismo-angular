@@ -93,13 +93,20 @@ export class PacotesSidebarComponent {
           dataFim: this.excursao?.dataFim
         },
         tickets: this.amountTickets().filter((item: any) => item.value > 0),
-        participantes: res
-      };
+        participantes: this._formatBirthday(res)
+      };      
 
       sessionStorage.setItem('pacote', JSON.stringify(item));
 
       this._router.navigateByUrl('checkout');
     });
+  }
+
+  private _formatBirthday(items: Array<any>) {
+    return items.map((item: any) => ({
+      ...item,
+      dataNascimento: item.dataNascimento.ano + '-' + item.dataNascimento.mes + '-' + item.dataNascimento.dia
+    }));
   }
 
   private _takeAmountTickets(list: Array<any>) {

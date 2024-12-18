@@ -20,12 +20,17 @@ a {
 
 .btn{
     &-primary,
+    &-secondary,
+    &-light {
+        height: 45px;
+    }
+    
+    &-primary,
     &-secondary {
         &:not(.btn-secondary) {
             background-color: var(--color-secondary) !important;
         }
         border: none !important;
-        height: 45px;
         padding-inline: 25px !important;
         &:hover {
             background-color: var(--color-secondary-dark) !important;
