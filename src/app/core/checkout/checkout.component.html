@@ -211,7 +211,11 @@
                 <div class="display-6">Resumo da compra</div>
                 <hr>
                 
-                <app-cart-item [excursao]="excursao()" [pacote]="pacote" [participantes]="participantes()"></app-cart-item>
+                <app-cart-item
+                    [excursao]="excursao()"
+                    [pacote]="pacote"
+                    [participantes]="participantes()"
+                    (totalValueEmit)="totalValue.set($event)"></app-cart-item>
             </div>
         </div>
 
@@ -266,7 +270,7 @@
         }
 
         <div class="d-flex justify-content-end mt-5">
-            <button type="button" class="btn btn-primary" [disabled]="cantEnable" onclick="adicionarAoCarrinho()">Adicionar no carrinho</button>
+            <button type="button" class="btn btn-primary" [disabled]="cantEnable" (click)="adicionarAoCarrinho()">Adicionar no carrinho</button>
         </div>
     </div>
 </main>
