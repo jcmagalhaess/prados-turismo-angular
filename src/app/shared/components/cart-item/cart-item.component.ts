@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, EventEmitter, Input, Output, signal } from '@angular/core';
-import { Excursao, TipoPassageiroEnum, TipoPassageiroType } from '../../models/excursao.type';
-import { EnumType } from '../../models/global.type';
+import { Component, computed, Input, OnChanges, signal, SimpleChanges } from '@angular/core';
+import { TipoPassageiroEnum, TipoPassageiroType } from '../../models/excursao.type';
 
 @Component({
   selector: 'app-cart-item',
@@ -10,21 +9,21 @@ import { EnumType } from '../../models/global.type';
   templateUrl: './cart-item.component.html',
   styleUrl: './cart-item.component.scss'
 })
-export class CartItemComponent {
-  public valor = computed(() => this.pacote().price);
-  public tickets = computed(() => this.pacote().tickets.map((item: any) => ({ ...item, price: item.key === 'babies' ? 0 : this.valor() * item.value })));
-  public totalValueWithDiscount = computed(() => this.totalValue() * 0.95);
-  public totalValue = computed(() => this.tickets().filter((item: any) => item.key !== 'babies').reduce((acc: number, item: EnumType<string>) => acc + item.value, 0) * this.valor());
+export class CartItemComponent implements OnChanges {
+  public tickets = signal<any>([]);
+  public totalValue = computed(() => this.tickets().reduce((acc: number, item: any) => acc + item.price, 0));
+  public totalValueWithDiscount = signal<number>(0);
   
-  @Input({ required: true }) pacote = signal<any>(null);
-  @Input({ required: true }) participantes = [];
-  @Input({ required: true }) excursao: Excursao | null = null;
+  @Input({ required: true }) cart: Array<any> = [];
 
-  @Output() totalValueEmit = new EventEmitter<number>();
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes['cart']) {
+      this.tickets.set(this.cart.flatMap((item: any) => item.tickets));
+    }
+  }
 
-  constructor() {
-    effect(() => this.totalValueEmit.emit(this.totalValue()))
-    effect(() => this.totalValueEmit.emit(this.totalValue()))
+  public buildPrice(tickets: any) {
+    return tickets.reduce((acc: number, item: any) => acc + item.price, 0);
   }
 
   public formatPassageiroTypeLabel(type: TipoPassageiroType) {

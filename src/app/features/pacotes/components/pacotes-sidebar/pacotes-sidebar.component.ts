@@ -1,12 +1,16 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
 import { Component, effect, Input, signal } from "@angular/core";
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { formatarData } from '../../../../shared/helpers/formatar-data.helper';
-import { Excursao, TipoPassageiroEnum, TipoPassageiroType } from '../../../../shared/models/excursao.type';
+import { FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { Router } from "@angular/router";
+import { formatarData } from "../../../../shared/helpers/formatar-data.helper";
+import {
+  Excursao,
+  TipoPassageiroEnum,
+  TipoPassageiroType,
+} from "../../../../shared/models/excursao.type";
 import { PacotesCountComponent } from "../pacotes-count/pacotes-count.component";
-import { PacotesModalComponent } from '../pacotes-modal/pacotes-modal.component';
+import { PacotesModalComponent } from "../pacotes-modal/pacotes-modal.component";
 
 @Component({
   selector: "app-pacotes-sidebar",
@@ -17,7 +21,7 @@ import { PacotesModalComponent } from '../pacotes-modal/pacotes-modal.component'
 })
 export class PacotesSidebarComponent {
   public amountTickets = signal<any>([]);
-  
+
   public enumCategory = [
     { key: "adults", value: "Adultos", age: "+12 anos" },
     { key: "children", value: "Crianças", age: "6 a 12 anos" },
@@ -41,71 +45,87 @@ export class PacotesSidebarComponent {
     private readonly _router: Router
   ) {
     effect(() => {
-      this.form.controls['tickets'].setValue(this.amountTickets());
-    })
+      this.form.controls["tickets"].setValue(this.amountTickets());
+    });
   }
   public formatandoPeriodo(dataInicio: string, dataFim: string) {
-    return `${formatarData(new Date(dataInicio))} a ${formatarData(new Date(dataFim))}`;
+    return `${formatarData(new Date(dataInicio))} a ${formatarData(
+      new Date(dataFim)
+    )}`;
   }
 
   public amountHandle(values: any) {
     if (this.amountTickets().find((item: any) => item.key === values.key)) {
-      let filter = this.amountTickets().filter((item: any) => item.key !== values.key);
+      let filter = this.amountTickets().filter(
+        (item: any) => item.key !== values.key
+      );
       this.amountTickets.set((filter || []).concat(values));
     } else this.amountTickets.set((this.amountTickets() || []).concat(values));
   }
 
   public amountLabel() {
-    if (this.amountTickets().length === 0) return 'Selecione';
+    if (this.amountTickets().length === 0) return "Selecione";
 
     let amount = this.amountTickets()
       .filter((item: any) => item.value > 0)
-      .map((item: any) => (
-        `${TipoPassageiroEnum[item.key as TipoPassageiroType]}: ${item.value}`
-      ))
+      .map(
+        (item: any) =>
+          `${TipoPassageiroEnum[item.key as TipoPassageiroType]}: ${item.value}`
+      )
       .sort((a: any, b: any) => a.localeCompare(b));
 
-    return amount.join(', ');
+    return amount.join(", ");
   }
 
   public createReservation() {
-    const dialogRef = this._dialog.open(
-      PacotesModalComponent,
-      {
-        minWidth: '90vw',
-        disableClose: true,
-        data: {
-          tickets: this._takeAmountTickets(this.amountTickets()),
-          price: this._takeTotalPrices(this.amountTickets(), this.valor),
-          locales: this.locais
-        }
-      }
-    );
+    const dialogRef = this._dialog.open(PacotesModalComponent, {
+      minWidth: "90vw",
+      disableClose: true,
+      data: {
+        tickets: this._takeAmountTickets(this.amountTickets()),
+        price: this._takeTotalPrices(this.amountTickets(), this.valor),
+        locales: this.locais,
+      },
+    });
 
     dialogRef.afterClosed().subscribe((res: any) => {
       if (!res) return;
-      
+
       let item = {
         id: this.excursao?.id,
         price: this.excursao?.valor,
+        nome: this.excursao?.nome,
         periodo: {
           dataInicio: this.excursao?.dataInicio,
-          dataFim: this.excursao?.dataFim
+          dataFim: this.excursao?.dataFim,
         },
-        tickets: this.amountTickets().filter((item: any) => item.value > 0),
-        participantes: this._formatBirthday(res)
-      };      
+        tickets: this.amountTickets()
+          .filter((item: any) => item.value > 0)
+          .map((item: any) => ({ ...item, price: this._buildPrice(item) })),
+        participantes: this._formatBirthday(res),
+      };
 
-      sessionStorage.setItem('pacote', JSON.stringify(item));
+      sessionStorage.setItem("pacote", JSON.stringify(item));
 
-      this._router.navigateByUrl('checkout');
+      this._router.navigateByUrl("checkout");
     });
+  }
+
+  private _buildPrice(item: any) {
+    if (item.key === "babies") return 0;
+
+    return (this.excursao?.valor ?? 0) * item.value
   }
 
   private _formatBirthday(items: Array<any>) {
     return items.map((item: any) => ({
       ...item,
-      dataNascimento: item.dataNascimento.ano + '-' + item.dataNascimento.mes + '-' + item.dataNascimento.dia
+      dataNascimento:
+        item.dataNascimento.ano +
+        "-" +
+        item.dataNascimento.mes +
+        "-" +
+        item.dataNascimento.dia,
     }));
   }
 
@@ -114,8 +134,8 @@ export class PacotesSidebarComponent {
   }
 
   private _takeTotalPrices(tickets: Array<any>, price: number) {
-    let filter = tickets.filter((item: any) => item.key !== 'babies');
-    
+    let filter = tickets.filter((item: any) => item.key !== "babies");
+
     return this._takeAmountTickets(filter) * price;
   }
 }

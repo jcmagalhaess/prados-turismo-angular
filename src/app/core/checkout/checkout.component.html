@@ -7,7 +7,7 @@
                 <hr>
                 
                 <div class="card-event mw-100">
-                    <div class="card-event__content p-4" (scroll)="onScroll($event)" style="height: 300px">
+                    <div class="card-event__content overflow-y-scroll p-4" (scroll)="onScroll($event)" style="height: 300px">
                         <article>
                             CONTRATO DE AQUISIÇÃO DE SERVIÇOS DE VIAGEM
 
@@ -211,11 +211,7 @@
                 <div class="display-6">Resumo da compra</div>
                 <hr>
                 
-                <app-cart-item
-                    [excursao]="excursao()"
-                    [pacote]="pacote"
-                    [participantes]="participantes()"
-                    (totalValueEmit)="totalValue.set($event)"></app-cart-item>
+                <app-cart-item [cart]="cart()" />
             </div>
         </div>
 
@@ -269,7 +265,7 @@
             </div>
         }
 
-        <div class="d-flex justify-content-end mt-5">
+        <div align="end" class="mt-5">
             <button type="button" class="btn btn-primary" [disabled]="cantEnable" (click)="adicionarAoCarrinho()">Adicionar no carrinho</button>
         </div>
     </div>
