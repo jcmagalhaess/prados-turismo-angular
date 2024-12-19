@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, OnInit, signal } from "@angular/core";
-import { CartItemComponent } from "../../shared/components/cart-item/cart-item.component";
+import { CartItemComponent } from "../../../../shared/components/cart-item/cart-item.component";
 
 @Component({
   selector: "app-meu-carrinho",

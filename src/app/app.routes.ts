@@ -36,7 +36,7 @@ export const routes: Routes = [
     },
     {
         path: 'meu-carrinho',
-        loadComponent: () => import('./core/meu-carrinho/meu-carrinho.component').then(c => c.MeuCarrinhoComponent)
+        loadComponent: () => import('./core/meu-carrinho/containers/meu-carrinho/meu-carrinho.component').then(c => c.MeuCarrinhoComponent)
     },
     {
         path: '**',

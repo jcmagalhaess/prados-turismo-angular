@@ -1,0 +1,11 @@
+.event {
+    &__thumbnail {
+        height: 90px;
+        margin: 0;
+        margin-inline-end: 20px;
+        background-image: var(--background, url('/assets/images/placeholder.webp'));
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}

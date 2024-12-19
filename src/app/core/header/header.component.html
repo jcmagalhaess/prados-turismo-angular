@@ -19,13 +19,14 @@
                         <a routerLink="/login">Entre ou Cadastre-se</a>
                     }
                 </div>
-                <div class="header__cart">
+                <div class="header__cart" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <div class="header__value">{{ valoresCarrinho | currency: "BRL":true:"1.2-2" }}</div>
                     <div class="header__amount">
                         <i class="fa-solid fa-basket-shopping"></i>
                         <span class="header__badge">{{ totalCarrinho }}</span>
                     </div>
                 </div>
+                <app-meu-carrinho-offcanvas></app-meu-carrinho-offcanvas>
             </div>
         </div>
     </div>
