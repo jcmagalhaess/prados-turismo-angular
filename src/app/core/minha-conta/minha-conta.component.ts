@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AcessoClientAuthenticatedUsecase } from '../acesso/services/acesso-client-authenticated.usecase';
+import { AcessoLoginClientUsecase } from '../acesso/services/acesso-login-client.usecase';
 
 @Component({
   selector: 'app-minha-conta',
@@ -18,7 +18,9 @@ export class MinhaContaComponent {
     { label: 'Perfil', route: '/minha-conta/perfil' },
   ];
 
-  constructor(private readonly _client: AcessoClientAuthenticatedUsecase) {}
+  constructor(
+    private readonly _client: AcessoLoginClientUsecase
+  ) {}
 
   public logout() {
     this._client.logout();
