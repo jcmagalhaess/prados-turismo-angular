@@ -3,6 +3,7 @@ import { buildBodyApiPagarme } from "../../../shared/helpers/build-body-api-paga
 import { Client } from "../../../shared/models/client.type";
 import { AcessoClientAuthenticatedUsecase } from "../../acesso/services/acesso-client-authenticated.usecase";
 import { PagarMeService } from "../../pagarme/pagarme.service";
+import { ClientUseCase } from "./client.usecase";
 
 @Injectable({ providedIn: "root" })
 export class CarrinhoService {
@@ -38,6 +39,24 @@ export class CarrinhoService {
     })
   );
   private _pagarMeURL = signal<string | null>(null);
+  private _reserva = computed(() =>
+    this._cart().map((item) => ({
+      excursaoId: item.id,
+      payment_method: "string",
+      total: item.tickets.reduce(
+        (acc: number, item: any) => acc + item.price,
+        0
+      ),
+      criacas: item.tickets.filter((item: any) => item.key === "babies").reduce(
+        (acc: number, item: any) => acc + item.value, 0
+      ),
+      clients: item.participantes.map((participante: any) => ({
+        ...participante,
+        nome: participante.name,
+        emissor: participante.orgaoEmissor,
+      })),
+    }))
+  );
 
   get cart() {
     return this._cart;
@@ -61,6 +80,7 @@ export class CarrinhoService {
 
   constructor(
     private readonly _pagarMeApi: PagarMeService,
+    private readonly _client: ClientUseCase,
     private readonly _user: AcessoClientAuthenticatedUsecase
   ) {
     effect(() => {
@@ -72,6 +92,15 @@ export class CarrinhoService {
     const carrinho = localStorage.getItem("cart");
 
     if (carrinho) this._cart.set(JSON.parse(carrinho));
+  }
+
+  public gerarReserva() {
+    const req = this._reserva().map((item) => this._client.criarReserva(item));
+
+    // return forkJoin(req).subscribe(res => {
+    //   console.log(res);
+      
+    // });
   }
 
   public gerarLinkPagamento() {

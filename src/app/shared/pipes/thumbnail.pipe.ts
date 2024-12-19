@@ -19,7 +19,7 @@ export class ThumbnailPipe implements PipeTransform {
       this._cachedValue = value;
       this._cachedObservable = of(value).pipe(
         switchMap(val => this._http.get<Excursao>(`${ env.API }/excursao/find/${val}`)),
-        switchMap(data => of(`url(${data.Pacotes.Imagem.url})`))
+        switchMap(data => of(`url(${data.Pacotes?.Imagem?.url})`))
       );
     }
     return this._cachedObservable;
