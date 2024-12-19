@@ -18,10 +18,10 @@ import { CarrinhoService } from "../../services/carrinho.service";
 })
 export class MeuCarrinhoOffcanvasComponent {
   get cart() {
-    return this._cart.carrinho;
+    return this._carrinho.cart;
   }
 
-  constructor(private _cart: CarrinhoService) {}
+  constructor(private _carrinho: CarrinhoService) {}
 
   public amountTickets(item: any) {
     return item.reduce((acc: number, item: any) => acc + item.value, 0);
@@ -40,6 +40,10 @@ export class MeuCarrinhoOffcanvasComponent {
   }
 
   public removeItem(item: any) {
-    this._cart.carrinho.set(this._cart.carrinho().filter((i: any) => i.id !== item));
+    this._carrinho.cart.set(this._carrinho.cart().filter((i: any) => i.id !== item));
+  }
+
+  public pagar() {
+    this._carrinho.gerarLinkPagamento();
   }
 }

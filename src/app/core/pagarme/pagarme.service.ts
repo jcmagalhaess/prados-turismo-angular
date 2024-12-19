@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { env } from '../../../env/env';
 import { PagarmeLinkRequestBody } from '../../shared/models/pagarme.type';
 
@@ -13,9 +13,9 @@ export class PagarMeService {
 
   constructor(private http: HttpClient) { }
 
-  generatePaymentLink(data: PagarmeLinkRequestBody): Observable<any> {
+  generatePaymentLink(data: PagarmeLinkRequestBody): Promise<any> {
     const headers = this.getHeaders();
-    return this.http.post(`${this._apiUrl}/paymentlinks`, data, { headers });
+    return lastValueFrom(this.http.post(`${this._apiUrl}/paymentlinks`, data, { headers }));
   }
 
   private getHeaders() {

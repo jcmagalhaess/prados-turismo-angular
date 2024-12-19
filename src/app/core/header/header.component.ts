@@ -1,7 +1,6 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { AcessoClientAuthenticatedUsecase } from '../acesso/services/acesso-client-authenticated.usecase';
 import { MeuCarrinhoOffcanvasComponent } from '../meu-carrinho/components/meu-carrinho-offcanvas/meu-carrinho-offcanvas.component';
 import { CarrinhoService } from '../meu-carrinho/services/carrinho.service';
 
@@ -19,7 +18,7 @@ export class HeaderComponent {
   ];
 
   get client() {
-    return this._user.clientAuthenticated;
+    return this._cart.user.clientAuthenticated;
   }
 
   get totalCarrinho() {
@@ -32,7 +31,6 @@ export class HeaderComponent {
 
   constructor(
     private readonly _router: Router,
-    private readonly _user: AcessoClientAuthenticatedUsecase,
     private readonly _cart: CarrinhoService
   ) {
     this._cart.pegarCarrinho();
