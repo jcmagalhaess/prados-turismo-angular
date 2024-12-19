@@ -1,8 +1,10 @@
 import { computed, effect, Injectable, signal } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { buildBodyApiPagarme } from "../../../shared/helpers/build-body-api-pagarme.helper";
 import { Client } from "../../../shared/models/client.type";
 import { AcessoClientAuthenticatedUsecase } from "../../acesso/services/acesso-client-authenticated.usecase";
 import { PagarMeService } from "../../pagarme/pagarme.service";
+import { MeuCarrinhoReservaComponent } from "../components/meu-carrinho-reserva/meu-carrinho-reserva.component";
 import { ClientUseCase } from "./client.usecase";
 
 @Injectable({ providedIn: "root" })
@@ -47,12 +49,12 @@ export class CarrinhoService {
         (acc: number, item: any) => acc + item.price,
         0
       ),
-      criancas: item.tickets.filter((item: any) => item.key === "babies").reduce(
-        (acc: number, item: any) => acc + item.value, 0
-      ),
+      criancas: item.tickets
+        .filter((item: any) => item.key === "babies")
+        .reduce((acc: number, item: any) => acc + item.value, 0),
       clients: item.participantes.map((item: any) => ({
         ...item,
-        sexo: 'M'
+        sexo: "M",
       })),
     }))
   );
@@ -77,10 +79,15 @@ export class CarrinhoService {
     return this._user;
   }
 
+  get loadingPagarMe() {
+    return this._pagarMeApi.loading;
+  }
+
   constructor(
     private readonly _pagarMeApi: PagarMeService,
     private readonly _client: ClientUseCase,
-    private readonly _user: AcessoClientAuthenticatedUsecase
+    private readonly _user: AcessoClientAuthenticatedUsecase,
+    private readonly _dialog: MatDialog
   ) {
     effect(() => {
       localStorage.setItem("cart", JSON.stringify(this._cart()));
@@ -98,7 +105,7 @@ export class CarrinhoService {
 
     // return forkJoin(req).subscribe(res => {
     //   console.log(res);
-      
+
     // });
   }
 
@@ -110,7 +117,15 @@ export class CarrinhoService {
           this._pegarDadosUsuario(this._user.clientAuthenticated()!)
         )
       )
-      .then((data) => window.open(data.url, "_blank"));
+      .then((data: any) => this._openDialog(data.url));
+  }
+
+  private _openDialog(url: string) {
+    this._dialog.open(MeuCarrinhoReservaComponent, {
+      width: "500px",
+      disableClose: true,
+      data: url,
+    });
   }
 
   private _pegarDadosUsuario(user: Client) {

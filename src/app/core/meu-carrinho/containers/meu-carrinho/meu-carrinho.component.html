@@ -5,7 +5,12 @@
         <app-cart-item [cart]="cart()" />
 
         <div align="end" class="mt-5">
-            <button type="button" class="btn btn-primary" (click)="pagar()">Ir par a o pagamento</button>
+            <app-action-button
+                labelLoading="Gerando..."
+                label="Fazer reserva"
+                [loading]="loadingPagarMe()"
+                (action)="pagar()"
+                />
         </div>
     </div>
 </main>
