@@ -4,6 +4,7 @@ import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CartItemComponent } from "../../shared/components/cart-item/cart-item.component";
 import { AsyncLocalEmbarquePipe } from "../../shared/pipes/async-local-embarque.pipe";
+import { CarrinhoService } from '../meu-carrinho/services/carrinho.service';
 
 @Component({
   selector: "app-checkout",
@@ -26,7 +27,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   public cart = computed(() => [this.pacote()]);
   public participantes = computed(() => this.pacote().participantes);
 
-  constructor(private readonly _router: Router) {}
+  constructor(
+    private readonly _router: Router,
+    private readonly _carrinho: CarrinhoService
+  ) {}
 
   get cantEnable() {
     return this.terms.value !== true;
@@ -57,6 +61,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     cart.push(this.pacote());
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    this._carrinho.pegarCarrinho();
     this._router.navigateByUrl('/meu-carrinho')
   }
 

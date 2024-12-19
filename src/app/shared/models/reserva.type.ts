@@ -3,7 +3,7 @@ export type Reserva = {
   excursaoId: string;
   payment_method: string;
   total: number;
-  criacas: number;
+  criancas: number;
   clients?: {
     nome: string;
     cpf: string;

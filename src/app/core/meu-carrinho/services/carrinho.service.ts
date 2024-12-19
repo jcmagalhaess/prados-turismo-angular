@@ -47,14 +47,10 @@ export class CarrinhoService {
         (acc: number, item: any) => acc + item.price,
         0
       ),
-      criacas: item.tickets.filter((item: any) => item.key === "babies").reduce(
+      criancas: item.tickets.filter((item: any) => item.key === "babies").reduce(
         (acc: number, item: any) => acc + item.value, 0
       ),
-      clients: item.participantes.map((participante: any) => ({
-        ...participante,
-        nome: participante.name,
-        emissor: participante.orgaoEmissor,
-      })),
+      clients: item.participantes,
     }))
   );
 

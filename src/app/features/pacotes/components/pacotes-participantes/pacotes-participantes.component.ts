@@ -63,12 +63,12 @@ export class PacotesParticipantesComponent implements OnChanges {
 
   private _createForm() {
     return new FormGroup<any>({
-      name: new FormControl("", Validators.required),
+      nome: new FormControl("", Validators.required),
       email: new FormControl("", Validators.required),
       phone: new FormControl("", Validators.required),
       rg: new FormControl("", [Validators.required, Validators.maxLength(14)]),
       cpf: new FormControl("", Validators.required),
-      orgaoEmissor: new FormControl("", Validators.required),
+      emissor: new FormControl("", Validators.required),
       dataNascimento: new FormGroup<any>({
         dia: new FormControl("", Validators.required),
         mes: new FormControl("", Validators.required),

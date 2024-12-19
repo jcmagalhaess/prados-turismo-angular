@@ -20,11 +20,9 @@ export class MeuCarrinhoComponent implements OnInit {
       let cart = JSON.parse(localStorage.getItem("cart")!);
       this.cart.set(cart);
     }
-    console.log('reserva');
   }
 
   public pagar() {
-    // console.log('reserva');
     this._carrinho.gerarReserva();
     // this._carrinho.gerarLinkPagamento();
   }

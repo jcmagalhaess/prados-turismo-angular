@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, computed } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { RouterModule } from "@angular/router";
 import {
@@ -17,6 +17,8 @@ import { CarrinhoService } from "../../services/carrinho.service";
   styleUrl: "./meu-carrinho-offcanvas.component.scss",
 })
 export class MeuCarrinhoOffcanvasComponent {
+  public hasntItems = computed(() => this._carrinho.cart().length === 0);
+  
   get cart() {
     return this._carrinho.cart;
   }
