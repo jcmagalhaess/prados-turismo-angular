@@ -20,12 +20,12 @@ export class AcessoRegisterClientUsecase {
     
     constructor(private readonly _http: HttpClient) { }
 
-    public register(email: string) {
+    public register(email: any) {
         this._loading.set(true);
 
         return lastValueFrom(
             this._http
-                .post(`${ env.API }/usuarios/register-user-client`, { email })
+                .post(`${ env.API }/usuarios/register-user-client`, email)
                 .pipe(
                     tap((response: any) => this._client.set(response)),
                     finalize(() => this._loading.set(false))

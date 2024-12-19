@@ -4,7 +4,7 @@
     </div>
     <div class="offcanvas-body">
         @if (hasntItems()) {
-            <span class="display-6 fs-5 text-center d-block">Nenhum item no carrinho.</span>
+            <span class="display-6 fs-5 text-center d-block">Seu carrinho está vazio</span>
         } @else {
             @for (item of cart(); track $index) {
                 <div class="d-flex flex-column">

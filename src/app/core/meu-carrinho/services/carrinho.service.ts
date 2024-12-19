@@ -42,7 +42,7 @@ export class CarrinhoService {
   private _reserva = computed(() =>
     this._cart().map((item) => ({
       excursaoId: item.id,
-      payment_method: "string",
+      payment_method: "credit_card",
       total: item.tickets.reduce(
         (acc: number, item: any) => acc + item.price,
         0
@@ -50,7 +50,10 @@ export class CarrinhoService {
       criancas: item.tickets.filter((item: any) => item.key === "babies").reduce(
         (acc: number, item: any) => acc + item.value, 0
       ),
-      clients: item.participantes,
+      clients: item.participantes.map((item: any) => ({
+        ...item,
+        sexo: 'M'
+      })),
     }))
   );
 
