@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, OnDestroy, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { CartItemComponent } from "../../shared/components/cart-item/cart-item.component";
 import { AsyncLocalEmbarquePipe } from "../../shared/pipes/async-local-embarque.pipe";
 
@@ -24,6 +25,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   public pacote = signal<any>(null);
   public cart = computed(() => [this.pacote()]);
   public participantes = computed(() => this.pacote().participantes);
+
+  constructor(private readonly _router: Router) {}
 
   get cantEnable() {
     return this.terms.value !== true;
@@ -54,6 +57,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     cart.push(this.pacote());
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    this._router.navigateByUrl('/meu-carrinho')
   }
 
   public ngOnDestroy(): void {
