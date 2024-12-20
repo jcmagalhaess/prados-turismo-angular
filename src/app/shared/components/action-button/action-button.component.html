@@ -1,8 +1,9 @@
 <button
-    type="submit"
+    type="button"
     (click)="emitter()"
     [disabled]="disabled || loading"
-    class="btn btn-primary">
+    style="height: 48px;"
+    class="w-100 btn btn-{{ color }}">
     @if (loading) {
         <div class="d-flex align-items-center">
             <mat-spinner class="me-2" [diameter]="20"></mat-spinner> {{ labelLoading }}

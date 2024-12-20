@@ -125,7 +125,7 @@ export class PacotesSidebarComponent {
         "-" +
         item.dataNascimento.mes.padStart(2, "0") +
         "-" +
-        item.dataNascimento.dia,
+        item.dataNascimento.dia.padStart(2, "0"),
     }));
   }
 

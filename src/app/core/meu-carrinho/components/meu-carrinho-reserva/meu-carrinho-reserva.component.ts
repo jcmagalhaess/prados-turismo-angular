@@ -1,22 +1,33 @@
 import { DialogRef } from '@angular/cdk/dialog';
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ActionButtonComponent } from '../../../../shared/components/action-button/action-button.component';
+import { CarrinhoService } from '../../services/carrinho.service';
 
 @Component({
   selector: 'app-meu-carrinho-reserva',
   standalone: true,
-  imports: [MatDialogModule],
+  imports: [MatDialogModule, ActionButtonComponent],
   templateUrl: './meu-carrinho-reserva.component.html',
   styleUrl: './meu-carrinho-reserva.component.scss'
 })
 export class MeuCarrinhoReservaComponent {
+
+  get loading() {
+    return this._carrinho.loadingPagarMe;
+  }
+  
   constructor(
-    @Inject(MAT_DIALOG_DATA) public url: string,
+    private readonly _carrinho: CarrinhoService,
     private readonly _dialogRef: DialogRef
   ) {}
   
   public redirecionar() {
-    this._dialogRef.close();
-    window.open(this.url, '_blank');
+    this._carrinho
+      .gerarLinkPagamento()
+      .then(_ => {
+        this._dialogRef.close();
+        window.open(this._carrinho.pagarMeURL()!, '_blank');
+      });
   }
 }

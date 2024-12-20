@@ -17,6 +17,7 @@ export class ActionButtonComponent {
   @Input() disabled: boolean = false;
   @Input() label: string = '';
   @Input() labelLoading: string = '';
+  @Input() color: 'primary' | 'success' | 'danger' = 'primary';
 
   @Output() action = new EventEmitter<void>();
 

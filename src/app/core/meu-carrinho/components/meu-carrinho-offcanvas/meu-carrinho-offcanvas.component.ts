@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { RouterModule } from "@angular/router";
+import { ActionButtonComponent } from "../../../../shared/components/action-button/action-button.component";
 import {
   TipoPassageiroEnum,
   TipoPassageiroType,
@@ -12,7 +13,7 @@ import { CarrinhoService } from "../../services/carrinho.service";
 @Component({
   selector: "app-meu-carrinho-offcanvas",
   standalone: true,
-  imports: [CommonModule, ThumbnailPipe, MatButtonModule, RouterModule],
+  imports: [CommonModule, ThumbnailPipe, MatButtonModule, RouterModule, ActionButtonComponent],
   templateUrl: "./meu-carrinho-offcanvas.component.html",
   styleUrl: "./meu-carrinho-offcanvas.component.scss",
 })
@@ -21,6 +22,10 @@ export class MeuCarrinhoOffcanvasComponent {
   
   get cart() {
     return this._carrinho.cart;
+  }
+
+  get loading() {
+    return this._carrinho.loadingReserva;
   }
 
   constructor(private _carrinho: CarrinhoService) {}
@@ -46,6 +51,6 @@ export class MeuCarrinhoOffcanvasComponent {
   }
 
   public pagar() {
-    this._carrinho.gerarLinkPagamento();
+    this._carrinho.gerarReserva();
   }
 }

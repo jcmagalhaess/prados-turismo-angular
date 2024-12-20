@@ -4,11 +4,11 @@
         <hr>
         <app-cart-item [cart]="cart()" />
 
-        <div align="end" class="mt-5">
+        <div class="d-flex justify-content-end mt-3">
             <app-action-button
                 labelLoading="Gerando..."
                 label="Fazer reserva"
-                [loading]="loadingPagarMe()"
+                [loading]="loadingReserva()"
                 (action)="pagar()"
                 />
         </div>

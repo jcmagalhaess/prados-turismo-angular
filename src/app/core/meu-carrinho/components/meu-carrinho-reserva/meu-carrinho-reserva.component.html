@@ -4,5 +4,12 @@
     <p>O pagamento é feito de forma externa ao site, pode demorar alguns minutos para aparecer na sua conta.</p>
 </mat-dialog-content>
 <mat-dialog-actions class="px-4 pb-3" align="center">
-  <button class="btn btn-success" cdkFocusInitial (click)="redirecionar()">Pagar</button>
+  <app-action-button
+      labelLoading="Gerando link..."
+      label="Pagar"
+      color="success"
+      [loading]="loading()"
+      (action)="redirecionar()"
+      />
+  <!-- <button class="btn btn-success" cdkFocusInitial (click)="redirecionar()">Pagar</button> -->
 </mat-dialog-actions>

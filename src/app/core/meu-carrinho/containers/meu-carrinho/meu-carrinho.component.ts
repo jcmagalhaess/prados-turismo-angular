@@ -14,8 +14,8 @@ import { CarrinhoService } from "../../services/carrinho.service";
 export class MeuCarrinhoComponent implements OnInit {
   public cart = signal<Array<any>>([]);
 
-  get loadingPagarMe() {
-    return this._carrinho.loadingPagarMe;
+  get loadingReserva() {
+    return this._carrinho.loadingReserva;
   }
   
   constructor(
@@ -30,8 +30,8 @@ export class MeuCarrinhoComponent implements OnInit {
   }
 
   public pagar() {
-    // this._carrinho.gerarReserva();
-    this._carrinho
-      .gerarLinkPagamento()
+    this._carrinho.gerarReserva();
+    // this._carrinho
+    //   .gerarLinkPagamento()
   }
 }

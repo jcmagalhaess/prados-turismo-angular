@@ -1,5 +1,7 @@
 import { computed, effect, Injectable, signal } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { Router } from "@angular/router";
+import { forkJoin } from "rxjs";
 import { buildBodyApiPagarme } from "../../../shared/helpers/build-body-api-pagarme.helper";
 import { Client } from "../../../shared/models/client.type";
 import { AcessoClientAuthenticatedUsecase } from "../../acesso/services/acesso-client-authenticated.usecase";
@@ -9,6 +11,7 @@ import { ClientUseCase } from "./client.usecase";
 
 @Injectable({ providedIn: "root" })
 export class CarrinhoService {
+  public pagarMeURL = signal<string | null>(null);
   private _cart = signal<Array<any>>([]);
   private _amountTickets = computed(() =>
     this._cart()
@@ -40,7 +43,6 @@ export class CarrinhoService {
       };
     })
   );
-  private _pagarMeURL = signal<string | null>(null);
   private _reserva = computed(() =>
     this._cart().map((item) => ({
       excursaoId: item.id,
@@ -83,11 +85,16 @@ export class CarrinhoService {
     return this._pagarMeApi.loading;
   }
 
+  get loadingReserva() {
+    return this._client.loading;
+  }
+
   constructor(
     private readonly _pagarMeApi: PagarMeService,
     private readonly _client: ClientUseCase,
     private readonly _user: AcessoClientAuthenticatedUsecase,
-    private readonly _dialog: MatDialog
+    private readonly _dialog: MatDialog,
+    private readonly _router: Router
   ) {
     effect(() => {
       localStorage.setItem("cart", JSON.stringify(this._cart()));
@@ -103,28 +110,28 @@ export class CarrinhoService {
   public gerarReserva() {
     const req = this._reserva().map((item) => this._client.criarReserva(item));
 
-    // return forkJoin(req).subscribe(res => {
-    //   console.log(res);
-
-    // });
+    return forkJoin(req).subscribe({
+      next: (res) => this._openDialog(),
+      error: (err) => this._openDialog()
+    });
   }
 
   public gerarLinkPagamento() {
     return this._pagarMeApi
-      .generatePaymentLink(
-        buildBodyApiPagarme(
-          this.pagarMe,
-          this._pegarDadosUsuario(this._user.clientAuthenticated()!)
-        )
-      )
-      .then((data: any) => this._openDialog(data.url));
+      .generatePaymentLink(buildBodyApiPagarme(
+        this.pagarMe,
+        this._pegarDadosUsuario(this._user.clientAuthenticated()!)
+      ))
+      .then((data: any) => {
+        this.pagarMeURL.set(data.url);
+        this._router.navigate(["/minha-conta/pedidos"]);
+      });
   }
 
-  private _openDialog(url: string) {
+  private _openDialog() {
     this._dialog.open(MeuCarrinhoReservaComponent, {
       width: "500px",
       disableClose: true,
-      data: url,
     });
   }
 
