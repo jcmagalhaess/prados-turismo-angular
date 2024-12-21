@@ -18,12 +18,13 @@ export class ExcursoesUsecase {
   constructor(private readonly _http: HttpClient) {}
 
   public getExcursoes(
+    filter: any,
     size: string = "3",
     page: string = "1",
     order: string = "asc",
     orderBy: string = ""
   ) {
-    let searchParams = { size, page, order, orderBy };
+    let searchParams = { ...filter, size, page, order, orderBy };
 
     lastValueFrom(
       this._http.get<PaginationResponse<Excursao>>(

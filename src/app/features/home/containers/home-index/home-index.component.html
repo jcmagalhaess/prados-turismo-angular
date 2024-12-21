@@ -6,9 +6,12 @@
 <section class="home__pacotes my-5">
     <div class="container">
         <div class="home__title display-6">Nossos Pacotes</div>
+        
+        <app-pacotes-filter (formEmit)="getFilter($event)"></app-pacotes-filter>
+
         <div class="row">
-            @if (excursoes.length > 0) {
-                @for (item of excursoes; track $index) {
+            @if (excursoes().length > 0) {
+                @for (item of excursoes(); track $index) {
                     <div class="col-md-4">
                         <app-excursao-card
                             [id]="item.id"
@@ -24,6 +27,10 @@
             } @else {
                 <p class="text-center">Nenhuma excursão encontrada.</p>
             }
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center mt-4">
+            <button class="btn btn-outline-primary" routerLink="/pacotes">Visualizar pacotes</button>
         </div>
     </div>
 </section>

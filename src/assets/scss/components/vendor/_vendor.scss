@@ -19,10 +19,21 @@ a {
 }
 
 .btn{
+    &-outline-primary,
+    &-outline-primary,
     &-primary,
     &-secondary,
     &-light {
         height: 45px;
+    }
+
+    &-outline-primary {
+        border-color: var(--color-primary) !important;
+        color: var(--color-primary) !important;
+        &:hover {
+            background-color: var(--color-primary) !important;
+            color: var(--color-light) !important;
+        }
     }
     
     &-primary,
