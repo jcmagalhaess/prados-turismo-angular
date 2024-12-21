@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, Input, signal } from "@angular/core";
+import { Component, computed, effect, Input, signal } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
@@ -21,7 +21,11 @@ import { PacotesModalComponent } from "../pacotes-modal/pacotes-modal.component"
 })
 export class PacotesSidebarComponent {
   public amountTickets = signal<any>([]);
-
+  public amountTicketsNoValueZero = computed(() => this.amountTickets().filter((item: any) => item.value > 0));
+  public hasOpcionaisAndTicketsSelecionados = computed(() => this.amountTicketsNoValueZero().length > 0 && this.excursao?.Pacotes?.Produto.length! > 0);
+  public opcionais = computed(() => this.excursao?.Pacotes?.Produto);
+  public opcionaisSelecionados = signal<any>([]);
+  
   public enumCategory = [
     { key: "adults", value: "Adultos", age: "+12 anos" },
     { key: "children", value: "Crianças", age: "6 a 12 anos" },
@@ -47,6 +51,8 @@ export class PacotesSidebarComponent {
     effect(() => {
       this.form.controls["tickets"].setValue(this.amountTickets());
     });
+
+    effect(() => console.log(this.opcionaisSelecionados()))
   }
   public formatandoPeriodo(dataInicio: string, dataFim: string) {
     return `${formatarData(new Date(dataInicio))} a ${formatarData(
@@ -64,10 +70,9 @@ export class PacotesSidebarComponent {
   }
 
   public amountLabel() {
-    if (this.amountTickets().length === 0) return "Selecione";
+    if (this.amountTicketsNoValueZero().length === 0) return "Selecione";
 
-    let amount = this.amountTickets()
-      .filter((item: any) => item.value > 0)
+    let amount = this.amountTicketsNoValueZero()
       .map(
         (item: any) =>
           `${TipoPassageiroEnum[item.key as TipoPassageiroType]}: ${item.value}`
@@ -103,12 +108,22 @@ export class PacotesSidebarComponent {
           .filter((item: any) => item.value > 0)
           .map((item: any) => ({ ...item, price: this._buildPrice(item) })),
         participantes: this._formatBirthday(res),
+        opcionais: this.opcionaisSelecionados(),
       };
 
       sessionStorage.setItem("pacote", JSON.stringify(item));
 
       this._router.navigateByUrl("checkout");
     });
+  }
+
+  public opcionaisHandle(values: any, price: number) {
+    if (this.opcionaisSelecionados().find((item: any) => item.key === values.key)) {
+      let filter = this.opcionaisSelecionados().filter(
+        (item: any) => item.key !== values.key
+      );
+      this.opcionaisSelecionados.set((filter || []).concat({ ...values, price}));
+    } else this.opcionaisSelecionados.set((this.opcionaisSelecionados() || []).concat({ ...values, price}));
   }
 
   private _buildPrice(item: any) {

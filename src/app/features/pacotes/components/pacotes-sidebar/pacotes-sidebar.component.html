@@ -60,6 +60,30 @@
           </div>
         </div>
       </div>
+
+      @if (hasOpcionaisAndTicketsSelecionados()) {
+        <div class="border rounded-1 p-3 mt-4">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-star me-3"></i>
+            <div class="d-flex flex-column">
+              <strong>Melhore sua experiência</strong>
+              <span>com nossos opcionais</span>
+            </div>
+          </div>
+          
+          @for (item of opcionais(); track $index) {
+            <div class="my-3">
+              <app-pacotes-count
+                  [key]="item.id"
+                  [type]="item.nome"
+                  [valor]="item.valor"
+                  (amountEmit)="opcionaisHandle($event, item.valor)">
+              </app-pacotes-count>
+            </div>
+          }
+          
+        </div>
+      }
     </div>
   </div>
   <div class="row">
