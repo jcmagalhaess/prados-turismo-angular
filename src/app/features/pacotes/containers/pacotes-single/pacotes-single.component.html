@@ -50,10 +50,15 @@
                   <th scope="row">Não incluso</th>
                   <td>
                     <ul class="d-flex flex-wrap">
-                      <li>
-                        <!-- <i class="fa-solid fa-xmark text-danger me-3"></i> -->
-                        ----
-                      </li>
+                      @if (noOpcionais()) {
+                        <li>---</li>
+                      }
+                      @for (item of opcionais(); track $index) {
+                        <li>
+                          <i class="fa-solid fa-xmark text-danger me-3"></i>
+                          {{ item.nome }}
+                        </li>
+                      }
                     </ul>
                   </td>
                 </tr>

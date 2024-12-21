@@ -1,5 +1,5 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, effect } from '@angular/core';
+import { Component, computed, effect } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Lightbox, LightboxModule } from 'ngx-lightbox';
@@ -25,6 +25,14 @@ export class PacotesSingleComponent {
   get excursao() {
     return this._service.excursao;
   }
+
+  get opcionais() {
+    return computed(() => this.excursao()?.Pacotes.Produto)
+  }
+
+  get noOpcionais() {
+    return computed(() => this.opcionais()!.length === 0)
+  }
   
   constructor(
     private readonly _service: ExcursoesSingleUsecase,
@@ -32,9 +40,8 @@ export class PacotesSingleComponent {
     private readonly _router: ActivatedRoute,
     private readonly _lightbox: Lightbox
   ) {
-    // if (this._authMaster.hasToken) {
-      this._service.getExcursaoById(this._router.snapshot.params['id']);
-    // }
+    this._service.getExcursaoById(this._router.snapshot.params['id'])
+
     effect(() => {
       this.form.controls['period'].setValue(this.formatandoPeriodo(this.excursao()?.dataInicio!, this.excursao()?.dataFim!));
     })
