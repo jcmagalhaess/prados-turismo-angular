@@ -30,4 +30,9 @@ export class AcessoGetDataPessoaUsecase {
       )
     );
   }
+
+  public logout() {
+    this._clientAuthenticated.set(null);
+    localStorage.removeItem("userClient");
+  }
 }

@@ -3,6 +3,7 @@ import { Injectable, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { finalize, lastValueFrom, tap } from "rxjs";
 import { env } from "../../../../env/env";
+import { AcessoGetDataPessoaUsecase } from "./acesso-get-data-pessoa.usecase";
 
 @Injectable({
   providedIn: "root",
@@ -35,7 +36,8 @@ export class AcessoLoginClientUsecase {
 
   constructor(
     private readonly _http: HttpClient,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _getUserClient: AcessoGetDataPessoaUsecase
   ) {}
 
   public login(login: any) {
@@ -63,7 +65,9 @@ export class AcessoLoginClientUsecase {
   public logout() {
     localStorage.removeItem("clientToken");
     localStorage.removeItem("clientSession");
+    localStorage.removeItem("userClient");
     this._clientAuthenticated.set(null);
+    this._getUserClient.logout();
 
     this._router.navigateByUrl("/login");
   }

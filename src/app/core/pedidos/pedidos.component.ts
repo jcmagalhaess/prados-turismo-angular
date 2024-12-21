@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed } from '@angular/core';
-import { AcessoLoginClientUsecase } from '../acesso/services/acesso-login-client.usecase';
+import { Component } from '@angular/core';
 import { PedidosService } from './pedidos.service';
 
 @Component({
@@ -16,15 +15,12 @@ export class PedidosComponent {
   }
   
   get noReservas() {
-    return computed(() => this._order.reservas().length === 0);
+    return this._order.noReservas;
   }
   
   constructor(
     private readonly _order: PedidosService,
-    private readonly _login: AcessoLoginClientUsecase
-  ) {
-    this._login.login(this._login.dataCache);
-  }
+  ) { }
   
   public orderNumber(reserva: number) {
     let order = reserva.toString();
@@ -34,5 +30,9 @@ export class PedidosComponent {
 
   public statusLabel(status: false) {
     return status ? 'Aprovado' : 'Aguardando';
+  }
+  
+  public totalTransacoes(lista: any) {
+    return lista.reduce((acc: any, item: any) => acc + item.valor, 0);;
   }
 }

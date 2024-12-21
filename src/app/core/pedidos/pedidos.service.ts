@@ -1,20 +1,23 @@
-import { computed, effect, Injectable } from "@angular/core";
-import { AcessoLoginClientUsecase } from "../acesso/services/acesso-login-client.usecase";
+import { computed, Injectable } from "@angular/core";
+import { AcessoGetDataPessoaUsecase } from "../acesso/services/acesso-get-data-pessoa.usecase";
 
 @Injectable({
   providedIn: "root",
 })
 export class PedidosService {
   public reservas = computed(() =>
-    this._user
+    this._userClient
       .clientAuthenticated()
-      .PessoaVinculada.flatMap((item: any) => item.Reservas).sort((a: any, b: any) => b.reserva - a.reserva)
+      .Reservas.sort((a: any, b: any) => b.reserva - a.reserva)
   );
+  
+  get noReservas() {
+    return computed(() => this.reservas().length === 0);
+  };
 
-  constructor(private readonly _user: AcessoLoginClientUsecase) {
-      effect(() => {
-        console.log(this._user.clientAuthenticated());
-        
-      })
-    }
+  get client() {
+    return this._userClient.clientAuthenticated();
+  }
+
+  constructor(private readonly _userClient: AcessoGetDataPessoaUsecase) { }
 }

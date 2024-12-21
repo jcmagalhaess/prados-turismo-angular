@@ -1,49 +1,61 @@
 <header class="header">
-    <div class="header__topbar">
-        <div class="container">
-            <div class="header__flex">
-                <ul class="header__social-icons">
-                    <li class="header__icon">
-                        <i class="fa-brands fa-facebook"></i>
-                    </li>
-                    <li class="header__icon">
-                        <i class="fa-brands fa-instagram"></i>
-                    </li>
-                </ul>
-                <div class="spacer"></div>
-                <div class="header__account">
-                    <i class="fa-regular fa-user me-2"></i>
-                    @if (client) {
-                        <a routerLink="/minha-conta">{{ client.nome }}</a>
-                    } @else {
-                        <a routerLink="/login">Entre ou Cadastre-se</a>
-                    }
-                </div>
-                <div class="header__cart" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                    <div class="header__value">{{ valoresCarrinho | currency: "BRL":true:"1.2-2" }}</div>
-                    <div class="header__amount">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                        <span class="header__badge">{{ totalCarrinho }}</span>
-                    </div>
-                </div>
-                <app-meu-carrinho-offcanvas></app-meu-carrinho-offcanvas>
-            </div>
+  <div class="header__topbar">
+    <div class="container">
+      <div class="header__flex">
+        <ul class="header__social-icons">
+          <li class="header__icon">
+            <i class="fa-brands fa-facebook"></i>
+          </li>
+          <li class="header__icon">
+            <i class="fa-brands fa-instagram"></i>
+          </li>
+        </ul>
+        <div class="spacer"></div>
+        <div class="header__account">
+          <i class="fa-regular fa-user me-2"></i>
+          @if (client) {
+          <a routerLink="/minha-conta">{{ client.nome }}</a>
+          } @else {
+          <a routerLink="/login">Entre ou Cadastre-se</a>
+          }
         </div>
-    </div>
-    <div class="header__menu">
-        <div class="container">
-            <div class="header__flex">
-                <figure class="header__logo">
-                    <img src="assets/images/logo.webp" alt="Logo - Prados Turismo">
-                </figure>
-                <ul class="header__list">
-                    @for (item of menu; track $index) {
-                        <li class="header__item" >
-                            <a [routerLink]="item.route" routerLinkActive="activated">{{ item.label }}</a>
-                        </li>
-                    }
-                </ul>
-            </div>
+        <div
+          class="header__cart"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
+          <div class="header__value">
+            {{ valoresCarrinho | currency : "BRL" : true : "1.2-2" }}
+          </div>
+          <div class="header__amount">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <span class="header__badge">{{ totalCarrinho }}</span>
+          </div>
         </div>
+        <app-meu-carrinho-offcanvas></app-meu-carrinho-offcanvas>
+      </div>
     </div>
+  </div>
+  <div class="header__menu">
+    <div class="container">
+      <div class="header__flex">
+        <figure class="header__logo">
+          <img src="assets/images/logo.webp" alt="Logo - Prados Turismo" />
+        </figure>
+        <ul class="header__list">
+          @for (item of menu; track $index) {
+          <li class="header__item">
+            <a
+              [routerLink]="item.route"
+              routerLinkActive="activated"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >{{ item.label }}</a
+            >
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
 </header>
