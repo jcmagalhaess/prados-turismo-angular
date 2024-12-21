@@ -24,9 +24,9 @@ export class HomeIndexComponent {
     private readonly _authMaster: AuthMasterService
   ) {
     effect(() => {
-      if (this._authMaster.hasToken) {
+      // if (this._authMaster.hasToken) {
         this._excursoes.getExcursoes();
-      }
+      // }
     })
   }
 

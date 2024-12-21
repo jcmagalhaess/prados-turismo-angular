@@ -1,6 +1,6 @@
 import { Component, effect } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AcessoClientAuthenticatedUsecase } from '../acesso/services/acesso-client-authenticated.usecase';
+import { AcessoLoginClientUsecase } from '../acesso/services/acesso-login-client.usecase';
 
 @Component({
   selector: 'app-painel',
@@ -15,7 +15,7 @@ export class PainelComponent {
   }
   
   constructor(
-    private readonly _client: AcessoClientAuthenticatedUsecase
+    private readonly _client: AcessoLoginClientUsecase
   ) {
     effect(() => {
       console.log(this._client.clientAuthenticated());

@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, signal } from "@angular/core";
+import { computed, Injectable, signal } from "@angular/core";
 import { lastValueFrom } from "rxjs";
 import { env } from "../../../../env/env";
 
@@ -7,10 +7,11 @@ import { env } from "../../../../env/env";
   providedIn: "root",
 })
 export class AuthMasterService {
-  private _hasToken = signal<boolean>(false);
+  private _token = signal<string | null>(null);
+  private _hasToken = computed(() => this._token() !== null);
 
   get hasToken() {
-    return this._hasToken();
+    return this._hasToken;
   }
   
   constructor(private readonly _http: HttpClient) {}
@@ -18,7 +19,7 @@ export class AuthMasterService {
   public authenticationMaster() {
     return this._authenticationMasterToken()
       .then((res: any) => {
-        this._hasToken.set(res.token);
+        this._token.set(res.token);
         localStorage.setItem("authToken", res.token);
         localStorage.setItem("userId", res.userId);
       });

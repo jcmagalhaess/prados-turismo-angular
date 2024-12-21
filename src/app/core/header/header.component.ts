@@ -17,11 +17,7 @@ export class HeaderComponent {
     { label: 'Home', route: '/' },
     { label: 'Pacotes', route: '/pacotes' },
   ];
-  public client = computed(() => this._user.clientAuthenticated );
-
-  // get client() {
-  //   return this._cart.user.clientAuthenticated;
-  // }
+  public client = computed(() => this._user.clientAuthenticated());
 
   get totalCarrinho() {
     return this._cart.amount;

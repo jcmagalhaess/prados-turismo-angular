@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { AcessoClientAuthenticatedUsecase } from "../acesso/services/acesso-client-authenticated.usecase";
 import { AcessoClientUpdateUsecase } from "../acesso/services/acesso-client-update.usecase";
+import { AcessoLoginClientUsecase } from "../acesso/services/acesso-login-client.usecase";
 
 @Component({
   selector: "app-perfil",
@@ -24,7 +24,7 @@ export class PerfilComponent {
 
   constructor(
     private readonly _clientUpdate: AcessoClientUpdateUsecase,
-    private readonly _client: AcessoClientAuthenticatedUsecase
+    private readonly _client: AcessoLoginClientUsecase
   ) {}
   
   public update(form: any) {

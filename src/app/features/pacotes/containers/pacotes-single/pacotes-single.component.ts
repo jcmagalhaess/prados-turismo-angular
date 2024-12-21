@@ -32,9 +32,9 @@ export class PacotesSingleComponent {
     private readonly _router: ActivatedRoute,
     private readonly _lightbox: Lightbox
   ) {
-    if (this._authMaster.hasToken) {
+    // if (this._authMaster.hasToken) {
       this._service.getExcursaoById(this._router.snapshot.params['id']);
-    }
+    // }
     effect(() => {
       this.form.controls['period'].setValue(this.formatandoPeriodo(this.excursao()?.dataInicio!, this.excursao()?.dataFim!));
     })

@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { forkJoin } from "rxjs";
 import { buildBodyApiPagarme } from "../../../shared/helpers/build-body-api-pagarme.helper";
 import { Client } from "../../../shared/models/client.type";
-import { AcessoClientAuthenticatedUsecase } from "../../acesso/services/acesso-client-authenticated.usecase";
+import { AcessoLoginClientUsecase } from "../../acesso/services/acesso-login-client.usecase";
 import { PagarMeService } from "../../pagarme/pagarme.service";
 import { MeuCarrinhoReservaComponent } from "../components/meu-carrinho-reserva/meu-carrinho-reserva.component";
 import { ClientUseCase } from "./client.usecase";
@@ -92,7 +92,7 @@ export class CarrinhoService {
   constructor(
     private readonly _pagarMeApi: PagarMeService,
     private readonly _client: ClientUseCase,
-    private readonly _user: AcessoClientAuthenticatedUsecase,
+    private readonly _user: AcessoLoginClientUsecase,
     private readonly _dialog: MatDialog,
     private readonly _router: Router
   ) {

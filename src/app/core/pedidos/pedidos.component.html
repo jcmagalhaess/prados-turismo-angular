@@ -9,11 +9,18 @@
     </tr>
   </thead>
   <tbody>
-    @for (item of [].constructor(5); track $index) {
+    
+    @if (noReservas()) {
+      <tr>
+        <td colspan="5" class="text-center">Nenhum pedido realizado.</td>
+      </tr>
+    }
+    
+    @for (item of reservas(); track $index) {
         <tr>
-          <th scope="row">{{ orderNumber($index) }}</th>
-          <td>17/12/2024</td>
-          <td>Processando</td>
+          <th scope="row">{{ orderNumber(item.reserva) }}</th>
+          <td>{{ item.dataCadastro | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ statusLabel(item.status) }}</td>
           <td>R$ 250,00 de 2 ingressos</td>
           <td class="text-center">
             <button class="btn btn-primary">Visualizar</button>
