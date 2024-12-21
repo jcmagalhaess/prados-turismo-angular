@@ -1,7 +1,7 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, computed } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { AcessoLoginClientUsecase } from '../acesso/services/acesso-login-client.usecase';
+import { AcessoGetDataPessoaUsecase } from '../acesso/services/acesso-get-data-pessoa.usecase';
 import { MeuCarrinhoOffcanvasComponent } from '../meu-carrinho/components/meu-carrinho-offcanvas/meu-carrinho-offcanvas.component';
 import { CarrinhoService } from '../meu-carrinho/services/carrinho.service';
 
@@ -17,7 +17,11 @@ export class HeaderComponent {
     { label: 'Home', route: '/' },
     { label: 'Pacotes', route: '/pacotes' },
   ];
-  public client = computed(() => this._user.clientAuthenticated());
+  public nomeClient = computed(() => {
+    if (this._userClient.clientAuthenticated()) {
+      return this._userClient.clientAuthenticated().nome;
+    }
+  });
 
   get totalCarrinho() {
     return this._cart.amount;
@@ -30,10 +34,9 @@ export class HeaderComponent {
   constructor(
     private readonly _router: Router,
     private readonly _cart: CarrinhoService,
-    private readonly _user: AcessoLoginClientUsecase
+    private readonly _userClient: AcessoGetDataPessoaUsecase
   ) {
     this._cart.pegarCarrinho();
-    this._user.carregarUsuario();
   }
 
   public navigate(route: string) {
