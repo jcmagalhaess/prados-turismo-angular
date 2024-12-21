@@ -4,7 +4,7 @@
   data-bs-ride="carousel"
 >
   <div class="carousel-inner">
-    @for (slide of slides; track $index) {
+    @for (slide of slides(); track $index) {
     <div
       class="carousel-item"
       style="background-image: url({{ slide.src }});"

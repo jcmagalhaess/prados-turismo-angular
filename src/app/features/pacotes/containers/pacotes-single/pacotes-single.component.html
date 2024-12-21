@@ -69,7 +69,7 @@
             @for (item of excursao()?.Pacotes?.Galeria; track $index) {
             <li
               class="event__item"
-              style="background-image: url({{ item.url }})"
+              style="background-image: url({{ item.url }});"
               (click)="
                 open(formatGallery(excursao()?.Pacotes?.Galeria!), $index)
               "
