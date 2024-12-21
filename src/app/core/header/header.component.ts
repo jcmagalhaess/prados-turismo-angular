@@ -1,5 +1,5 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, computed } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AcessoGetDataPessoaUsecase } from '../acesso/services/acesso-get-data-pessoa.usecase';
 import { MeuCarrinhoOffcanvasComponent } from '../meu-carrinho/components/meu-carrinho-offcanvas/meu-carrinho-offcanvas.component';
@@ -17,11 +17,10 @@ export class HeaderComponent {
     { label: 'Home', route: '/' },
     { label: 'Pacotes', route: '/pacotes' },
   ];
-  public nomeClient = computed(() => {
-    if (this._userClient.clientAuthenticated()) {
-      return this._userClient.clientAuthenticated().nome;
-    }
-  });
+
+  get client() {
+    return this._userClient.clientAuthenticated();
+  }
 
   get totalCarrinho() {
     return this._cart.amount;

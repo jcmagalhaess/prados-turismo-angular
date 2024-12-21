@@ -1,25 +1,18 @@
-import { Component, effect } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { AcessoLoginClientUsecase } from '../acesso/services/acesso-login-client.usecase';
+import { Component } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { AcessoGetDataPessoaUsecase } from "../acesso/services/acesso-get-data-pessoa.usecase";
 
 @Component({
-  selector: 'app-painel',
+  selector: "app-painel",
   standalone: true,
   imports: [RouterModule],
-  templateUrl: './painel.component.html',
-  styleUrl: './painel.component.scss'
+  templateUrl: "./painel.component.html",
+  styleUrl: "./painel.component.scss",
 })
 export class PainelComponent {
   get client() {
-    return this._client.clientAuthenticated();
+    return this._userClient.clientAuthenticated();
   }
-  
-  constructor(
-    private readonly _client: AcessoLoginClientUsecase
-  ) {
-    effect(() => {
-      console.log(this._client.clientAuthenticated());
-      
-    })
-  }
+
+  constructor(private readonly _userClient: AcessoGetDataPessoaUsecase) {}
 }
