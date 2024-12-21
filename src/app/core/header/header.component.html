@@ -26,7 +26,7 @@
           aria-controls="offcanvasRight"
         >
           <div class="header__value">
-            {{ valoresCarrinho | currency : "BRL" : true : "1.2-2" }}
+            {{ valoresCarrinho() | currency : "BRL" : true : "1.2-2" }}
           </div>
           <div class="header__amount">
             <i class="fa-solid fa-basket-shopping"></i>

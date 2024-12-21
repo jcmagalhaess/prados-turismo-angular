@@ -7,18 +7,22 @@ import {
   TipoPassageiroEnum,
   TipoPassageiroType,
 } from "../../../../shared/models/excursao.type";
+import { AsyncOpcionaisPipe } from "../../../../shared/pipes/async-opcionais.pipe";
 import { ThumbnailPipe } from "../../../../shared/pipes/thumbnail.pipe";
 import { CarrinhoService } from "../../services/carrinho.service";
 
 @Component({
   selector: "app-meu-carrinho-offcanvas",
   standalone: true,
-  imports: [CommonModule, ThumbnailPipe, MatButtonModule, RouterModule, ActionButtonComponent],
+  imports: [CommonModule, ThumbnailPipe, MatButtonModule, RouterModule, ActionButtonComponent, 
+    AsyncOpcionaisPipe
+  ],
   templateUrl: "./meu-carrinho-offcanvas.component.html",
   styleUrl: "./meu-carrinho-offcanvas.component.scss",
 })
 export class MeuCarrinhoOffcanvasComponent {
   public hasntItems = computed(() => this._carrinho.cart().length === 0);
+  public opcionais = computed(() => this.cart().flatMap((item) => item.opcionais));
   
   get cart() {
     return this._carrinho.cart;

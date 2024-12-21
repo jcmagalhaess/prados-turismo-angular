@@ -23,6 +23,10 @@ export class CarrinhoService {
       .flatMap((item) => item.tickets)
       .reduce((acc, item) => acc + item.price, 0)
   );
+  private _pricesOpcionais = computed(() => 
+    this._cart()
+      .flatMap((item) => item.opcionais)
+      .reduce((acc, item) => acc + (item.value * item.price), 0))
   private _pagarMe = computed(() =>
     this._cart().map((item) => {
       let amountTickets = item.tickets.reduce(
@@ -71,6 +75,10 @@ export class CarrinhoService {
 
   get price() {
     return this._pricesTickets();
+  }
+
+  get totalValue() {
+    return computed(() => this._pricesTickets() + this._pricesOpcionais());
   }
 
   get pagarMe() {

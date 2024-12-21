@@ -27,7 +27,7 @@ export class HeaderComponent {
   }
 
   get valoresCarrinho() {
-    return this._cart.price;
+    return this._cart.totalValue;
   }
 
   constructor(

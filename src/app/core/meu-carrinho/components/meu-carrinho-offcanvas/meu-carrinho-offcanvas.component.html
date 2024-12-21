@@ -14,6 +14,10 @@
                             <li class="d-flex flex-column justify-content-between">
                                 <span class="event__price m-0 fs-6">{{ item.nome }}</span>
                                 <span>{{ amountTickets(item.tickets) }}x {{ pricesTickets(item.tickets) | currency:'BRL':true:'1.2-2' }}</span>
+                                <strong class="d-flex my-2 display-6 fs-6">Opcionais</strong>
+                                @for (item of opcionais(); track $index) {
+                                    <span>{{ item.value }}x {{ item.key | asyncOpcionais | async }} - {{ item.price | currency:'BRL':true:'1.2-2' }}</span>
+                                }
                             </li>
                         </ul>
                         <button mat-icon-button class="text-danger" (click)="removeItem(item.id)">
