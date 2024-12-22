@@ -8,8 +8,16 @@ export class PedidosService {
   public reservas = computed(() =>
     this._userClient
       .clientAuthenticated()
-      .Reservas.sort((a: any, b: any) => b.reserva - a.reserva)
+      .Reservas
+      .map((item: any) => {
+        return {
+          ...item,
+          valorTotal: this._calculateTotal(item),
+        }
+      })
+      .sort((a: any, b: any) => b.reserva - a.reserva)
   );
+  public lastReserva = computed(() => this.reservas()[0]);
   
   get noReservas() {
     return computed(() => this.reservas().length === 0);
@@ -19,5 +27,18 @@ export class PedidosService {
     return this._userClient.clientAuthenticated();
   }
 
-  constructor(private readonly _userClient: AcessoGetDataPessoaUsecase) { }
+  constructor(private readonly _userClient: AcessoGetDataPessoaUsecase) {
+    this._carregarReservas();
+  }
+
+  private _calculateTotal(reserva: any) {
+    let transacoes = reserva.Transacoes.reduce((acc: number, item: any) => acc + item.valor, 0);
+    let opcionais = reserva.Opcionais.reduce((acc: number, item: any) => acc + (item.qtd *item.Produto.valor), 0);    
+    
+    return transacoes + opcionais;
+  }
+
+  private _carregarReservas() {
+    this._userClient.carregarCliente(localStorage.getItem("userClient")!);
+  }
 }

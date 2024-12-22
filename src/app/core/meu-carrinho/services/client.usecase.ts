@@ -18,7 +18,7 @@ export class ClientUseCase {
   public criarReserva(reserva: any) {
     this._loading.set(true);
     return this._http
-        .post<string>(`${env.API}/financeiro/shopping`, reserva)
+        .post<string>(`${env.API}/financeiro/shopping`, reserva, { responseType: "text" as "json" })
         .pipe(finalize(() => this._loading.set(false)));
   }
 }

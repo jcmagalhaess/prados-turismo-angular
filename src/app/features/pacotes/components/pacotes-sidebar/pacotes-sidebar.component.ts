@@ -51,8 +51,6 @@ export class PacotesSidebarComponent {
     effect(() => {
       this.form.controls["tickets"].setValue(this.amountTickets());
     });
-
-    effect(() => console.log(this.opcionaisSelecionados()))
   }
   public formatandoPeriodo(dataInicio: string, dataFim: string) {
     return `${formatarData(new Date(dataInicio))} a ${formatarData(

@@ -24,10 +24,11 @@ export class CarrinhoService {
       .flatMap((item) => item.tickets)
       .reduce((acc, item) => acc + item.price, 0)
   );
-  private _pricesOpcionais = computed(() => 
+  private _pricesOpcionais = computed(() =>
     this._cart()
       .flatMap((item) => item.opcionais)
-      .reduce((acc, item) => acc + (item.value * item.price), 0))
+      .reduce((acc, item) => acc + item.value * item.price, 0)
+  );
   private _pagarMe = computed(() =>
     this._cart().map((item) => {
       let amountTickets = item.tickets.reduce(
@@ -49,23 +50,32 @@ export class CarrinhoService {
     })
   );
   private _pagarMeOpcionais = computed(() =>
-    this._cart().flatMap((item) => item.opcionais).map((opcional) => {
-      let amountOpcionais = opcional.value;
-      let pricesOpcionais = (opcional.value * opcional.price) * 100;
-      
-      return {
-        id: opcional.key,
-        amount: Math.round(pricesOpcionais / amountOpcionais),
-        name: this._excursao.excursao()?.Pacotes.Produto.find((item: any) => item.id === opcional.key)?.nome,
-        description: "",
-        default_quantity: amountOpcionais,
-      };
-    })
+    this._cart()
+      .flatMap((item) => item.opcionais)
+      .map((opcional) => {
+        let amountOpcionais = opcional.value;
+        let pricesOpcionais = opcional.value * opcional.price * 100;
+
+        return {
+          id: opcional.key,
+          amount: Math.round(pricesOpcionais / amountOpcionais),
+          name: this._excursao
+            .excursao()
+            ?.Pacotes.Produto.find((item: any) => item.id === opcional.key)
+            ?.nome,
+          description: "",
+          default_quantity: amountOpcionais,
+        };
+      })
   );
   private _reserva = computed(() =>
     this._cart().map((item) => ({
       excursaoId: item.id,
       payment_method: "credit_card",
+      opcionais: item.opcionais.map((item: any) => ({
+        id: item.key,
+        quantidade: item.value,
+      })),
       total: item.tickets.reduce(
         (acc: number, item: any) => acc + item.price,
         0
@@ -73,19 +83,7 @@ export class CarrinhoService {
       criancas: item.tickets
         .filter((item: any) => item.key === "babies")
         .reduce((acc: number, item: any) => acc + item.value, 0),
-      clients: item.participantes
-    }))
-  );
-  private _reservaOpcionais = computed(() => 
-    this._cart().map((item) => ({
-      excursaoId: item.id,
-      payment_method: "credit_card",
-      total: item.opcionais.reduce(
-        (acc: number, item: any) => acc + (item.value * item.price),
-        0
-      ),
-      criancas: 0,
-      clients: item.participantes
+      clients: item.participantes,
     }))
   );
 
@@ -141,23 +139,30 @@ export class CarrinhoService {
   }
 
   public gerarReserva() {
-    const reqReserva = this._reserva().flatMap((item) => this._client.criarReserva(item));
-    const reqReservaOpcionais = this._reservaOpcionais().flatMap((item) => this._client.criarReserva(item));
+    const reqReserva = this._reserva().flatMap((item) =>
+      this._client.criarReserva(item)
+    );
 
-    return forkJoin(reqReserva.concat(reqReservaOpcionais)).subscribe({
-      next: (res) => this._openDialog(),
-      error: (err) => this._openDialog()
+    return forkJoin(reqReserva).subscribe({
+      next: (_) => this._openDialog(),
+      error: (err) => console.error(err),
     });
   }
 
   public gerarLinkPagamento() {
     return this._pagarMeApi
-      .generatePaymentLink(buildBodyApiPagarme(
-        this._pagarMe().concat(this._pagarMeOpcionais()),
-        this._pegarDadosUsuario(this._user.clientAuthenticated()!)
-      ))
+      .generatePaymentLink(
+        buildBodyApiPagarme(
+          this._pagarMe().concat(this._pagarMeOpcionais()),
+          this._pegarDadosUsuario(this._user.clientAuthenticated()!)
+        )
+      )
       .then((data: any) => {
         this.pagarMeURL.set(data.url);
+
+        localStorage.removeItem("cart");
+        this._cart.set([]);
+        
         this._router.navigate(["/minha-conta/pedidos"]);
       });
   }

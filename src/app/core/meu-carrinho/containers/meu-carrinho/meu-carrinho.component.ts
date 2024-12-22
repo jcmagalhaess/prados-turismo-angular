@@ -31,7 +31,5 @@ export class MeuCarrinhoComponent implements OnInit {
 
   public pagar() {
     this._carrinho.gerarReserva();
-    // this._carrinho
-    //   .gerarLinkPagamento()
   }
 }

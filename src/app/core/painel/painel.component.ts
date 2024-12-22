@@ -1,18 +1,29 @@
-import { Component } from "@angular/core";
+import { CommonModule } from '@angular/common';
+import { Component, computed } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AcessoGetDataPessoaUsecase } from "../acesso/services/acesso-get-data-pessoa.usecase";
+import { PedidosService } from "../pedidos/pedidos.service";
 
 @Component({
   selector: "app-painel",
   standalone: true,
-  imports: [RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: "./painel.component.html",
   styleUrl: "./painel.component.scss",
 })
 export class PainelComponent {
+  public valorPedido = computed(() => this.pedido().Transacoes.reduce((acc: number, item: any) => acc + item.valor, 0));
+  
   get client() {
     return this._userClient.clientAuthenticated();
   }
 
-  constructor(private readonly _userClient: AcessoGetDataPessoaUsecase) {}
+  get pedido() {
+    return this._pedido.lastReserva;
+  }
+
+  constructor(
+    private readonly _userClient: AcessoGetDataPessoaUsecase,
+    private readonly _pedido: PedidosService
+  ) {}
 }
