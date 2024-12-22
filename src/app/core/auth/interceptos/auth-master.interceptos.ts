@@ -27,6 +27,7 @@ export const AuthMasterInterceptor: HttpInterceptorFn = (
     const clonedRequest = req.clone({
       setHeaders: {
         Authorization: token,
+        'ngrok-skip-browser-warning': 'true',
       },
     });
 
