@@ -31,7 +31,7 @@ export class PacotesFilterComponent implements OnInit {
       this.formEmit.emit(value);
     })
 
-    this._destinos.getDestinos().then(res=> console.log(res));
+    this._destinos.getDestinos();
   }
 
   public disabledResetBtn() {
