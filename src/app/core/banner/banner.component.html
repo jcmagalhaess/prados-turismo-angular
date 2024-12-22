@@ -5,15 +5,11 @@
 >
   <div class="carousel-inner">
     @for (slide of slides(); track $index) {
-    <div
-      class="carousel-item"
-      style="background-image: url({{ slide.src }});"
-      [class.active]="$index === 0"
-    >
-      <div class="carousel-caption d-none d-md-block">
-        <h1>{{ slide.alt }}</h1>
-      </div>
-    </div>
+      <div
+        class="carousel-item"
+        style="background-image: url({{ slide.imageUrl }});"
+        [class.active]="$index === 0"
+      ></div>
     }
   </div>
   <button
