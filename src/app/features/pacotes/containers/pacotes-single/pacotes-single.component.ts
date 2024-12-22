@@ -26,6 +26,10 @@ export class PacotesSingleComponent {
     return this._service.excursao;
   }
 
+  get inclusos() {
+    return computed(() => this.excursao()?.Pacotes.Inclusos);
+  }
+
   get opcionais() {
     return computed(() => this.excursao()?.Pacotes.Produto)
   }
