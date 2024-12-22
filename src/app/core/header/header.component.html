@@ -44,7 +44,7 @@
           <img src="assets/images/logo.webp" alt="Logo - Prados Turismo" />
         </figure>
         <ul class="header__list">
-          @for (item of menu; track $index) {
+          @for (item of menu(); track $index) {
           <li class="header__item">
             <a
               [routerLink]="item.route"

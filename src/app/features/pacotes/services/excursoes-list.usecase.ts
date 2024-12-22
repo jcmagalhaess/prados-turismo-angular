@@ -43,7 +43,7 @@ export class ExcursoesListUsecase {
 
     if (filter) searchParams = { ...searchParams, ...removeNulls(filter) };
 
-    lastValueFrom(
+    return lastValueFrom(
       this._http
         .get<PaginationResponse<Pacotes>>(
           `${env.API}/excursao/index?${new URLSearchParams(searchParams)}`

@@ -16,7 +16,7 @@ export class ExcursoesSingleUsecase {
 
   constructor(private readonly _http: HttpClient) {}
 
-  public getExcursaoById(id: string) {
+  public getExcursaoById(id: string) {    
     return this._http
       .get<Excursao>(`${env.API}/excursao/find/${id}`)
       .pipe(tap((data) => this._excursao.set(data)));

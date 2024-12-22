@@ -1,0 +1,63 @@
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col-md-12">
+      <label for="period">
+        <i class="fa-regular fa-clock me-3"></i>Solicite a disponibilidade em nosso WhatsApp
+      </label>
+      <div class="border rounded-1 p-3 my-3">
+        @for (item of enumCategory; track $index) {
+          <div class="my-3">
+            <app-pacotes-count
+              [key]="item.key"
+              [type]="item.value"
+              [valor]="item.price"
+              [nocount]="true"
+              (amountEmit)="amountHandle($event)">
+            </app-pacotes-count>
+          </div>
+        }
+      </div>
+
+      @if (hasOpcionaisAndTicketsSelecionados()) {
+        <div class="border rounded-1 p-3 mt-4">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-star me-3"></i>
+            <div class="d-flex flex-column">
+              <strong>Melhore sua experiência</strong>
+              <span>com nossos opcionais</span>
+            </div>
+          </div>
+          
+          @for (item of opcionais(); track $index) {
+            <div class="my-3">
+              <app-pacotes-count
+                  [key]="item.id"
+                  [type]="item.nome"
+                  [valor]="item.valor"
+                  (amountEmit)="opcionaisHandle($event, item.valor)">
+              </app-pacotes-count>
+            </div>
+          }
+          
+        </div>
+      }
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a
+        type="button"
+        href="https://api.whatsapp.com/send/?phone=5585997460786&text&type=phone_number&app_absent=0"
+        target="_blank"
+        class="btn btn-success w-100"
+      >
+      <i class="fa-brands fa-whatsapp me-2"></i> Solicitar agora
+      </a>
+    </div>
+  </div>
+</form>
+
+<div class="event__totalizers">
+  <div id="subtotal-label"></div>
+  <div id="payment-label"></div>
+</div>

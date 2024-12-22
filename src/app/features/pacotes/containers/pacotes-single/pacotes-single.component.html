@@ -18,7 +18,7 @@
             <span class="event__price">
               {{ excursao()?.valor | currency : "BRL" : true : "1.2-2" }}
             </span>
-            <p>{{ formatandoDescricao(excursao()?.observacoes!) }}</p>
+            <p [innerText]="excursao()?.observacoes"></p>
             <table class="event__table table">
               <tbody>
                 <tr>
@@ -65,7 +65,7 @@
         @if (excursao()?.Pacotes?.Galeria?.length) {
         <div class="row">
           <div class="display-6">Nossa galeria</div>
-          <p class="my-3">{{ excursao()?.Pacotes?.descricao }}</p>
+          <div [innerHTML]="excursao()?.Pacotes?.descricao" class="my-3"></div>
           <ul class="event__gallery">
             @for (item of excursao()?.Pacotes?.Galeria; track $index) {
             <li
@@ -87,10 +87,17 @@
         }
       </div>
       <div class="event__sidebar">
-        <app-pacotes-sidebar
-          [form]="form"
-          [excursao]="excursao()"
-        ></app-pacotes-sidebar>
+        @if (isJeri()) {
+          <app-pacotes-sidebar-jeri
+            [form]="form"
+            [excursao]="excursao()">
+          </app-pacotes-sidebar-jeri>
+        } @else {
+          <app-pacotes-sidebar
+            [form]="form"
+            [excursao]="excursao()"
+          ></app-pacotes-sidebar>
+        }
       </div>
     </div>
   </div>
