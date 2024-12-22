@@ -6,7 +6,7 @@
         </figure>
         <span class="card-event__category">{{ category }}</span>
         <h2 class="card-event__title" [title]="title">{{ title }}</h2>
-        <p class="card-event__resume">{{ resume }}</p>
+        <p class="card-event__resume" [innerHTML]="resume | limitarTexto : 450"></p>
     </div>
     <div class="card-event__actions">
         <span class="card-event__price">{{ price | currency:'BRL':'symbol':'1.2-2' }}</span>

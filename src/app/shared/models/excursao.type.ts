@@ -32,6 +32,7 @@ export type ExcursaoPacote = {
   urlImgEsgotado: string;
   usuarioCadastro: string;
   Produto: ExcursaoProduto[];
+  Inclusos: ExcursaoProduto[];
   Galeria: ExcursaoImagem[];
   Imagem: ExcursaoImagem;
   ImagemBloqueado: ExcursaoImagem;

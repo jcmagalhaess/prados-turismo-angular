@@ -3,11 +3,12 @@ import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Origem } from '../../models/excursao.type';
 import { CalcularDiasNoitesPipe } from '../../pipes/calcular-dias-noites.pipe';
+import { LimitarTextoPipe } from '../../pipes/limitar-texto.pipe';
 
 @Component({
   selector: 'app-excursao-card',
   standalone: true,
-  imports: [RouterModule, CurrencyPipe, CalcularDiasNoitesPipe],
+  imports: [RouterModule, CurrencyPipe, CalcularDiasNoitesPipe, LimitarTextoPipe],
   templateUrl: './excursao-card.component.html',
   styleUrl: './excursao-card.component.scss'
 })
