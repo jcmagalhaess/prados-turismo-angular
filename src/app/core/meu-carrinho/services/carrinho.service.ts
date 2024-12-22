@@ -2,9 +2,10 @@ import { computed, effect, Injectable, signal } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { forkJoin } from "rxjs";
+import { ExcursoesSingleUsecase } from "../../../features/pacotes/services/excursoes-single.usecase";
 import { buildBodyApiPagarme } from "../../../shared/helpers/build-body-api-pagarme.helper";
 import { Client } from "../../../shared/models/client.type";
-import { AcessoLoginClientUsecase } from "../../acesso/services/acesso-login-client.usecase";
+import { AcessoGetDataPessoaUsecase } from "../../acesso/services/acesso-get-data-pessoa.usecase";
 import { PagarMeService } from "../../pagarme/pagarme.service";
 import { MeuCarrinhoReservaComponent } from "../components/meu-carrinho-reserva/meu-carrinho-reserva.component";
 import { ClientUseCase } from "./client.usecase";
@@ -47,6 +48,20 @@ export class CarrinhoService {
       };
     })
   );
+  private _pagarMeOpcionais = computed(() =>
+    this._cart().flatMap((item) => item.opcionais).map((opcional) => {
+      let amountOpcionais = opcional.value;
+      let pricesOpcionais = (opcional.value * opcional.price) * 100;
+      
+      return {
+        id: opcional.key,
+        amount: Math.round(pricesOpcionais / amountOpcionais),
+        name: this._excursao.excursao()?.Pacotes.Produto.find((item: any) => item.id === opcional.key)?.nome,
+        description: "",
+        default_quantity: amountOpcionais,
+      };
+    })
+  );
   private _reserva = computed(() =>
     this._cart().map((item) => ({
       excursaoId: item.id,
@@ -58,10 +73,19 @@ export class CarrinhoService {
       criancas: item.tickets
         .filter((item: any) => item.key === "babies")
         .reduce((acc: number, item: any) => acc + item.value, 0),
-      clients: item.participantes.map((item: any) => ({
-        ...item,
-        sexo: "M",
-      })),
+      clients: item.participantes
+    }))
+  );
+  private _reservaOpcionais = computed(() => 
+    this._cart().map((item) => ({
+      excursaoId: item.id,
+      payment_method: "credit_card",
+      total: item.opcionais.reduce(
+        (acc: number, item: any) => acc + (item.value * item.price),
+        0
+      ),
+      criancas: 0,
+      clients: item.participantes
     }))
   );
 
@@ -100,7 +124,8 @@ export class CarrinhoService {
   constructor(
     private readonly _pagarMeApi: PagarMeService,
     private readonly _client: ClientUseCase,
-    private readonly _user: AcessoLoginClientUsecase,
+    private readonly _user: AcessoGetDataPessoaUsecase,
+    private readonly _excursao: ExcursoesSingleUsecase,
     private readonly _dialog: MatDialog,
     private readonly _router: Router
   ) {
@@ -116,9 +141,10 @@ export class CarrinhoService {
   }
 
   public gerarReserva() {
-    const req = this._reserva().map((item) => this._client.criarReserva(item));
+    const reqReserva = this._reserva().flatMap((item) => this._client.criarReserva(item));
+    const reqReservaOpcionais = this._reservaOpcionais().flatMap((item) => this._client.criarReserva(item));
 
-    return forkJoin(req).subscribe({
+    return forkJoin(reqReserva.concat(reqReservaOpcionais)).subscribe({
       next: (res) => this._openDialog(),
       error: (err) => this._openDialog()
     });
@@ -127,7 +153,7 @@ export class CarrinhoService {
   public gerarLinkPagamento() {
     return this._pagarMeApi
       .generatePaymentLink(buildBodyApiPagarme(
-        this.pagarMe,
+        this._pagarMe().concat(this._pagarMeOpcionais()),
         this._pegarDadosUsuario(this._user.clientAuthenticated()!)
       ))
       .then((data: any) => {

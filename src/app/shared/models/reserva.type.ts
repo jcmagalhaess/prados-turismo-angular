@@ -7,7 +7,7 @@ export type Reserva = {
   clients?: {
     nome: string;
     cpf: string;
-    sexo: string;
+    sexo?: string;
     observacoes: string | null;
     telefone: string | null;
     telefoneWpp: string | null;

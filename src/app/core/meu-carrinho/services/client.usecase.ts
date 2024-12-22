@@ -2,7 +2,6 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, signal } from "@angular/core";
 import { finalize } from "rxjs";
 import { env } from "../../../../env/env";
-import { Reserva } from "../../../shared/models/reserva.type";
 
 @Injectable({
   providedIn: "root",
@@ -16,7 +15,7 @@ export class ClientUseCase {
 
   constructor(private readonly _http: HttpClient) {}
 
-  public criarReserva(reserva: Reserva) {
+  public criarReserva(reserva: any) {
     this._loading.set(true);
     return this._http
         .post<string>(`${env.API}/financeiro/shopping`, reserva)

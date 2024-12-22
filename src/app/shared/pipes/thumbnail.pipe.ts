@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Pipe, PipeTransform } from '@angular/core';
 import { Observable, of, switchMap } from 'rxjs';
-import { env } from '../../../env/env';
-import { Excursao } from '../models/excursao.type';
+import { ExcursoesSingleUsecase } from '../../features/pacotes/services/excursoes-single.usecase';
 
 @Pipe({
   name: 'thumbnail',
@@ -11,6 +10,7 @@ import { Excursao } from '../models/excursao.type';
 })
 export class ThumbnailPipe implements PipeTransform {
   private _http = inject(HttpClient);
+  private _excursao = inject(ExcursoesSingleUsecase);
   private _cachedValue: string = '';
   private _cachedObservable = new Observable<string>();
 
@@ -18,7 +18,7 @@ export class ThumbnailPipe implements PipeTransform {
     if (this._cachedValue !== value) {
       this._cachedValue = value;
       this._cachedObservable = of(value).pipe(
-        switchMap(val => this._http.get<Excursao>(`${ env.API }/excursao/find/${val}`)),
+        switchMap(val => this._excursao.getExcursaoById(val)),
         switchMap(data => {
           if (!data.Pacotes?.Imagem?.url) return of('');
           return of(`url(${data.Pacotes?.Imagem?.url})`)
