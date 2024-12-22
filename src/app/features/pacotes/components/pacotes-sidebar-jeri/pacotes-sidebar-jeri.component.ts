@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, effect, Input, signal } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { env } from "../../../../../env/env";
 import { formatarData } from "../../../../shared/helpers/formatar-data.helper";
 import {
   Excursao,
@@ -17,6 +18,7 @@ import { PacotesCountComponent } from "../pacotes-count/pacotes-count.component"
   styleUrl: "./pacotes-sidebar-jeri.component.scss",
 })
 export class PacotesSidebarJeriComponent {
+  public whatsappLink = env.WHATSAPP_LINK;
   public amountTickets = signal<any>([]);
   public amountTicketsNoValueZero = computed(() => this.amountTickets().filter((item: any) => item.value > 0));
   public hasOpcionaisAndTicketsSelecionados = computed(() => this.amountTicketsNoValueZero().length > 0 && this.excursao?.Pacotes?.Produto.length! > 0);

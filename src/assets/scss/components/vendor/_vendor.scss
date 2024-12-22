@@ -52,6 +52,16 @@ a {
             background-color: #484c50 !important;
         }
     }
+    &-float {
+        position: fixed !important;
+        right: 20px;
+        bottom: 20px;
+        background-color: var(--bs-btn-bg) !important;
+        &:hover {
+            background-color: var(--bs-btn-hover-bg) !important;
+            color: #fff !important;
+        }
+    }
 }
 
 main:not(main.home) {
