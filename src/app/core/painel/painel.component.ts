@@ -1,13 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { LabelReservaPipe } from '../../shared/pipes/label-reserva.pipe';
+import { PeriodoPipe } from '../../shared/pipes/periodo.pipe';
+import { ThumbnailPipe } from '../../shared/pipes/thumbnail.pipe';
 import { AcessoGetDataPessoaUsecase } from "../acesso/services/acesso-get-data-pessoa.usecase";
 import { PedidosService } from "../pedidos/pedidos.service";
 
 @Component({
   selector: "app-painel",
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, LabelReservaPipe, ThumbnailPipe, PeriodoPipe],
   templateUrl: "./painel.component.html",
   styleUrl: "./painel.component.scss",
 })

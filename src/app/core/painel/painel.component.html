@@ -18,26 +18,24 @@
             </div>
             <div class="my-account__item">
                 <span>Total</span>
-                <span>{{ pedido().valor }}</span>
+                <span>{{ pedido().valorTotal | currency: 'BRL' }}</span>
             </div>
             <div class="spacer"></div>
             <div class="my-account__item">
-                <span>{{ valorPedido() | currency: 'BRL' }}</span>
+                <span>{{ pedido().reserva | labelReserva }}</span>
             </div>
         </div>
         <div class="my-account__order-content">
-            <div class="my-account__thumb">
-                <img src="https://mediumpurple-turtle-783032.hostingersite.com/wp-content/uploads/2024/08/17.png" alt="Natal, Pipa e Perobas"> 
-            </div>
+            <div class="my-account__thumb" style="--background: {{ pedido().idExcursao | thumbnail | async }}"></div>
             <div class="my-account__event">
                 <div class="my-account__name">
-                    <strong>Evento: </strong> Natal, Pipa e Perobas
+                    <strong>Evento: </strong> {{ pedido().Excursao?.nome }}
                 </div>
-                <div class="my-account__amout">
+                <!-- <div class="my-account__amout">
                     <strong>Quantidade de participantes: </strong> 2
-                </div>
+                </div> -->
                 <div class="my-account__date">
-                    <strong>Data do evento:</strong> 01/11/2024 00:00:00 à 31/03/2025 23:59:59
+                    <strong>Data do evento:</strong> {{ pedido().Excursao | periodo }}
                 </div>
             </div>
         </div>

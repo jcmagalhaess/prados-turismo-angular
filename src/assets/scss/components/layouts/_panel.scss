@@ -1,7 +1,6 @@
 $component-name: 'my-account';
 
 .#{$component-name} {
-    &__panel {}
     &__avatar {
         display: flex;
         flex-direction: column;
@@ -65,6 +64,10 @@ $component-name: 'my-account';
         width: 160px;
         height: 80px;
         overflow: hidden;
+        background-image: var(--background);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
     &__shortcuts {
         display: flex;

@@ -9,13 +9,14 @@ import {
   TipoPassageiroEnum,
   TipoPassageiroType,
 } from "../../../../shared/models/excursao.type";
+import { PeriodoPipe } from "../../../../shared/pipes/periodo.pipe";
 import { PacotesCountComponent } from "../pacotes-count/pacotes-count.component";
 import { PacotesModalComponent } from "../pacotes-modal/pacotes-modal.component";
 
 @Component({
   selector: "app-pacotes-sidebar",
   standalone: true,
-  imports: [CommonModule, PacotesCountComponent, ReactiveFormsModule],
+  imports: [CommonModule, PacotesCountComponent, ReactiveFormsModule, PeriodoPipe],
   templateUrl: "./pacotes-sidebar.component.html",
   styleUrl: "./pacotes-sidebar.component.scss",
 })

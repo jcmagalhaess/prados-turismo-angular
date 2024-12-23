@@ -12,7 +12,7 @@
             aria-label="Default select example"
         >
             <option value="null"></option>
-            <option [value]="formatandoPeriodo(excursao?.dataInicio!, excursao?.dataFim!)">{{ formatandoPeriodo(excursao?.dataInicio!, excursao?.dataFim!) }}</option>
+            <option [value]="excursao! | periodo">{{ excursao! | periodo }}</option>
         </select>
     </div>
   </div>

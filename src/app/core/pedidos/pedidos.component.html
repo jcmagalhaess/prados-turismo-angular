@@ -18,7 +18,7 @@
     
     @for (item of reservas(); track $index) {
         <tr>
-          <th scope="row">{{ orderNumber(item.reserva) }}</th>
+          <th scope="row">{{ item.reserva | labelReserva }}</th>
           <td>{{ item.dataCadastro | date: 'dd/MM/yyyy' }}</td>
           <td>{{ statusLabel(item.status) }}</td>
           <td>{{ item.valorTotal | currency:'BRL':'symbol':'1.2-2' }} </td><!-- de 2 ingressos -->
