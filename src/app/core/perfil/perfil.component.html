@@ -3,47 +3,66 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="name" class="form-label">Nome *</label>
-                <input type="text" class="form-control" formControlName="name">
+                <input type="text" id="name" class="form-control" formControlName="nome">
             </div>
         </div>
         <div class="col-md-6">
             <div class="mb-3">
-                <label for="lastname" class="form-label">Sobrenome *</label>
-                <input type="text" class="form-control" formControlName="lastname">
+                <label for="cpf" class="form-label">CPF *</label>
+                <input type="text" id="text" mask="000.000.000-00" class="form-control" formControlName="cpf">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="username" class="form-label">Nome de exibição *</label>
+                <input type="text" id="username" class="form-control" formControlName="username">
+                <em class="form-text">Será assim que seu nome será exibido na seção da conta e nos comentários.</em>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone *</label>
+                <input type="text" id="telefone" mask="(00) 00000-0000" class="form-control" formControlName="telefone">
+            </div>
+        </div>
+    </div>
+    <div class="row"> 
+        <div class="col-md-12">
+            <div class="mb-3">
+                <label for="email" class="form-label">Endereço de e-mail *</label>
+                <input type="text" id="email" class="form-control" formControlName="email">
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="mb-3">
-                <label for="username" class="form-label">Nome de exibição *</label>
-                <input type="text" class="form-control" formControlName="username">
-                <em class="form-text">Será assim que seu nome será exibido na seção da conta e nos comentários.</em>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="mb-3">
-                <label for="email" class="form-label">Endereço de e-mail *</label>
-                <input type="text" class="form-control" formControlName="email">
-            </div>
-        </div>
-        <div class="col-md-12">
             <h5 class="display-6 mb-3">Alteração de senha</h5>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="currentPassword" class="form-label">Senha atual (deixe em branco para não alterar)</label>
                 <input type="text" class="form-control" formControlName="currentPassword">
+            </div> -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Nova senha (deixe em branco para não alterar)</label>
+                <input type="password" id="password" class="form-control" formControlName="password">
             </div>
             <div class="mb-3">
-                <label for="newPassword" class="form-label">Nova senha (deixe em branco para não alterar)</label>
-                <input type="text" class="form-control" formControlName="newPassword">
-            </div>
-            <div class="mb-3">
-                <label for="confirmPassword" class="form-label">Confirmar nova senha</label>
-                <input type="text" class="form-control" formControlName="confirmPassword">
+                <label for="confirmationPassword" class="form-label">Confirmar nova senha</label>
+                <input type="password" id="confirmationPassword" class="form-control" formControlName="confirmationPassword">
             </div>
         </div>
+    </div>
+    <div class="d-flex align-items-center mb-2">
+        <app-action-button
+            labelLoading="Salvando..."
+            label="Salvar"
+            [disabled]="form.invalid || loading"
+            [loading]="loading"
+            (action)="update(form.getRawValue())"
+            />
+        <!-- <button type="button" class="btn btn-primary me-3" (click)="update(form.getRawValue())">Salvar alterações</button> -->
         <div class="col-md-12">
-            <button type="button" class="btn btn-primary me-3" (click)="update(form.getRawValue())">Salvar alterações</button>
         </div>   
     </div>
 </form>

@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, signal } from "@angular/core";
-import { Router } from "@angular/router";
 import { finalize, lastValueFrom } from "rxjs";
 import { env } from "../../../../env/env";
 import { Usuario } from "../../../shared/models/usuario.type";
@@ -26,7 +25,6 @@ export class AcessoClientUpdateUsecase {
     
     constructor(
         private readonly _http: HttpClient,
-        private readonly _router: Router
     ) { }
 
     public updateUser(body: any) {
@@ -34,7 +32,7 @@ export class AcessoClientUpdateUsecase {
 
         return lastValueFrom(
             this._http
-                .put(`${ env.API }/usuarios/update/${ localStorage.getItem("clientToken") }`, body)
+                .put(`${ env.API }/pessoas/update/${ localStorage.getItem("userClient") }`, body)
                 .pipe(finalize(() => this._loading.set(false)))
         );
     }
