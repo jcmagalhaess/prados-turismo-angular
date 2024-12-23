@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { LabelReservaPipe } from '../../shared/pipes/label-reserva.pipe';
-import { PedidosService } from './pedidos.service';
+import { MatDialog } from '@angular/material/dialog';
+import { Excursao } from '../../../../shared/models/excursao.type';
+import { LabelReservaPipe } from '../../../../shared/pipes/label-reserva.pipe';
+import { PedidosModalComponent } from '../../components/pedidos-modal/pedidos-modal.component';
+import { PedidosService } from '../../pedidos.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -22,6 +25,7 @@ export class PedidosComponent {
   
   constructor(
     private readonly _order: PedidosService,
+    private readonly _dialog: MatDialog
   ) { }
 
   public statusLabel(status: false) {
@@ -30,5 +34,12 @@ export class PedidosComponent {
   
   public totalTransacoes(lista: any) {
     return lista.reduce((acc: any, item: any) => acc + item.valor, 0);;
+  }
+
+  public visualizar(item: Excursao) {
+    this._dialog.open(PedidosModalComponent, {
+      width: '800px',
+      data: item
+    })
   }
 }

@@ -19,18 +19,18 @@ export const routes: Routes = [
             {
                 path: 'pedidos',
                 pathMatch: 'full',
-                loadComponent: () => import('../pedidos/pedidos.component').then(c => c.PedidosComponent)
+                loadComponent: () => import('../pedidos/containers/pedidos/pedidos.component').then(c => c.PedidosComponent)
             },
             // {
             //     path: 'enderecos',
             //     pathMatch: 'full',
             //     loadComponent: () => import('../enderecos/containers/enderecos-index/enderecos-index.component').then(c => c.EnderecosIndexComponent)
             // },
-            // {
-            //     path: 'perfil',
-            //     pathMatch: 'full',
-            //     loadComponent: () => import('../perfil/perfil.component').then(c => c.PerfilComponent)
-            // }
+            {
+                path: 'perfil',
+                pathMatch: 'full',
+                loadComponent: () => import('../perfil/perfil.component').then(c => c.PerfilComponent)
+            }
         ]
     }
 ]

@@ -15,7 +15,7 @@ export class MinhaContaComponent {
     { label: 'Painel', route: '/minha-conta/' },
     { label: 'Pedidos', route: '/minha-conta/pedidos' },
     // { label: 'Endereços', route: '/minha-conta/enderecos' },
-    // { label: 'Perfil', route: '/minha-conta/perfil' },
+    { label: 'Perfil', route: '/minha-conta/perfil' },
   ];
 
   constructor(
