@@ -2,14 +2,21 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <div class="card-title">Quantidade de tickets</div>
-                        <p class="card-text">
-                            <span id="tickets-count">{{ amountTickets }}</span>
-                        </p>
+                <div class="d-flex">
+                    <div class="d-flex flex-column">
+                        <div class="card-title m-0">
+                            <strong>Quantidade de tickets: </strong>{{ amountTickets }}
+                        </div>
+                        @if (amountOpcionais) {
+                            <div class="card-title m-0">
+                                <strong>Quantidade de opcionais: </strong>{{ amountOpcionais }}
+                            </div>
+                        }
                     </div>
-                    <div>{{ valor | currency:'BRL':'symbol':'1.2-2' }}</div>
+                    <div class="flex-grow-1"></div>
+                    <div class="card-title d-flex flex-column text-end m-0">
+                        <strong class="text-success">Valor total: </strong>{{ valor | currency:'BRL':'symbol':'1.2-2' }}
+                    </div>
                 </div>
             </div>
         </div>

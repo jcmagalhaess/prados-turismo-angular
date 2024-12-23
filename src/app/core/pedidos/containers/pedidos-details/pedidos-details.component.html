@@ -27,7 +27,7 @@
                     <strong>Data do evento:</strong> {{ reserva()!.Excursao | periodo }}
                 </div>
                 <div class="my-account__date">
-                    <strong>Valor da transação:</strong> {{ valorTransacoes() | currency: 'BRL' }}
+                    <strong>Valor dos ingressos:</strong> {{ valorIngresso() | currency: 'BRL' }}
                 </div>
                 <div class="my-account__date my-2">
                     <strong>Lista de opcionais:</strong> 
@@ -39,6 +39,9 @@
                 </div>
                 <div class="my-account__date">
                     <strong>Valor dos opcionais:</strong> {{ valorOpcionais() | currency: 'BRL' }}
+                </div>
+                <div class="my-account__date">
+                    <strong>Valor da transação:</strong> {{ valorTransacoes() | currency: 'BRL' }}
                 </div>
             </div>
         </div>

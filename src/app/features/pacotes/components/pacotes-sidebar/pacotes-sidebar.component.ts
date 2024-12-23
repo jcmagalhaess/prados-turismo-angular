@@ -25,6 +25,10 @@ export class PacotesSidebarComponent {
   public hasOpcionaisAndTicketsSelecionados = computed(() => this.amountTicketsNoValueZero().length > 0 && this.excursao?.Pacotes?.Produto.length! > 0);
   public opcionais = computed(() => this.excursao?.Pacotes?.Produto);
   public opcionaisSelecionados = signal<any>([]);
+  public amountOpcionais = computed(() => this.opcionaisSelecionados().reduce((acc: number, item: any) => acc + item.value, 0));
+  public valorOpcionais = computed(() => this.opcionaisSelecionados().reduce((acc: number, item: any) => acc + (item.value * item.price), 0));
+  public valorTickets = computed(() => this.amountTicketsNoValueZero().reduce((acc: number, item: any) => acc + (this.excursao!.valor * item.value), 0));
+  public valorTransacao = computed(() => this.valorTickets() + this.valorOpcionais())
   
   public enumCategory = [
     { key: "adults", value: "Adultos", age: "+12 anos" },
@@ -50,6 +54,10 @@ export class PacotesSidebarComponent {
   ) {
     effect(() => {
       this.form.controls["tickets"].setValue(this.amountTickets());
+    });
+
+    effect(() => {
+      console.log(this.amountTicketsNoValueZero());
     });
   }
 
@@ -81,7 +89,8 @@ export class PacotesSidebarComponent {
       disableClose: true,
       data: {
         tickets: this._takeAmountTickets(this.amountTickets()),
-        price: this._takeTotalPrices(this.amountTickets(), this.valor),
+        opcionais: this.amountOpcionais(),
+        price: this.valorTransacao(),
         locales: this.locais,
       },
     });

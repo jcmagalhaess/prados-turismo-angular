@@ -44,6 +44,7 @@ export class PacotesParticipantesComponent implements OnChanges {
   }
 
   @Input() amountTickets: number = 0;
+  @Input() amountOpcionais: number = 0;
   @Input() valor: number = 0;
   @Input() localEmbarque: ExcursaoLocalEmbarque[] = [];
 

@@ -9,6 +9,7 @@ import { Excursao } from '../models/excursao.type';
 export class PeriodoPipe implements PipeTransform {
 
   transform(value: Excursao): string {
+    if (!value) return '';
     return `${formatarData(new Date(value.dataInicio))} à ${formatarData(
       new Date(value.dataFim)
     )}`;
