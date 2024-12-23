@@ -2,15 +2,24 @@
     <div class="container">
         <div class="display-6">Meu carrinho</div>
         <hr>
-        <app-cart-item [cart]="cart()" />
 
-        <div class="d-flex justify-content-end mt-3">
-            <app-action-button
-                labelLoading="Gerando..."
-                label="Fazer reserva"
-                [loading]="loadingReserva()"
-                (action)="pagar()"
-                />
-        </div>
+        @if (hasntItems()) {
+            <div class="d-flex flex-column align-items-center justify-content-centr">
+                <span class="display-6 fs-5 text-center d-block my-4">Seu carrinho está vazio</span>
+    
+                <button [routerLink]="['/pacotes']" class="btn btn-outline-primary">Escolha um pacote</button>
+            </div>
+        } @else {
+            <app-cart-item [cart]="cart()" />
+    
+            <div class="d-flex justify-content-end mt-3">
+                <app-action-button
+                    labelLoading="Gerando..."
+                    label="Fazer reserva"
+                    [loading]="loadingReserva()"
+                    (action)="pagar()"
+                    />
+            </div>
+        }
     </div>
 </main>
