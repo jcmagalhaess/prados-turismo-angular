@@ -25,7 +25,7 @@ export class AcessoRegisterClientUsecase {
 
         return lastValueFrom(
             this._http
-                .post(`${ env.API }/usuarios/register-user-client`, email)
+                .post(`${ env.API }/usuarios/register-user-client`, email, { responseType: "text" as "json" })
                 .pipe(
                     tap((response: any) => this._client.set(response)),
                     finalize(() => this._loading.set(false))

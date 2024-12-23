@@ -5,7 +5,7 @@
                 <app-acesso-login [loading]="loadingLogin" (login)="login($event)"></app-acesso-login>
             </div>
             <div class="col-md-6">
-                <app-acesso-cadastro [loading]="loadingRegister" (email)="register($event)"></app-acesso-cadastro>
+                <app-acesso-cadastro [form]="formRegister" [loading]="loadingRegister" (email)="register($event)"></app-acesso-cadastro>
             </div>
         </div>
     </div>

@@ -1,0 +1,12 @@
+<div class="d-flex toaster--error">
+    <span class="example-pizza-party" matSnackBarLabel [innerText]="message()"></span>
+    <span matSnackBarActions>
+      <button
+        mat-button
+        matSnackBarAction
+        (click)="snackBarRef.dismissWithAction()"
+      >
+        Fechar
+      </button>
+    </span>
+</div>

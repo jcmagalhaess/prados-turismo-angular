@@ -1,0 +1,19 @@
+@mixin toaster($bg, $color) {
+    ::ng-deep &.mat-mdc-snack-bar-container .mat-mdc-snackbar-surface{
+        background-color: $bg;
+        color: $color;
+        .mdc-button__label {
+            color: $color !important;
+        }
+    }
+}
+
+::ng-deep .toaster-success {
+    @include toaster(rgba(var(--bs-success-rgb), 1) !important, #fff);
+}
+::ng-deep .toaster-error {
+    @include toaster(rgba(var(--bs-danger-rgb), 1) !important, #fff);
+}
+::ng-deep .toaster-info {
+    @include toaster(blue, #fff);
+}
