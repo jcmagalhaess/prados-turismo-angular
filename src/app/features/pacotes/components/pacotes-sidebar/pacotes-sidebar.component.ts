@@ -3,7 +3,6 @@ import { Component, computed, effect, Input, signal } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { formatarData } from "../../../../shared/helpers/formatar-data.helper";
 import {
   Excursao,
   TipoPassageiroEnum,
@@ -52,11 +51,6 @@ export class PacotesSidebarComponent {
     effect(() => {
       this.form.controls["tickets"].setValue(this.amountTickets());
     });
-  }
-  public formatandoPeriodo(dataInicio: string, dataFim: string) {
-    return `${formatarData(new Date(dataInicio))} a ${formatarData(
-      new Date(dataFim)
-    )}`;
   }
 
   public amountHandle(values: any) {

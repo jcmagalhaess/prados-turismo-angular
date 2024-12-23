@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Excursao } from '../../../../shared/models/excursao.type';
 import { LabelReservaPipe } from '../../../../shared/pipes/label-reserva.pipe';
 import { PedidosModalComponent } from '../../components/pedidos-modal/pedidos-modal.component';
 import { PedidosService } from '../../pedidos.service';
@@ -22,6 +21,10 @@ export class PedidosComponent {
   get noReservas() {
     return this._order.noReservas;
   }
+
+  get client() {
+    return this._order.client;
+  }
   
   constructor(
     private readonly _order: PedidosService,
@@ -36,10 +39,13 @@ export class PedidosComponent {
     return lista.reduce((acc: any, item: any) => acc + item.valor, 0);;
   }
 
-  public visualizar(item: Excursao) {
+  public visualizar(id: string) {
     this._dialog.open(PedidosModalComponent, {
       width: '800px',
-      data: item
+      data: {
+        id,
+        client: this.client
+      }
     })
   }
 }

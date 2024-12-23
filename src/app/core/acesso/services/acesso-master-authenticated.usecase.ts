@@ -3,14 +3,14 @@ import { Injectable, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { finalize, lastValueFrom, tap } from "rxjs";
 import { env } from "../../../../env/env";
-import { Client } from "../../../shared/models/client.type";
+import { Usuario } from "../../../shared/models/usuario.type";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AcessoClientAuthenticatedUsecase {
     private _loading = signal<boolean>(false);
-    private _clientAuthenticated = signal<Client | null>(null);
+    private _clientAuthenticated = signal<Usuario | null>(null);
     
     get loading() {
         return this._loading();

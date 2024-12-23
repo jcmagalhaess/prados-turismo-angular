@@ -2,13 +2,14 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, signal } from "@angular/core";
 import { finalize, lastValueFrom, tap } from "rxjs";
 import { env } from "../../../../env/env";
+import { Cliente } from "../../../shared/models/cliente.type";
 
 @Injectable({
   providedIn: "root",
 })
 export class AcessoGetDataPessoaUsecase {
   private _loading = signal<boolean>(false);
-  private _clientAuthenticated = signal<any>(null);
+  private _clientAuthenticated = signal<Cliente | null>(null);
 
   get loading() {
     return this._loading();

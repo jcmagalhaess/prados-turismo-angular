@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { forkJoin } from "rxjs";
 import { ExcursoesSingleUsecase } from "../../../features/pacotes/services/excursoes-single.usecase";
 import { buildBodyApiPagarme } from "../../../shared/helpers/build-body-api-pagarme.helper";
-import { Client } from "../../../shared/models/client.type";
+import { Cliente } from "../../../shared/models/cliente.type";
 import { AcessoGetDataPessoaUsecase } from "../../acesso/services/acesso-get-data-pessoa.usecase";
 import { PagarMeService } from "../../pagarme/pagarme.service";
 import { MeuCarrinhoReservaComponent } from "../components/meu-carrinho-reserva/meu-carrinho-reserva.component";
@@ -174,11 +174,13 @@ export class CarrinhoService {
     });
   }
 
-  private _pegarDadosUsuario(user: Client) {
+  private _pegarDadosUsuario(client: Cliente) {
     return {
       type: "individual",
-      email: user.email,
-      name: user.nome,
+      email: client.email,
+      name: client.nome,
+      cpf: client.cpf,
+      phone: client.telefone,
     };
   }
 }

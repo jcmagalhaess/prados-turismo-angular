@@ -23,7 +23,7 @@
           <td>{{ statusLabel(item.status) }}</td>
           <td>{{ item.valorTotal | currency:'BRL':'symbol':'1.2-2' }} </td><!-- de 2 ingressos -->
           <td class="text-center">
-            <button class="btn btn-primary" (click)="visualizar(item)">Visualizar</button>
+            <button class="btn btn-primary" (click)="visualizar(item.id)">Visualizar</button>
           </td>
         </tr>
     }

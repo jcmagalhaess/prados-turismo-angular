@@ -5,9 +5,10 @@ import { AcessoGetDataPessoaUsecase } from "../acesso/services/acesso-get-data-p
   providedIn: "root",
 })
 export class PedidosService {
-  public reservas = computed(() =>
-    this._userClient
-      .clientAuthenticated()
+  public reservas = computed(() => {
+    if (!this._userClient.clientAuthenticated()) return [];
+    
+    return this._userClient.clientAuthenticated()!
       .Reservas
       .map((item: any) => {
         return {
@@ -16,6 +17,7 @@ export class PedidosService {
         }
       })
       .sort((a: any, b: any) => b.reserva - a.reserva)
+    }
   );
   public lastReserva = computed(() => this.reservas()[0]);
   

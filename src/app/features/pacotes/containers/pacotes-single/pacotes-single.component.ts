@@ -101,7 +101,7 @@ export class PacotesSingleComponent {
   }
 
   public formatandoPeriodo(dataInicio: string, dataFim: string) {
-    return `${formatarData(new Date(dataInicio))} a ${formatarData(new Date(dataFim))}`;
+    return `${formatarData(new Date(dataInicio))} à ${formatarData(new Date(dataFim))}`;
   }
   
   private _buildItensInclusos(itens: Array<any>) {
