@@ -7,30 +7,30 @@
     <div class="container">
         <div class="home__title display-6">Nossos Pacotes</div>
         
-        @if (excursoes().length > 0) {
             <app-pacotes-filter (formEmit)="getFilter($event)"></app-pacotes-filter>
 
-            <div class="row">
-                @for (item of excursoes(); track $index) {
-                    <div class="col-md-4">
-                        <app-excursao-card
-                            [id]="item.id"
-                            [thumbnail]="hasUrl(item.Pacotes.Imagem)"
-                            [title]="item.nome"
-                            [duration]="item"
-                            [category]="item.Pacotes.origem"
-                            [resume]="item.observacoes"
-                            [price]="item.valor">
-                        </app-excursao-card>
-                    </div>
-                }
-            </div>
+            @if (excursoes().length > 0) {
+                <div class="row">
+                    @for (item of excursoes(); track $index) {
+                        <div class="col-md-4">
+                            <app-excursao-card
+                                [id]="item.id"
+                                [thumbnail]="hasUrl(item.Pacotes.Imagem)"
+                                [title]="item.nome"
+                                [duration]="item"
+                                [category]="item.Pacotes.origem"
+                                [resume]="item.observacoes"
+                                [price]="item.valor">
+                            </app-excursao-card>
+                        </div>
+                    }
+                </div>
+            } @else {
+                <p class="text-center display-6 fs-5 mt-4">Nenhuma excursão encontrada.</p>
+            }
 
             <div class="d-flex justify-content-center align-items-center mt-4">
                 <button class="btn btn-outline-primary" routerLink="/pacotes">Visualizar pacotes</button>
             </div>
-        } @else {
-            <p class="text-center display-6 fs-5 mt-4">Nenhuma excursão encontrada.</p>
-        }
     </div>
 </section>
