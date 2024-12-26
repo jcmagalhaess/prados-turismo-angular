@@ -1,3 +1,5 @@
+@import '../abstract/breakpoint';
+
 $component-name: "home";
 
 .#{$component-name} {
@@ -13,6 +15,11 @@ $component-name: "home";
         align-items: center;
         justify-content: center;
         font-size: 1.8rem;
+        @include breakpoint(small-only) {
+            flex-direction: column;
+            text-align: center;
+            line-height: 1;
+        }
     }
 
     &__item {

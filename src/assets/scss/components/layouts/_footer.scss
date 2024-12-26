@@ -1,3 +1,5 @@
+@import '../abstract/breakpoint';
+
 $component-name: "footer";
 
 .#{$component-name} {
@@ -7,6 +9,13 @@ $component-name: "footer";
         gap: 150px;
         padding-block: 3rem;
         background-color: var(--color-secondary);
+        @include breakpoint(small-only) {
+            flex-direction: column;
+            align-items: center;
+            padding-inline: 30px;
+            padding-block: 20px;
+            gap: 30px;
+        }
     }
 
     &__logo {
@@ -15,15 +24,24 @@ $component-name: "footer";
         display: flex;
         align-items: center;
         justify-content: center;
+        @include breakpoint(small-only) {
+            width: 40%;
+        }
     }
 
     &__title {
         color: var(--color-primary);
         font-size: 1rem;
+        @include breakpoint(small-only) {
+            text-align: center;
+        }
     }
 
     &__content {
         color: var(--color-light);
+        @include breakpoint(small-only) {
+            text-align: center;
+        }
         p {
             margin-bottom: 0;
         }
@@ -51,6 +69,9 @@ $component-name: "footer";
         list-style: none;
         display: flex;
         gap: 10px;
+        @include breakpoint(small-only) {
+            justify-content: center;
+        }
     }
 
     &__icon {
