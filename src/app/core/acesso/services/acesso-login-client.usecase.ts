@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, signal } from "@angular/core";
+import { computed, Injectable, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { finalize, lastValueFrom, tap } from "rxjs";
 import { env } from "../../../../env/env";
@@ -23,7 +23,7 @@ export class AcessoLoginClientUsecase {
   }
 
   get isAuthenticated() {
-    return !!localStorage.getItem("clientToken");
+    return computed(() => this._clientAuthenticated() !== null);
   }
 
   get dataCache() {

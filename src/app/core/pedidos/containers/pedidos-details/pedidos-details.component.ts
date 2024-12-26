@@ -43,6 +43,7 @@ export class PedidosDetailsComponent {
   );
 
   public valorTransacoes = computed(() => this.valorIngresso() + this.valorOpcionais());
+  public hasOptionals = computed(() => this.opcionais().length > 0);
 
   constructor(
     @Inject(MAT_DIALOG_DATA)

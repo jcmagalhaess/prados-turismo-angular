@@ -29,17 +29,19 @@
                 <div class="my-account__date">
                     <strong>Valor dos ingressos:</strong> {{ valorIngresso() | currency: 'BRL' }}
                 </div>
-                <div class="my-account__date my-2">
-                    <strong>Lista de opcionais:</strong> 
-                    <div class="d-flex flex-column">
-                        @for (item of reserva()!.Opcionais; track $index) {
-                            - {{ item.qtd }}x {{ item.Produto.nome }}
-                        }
+                @if (hasOptionals()) {
+                    <div class="my-account__date my-2">
+                        <strong>Lista de opcionais:</strong> 
+                        <div class="d-flex flex-column">
+                            @for (item of reserva()!.Opcionais; track $index) {
+                                - {{ item.qtd }}x {{ item.Produto.nome }}
+                            }
+                        </div>
                     </div>
-                </div>
-                <div class="my-account__date">
-                    <strong>Valor dos opcionais:</strong> {{ valorOpcionais() | currency: 'BRL' }}
-                </div>
+                    <div class="my-account__date">
+                        <strong>Valor dos opcionais:</strong> {{ valorOpcionais() | currency: 'BRL' }}
+                    </div>
+                }
                 <div class="my-account__date">
                     <strong>Valor da transação:</strong> {{ valorTransacoes() | currency: 'BRL' }}
                 </div>

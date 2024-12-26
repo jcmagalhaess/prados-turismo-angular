@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, signal } from "@angular/core";
+import { computed, Injectable, signal } from "@angular/core";
 import { finalize, lastValueFrom, tap } from "rxjs";
 import { env } from "../../../../env/env";
 import { Cliente } from "../../../shared/models/cliente.type";
@@ -17,6 +17,10 @@ export class AcessoGetDataPessoaUsecase {
 
   get clientAuthenticated() {
     return this._clientAuthenticated;
+  }
+  
+  get isAuthenticated() {
+    return computed(() => this._clientAuthenticated() !== null);
   }
 
   constructor(private readonly _http: HttpClient) {}

@@ -26,7 +26,5 @@ export class AppComponent {
       let userClient = localStorage.getItem("userClient") ?? this._loginClient.userClient();
       if (userClient) this._clientUser.carregarCliente(userClient)
     }, { allowSignalWrites: true })
-
-    // if (localStorage.getItem("clientToken")) this._clientAuth.login();
   }
 }

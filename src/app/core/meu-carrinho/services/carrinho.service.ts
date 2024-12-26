@@ -3,6 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { forkJoin } from "rxjs";
 import { ExcursoesSingleUsecase } from "../../../features/pacotes/services/excursoes-single.usecase";
+import { FeedbackComponent } from "../../../shared/components/feedback/feedback.component";
 import { buildBodyApiPagarme } from "../../../shared/helpers/build-body-api-pagarme.helper";
 import { Cliente } from "../../../shared/models/cliente.type";
 import { AcessoGetDataPessoaUsecase } from "../../acesso/services/acesso-get-data-pessoa.usecase";
@@ -139,6 +140,8 @@ export class CarrinhoService {
   }
 
   public gerarReserva() {
+    if (!this._noAuthenticated()) return;
+    
     const reqReserva = this._reserva().flatMap((item) =>
       this._client.criarReserva(item)
     );
@@ -165,6 +168,24 @@ export class CarrinhoService {
         
         this._router.navigate(["/minha-conta/pedidos"]);
       });
+  }
+
+  private _noAuthenticated() {
+    if (!this._user.isAuthenticated()) {
+      this._dialog.open(FeedbackComponent, {
+        width: "500px",
+        disableClose: true,
+        data: {
+          title: "Acesso Negado",
+          description: "Você precisa estar logado para realizar essa ação.",
+          color: "danger",
+        }
+      });
+
+      return false;
+    }
+
+    return true;
   }
 
   private _openDialog() {

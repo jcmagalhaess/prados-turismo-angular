@@ -4,13 +4,9 @@ import { AcessoLoginClientUsecase } from '../../acesso/services/acesso-login-cli
 
 export const clientNoAuthGuard: CanActivateFn = (route, state) => {
   const authService = inject(AcessoLoginClientUsecase);
-  const router = inject(Router);
-
-  console.log(authService.isAuthenticated);
-  console.log(authService.clientAuthenticated);
+  const router = inject(Router);  
   
-  
-  if (authService.isAuthenticated) {
+  if (localStorage.getItem("userClient")) {
     router.navigate(['/minha-conta']);
     return false;
   } else {
