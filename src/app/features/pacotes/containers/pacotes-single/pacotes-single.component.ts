@@ -5,14 +5,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Lightbox, LightboxModule } from 'ngx-lightbox';
 import { formatarData } from '../../../../shared/helpers/formatar-data.helper';
 import { ExcursaoImagem } from '../../../../shared/models/excursao.type';
-import { PacotesSidebarJeriComponent } from '../../components/pacotes-sidebar-jeri/pacotes-sidebar-jeri.component';
 import { PacotesSidebarComponent } from '../../components/pacotes-sidebar/pacotes-sidebar.component';
 import { ExcursoesSingleUsecase } from '../../services/excursoes-single.usecase';
 
 @Component({
   selector: 'app-pacotes-single',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, LightboxModule, PacotesSidebarComponent, PacotesSidebarJeriComponent],
+  imports: [CommonModule, CurrencyPipe, LightboxModule, PacotesSidebarComponent],
   templateUrl: './pacotes-single.component.html',
   styleUrl: './pacotes-single.component.scss',
   providers: [Lightbox, ExcursoesSingleUsecase]

@@ -3,21 +3,18 @@ import { Component, computed, effect, Input, signal } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { env } from "../../../../../env/env";
 import { formatarData } from "../../../../shared/helpers/formatar-data.helper";
-import {
-  Excursao,
-  TipoPassageiroEnum,
-  TipoPassageiroType,
-} from "../../../../shared/models/excursao.type";
-import { PacotesCountComponent } from "../pacotes-count/pacotes-count.component";
+import { Excursao, TipoPassageiroEnum, TipoPassageiroType } from "../../../../shared/models/excursao.type";
+import { PacotesCountComponent } from "../../../pacotes/components/pacotes-count/pacotes-count.component";
+
 
 @Component({
-  selector: "app-pacotes-sidebar-jeri",
+  selector: "app-jericoacoara-sidebar",
   standalone: true,
   imports: [CommonModule, PacotesCountComponent, ReactiveFormsModule],
-  templateUrl: "./pacotes-sidebar-jeri.component.html",
-  styleUrl: "./pacotes-sidebar-jeri.component.scss",
+  templateUrl: "./jericoacoara-sidebar.component.html",
+  styleUrl: "./jericoacoara-sidebar.component.scss",
 })
-export class PacotesSidebarJeriComponent {
+export class JericoacoaraSidebarComponent {
   public whatsappLink = env.WHATSAPP_LINK;
   public amountTickets = signal<any>([]);
   public amountTicketsNoValueZero = computed(() => this.amountTickets().filter((item: any) => item.value > 0));

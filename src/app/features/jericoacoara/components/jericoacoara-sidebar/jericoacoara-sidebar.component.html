@@ -1,0 +1,46 @@
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col-md-12">
+      <label for="period">
+        <i class="fa-regular fa-clock me-3"></i>Solicite a disponibilidade em
+        nosso WhatsApp
+      </label>
+      <div class="border rounded-1 p-3 my-3">
+        @for (item of enumCategory; track $index) {
+          <div class="my-3">
+            <app-pacotes-count
+              [key]="item.key"
+              [type]="item.value"
+              [valor]="item.price"
+              [nocount]="true"
+              (amountEmit)="amountHandle($event)"
+            >
+            </app-pacotes-count>
+          </div>
+        }
+        <ul class="info-valores">
+          <li>Para mais dias solicite um orçamento.</li>
+          <li>Preços por pessoa para compras a partir de 2 pessoas.</li>
+          <li>Preço valido para viagens até 20/12 (exceto o mês de julho, feriados e datas comemorativas).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <a
+        type="button"
+        [href]="whatsappLink"
+        target="_blank"
+        class="btn btn-success w-100"
+      >
+        <i class="fa-brands fa-whatsapp me-2"></i> Solicitar agora
+      </a>
+    </div>
+  </div>
+</form>
+
+<!-- <div class="event__totalizers">
+  <div id="subtotal-label"></div>
+  <div id="payment-label"></div>
+</div> -->

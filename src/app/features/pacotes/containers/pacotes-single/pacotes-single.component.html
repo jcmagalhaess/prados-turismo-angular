@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                   <th scope="row">Incluso</th>
-                  <td>
+                  <td class="event__inclusos">
                     <ul class="d-flex flex-wrap">
                       @for (item of inclusos(); track $index) {
                         <li>
@@ -87,17 +87,10 @@
         }
       </div>
       <div class="event__sidebar">
-        @if (isJeri()) {
-          <app-pacotes-sidebar-jeri
-            [form]="form"
-            [excursao]="excursao()">
-          </app-pacotes-sidebar-jeri>
-        } @else {
-          <app-pacotes-sidebar
-            [form]="form"
-            [excursao]="excursao()"
-          ></app-pacotes-sidebar>
-        }
+        <app-pacotes-sidebar
+          [form]="form"
+          [excursao]="excursao()"
+        ></app-pacotes-sidebar>
       </div>
     </div>
   </div>

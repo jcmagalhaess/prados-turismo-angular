@@ -18,7 +18,7 @@ export class HeaderComponent {
   public menu = computed(() => [
     { label: 'Home', route: '/' },
     { label: 'Pacotes', route: '/pacotes' },
-    { label: 'Jericoacoara', route: '/pacotes/' + this.jeriId() },
+    { label: 'Jericoacoara', route: '/jericoacoara/' },
   ]);
   public jeriId = computed(() => {
     if (this._excursoes.excursoes().length > 0) {

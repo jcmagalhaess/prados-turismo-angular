@@ -1,0 +1,167 @@
+<main id="excursao-loaded">
+  <div class="container">
+    <div class="d-flex mb-3">
+      <button type="button" class="btn btn-secondary me-3">
+        <i class="fa-solid fa-arrow-left-long me-2"></i>Voltar
+      </button>
+      <div class="spacer"></div>
+      <button type="button" class="btn btn-primary">
+        <i class="fa-solid fa-share me-2"></i>Compartilhar
+      </button>
+    </div>
+
+    <div class="d-flex">
+      <div class="event__main">
+        <div class="row">
+          <div class="col-md-12">
+            <span class="display-6">Pacote para Jericoacoara</span>
+            <span class="event__price">
+              {{ 375 | currency : "BRL" : true : "1.2-2" }}
+            </span>
+            <p>
+              Nós saímos todos os dias para Jeri, então você tem a flexibilidade
+              de escolher o dia que pretende ir. Vai depender apenas da
+              disponibilidade nas pousadas do nosso pacote. Solicite a
+              disponibilidade em nosso WhatsApp (
+              <a
+                [href]="whatsappLink"
+                >clique aqui</a
+              >
+              e fale conosco)
+            </p>
+            <table class="event__table table">
+              <tbody>
+                <tr>
+                  <th scope="row">Destino</th>
+                  <td>Jijoca de Jericoacoara, Ceará, Brasil</td>
+                </tr>
+                <tr>
+                  <th scope="row">Partida</th>
+                  <td id="event-departure">
+                    Tolerancia de 10 minutos a partir do horario escolhido
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Valores</th>
+                  <td>
+                    <ul>
+                      <li>
+                        <strong
+                          >Pacote 2 dias e 1 noite (transfer + hospedagem + café
+                          da manhã + passeios):</strong
+                        >
+                        5x de 75 ou R$ 375 por pessoa
+                      </li>
+                      <li>
+                        <strong
+                          >Pacote 3 dias e 2 noites (transfer + hospedagem +
+                          café da manhã + passeios):</strong
+                        >
+                        5x de 99 ou R$ 495 por pessoa
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Incluso</th>
+                  <td class="event__inclusos">
+                    <ul class="d-flex flex-wrap">
+                      @for (item of inclusos(); track $index) {
+                      <li>
+                        <i class="fa-solid fa-check text-success me-3"></i
+                        >{{ item }}
+                      </li>
+                      }
+                    </ul>
+                  </td>
+                </tr>
+                <!-- <tr>
+                    <th scope="row">Não incluso</th>
+                    <td>
+                      <ul class="d-flex flex-wrap">
+                        @if (noOpcionais()) {
+                          <li>---</li>
+                        }
+                        @for (item of opcionais(); track $index) {
+                          <li>
+                            <i class="fa-solid fa-xmark text-danger me-3"></i>{{ item.nome }}
+                          </li>
+                        }
+                      </ul>
+                    </td>
+                  </tr> -->
+              </tbody>
+            </table>
+            <div class="display-6 my-3">Informações relevantes</div>
+            <ul class="info-valores">
+              <li>
+                O transporte é feito por uma empresa parceira e é feito de
+                ônibus bem confortavel com poltronas reclináveis, banheiro e
+                ar-condicionado;
+              </li>
+              <li>
+                A pousada é super bem localizada, perto dos principais pontos da
+                cidade;
+              </li>
+              <li>
+                Pousadas disponiveis em nosso pacote: Isalana Beach Hotel,
+                Pousada Jerimar, Pousada Isabel.
+              </li>
+              <li>
+                No pacote não estão inclusos passeios opcionais, ingresso para
+                parques ou clube, ou qualquer outro tipo de alimentação ou city
+                tour que não esteja descrito na programação/regulamento;
+              </li>
+              <li>
+                Temos quartos duplos, triplos e quádruplos (caso você queira
+                viajar sozinho, encaixamos você com outra pessoa do mesmo
+                gênero)
+              </li>
+              <li>
+                Nosso retorno é 16:30. O check-out na pousada é 12h. Vocês devem
+                fazer o check-out as 12h, podendo deixar as malas na recepção
+                para poder curtir Jeri até o horário de retorno (16:30).
+              </li>
+              <li>Horário de check-in da acomodação: 14h. Check-out: 12h.</li>
+              <li>
+                Os passeios já inclusos no pacote (lagoa do paraíso, buraco
+                azul, arvore da preguiça e pedra furada) são feitos no primeiro
+                dia, antes de chegarem na vila de Jericoacoara.
+              </li>
+              <li>
+                Horário de retorno para Fortaleza é a partir de 16:30h com
+                previsão de chegada por volta de 23:30h;
+              </li>
+              <li>
+                Para a sua entrada na Vila de Jericoacoara será necessário que
+                pague a taxa de turismo.
+              </li>
+            </ul>
+            <hr class="my-4" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="display-6 mb-3">Nossa galeria</div>
+          <ul class="event__gallery">
+            @for (item of gallery(); track $index) {
+            <li
+              class="event__item"
+              style="background-image: url({{ item }});"
+              (click)="open(formatGallery(gallery()), $index)"
+            >
+              <a
+                href="Javascript:;"
+                data-lightbox="roadtrip"
+                data-title="{{ formatGallery(gallery())[$index].caption }}"
+              ></a>
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+      <div class="event__sidebar">
+        <app-jericoacoara-sidebar></app-jericoacoara-sidebar>
+      </div>
+    </div>
+  </div>
+</main>

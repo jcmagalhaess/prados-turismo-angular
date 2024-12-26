@@ -20,6 +20,11 @@ export const routes: Routes = [
         loadComponent: () => import('./features/pacotes/containers/pacotes-single/pacotes-single.component').then(c => c.PacotesSingleComponent)
     },
     {
+        path: 'jericoacoara',
+        pathMatch: 'full',
+        loadComponent: () => import('./features/jericoacoara/containers/jericoacoara/jericoacoara.component').then(c => c.JericoacoaraComponent)
+    },
+    {
         path: 'login',
         pathMatch: 'full',
         canActivate: [clientNoAuthGuard],

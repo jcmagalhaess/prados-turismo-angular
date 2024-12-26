@@ -36,12 +36,6 @@ $component-name: 'event';
         th {
             width: 150px;
         }
-
-        ul > li:not(:last-child) {
-            width: 50%;
-            margin-block-end: 20px;
-            padding-inline-end: 20px;
-        }
         &--no-last-border {
             tr:last-child {
                 border-bottom: none;
@@ -49,6 +43,13 @@ $component-name: 'event';
                     border-bottom: none;
                 }
             }
+        }
+    }
+    &__inclusos {
+        ul > li:not(:last-child) {
+            width: 50%;
+            margin-block-end: 20px;
+            padding-inline-end: 20px;
         }
     }
     &__accordion {
