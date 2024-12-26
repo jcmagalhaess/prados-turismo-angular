@@ -16,8 +16,13 @@ export class ExcursaoCardComponent {
   @Input({ required: true }) id: string = '';
   @Input({ required: true }) thumbnail: string = '';
   @Input({ required: true }) title: string = '';
-  @Input({ required: true }) duration: any = {};
+  @Input() duration: any = null;
   @Input({ required: true, transform: (value: any) => (Origem.find(item => item.key === value)?.value) }) category: string = '';
   @Input({ required: true }) resume: string = '';
   @Input({ required: true }) price: number = 0;
+
+  public getLink(id: string) {
+    if (id === 'jericoacoara') return `/${id}`;
+    return `/pacotes/${id}`;
+  }
 }
