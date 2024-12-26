@@ -18,7 +18,7 @@
             <span class="event__price">
               {{ excursao()?.valor | currency : "BRL" : true : "1.2-2" }}
             </span>
-            <p [innerText]="excursao()?.Pacotes?.descricao"></p>
+            <p [innerHTML]="excursao()?.Pacotes?.descricao"></p>
             <table class="event__table table">
               <tbody>
                 <tr>
