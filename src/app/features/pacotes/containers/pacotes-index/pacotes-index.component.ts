@@ -34,7 +34,7 @@ export class PacotesIndexComponent {
   }
 
   public getFilter(value: any, ) {
-    this._excursoes.getExcursoes(value, '10');
+    this._excursoes.getExcursoes(value);
   }
 
   public hasUrl(image: ExcursaoImagem) {

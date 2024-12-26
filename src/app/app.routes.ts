@@ -25,6 +25,16 @@ export const routes: Routes = [
         loadComponent: () => import('./features/jericoacoara/containers/jericoacoara/jericoacoara.component').then(c => c.JericoacoaraComponent)
     },
     {
+        path: 'termos-uso',
+        pathMatch: 'full',
+        loadComponent: () => import('./features/termos-uso/termos-uso.component').then(c => c.TermosUsoComponent)
+    },
+    {
+        path: 'politica-privacidade',
+        pathMatch: 'full',
+        loadComponent: () => import('./features/politica-privacidade/politica-privacidade.component').then(c => c.PoliticaPrivacidadeComponent)
+    },
+    {
         path: 'login',
         pathMatch: 'full',
         canActivate: [clientNoAuthGuard],

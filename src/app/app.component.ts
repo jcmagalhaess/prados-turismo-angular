@@ -14,7 +14,7 @@ import { HeaderComponent } from './core/header/header.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'prados-turismo-angular';
+  title = 'Prados Turismo';
 
   constructor(
     private readonly _auth: AuthMasterService,

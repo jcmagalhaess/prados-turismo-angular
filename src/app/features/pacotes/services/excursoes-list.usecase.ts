@@ -32,7 +32,7 @@ export class ExcursoesListUsecase {
 
   public getExcursoes(
     filter: any,
-    size: string = "3",
+    size: string = "999",
     page: string = "1",
     order: string = "asc",
     orderBy: string = ""

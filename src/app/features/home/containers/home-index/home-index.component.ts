@@ -21,6 +21,7 @@ import { ExcursoesListUsecase } from "../../../pacotes/services/excursoes-list.u
   ],
   templateUrl: "./home-index.component.html",
   styleUrl: "./home-index.component.scss",
+  providers: [ExcursoesListUsecase]
 })
 export class HomeIndexComponent {
   get excursoes() {

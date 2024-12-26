@@ -20,13 +20,6 @@ export class HeaderComponent {
     { label: 'Pacotes', route: '/pacotes' },
     { label: 'Jericoacoara', route: '/jericoacoara/' },
   ]);
-  public jeriId = computed(() => {
-    if (this._excursoes.excursoes().length > 0) {
-      return this._excursoes.excursoes()[0].id
-    } else {
-      return ''
-    }
-  });
 
   get client() {
     return this._userClient.clientAuthenticated();
@@ -47,7 +40,6 @@ export class HeaderComponent {
     private readonly _excursoes: ExcursoesListUsecase
   ) {
     this._cart.pegarCarrinho();
-    this._excursoes.getExcursoes({ nome: 'Jericoacoara' });
   }
 
   public navigate(route: string) {
