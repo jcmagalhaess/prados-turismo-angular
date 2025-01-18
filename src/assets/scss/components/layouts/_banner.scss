@@ -12,6 +12,9 @@ $component-name: 'banner';
         flex: 0 0 calc(33.333% - 33.4px);
         margin-block-end: 50px;
         height: 350px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         &:last-child {
             flex: 0 0 100%;
             margin-inline-end: 0;

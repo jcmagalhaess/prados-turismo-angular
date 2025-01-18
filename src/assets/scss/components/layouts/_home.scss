@@ -3,9 +3,33 @@
 $component-name: "home";
 
 .#{$component-name} {
+    &__banner {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 700px;
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        &-information {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff !important;
+            i {
+                background-color: #28a745;
+                padding: 2px 3px;
+                border-radius: 5px;
+            }
+        }
+    }
+
     &__features {
         position: relative;
-        top: -30px;
+        top: -50px;
     }
 
     &__box {
@@ -39,13 +63,13 @@ $component-name: "home";
     }
 
     &__title {
-        &:before {
-            content: '';
-            width: 38%;
-            border-top: 1px solid;
-            margin-inline-end: 20px;
-            margin-block-end: 20px;
-        }
+        // &:before {
+        //     content: '';
+        //     width: 38%;
+        //     border-top: 1px solid;
+        //     margin-inline-end: 20px;
+        //     margin-block-end: 20px;
+        // }
         &--no-divider {
             &:before {
                 content: '';
