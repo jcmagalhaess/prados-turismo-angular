@@ -5,9 +5,13 @@
 
 <section class="home__pacotes my-5">
     <div class="container">
-        <div class="home__title display-6">Nossos Pacotes</div>
+        <div class="home__title display-6">
+            <span>
+                <i class="fa-solid fa-suitcase-rolling me-2"></i>Pacotes disponíveis
+            </span>
+        </div>
         
-            <app-pacotes-filter (formEmit)="getFilter($event)"></app-pacotes-filter>
+            <app-pacotes-filter (origemEmit)="getOrigem($event)"></app-pacotes-filter>
 
             @if (excursoes().length > 0) {
                 <div class="home__excursoes">

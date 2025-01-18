@@ -3,7 +3,7 @@
         <div class="display-3">Pacotes</div>
         <hr>
 
-        <app-pacotes-filter (formEmit)="getFilter($event)"></app-pacotes-filter>
+        <app-pacotes-filter (origemEmit)="getOrigem($event)"></app-pacotes-filter>
 
         @if (loading) {
             <mat-progress-bar class="w-100" mode="indeterminate"></mat-progress-bar>

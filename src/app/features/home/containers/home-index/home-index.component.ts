@@ -29,10 +29,10 @@ export class HomeIndexComponent {
   }
 
   constructor(private readonly _excursoes: ExcursoesListUsecase) {
-    this._excursoes.getExcursoes({});
+    this._excursoes.getExcursoes({ origem: 1 });
   }
 
-  public getFilter(event: any) {
+  public getOrigem(event: any) {
     this._excursoes.getExcursoes(event);
   }
 

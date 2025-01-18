@@ -1,40 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ExcursoesDestinosUsecase } from '../../services/excursoes-destinos.usecase';
+import { Component, effect, EventEmitter, Output, signal } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-pacotes-filter',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatButtonModule],
   templateUrl: './pacotes-filter.component.html',
   styleUrl: './pacotes-filter.component.scss',
 })
-export class PacotesFilterComponent implements OnInit {
-  public form = new FormGroup<any>({
-    origem: new FormControl(null, Validators.required),
-    pacoteId: new FormControl(null, Validators.required),
-  });
+export class PacotesFilterComponent {
+  public origem = signal<number>(1);
 
-  @Output() formEmit = new EventEmitter<any>();
+  @Output() origemEmit = new EventEmitter<any>();
 
-  get destinos() {
-    return this._destinos.destinos;
+  constructor() {
+    effect(() => this.origemEmit.emit({ origem: this.origem() }))
   }
 
-  constructor(
-    private readonly _destinos: ExcursoesDestinosUsecase
-  ) { }
-
-  public ngOnInit(): void {
-    this.form.valueChanges.subscribe((value) => {
-      this.formEmit.emit(value);
-    })
-
-    this._destinos.getDestinos();
-  }
-
-  public disabledResetBtn() {
-    return !this.form.dirty;
+  public origemChoose(value: number) {
+    this.origem.set(value);
   }
 }

@@ -1,0 +1,12 @@
+.btn {
+    &-light {
+        padding-inline: 30px;
+        border-radius: 15px;
+        background-color: #dfdada !important;
+    }
+}
+
+.btn-active {
+    background-color: var(--color-primary) !important;
+    color: #fff !important;
+}

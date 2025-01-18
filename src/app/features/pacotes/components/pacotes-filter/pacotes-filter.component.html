@@ -1,4 +1,10 @@
-<form [formGroup]="form" class="my-3">
+<div class="d-flex justify-content-center gap-3 mb-4">
+    <button class="btn btn-light" [ngClass]="{ 'btn-active': origem() === 1 }" type="button" (click)="origemChoose(1)">Saindo de Fortaleza - CE</button>
+    <button class="btn btn-light" [ngClass]="{ 'btn-active': origem() === 2 }" type="button" (click)="origemChoose(2)">Saindo de Tianguá - CE</button>
+</div>
+
+<!-- <form [formGroup]="form" class="my-3">
+
     <div class="input-group">
         <select class="form-select" formControlName="origem">
             <option [value]="null" disabled selected>Origem</option>
@@ -15,4 +21,4 @@
 
         <button class="btn btn-primary" [disabled]="!form.dirty" type="button" (click)="form.reset()">Resetar Filtros</button>
     </div>
-</form>
+</form> -->

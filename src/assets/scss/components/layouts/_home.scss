@@ -37,22 +37,24 @@ $component-name: "home";
         &:before {
             content: '';
             width: 38%;
-            border-top: 1px dashed;
+            border-top: 1px solid;
             margin-inline-end: 20px;
+            margin-block-end: 20px;
         }
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
         margin-block: 20px !important;
         font-size: 1.75rem !important;
         text-transform: uppercase;
-        &:after {
-            content: '';
-            width: 38%;
-            border-top: 1px dashed;
-            margin-inline-start: 20px;
-        }
+        // &:after {
+        //     content: '';
+        //     width: 38%;
+        //     border-top: 1px dashed;
+        //     margin-inline-start: 20px;
+        // }
     }
 
     &__excursoes {
