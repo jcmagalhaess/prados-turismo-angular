@@ -19,7 +19,7 @@ import { provideNgxMask } from 'ngx-mask';
 import { routes } from "./app.routes";
 import { AuthMasterInterceptor } from "./core/auth/interceptos/auth-master.interceptos";
 
-registerLocaleData(localePt);
+registerLocaleData(localePt, 'pt');
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
@@ -41,7 +41,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([AuthMasterInterceptor])),
     {
       provide: LOCALE_ID,
-      useValue: "pt-BR", // Definindo o locale para pt-BR
+      useValue: "pt", // Definindo o locale para pt-BR
     },
     CurrencyPipe,
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },

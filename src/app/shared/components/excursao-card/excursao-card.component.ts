@@ -1,24 +1,25 @@
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Origem } from '../../models/excursao.type';
-import { CalcularDiasNoitesPipe } from '../../pipes/calcular-dias-noites.pipe';
-import { LimitarTextoPipe } from '../../pipes/limitar-texto.pipe';
+import { Origem, Transport } from '../../models/excursao.type';
+import { FormataParcelasPipe } from '../../pipes/formata-parcelas.pipe';
+import { FormatarPeriodoExcursao } from '../../pipes/formata-periodo-excursao.pipe';
 
 @Component({
   selector: 'app-excursao-card',
   standalone: true,
-  imports: [RouterModule, CurrencyPipe, CalcularDiasNoitesPipe, LimitarTextoPipe],
+  imports: [RouterModule, CurrencyPipe, FormatarPeriodoExcursao, FormataParcelasPipe],
   templateUrl: './excursao-card.component.html',
-  styleUrl: './excursao-card.component.scss'
+  styleUrl: './excursao-card.component.scss',
+  providers: [DatePipe]
 })
 export class ExcursaoCardComponent {
   @Input({ required: true }) id: string = '';
   @Input({ required: true }) thumbnail: string = '';
   @Input({ required: true }) title: string = '';
   @Input() duration: any = null;
-  @Input({ required: true, transform: (value: any) => (Origem.find(item => item.key === value)?.value) }) category: string = '';
-  @Input({ required: true }) resume: string = '';
+  @Input({ required: true, transform: (value: any) => (Origem.find(item => item.key === value.toString())?.value) }) origem: string = '';
+  @Input({ required: true, transform: (value: any) => (Transport.find(item => item.key === value.toString())?.value) }) transport: string = '';
   @Input({ required: true }) price: number = 0;
 
   public getLink(id: string) {

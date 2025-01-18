@@ -54,4 +54,18 @@ $component-name: "home";
             margin-inline-start: 20px;
         }
     }
+
+    &__excursoes {
+        @extend .#{$component-name}__list;
+        font-size: 14px;
+        gap: 30px;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    &__excursao {
+        flex: 0 0 calc(33.333% - 30px);
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+    }
 }

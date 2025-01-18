@@ -27,7 +27,7 @@ export type ExcursaoPacote = {
   ativo: boolean;
   dataCadastro: string;
   origem: any;
-  tipoTransporte: number;
+  tipoTransporte: any;
   urlImagem: string;
   urlImgEsgotado: string;
   usuarioCadastro: string;
@@ -71,8 +71,13 @@ export type ExcursaoLocalEmbarque = {
 };
 
 export const Origem: EnumType<string>[] = [
-  { key: '1', value: 'Fortaleza' },
-  { key: '2', value: 'Tianguá' }
+  { key: '1', value: 'Saindo de Fortaleza - CE' },
+  { key: '2', value: 'Saindo de Tianguá - Ce' }
+]
+
+export const Transport: EnumType<string>[] = [
+  { key: '1', value: 'Pacote Terrestre' },
+  { key: '2', value: 'Pacote Aéreo' }
 ]
 
 export enum TipoPassageiroEnum {
