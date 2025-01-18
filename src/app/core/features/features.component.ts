@@ -1,18 +1,29 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { ExcursoesListUsecase } from '../../features/pacotes/services/excursoes-list.usecase';
+import { ExcursaoCardComponent } from '../../shared/components/excursao-card/excursao-card.component';
+import { ExcursaoImagem } from '../../shared/models/excursao.type';
 
 @Component({
   selector: 'app-features',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ExcursaoCardComponent],
   templateUrl: './features.component.html',
-  styleUrl: './features.component.scss'
+  styleUrl: './features.component.scss',
+  providers: [ExcursoesListUsecase],
 })
 export class FeaturesComponent {
-  public features = [
-    { label: 'Parcele em até 12x', icon: 'fa-solid fa-credit-card' },
-    { label: 'Suporte 24 horas', icon: 'fa-solid fa-headset' },
-    { label: 'Conexão Segura', icon: 'fa-solid fa-fingerprint' },
-    { label: 'Programa de Pontos e Fidelidade', icon: 'fa-solid fa-money-check-dollar' },
-  ]
+  get excursoes() {
+    return this._excursoes.excursoes;
+  }
+
+  constructor(private readonly _excursoes: ExcursoesListUsecase) {
+    this._excursoes.getExcursoes({ destacado: true }, '2');
+  }
+
+  public hasUrl(image: ExcursaoImagem) {
+    if (!!image) return image.url;
+
+    return "";
+  }
 }

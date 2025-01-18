@@ -1,14 +1,32 @@
 <section class="home__features">
     <div class="container">
-        <div class="home__list">
-            @for (item of features; track $index) {
-                <div class="home__item">
-                    @if (item.icon) {
-                        <i [ngClass]="item.icon"></i>
-                    }
-                    <span>{{ item.label }}</span>
-                </div>
-            }
+        <div class="home__box">
+            <h3 class="home__title home__title--no-divider home__title--light display-6">
+                <span>
+                    Pacotes em destaque <i class="fa-solid fa-fire ms-2"></i>
+                </span>
+            </h3>
+            <div class="home__list">
+                @if (excursoes().length > 0) {
+                    <div class="home__excursoes mt-3">
+                        @for (item of excursoes(); track $index) {
+                            <div class="home__excursao">
+                                <app-excursao-card
+                                    [id]="item.id"
+                                    [thumbnail]="hasUrl(item.Pacotes.Imagem)"
+                                    [title]="item.nome"
+                                    [duration]="item"
+                                    [origem]="item.Pacotes.origem"
+                                    [transport]="item.Pacotes.tipoTransporte"
+                                    [price]="item.valor">
+                                </app-excursao-card>
+                            </div>
+                        }
+                    </div>
+                } @else {
+                    <p class="text-center display-6 fs-5 mt-4">Nenhuma excursão encontrada.</p>
+                }
+            </div>
         </div>
     </div>
 </section>
