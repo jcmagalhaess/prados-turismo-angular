@@ -29,11 +29,11 @@ export class HomeIndexComponent {
   }
 
   constructor(private readonly _excursoes: ExcursoesListUsecase) {
-    this._excursoes.getExcursoes({ origem: 1 });
+    this.getOrigem({ origem: '1' });
   }
 
-  public getOrigem(event: any) {
-    this._excursoes.getExcursoes(event);
+  public getOrigem(filtro: any) {
+    this._excursoes.getExcursoes({ ...filtro, orderBy: "dataInicio"});
   }
 
   public hasUrl(image: ExcursaoImagem) {
