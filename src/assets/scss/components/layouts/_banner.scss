@@ -1,11 +1,25 @@
 $component-name: 'banner';
 
 .#{$component-name} {
-    height: 600px;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    justify-content: center;
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        margin-block-start: 40px;
+    }
+    
+    &__item {
+        margin-inline-end: 50px;
+        flex: 0 0 calc(33.333% - 33.4px);
+        margin-block-end: 50px;
+        height: 350px;
+        &:last-child {
+            flex: 0 0 100%;
+            margin-inline-end: 0;
+        }
+        &:nth-child(3n) {
+            margin-inline-end: 0;
+        }
+    }
 
     &__image {
         height: 100%;
