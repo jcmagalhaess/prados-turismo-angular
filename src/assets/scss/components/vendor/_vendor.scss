@@ -68,7 +68,6 @@ main:not(main.home) {
     padding-block: 50px;
 }
 
-
 img {
     height: auto;
     width: 100%;
@@ -99,4 +98,8 @@ img {
 
 body {
     margin: 0;
+}
+
+.mt-80 {
+    margin-block-start: 80px;
 }

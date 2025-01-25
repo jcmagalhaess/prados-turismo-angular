@@ -30,6 +30,7 @@ $component-name: "home";
     &__features {
         position: relative;
         top: -50px;
+        z-index: 9;
     }
 
     &__box {

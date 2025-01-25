@@ -17,7 +17,7 @@ import {
 } from "ngx-currency-mask/src/currency-mask.config";
 import { provideNgxMask } from 'ngx-mask';
 import { routes } from "./app.routes";
-import { AuthMasterInterceptor } from "./core/auth/interceptos/auth-master.interceptos";
+import { AuthMasterInterceptor } from "./core/auth/interceptos/auth-master.interceptor";
 
 registerLocaleData(localePt, 'pt');
 

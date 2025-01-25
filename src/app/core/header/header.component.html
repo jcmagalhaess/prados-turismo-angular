@@ -1,22 +1,43 @@
-<header class="header">
+<header id="header" class="header">
   <div class="header__topbar">
     <div class="container">
       <div class="header__flex">
+        <figure class="header__logo" routerLink="/">
+          <img src="assets/images/logo.webp" alt="Logo - Prados Turismo" />
+        </figure>
+        <div class="spacer"></div>
         <ul class="header__social-icons">
-          <li class="header__icon">
+          <li>
             <a href="https://www.facebook.com/pradosturismo" target="_blank">
-              <i class="fa-brands fa-facebook"></i>
+              <div class="header__icon">
+                <i class="fa-brands fa-facebook"></i>
+              </div>
             </a>
           </li>
-          <li class="header__icon">
+          <li>
             <a href="https://www.instagram.com/pradosturismo" target="_blank">
-              <i class="fa-brands fa-instagram"></i>
+              <div class="header__icon">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="https://api.whatsapp.com/send/?phone=5585997460786&text&type=phone_number&app_absent=0" target="_blank">
+              <div class="header__icon me-4">
+                <i class="fa-brands fa-whatsapp"></i> 
+              </div>
+
+              +55 85 9 9746-0786
             </a>
           </li>
         </ul>
-        <div class="spacer"></div>
+        <div class="header__menu">
+          <a routerLink="/sac">
+            <i class="fa-solid fa-circle-question me-4"></i> Ajuda
+          </a>
+        </div>
         <div class="header__account">
-          <i class="fa-regular fa-user me-2"></i>
+          <i class="fa-regular fa-user me-4"></i>
           @if (client) {
           <a routerLink="/minha-conta">{{ client.nome }}</a>
           } @else {
@@ -29,9 +50,9 @@
           data-bs-target="#offcanvasRight"
           aria-controls="offcanvasRight"
         >
-          <div class="header__value">
+          <!-- <div class="header__value">
             {{ valoresCarrinho() | currency : "BRL" : 'symbol' : "1.2-2" }}
-          </div>
+          </div> -->
           <div class="header__amount">
             <i class="fa-solid fa-basket-shopping"></i>
             <span class="header__badge">{{ totalCarrinho }}</span>
@@ -41,12 +62,10 @@
       </div>
     </div>
   </div>
-  <div class="header__menu">
+  <!-- <div class="header__menu">
     <div class="container">
       <div class="header__flex">
-        <figure class="header__logo">
-          <img src="assets/images/logo.webp" alt="Logo - Prados Turismo" />
-        </figure>
+        
         <ul class="header__list">
           @for (item of menu(); track $index) {
           <li class="header__item">
@@ -61,5 +80,5 @@
         </ul>
       </div>
     </div>
-  </div>
+  </div> -->
 </header>

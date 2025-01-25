@@ -1,7 +1,25 @@
-.header {
+$component-name: 'header';
+
+.#{$component-name} {
     text-decoration: none;
     color: var(--color-light);
-    box-shadow: 0 0 10px #ccc;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99999;
+    transition: background 0.5s ease, color 0.5s ease, box-shadow 0.5s ease, padding 0.3s ease;
+    &--scrolled {
+        .#{$component-name} {
+            &__topbar {
+                background-color: var(--color-secondary);
+                height: 80px;
+            }
+
+            &__logo {
+                height: 60px;
+            }
+        }
+    }
 
     a {
         text-decoration: none;
@@ -18,15 +36,35 @@
     &__topbar {
         display: flex;
         align-items: center;
-        height: 70px;
+        height: 120px;
         padding-inline: 15px;
-        background-color: var(--color-primary);
+        background-color: transparent;
+        transition: .5s ease;
+    }
+
+    &__account,
+    &__menu {
+        &:hover {
+            i, a {
+                color: var(--color-primary);
+            }
+        }
     }
 
     &__social-icons {
         list-style: none;
         display: flex;
         gap: 10px;
+        li a {
+            display: flex;
+            align-items: center;
+            &:hover {
+                color: var(--color-primary);
+                .#{$component-name}__icon {
+                    background-color: var(--color-primary);
+                }
+            }
+        }
     }
 
     &__icon {
@@ -40,22 +78,16 @@
         cursor: pointer;
         color: var(--color-light);
         transition: .5s ease;
-        &:hover {
-            background-color: var(--color-secondary);
-        }
-    }
-
-    &__menu {
-        height: 70px;
     }
 
     &__logo {
         margin: 0;
-        height: 70px;
         display: flex;
         align-items: center;
+        transition: .5s ease;
+        cursor: pointer;
         img {
-            max-height: 70%;
+            height: 100%;
         }
     }
 
@@ -87,7 +119,7 @@
         border-radius: 10px;
         transition: .5s ease;
         &:hover {
-            background-color: #112c44;
+            background-color: var(--color-primary);
         }
     }
 
