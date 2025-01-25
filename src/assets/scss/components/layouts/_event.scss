@@ -1,3 +1,5 @@
+@import '../abstract/breakpoint';
+
 $component-name: 'card-event';
 
 .#{$component-name} {
@@ -99,6 +101,9 @@ $component-name: 'card-event';
         bottom: -15px;
         display: flex;
         gap: 30px;
+        @include breakpoint(small-only) {
+            padding-inline: 10px
+        }
     }
 
     &__transport {

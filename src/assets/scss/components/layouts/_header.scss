@@ -1,3 +1,5 @@
+@import '../abstract/breakpoint';
+
 $component-name: 'header';
 
 .#{$component-name} {
@@ -8,11 +10,21 @@ $component-name: 'header';
     top: 0;
     z-index: 99999;
     transition: background 0.5s ease, color 0.5s ease, box-shadow 0.5s ease, padding 0.3s ease;
+    @include breakpoint(small-only) {
+        padding-block-start: 40px;
+    }
     &--scrolled {
+        @include breakpoint(small-only) {
+            padding-block-start: 0;
+        }
         .#{$component-name} {
+
             &__topbar {
                 background-color: var(--color-secondary);
                 height: 80px;
+                @include breakpoint(small-only) {
+                    height: 160px;
+                }
             }
 
             &__logo {
@@ -31,6 +43,10 @@ $component-name: 'header';
         align-items: center;
         justify-content: center;
         gap: 30px;
+        @include breakpoint(small-only) {
+            flex-direction: column;
+            gap: 0;
+        }
     }
     
     &__topbar {

@@ -64,13 +64,6 @@ $component-name: "home";
     }
 
     &__title {
-        // &:before {
-        //     content: '';
-        //     width: 38%;
-        //     border-top: 1px solid;
-        //     margin-inline-end: 20px;
-        //     margin-block-end: 20px;
-        // }
         &--no-divider {
             &:before {
                 content: '';
@@ -81,12 +74,11 @@ $component-name: "home";
             color: var(--color-light);
         }
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         text-align: center;
         margin-block: 20px !important;
-        font-size: 1.75rem !important;
         text-transform: uppercase;
     }
 
@@ -98,12 +90,16 @@ $component-name: "home";
         flex-wrap: wrap;
     }
     &__excursao {
+        width: 100%;
         background-color: #fff !important;
         border-radius: 30px;
         overflow: hidden;
         flex: 0 0 calc(var(--excursao-width, 440px) - 30px);
         &:nth-child(3n) {
             margin-right: 0;
+        }
+        @include breakpoint(small-only) {
+            flex: 0 0 100%;
         }
     }
 }

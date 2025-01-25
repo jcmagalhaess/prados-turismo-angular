@@ -18,7 +18,7 @@ export class FeaturesComponent {
   }
 
   constructor(private readonly _excursoes: ExcursoesListUsecase) {
-    this._excursoes.getExcursoes({ origem: '1', orderBy: "dataInicio"}, '2');
+    this._excursoes.getExcursoes({ origem: '1', destacado: 'true', orderBy: "dataInicio"}, '2');
   }
 
   public hasUrl(image: ExcursaoImagem) {
