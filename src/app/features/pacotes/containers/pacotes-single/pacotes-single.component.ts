@@ -1,12 +1,19 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, computed, effect } from '@angular/core';
+import { AfterViewInit, Component, computed, effect } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Lightbox, LightboxModule } from 'ngx-lightbox';
+import { Swiper } from 'swiper';
+import 'swiper/css'; // Importa estilos gerais
+import 'swiper/css/navigation'; // Estilos específicos para navegação
+import 'swiper/css/thumbs'; // Estilos para os thumbs
+import { Navigation, Thumbs } from 'swiper/modules';
 import { formatarData } from '../../../../shared/helpers/formatar-data.helper';
 import { ExcursaoImagem } from '../../../../shared/models/excursao.type';
 import { PacotesSidebarComponent } from '../../components/pacotes-sidebar/pacotes-sidebar.component';
 import { ExcursoesSingleUsecase } from '../../services/excursoes-single.usecase';
+
+Swiper.use([Navigation, Thumbs]);
 
 @Component({
   selector: 'app-pacotes-single',
@@ -16,7 +23,7 @@ import { ExcursoesSingleUsecase } from '../../services/excursoes-single.usecase'
   styleUrl: './pacotes-single.component.scss',
   providers: [Lightbox, ExcursoesSingleUsecase]
 })
-export class PacotesSingleComponent {
+export class PacotesSingleComponent implements AfterViewInit {
   public form = new FormGroup({
     period: new FormControl('', Validators.required),
     tickets: new FormControl('', Validators.required),
@@ -51,6 +58,27 @@ export class PacotesSingleComponent {
     effect(() => {
       this.form.controls['period'].setValue(this.formatandoPeriodo(this.excursao()?.dataInicio!, this.excursao()?.dataFim!));
     })
+  }
+
+  public ngAfterViewInit(): void {
+    const thumbsSwiper = new Swiper('.mySwiper', {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesProgress: true,
+    });
+
+    // Inicialize o Swiper principal e conecte os thumbs
+    const mainSwiper = new Swiper('.mySwiper2', {
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      thumbs: {
+        swiper: thumbsSwiper, // Conecta os thumbs ao principal
+      },
+    });
   }
 
   public hasUrl(image: ExcursaoImagem) {

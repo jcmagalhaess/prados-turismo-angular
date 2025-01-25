@@ -18,6 +18,32 @@
             <span class="event__price">
               {{ excursao()?.valor | currency : "BRL" : true : "1.2-2" }}
             </span>
+            <section class="my-4">
+              <div
+                style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+                class="swiper mySwiper2"
+              >
+                <div class="swiper-wrapper">
+                  @for (item of excursao()?.Pacotes?.Galeria; track $index) {
+                    <div class="swiper-slide">
+                      <img [src]="item.url" [title]="item.nome" />
+                    </div>
+                  }
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+              </div>
+
+              <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                  @for (item of excursao()?.Pacotes?.Galeria; track $index) {
+                    <div class="swiper-slide">
+                      <img [src]="item.url" [title]="item.nome" />
+                    </div>
+                  }
+                </div>
+              </div>
+            </section>
             <p [innerHTML]="excursao()?.Pacotes?.descricao"></p>
             <table class="event__table table">
               <tbody>
@@ -39,28 +65,6 @@
             </table>
           </div>
         </div>
-        @if (excursao()?.Pacotes?.Galeria?.length) {
-        <div class="row">
-          <div class="display-6 mb-3">Nossa galeria</div>
-          <ul class="event__gallery">
-            @for (item of excursao()?.Pacotes?.Galeria; track $index) {
-            <li
-              class="event__item"
-              style="background-image: url({{ item.url }});"
-              (click)="
-                open(formatGallery(excursao()?.Pacotes?.Galeria!), $index)
-              "
-            >
-              <a
-                href="Javascript:;"
-                data-lightbox="roadtrip"
-                data-title="{{ item.nome }}"
-              ></a>
-            </li>
-            }
-          </ul>
-        </div>
-        }
       </div>
       <div class="event__sidebar">
         <app-pacotes-sidebar
