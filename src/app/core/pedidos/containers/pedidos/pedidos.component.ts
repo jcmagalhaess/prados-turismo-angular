@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LabelReservaPipe } from '../../../../shared/pipes/label-reserva.pipe';
 import { PedidosModalComponent } from '../../components/pedidos-modal/pedidos-modal.component';
 import { PedidosService } from '../../pedidos.service';
+import { ReservaService } from '../../reserva.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -28,6 +29,7 @@ export class PedidosComponent {
   
   constructor(
     private readonly _order: PedidosService,
+    private readonly _reserva: ReservaService,
     private readonly _dialog: MatDialog
   ) { }
 
@@ -47,5 +49,9 @@ export class PedidosComponent {
         client: this.client
       }
     })
+  }
+
+  public voucher(id: string) {
+    this._reserva.downloadVoucher(id)
   }
 }

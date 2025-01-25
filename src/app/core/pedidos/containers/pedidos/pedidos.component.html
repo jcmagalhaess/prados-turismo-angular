@@ -26,7 +26,7 @@
           <td class="text-center">
             <button class="btn btn-primary" (click)="visualizar(item.id)">
               <i class="fa-regular fa-eye me-2"></i>Visualizar</button>
-            <button class="btn btn-success ms-3" (click)="visualizar(item.id)">
+            <button class="btn btn-success ms-3" (click)="voucher(item.id)" [disabled]="!item.status">
               <i class="fa-solid fa-ticket me-2"></i> Voucher</button>
           </td>
         </tr>

@@ -12,4 +12,8 @@ export class ReservaService {
     public consultarReserva(id: string) {
         return lastValueFrom(this._http.get(`${env.API}/reserva/find/${id}`))
     }
+
+    public downloadVoucher(id: string) {
+        return lastValueFrom(this._http.get(`${env.API}/reserva/download-voucher-reserva/${id}`))
+    }
 }
