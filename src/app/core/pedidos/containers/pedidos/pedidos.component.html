@@ -24,7 +24,10 @@
           <td>{{ statusLabel(item.status) }}</td>
           <td>{{ item.valorTotal | currency:'BRL':'symbol':'1.2-2' }} </td><!-- de 2 ingressos -->
           <td class="text-center">
-            <button class="btn btn-primary" (click)="visualizar(item.id)">Visualizar</button>
+            <button class="btn btn-primary" (click)="visualizar(item.id)">
+              <i class="fa-regular fa-eye me-2"></i>Visualizar</button>
+            <button class="btn btn-success ms-3" (click)="visualizar(item.id)">
+              <i class="fa-solid fa-ticket me-2"></i> Voucher</button>
           </td>
         </tr>
     }

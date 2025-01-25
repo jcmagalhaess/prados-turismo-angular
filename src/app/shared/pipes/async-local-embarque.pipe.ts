@@ -14,7 +14,8 @@ export class AsyncLocalEmbarquePipe implements PipeTransform {
   private _cachedValue: string = '';
   private _cachedObservable = new Observable<string>();
 
-  public transform(value: string): Observable<string> {
+  public transform(value: any, formated: boolean = false): Observable<string> {
+    if (formated) return of(`${value.horaEmbarque} - ${value.nome}`);
     if (this._cachedValue !== value) {
       this._cachedValue = value;
       this._cachedObservable = of(value).pipe(

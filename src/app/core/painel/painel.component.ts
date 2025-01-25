@@ -25,6 +25,10 @@ export class PainelComponent {
     return this._pedido.lastReserva;
   }
 
+  get ranking() {
+    return this._pedido.client?.Ranking;
+  }
+
   constructor(
     private readonly _userClient: AcessoGetDataPessoaUsecase,
     private readonly _pedido: PedidosService

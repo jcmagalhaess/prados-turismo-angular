@@ -29,7 +29,9 @@ export class PedidosService {
     return this._userClient.clientAuthenticated();
   }
 
-  constructor(private readonly _userClient: AcessoGetDataPessoaUsecase) {
+  constructor(
+    private readonly _userClient: AcessoGetDataPessoaUsecase,
+  ) {
     this._carregarReservas();
   }
 

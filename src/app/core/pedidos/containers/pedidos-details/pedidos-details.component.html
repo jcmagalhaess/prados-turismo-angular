@@ -4,7 +4,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                         <div class="card-title m-0">
-                            <strong>Pedido:</strong> {{ reserva()!.reserva | labelReserva }} - {{ reserva()!.dataCadastro | date: 'dd/MM/yyyy' }}
+                            <strong>Pedido:</strong> {{ reserva()?.reserva! | labelReserva }} - {{ reserva()!.dataCadastro | date: 'dd/MM/yyyy' }}
                         </div>
                         <div class="card-text">
                             <span class="text-{{ reserva()!.status ? 'success' : 'warning' }}">{{ reserva()!.status ? 'Aprovado' : 'Aguardando' }}</span>
@@ -18,13 +18,13 @@
 <div class="row my-3">
     <div class="col-md-12">
         <div class="my-account__order-content">
-            <div class="my-account__thumb" style="--background: {{ reserva()!.idExcursao | thumbnail | async }}"></div>
+            <div class="my-account__thumb" style="--background: {{ excursao().id | thumbnail | async }}"></div>
             <div class="my-account__event">
                 <div class="my-account__name">
-                    <strong>Evento: </strong> {{ reserva()!.Excursao.nome }}
+                    <strong>Evento: </strong> {{ excursao().nome }}
                 </div>
                 <div class="my-account__date my-2">
-                    <strong>Data do evento:</strong> {{ reserva()!.Excursao | periodo }}
+                    <strong>Data do evento:</strong> {{ excursao() | periodo }}
                 </div>
                 <div class="my-account__date">
                     <strong>Valor dos ingressos:</strong> {{ valorIngresso() | currency: 'BRL' }}
@@ -32,9 +32,13 @@
                 @if (hasOptionals()) {
                     <div class="my-account__date my-2">
                         <strong>Lista de opcionais:</strong> 
-                        <div class="d-flex flex-column">
-                            @for (item of reserva()!.Opcionais; track $index) {
-                                - {{ item.qtd }}x {{ item.Produto.nome }}
+                        <div class="d-flex flex-column ps-3 my-2">
+                            @for (item of opcionais(); track $index) {
+                                <div class="d-flex">
+                                    <span>- {{ item.qtd }}x {{ item.Produto.nome }}</span>
+                                    <div class="flex-grow-1"></div>
+                                    <span>{{ item.Produto.valor | currency: 'BRL' }}</span>
+                                </div>
                             }
                         </div>
                     </div>
@@ -42,7 +46,7 @@
                         <strong>Valor dos opcionais:</strong> {{ valorOpcionais() | currency: 'BRL' }}
                     </div>
                 }
-                <div class="my-account__date">
+                <div class="my-account__date my-2">
                     <strong>Valor da transação:</strong> {{ valorTransacoes() | currency: 'BRL' }}
                 </div>
             </div>
@@ -50,47 +54,59 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div>
-
+@if (passageiros().length) {
+    <div class="row mb-3">
+        <div class="display-6 fs-4 my-3">Dados dos passageiros</div>
+        
+        <div class="accordion" id="accordion">
+            @for (item of passageiros(); track $index) {
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + $index" aria-expanded="true" [attr.aria-controls]="'collapse' + $index">
+                            <i class="fa-solid fa-ticket me-3"></i> {{ item.Pessoa.nome }}
+                        </button>
+                    </div>
+                    <div [id]="'collapse' + $index" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                        <div class="accordion-body pb-0">
+                            <table class="event__table event__table--no-last-border table mb-0">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">E-mail</th>
+                                        <td>{{ item.Pessoa.email | emptyLabel }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Telefone</th>
+                                        <td>{{ item.Pessoa.telefone | emptyLabel }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">CPF</th>
+                                        <td>{{ item.Pessoa.cpf | mask: '000.000.000-00' | emptyLabel }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">RG</th>
+                                        <td>{{ item.Pessoa.rg | emptyLabel }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Órgão emissor</th>
+                                        <td>{{ item.Pessoa.emissor | uppercase | emptyLabel }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Data de nascimento</th>
+                                        <td>{{ item.Pessoa.dataNascimento | date: 'dd/MM/yyyy' | emptyLabel }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Locais de embarque</th>
+                                        <td>{{ item.LocalEmbarque | asyncLocalEmbarque: true | async }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <h3 class="display-6 fs-4 mb-4">Dados do passageiro</h3>
-        <table class="event__table event__table--no-last-border table">
-            <tbody>
-                <tr>
-                    <th scope="row">E-mail</th>
-                    <td>{{ client()!.email | emptyLabel }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Telefone</th>
-                    <td>{{ client()!.telefone | emptyLabel }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">RG</th>
-                    <td>{{ client()!.rg | emptyLabel }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Órgão emissor</th>
-                    <td>{{ client()!.emissor | uppercase | emptyLabel }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Data de nascimento</th>
-                    <td>{{ (client()!.dataNascimento | date: 'dd/MM/yyyy')! | emptyLabel }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Locais de embarque</th>
-                    <td>{{ reserva()!.LocalEmbarque.id | asyncLocalEmbarque | async }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+}
 
 <div class="d-flex justify-content-end">
     <button class="btn btn-light" mat-dialog-close>Voltar</button>

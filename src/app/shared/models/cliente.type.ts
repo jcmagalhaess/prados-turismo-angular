@@ -19,6 +19,6 @@ export type Cliente = {
   usuarioCadastro: string;
   rankingClientesId: string;
   userId: string;
-  Ranking: string;
+  Ranking: number;
   Reservas: ReservaOutput[];
 };

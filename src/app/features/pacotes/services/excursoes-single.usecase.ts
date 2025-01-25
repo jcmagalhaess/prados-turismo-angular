@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, signal } from "@angular/core";
-import { tap } from "rxjs";
+import { lastValueFrom, tap } from "rxjs";
 import { env } from "../../../../env/env";
 import { Excursao } from "../../../shared/models/excursao.type";
 
@@ -17,8 +17,8 @@ export class ExcursoesSingleUsecase {
   constructor(private readonly _http: HttpClient) {}
 
   public getExcursaoById(id: string) {    
-    return this._http
+    return lastValueFrom(this._http
       .get<Excursao>(`${env.API}/excursao/find/${id}`)
-      .pipe(tap((data) => this._excursao.set(data)));
+      .pipe(tap((data) => this._excursao.set(data))));
   }
 }

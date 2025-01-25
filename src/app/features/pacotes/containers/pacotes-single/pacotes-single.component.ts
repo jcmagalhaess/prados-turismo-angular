@@ -46,7 +46,7 @@ export class PacotesSingleComponent {
     private readonly _router: ActivatedRoute,
     private readonly _lightbox: Lightbox
   ) {
-    this._service.getExcursaoById(this._router.snapshot.params['id']).subscribe();
+    this._service.getExcursaoById(this._router.snapshot.params['id']);
 
     effect(() => {
       this.form.controls['period'].setValue(this.formatandoPeriodo(this.excursao()?.dataInicio!, this.excursao()?.dataFim!));
