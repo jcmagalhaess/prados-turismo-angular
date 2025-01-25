@@ -1,6 +1,6 @@
 <main class="my-account mt-80">
   <div class="container">
-    <div class="d-flex">
+    <div class="d-flex flex-column flex-sm-row">
       <ul class="dashboard__menu">
         @for (item of menu; track $index) {
         <li class="dashboard__item">
@@ -16,7 +16,7 @@
           <a type="button" (click)="logout()">Sair</a>
         </li>
       </ul>
-      <div class="login__box w-75">
+      <div class="login__box w-100 w-sm-75">
         <div class="my-account__panel">
           <router-outlet></router-outlet>
         </div>

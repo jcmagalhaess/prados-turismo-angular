@@ -1,9 +1,18 @@
+@import '../abstract/breakpoint';
+
 $component-name: 'dashboard';
 
 .#{$component-name} {
     &__menu {
         width: 300px;
         margin-inline-end: 30px;
+        @include breakpoint(small-only) {
+            display: flex;
+            width: 100%;
+            margin: 0;
+            margin-block-end: 20px;
+            justify-content: space-between;
+        }
     }
     &__item {
         a {
@@ -19,6 +28,10 @@ $component-name: 'dashboard';
                 background-color: rgba($color: #ed7b1d, $alpha: 0.05);
                 color: var(--color-primary);
                 border-color: var(--color-primary);
+            }
+            @include breakpoint(small-only) {
+                border-right: none;
+                border-bottom: 3px solid transparent;
             }
         }
     }

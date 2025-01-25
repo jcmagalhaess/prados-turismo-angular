@@ -1,6 +1,6 @@
 <div class="w-100">
-    <div class="d-flex">
-        <div class="login__box w-50">
+    <div class="d-flex flex-column-reverse flex-sm-row">
+        <div class="login__box w-100 w-sm-50">
             <div class="my-account__avatar">
                 <figure class="my-account__image">
                     <img src="./assets/images/avatar.png" alt="Avatar">
@@ -9,8 +9,8 @@
                 <p>{{ client?.email }}</p>
             </div>
         </div>
-        <div class="d-flex align-items-center justify-content-center w-50">
-            <div class="my-account__avatar display-6 fs-2">
+        <div class="d-flex align-items-center justify-content-center w-100 w-sm-50">
+            <div class="my-account__avatar display-6 fs-2 w-100 mb-3 mb-sm-0 flex-row flex-sm-column justify-content-between">
                 <div>Ranking</div>
                 <p>{{ ranking ?? 0 | labelReserva }}</p>
             </div>

@@ -19,14 +19,14 @@
     
     @for (item of reservas(); track $index) {
         <tr>
-          <th scope="row">{{ item.reserva | labelReserva }}</th>
-          <td>{{ item.dataCadastro | date: 'dd/MM/yyyy' }}</td>
-          <td>{{ statusLabel(item.status) }}</td>
-          <td>{{ item.valorTotal | currency:'BRL':'symbol':'1.2-2' }} </td><!-- de 2 ingressos -->
-          <td class="text-center">
+          <th scope="row" class="w-25">{{ item.reserva | labelReserva }}</th>
+          <td class="w-25">{{ item.dataCadastro | date: 'dd/MM/yyyy' }}</td>
+          <td class="w-25">{{ statusLabel(item.status) }}</td>
+          <td class="w-25">{{ item.valorTotal | currency:'BRL':'symbol':'1.2-2' }} </td><!-- de 2 ingressos -->
+          <td class="d-flex justify-content-center flex-sm-row flex-column">
             <button class="btn btn-primary" (click)="visualizar(item.id)">
               <i class="fa-regular fa-eye me-2"></i>Visualizar</button>
-            <button class="btn btn-success ms-3" (click)="voucher(item.id)" [disabled]="!item.status">
+            <button class="btn btn-success mt-3 mt-sm-0 ms-sm-3" (click)="voucher(item.id)" [disabled]="!item.status">
               <i class="fa-solid fa-ticket me-2"></i> Voucher</button>
           </td>
         </tr>

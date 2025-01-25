@@ -1,3 +1,5 @@
+@import '../abstract/breakpoint';
+
 $component-name: 'my-account';
 
 .#{$component-name} {
@@ -36,6 +38,9 @@ $component-name: 'my-account';
         font-size: 180%;
         font-weight: 400;
         margin-block: 20px !important;
+        @include breakpoint(small-only) {
+            font-size: 130%;
+        }
     }
     &__resume {
         border: 1px solid #ccc;
