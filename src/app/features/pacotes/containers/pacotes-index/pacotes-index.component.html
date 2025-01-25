@@ -8,31 +8,25 @@
         @if (loading) {
             <mat-progress-bar class="w-100" mode="indeterminate"></mat-progress-bar>
         } @else {
-            <div class="excursao__list row">
-                @for (item of excursoes; track $index) {
-                    <div class="col-md-4">
-                        <app-excursao-card
-                            [id]="item.id"
-                            [thumbnail]="hasUrl(item.Pacotes.Imagem)"
-                            [title]="item.nome"
-                            [duration]="item"
-                            [origem]="item.Pacotes.origem"
-                            [transport]="item.Pacotes.tipoTransporte"
-                            [price]="item.valor">
-                        </app-excursao-card>
-                    </div>
-                }
-                <div class="col-md-4">
-                    <app-excursao-card
-                        id="jericoacoara"
-                        thumbnail="/assets/images/jeri/22.webp"
-                        [title]="'Pacote para Jericoacoara'"
-                        origem="2"
-                        transport="1"
-                        [price]="375">
-                    </app-excursao-card>
+             @if (excursoes.length > 0) {
+                <div class="home__excursoes">
+                    @for (item of excursoes; track $index) {
+                        <div class="home__excursao">
+                            <app-excursao-card
+                                [id]="item.id"
+                                [thumbnail]="hasUrl(item.Pacotes.Imagem)"
+                                [title]="item.nome"
+                                [duration]="item"
+                                [origem]="item.Pacotes.origem"
+                                [transport]="item.Pacotes.tipoTransporte"
+                                [price]="item.valor">
+                            </app-excursao-card>
+                        </div>
+                    }
                 </div>
-            </div>
+            } @else {
+                <p class="text-center display-6 fs-5 mt-4">Nenhuma excursão encontrada.</p>
+            }
         }
     </div>
 </main>

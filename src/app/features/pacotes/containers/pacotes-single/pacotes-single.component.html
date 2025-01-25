@@ -21,43 +21,20 @@
             <p [innerHTML]="excursao()?.Pacotes?.descricao"></p>
             <table class="event__table table">
               <tbody>
-                <tr>
-                  <th scope="row">Destino</th>
-                  <td>{{ excursao()?.Pacotes?.nome }}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Partida</th>
-                  <td id="event-departure">
-                    Tolerancia de 10 minutos a partir do horario escolhido
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Incluso</th>
-                  <td class="event__inclusos">
-                    <ul class="d-flex flex-wrap">
-                      @for (item of inclusos(); track $index) {
-                        <li>
-                          <i class="fa-solid fa-check text-success me-3"></i>{{ item.nome }}
-                        </li>
-                      }
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Não incluso</th>
-                  <td>
-                    <ul class="d-flex flex-wrap">
-                      @if (noOpcionais()) {
-                        <li>---</li>
-                      }
-                      @for (item of opcionais(); track $index) {
-                        <li>
-                          <i class="fa-solid fa-xmark text-danger me-3"></i>{{ item.nome }}
-                        </li>
-                      }
-                    </ul>
-                  </td>
-                </tr>
+                @if (inclusos()?.length) {
+                  <tr>
+                    <th scope="row">Incluso</th>
+                    <td class="event__inclusos">
+                      <ul class="d-flex flex-wrap">
+                        @for (item of inclusos(); track $index) {
+                          <li>
+                            <i class="fa-solid fa-check text-success me-3"></i>{{ item.nome }}
+                          </li>
+                        }
+                      </ul>
+                    </td>
+                  </tr>
+                }
               </tbody>
             </table>
           </div>

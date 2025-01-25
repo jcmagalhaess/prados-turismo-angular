@@ -10,36 +10,40 @@
     </div>
 
     <div class="my-account__title">Resumo do seu último pedido</div>
-    <div class="my-account__resume">
-        <div class="my-account__order-infos">
-            <div class="my-account__item">
-                <span>Pedido realizado</span>
-                <span>{{ pedido().dataCadastro | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
-            </div>
-            <div class="my-account__item">
-                <span>Total</span>
-                <span>{{ pedido().valorTotal | currency: 'BRL' }}</span>
-            </div>
-            <div class="spacer"></div>
-            <div class="my-account__item">
-                <span>{{ pedido().reserva | labelReserva }}</span>
-            </div>
-        </div>
-        <div class="my-account__order-content">
-            <div class="my-account__thumb" style="--background: {{ pedido().idExcursao | thumbnail | async }}"></div>
-            <div class="my-account__event">
-                <div class="my-account__name">
-                    <strong>Evento: </strong> {{ pedido().Excursao?.nome }}
+    @if (pedido()) {
+        <div class="my-account__resume">
+            <div class="my-account__order-infos">
+                <div class="my-account__item">
+                    <span>Pedido realizado</span>
+                    <span>{{ pedido().dataCadastro | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
                 </div>
-                <!-- <div class="my-account__amout">
-                    <strong>Quantidade de participantes: </strong> 2
-                </div> -->
-                <div class="my-account__date">
-                    <strong>Data do evento:</strong> {{ pedido().Excursao | periodo }}
+                <div class="my-account__item">
+                    <span>Total</span>
+                    <span>{{ pedido().valorTotal | currency: 'BRL' }}</span>
+                </div>
+                <div class="spacer"></div>
+                <div class="my-account__item">
+                    <span>{{ pedido().reserva | labelReserva }}</span>
                 </div>
             </div>
+            <div class="my-account__order-content">
+                <div class="my-account__thumb" style="--background: {{ pedido().idExcursao | thumbnail | async }}"></div>
+                <div class="my-account__event">
+                    <div class="my-account__name">
+                        <strong>Evento: </strong> {{ pedido().Excursao?.nome }}
+                    </div>
+                    <!-- <div class="my-account__amout">
+                        <strong>Quantidade de participantes: </strong> 2
+                    </div> -->
+                    <div class="my-account__date">
+                        <strong>Data do evento:</strong> {{ pedido().Excursao | periodo }}
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    } @else {
+        <span class="display-6 fs-5 my-4 d-block">Nenhum pedido realizado.</span>
+    }
     
     <div class="my-account__title">Atalhos</div>
 

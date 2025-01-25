@@ -12,7 +12,7 @@ import { AcessoLoginClientUsecase } from '../acesso/services/acesso-login-client
 })
 export class MinhaContaComponent {
   public menu = [
-    { label: 'Painel', route: '/minha-conta/' },
+    { label: 'Painel', route: '/minha-conta/painel' },
     { label: 'Pedidos', route: '/minha-conta/pedidos' },
     // { label: 'Endereços', route: '/minha-conta/enderecos' },
     { label: 'Perfil', route: '/minha-conta/perfil' },
