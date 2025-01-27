@@ -101,7 +101,7 @@ $component-name: 'card-event';
         bottom: -15px;
         display: flex;
         gap: 30px;
-        @include breakpoint(medium-only) {
+        @include breakpoint(small-only) {
             padding-inline: 10px
         }
     }

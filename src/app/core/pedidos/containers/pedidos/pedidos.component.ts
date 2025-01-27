@@ -48,6 +48,7 @@ export class PedidosComponent {
   public visualizar(id: string) {
     this._dialog.open(PedidosModalComponent, {
       width: '800px',
+      maxWidth: '95vw',
       data: {
         id,
         client: this.client
