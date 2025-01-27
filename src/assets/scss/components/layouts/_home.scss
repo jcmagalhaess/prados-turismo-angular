@@ -45,7 +45,7 @@ $component-name: "home";
         gap: 50px;
         align-items: center;
         justify-content: center;
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             flex-direction: column;
             text-align: center;
             line-height: 1;
@@ -98,7 +98,7 @@ $component-name: "home";
         &:nth-child(3n) {
             margin-right: 0;
         }
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             flex: 0 0 100%;
         }
     }

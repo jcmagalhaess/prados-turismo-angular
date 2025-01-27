@@ -7,7 +7,7 @@ $component-name: 'banner';
         display: flex;
         flex-wrap: wrap;
         margin-block-start: 40px;
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             width: 100%;
             flex-direction: column;
         }
@@ -24,7 +24,7 @@ $component-name: 'banner';
         &:last-child {
             flex: 0 0 100%;
             margin-inline-end: 0;
-            @include breakpoint(small-only) {
+            @include breakpoint(medium-only) {
                 flex: none;
                 margin: 0;
             }
@@ -32,7 +32,7 @@ $component-name: 'banner';
         &:nth-child(3n) {
             margin-inline-end: 0;
         }
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             flex: none;
             margin: 0;
             margin-block-end: 30px;

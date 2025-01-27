@@ -10,11 +10,11 @@ $component-name: 'header';
     top: 0;
     z-index: 99999;
     transition: background 0.5s ease, color 0.5s ease, box-shadow 0.5s ease, padding 0.3s ease;
-    @include breakpoint(small-only) {
+    @include breakpoint(medium-only) {
         padding-block-start: 40px;
     }
     &--scrolled {
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             padding-block-start: 0;
         }
         .#{$component-name} {
@@ -22,7 +22,7 @@ $component-name: 'header';
             &__topbar {
                 background-color: var(--color-secondary);
                 height: 80px;
-                @include breakpoint(small-only) {
+                @include breakpoint(medium-only) {
                     height: 160px;
                 }
             }
@@ -43,7 +43,7 @@ $component-name: 'header';
         align-items: center;
         justify-content: center;
         gap: 30px;
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             flex-direction: column;
             gap: 0;
         }

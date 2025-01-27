@@ -6,7 +6,7 @@ $component-name: 'dashboard';
     &__menu {
         width: 300px;
         margin-inline-end: 30px;
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             display: flex;
             width: 100%;
             margin: 0;
@@ -29,7 +29,7 @@ $component-name: 'dashboard';
                 color: var(--color-primary);
                 border-color: var(--color-primary);
             }
-            @include breakpoint(small-only) {
+            @include breakpoint(medium-only) {
                 border-right: none;
                 border-bottom: 3px solid transparent;
             }

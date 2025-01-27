@@ -72,7 +72,7 @@ a {
 
 main:not(main.home) {
     padding-block: 50px;
-    @include breakpoint(small-only) {
+    @include breakpoint(medium-only) {
         padding-block: 20px;
     }
 }
@@ -111,7 +111,7 @@ body {
 
 .mt-80 {
     margin-block-start: 80px;
-    @include breakpoint(small-only) {
+    @include breakpoint(medium-only) {
         margin-block-start: 160px;
     }
 }

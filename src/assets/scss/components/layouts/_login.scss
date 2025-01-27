@@ -8,7 +8,7 @@ $component-name: 'login';
         border: 1px solid #d5d8dc;
         border-radius: 3px;
         padding: 30px;
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             overflow: scroll;
         }
     }

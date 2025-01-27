@@ -9,7 +9,7 @@ $component-name: "footer";
         gap: 150px;
         padding-block: 3rem;
         background-color: var(--color-secondary);
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             flex-direction: column;
             align-items: center;
             padding-inline: 30px;
@@ -24,7 +24,7 @@ $component-name: "footer";
         display: flex;
         align-items: center;
         justify-content: center;
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             width: 40%;
         }
     }
@@ -32,14 +32,14 @@ $component-name: "footer";
     &__title {
         color: var(--color-primary);
         font-size: 1rem;
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             text-align: center;
         }
     }
 
     &__content {
         color: var(--color-light);
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             text-align: center;
         }
         p {
@@ -69,7 +69,7 @@ $component-name: "footer";
         list-style: none;
         display: flex;
         gap: 10px;
-        @include breakpoint(small-only) {
+        @include breakpoint(medium-only) {
             justify-content: center;
         }
     }
