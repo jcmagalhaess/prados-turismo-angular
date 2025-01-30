@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -55,15 +55,13 @@ export class AjudaComponent implements OnInit {
   
   public search = new FormControl();
   public faqList = signal<any>([]);
-  public faqListLength = computed(() => this.faqList.length);
 
   public ngOnInit(): void {
     this.faqList.set(this._originalList);
 
     this.search.valueChanges.subscribe(res => {
       this.faqList.set(this._originalList);
-      console.log(res);
-      
+            
       this.faqList.update(list => list.filter((item: any) => item.question.toLowerCase().includes(res.toLowerCase()) || item.response.toLowerCase().includes(res.toLowerCase())))
     })
   }
