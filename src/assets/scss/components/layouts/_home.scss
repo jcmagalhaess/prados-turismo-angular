@@ -15,14 +15,16 @@ $component-name: "home";
             height: 100%;
         }
         &-information {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             color: #fff !important;
-            i {
-                background-color: #28a745;
-                padding: 2px 3px;
-                border-radius: 5px;
+            &:not(.#{$component-name}__banner-information--faq) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                i {
+                    background-color: #28a745;
+                    padding: 2px 3px;
+                    border-radius: 5px;
+                }
             }
         }
     }

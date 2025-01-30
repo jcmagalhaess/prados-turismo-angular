@@ -1,0 +1,40 @@
+@import '../../../assets/scss/components/abstract/breakpoint';
+
+.faq {
+    background-color: var(--color-primary);
+    padding: 40px;
+    margin: 0 auto;
+    width: 60vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 30px;
+    position: relative;
+    top: -70px;
+    @include breakpoint(medium-only) {
+        width: auto;
+        margin-inline: 20px;
+    }
+    &--filter {
+        .input-group {
+            input,
+            button {
+                border: 2px solid var(--color-light);
+                background-color: transparent;
+                color: var(--color-light);
+                padding-inline: 25px;
+            }
+            input {
+                border-right: none;
+                border-top-left-radius: 30px;
+                border-bottom-left-radius: 30px;
+            }
+            button {
+                border-left: none;
+                border-top-right-radius: 30px;
+                border-bottom-right-radius: 30px;
+            }
+        }
+    }
+}

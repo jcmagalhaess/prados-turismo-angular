@@ -8,10 +8,10 @@ import { routes } from '../../app.routes';
 })
 export class HeaderStyleService {
   private _renderer: Renderer2;
-  private _animatedRoutes = ['/', '/sac']; // URLs que terão animação no scroll
+  private _animatedRoutes = ['/', '/faq']; // URLs que terão animação no scroll
   private _scrollListener: any = () => {}; // Para armazenar o listener de scroll
 
-  constructor(private _router: Router, rendererFactory: RendererFactory2) {
+  constructor(private _router: Router, rendererFactory: RendererFactory2) {    
     this._renderer = rendererFactory.createRenderer(null, null);
     this._applyHeaderStyle('/');
 
@@ -19,6 +19,7 @@ export class HeaderStyleService {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         const currentPath = new URL(event.urlAfterRedirects, window.location.origin).pathname;
+        console.log(currentPath);
         
         this._applyHeaderStyle(currentPath);
       });
@@ -26,12 +27,13 @@ export class HeaderStyleService {
 
   private _applyHeaderStyle(url: string) {
     const header = document.getElementById('header');
+    
     if (!header) return;
 
     if (this._animatedRoutes.includes(url)) {
       let routesMap = routes.map(item => {
-        if (item.path === '') return '/';
-        return item.path;
+        if (item.path === '**') return '**';
+        return '/' + item.path;
       });
       
       if (!routesMap.find(item => item === url)) {

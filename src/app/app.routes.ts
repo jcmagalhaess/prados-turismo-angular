@@ -7,7 +7,7 @@ export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        loadComponent: () => import('./features/home/containers/home-index/home-index.component').then(c => c.HomeIndexComponent)
+        loadComponent: () => import('./features/home/home-index.component').then(c => c.HomeIndexComponent)
     },
     {
         path: 'pacotes',
@@ -33,6 +33,11 @@ export const routes: Routes = [
         path: 'politica-privacidade',
         pathMatch: 'full',
         loadComponent: () => import('./features/politica-privacidade/politica-privacidade.component').then(c => c.PoliticaPrivacidadeComponent)
+    },
+    {
+        path: 'faq',
+        pathMatch: 'full',
+        loadComponent: () => import('./features/ajuda/ajuda.component').then(c => c.AjudaComponent)
     },
     {
         path: 'login',
