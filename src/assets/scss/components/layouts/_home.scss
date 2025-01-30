@@ -8,11 +8,21 @@ $component-name: "home";
         background-position: center;
         background-repeat: no-repeat;
         height: 700px;
+        position: relative;
+        &::before {
+            content: '';
+            background-color: rgba($color: #000000, $alpha: 0.3);
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
         .container {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100%;
+            position: relative;
         }
         &-information {
             color: #fff !important;
