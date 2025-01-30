@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse, HttpResponse } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, lastValueFrom, throwError } from "rxjs";
+import { lastValueFrom } from "rxjs";
 import { env } from "../../../env/env";
 
 @Injectable({
@@ -15,26 +15,22 @@ export class ReservaService {
 
   public downloadVoucher(
     id: string
-  ): Promise<HttpResponse<ArrayBuffer>> {
+  ): any {
     return lastValueFrom(
-      this._http.get(`${env.API}/reserva/download-voucher-reserva/${id}`, {
-        observe: "response",
-        responseType: "arraybuffer",
-      })
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          // Extraia a mensagem do erro
-          const errorMessage =
-            error.error?.message ||
-            error.message ||
-            'Erro desconhecido ao gerar o PDF';
+      this._http.get(`${env.API}/reserva/download-voucher-reserva/${id}`, { responseType: 'blob' })
+    ).then(res => {
+      console.log(res);
+      
+      const url = window.URL.createObjectURL(new Blob([res], { type: 'application/pdf' }));
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'voucher.pdf';
+      (link as any).body.appendChild(link);
+      link.click();
 
-          console.error('Erro na requisição:', errorMessage);
-
-          // Lança o erro para ser tratado onde a função é chamada
-          return throwError(() => new Error(errorMessage));
-        })
-      )
-    );
+      window.URL.revokeObjectURL(url);
+      (link as any).body.removeChild(link);
+    })
+    .catch(err => console.log(err));
   }
 }

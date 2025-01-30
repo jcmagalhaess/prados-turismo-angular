@@ -36,10 +36,10 @@ export class PedidosService {
   }
 
   private _calculateTotal(reserva: any) {
-    let transacoes = reserva.Transacoes.reduce((acc: number, item: any) => acc + item.valor, 0);
+    let excursao = reserva.Excursao.valor;
     let opcionais = reserva.Opcionais.reduce((acc: number, item: any) => acc + (item.qtd *item.Produto.valor), 0);    
     
-    return transacoes + opcionais;
+    return excursao + opcionais;
   }
 
   private _carregarReservas() {

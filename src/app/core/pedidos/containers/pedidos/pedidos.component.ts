@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ToasterService } from '../../../../shared/components/toaster/toaster.service';
-import { HandleExport } from '../../../../shared/helpers/handle-export.helper';
 import { LabelReservaPipe } from '../../../../shared/pipes/label-reserva.pipe';
 import { PedidosModalComponent } from '../../components/pedidos-modal/pedidos-modal.component';
 import { PedidosService } from '../../pedidos.service';
@@ -57,9 +56,6 @@ export class PedidosComponent {
   }
 
   public voucher(id: string) {
-    this._reserva
-      .downloadVoucher(id)
-      .then(res => HandleExport.saveAs(res, 'voucher.pdf'))
-      .catch(err => this._toaster.error(err.message));
+    this._reserva.downloadVoucher(id);
   }
 }
