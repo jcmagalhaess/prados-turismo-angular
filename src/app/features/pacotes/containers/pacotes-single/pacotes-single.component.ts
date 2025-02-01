@@ -1,7 +1,7 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { AfterViewInit, Component, computed, effect } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Lightbox, LightboxModule } from 'ngx-lightbox';
 import { Swiper } from 'swiper';
 import 'swiper/css'; // Importa estilos gerais
@@ -18,7 +18,7 @@ Swiper.use([Navigation, Thumbs]);
 @Component({
   selector: 'app-pacotes-single',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, LightboxModule, PacotesSidebarComponent],
+  imports: [CommonModule, CurrencyPipe, LightboxModule, PacotesSidebarComponent, RouterModule],
   templateUrl: './pacotes-single.component.html',
   styleUrl: './pacotes-single.component.scss',
   providers: [Lightbox, ExcursoesSingleUsecase]
