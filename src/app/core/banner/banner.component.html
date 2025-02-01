@@ -5,7 +5,7 @@
 
     <div class="banner__list">
       @for (item of slides(); track $index) {
-        <figure class="banner__item" style="background-image: url({{ item.imageUrl }})"></figure>
+        <a href="{{ item.url }}" target="_blank" class="banner__item" style="background-image: url({{ item.imageUrl }})"></a>
       }
     </div>
   </div>
