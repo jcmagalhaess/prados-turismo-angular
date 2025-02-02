@@ -34,7 +34,7 @@ export class HomeIndexComponent {
   }
 
   public getOrigem(filtro: any) {
-    this._excursoes.getExcursoes({ ...filtro, orderBy: "dataInicio"});
+    this._excursoes.getExcursoes({ ...filtro, orderBy: "dataInicio", publicado: true });
   }
 
   public hasUrl(image: ExcursaoImagem) {

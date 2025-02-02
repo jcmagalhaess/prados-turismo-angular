@@ -30,12 +30,12 @@ export class PacotesIndexComponent {
   constructor(
     private readonly _excursoes: ExcursoesListUsecase,
   ) {
-    this.getOrigem({ origem: 1 });
+    this.getOrigem({ origem: 1, publicado: true });
   }
 
   public getOrigem(value: any) {
     console.log(value);
-    
+
     this._excursoes.getExcursoes(value);
   }
 
