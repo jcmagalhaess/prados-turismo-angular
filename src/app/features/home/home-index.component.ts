@@ -30,7 +30,7 @@ export class HomeIndexComponent {
   }
 
   constructor(private readonly _excursoes: ExcursoesListUsecase) {
-    this.getOrigem({ origem: '1', publicado: true });
+    this.getOrigem({ origem: '1' });
   }
 
   public getOrigem(filtro: any) {
