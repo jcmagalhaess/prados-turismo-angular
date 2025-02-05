@@ -1,5 +1,5 @@
 export const env = {
-    API: 'https://1f39-2804-29b8-516d-2b89-586f-302d-5b85-4652.ngrok-free.app',
+    API: 'https://3a83-2804-29b8-516d-2b89-64bc-e06-1eff-fcab.ngrok-free.app',
     WHATSAPP_LINK: 'https://api.whatsapp.com/send/?phone=5585997460786&text&type=phone_number&app_absent=0',
     allowsUrls: [
         '/auth',
