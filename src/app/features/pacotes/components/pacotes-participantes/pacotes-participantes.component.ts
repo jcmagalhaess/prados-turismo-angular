@@ -42,9 +42,13 @@ export class PacotesParticipantesComponent implements OnChanges {
   get participantes() {
     return this.form.get("participantes") as FormArray;
   }
+  
+  get amountOpcionais() {
+    return this.opcionais.reduce((acc: number, item: any) => acc + item.value, 0);
+  }
 
   @Input() amountTickets: number = 0;
-  @Input() amountOpcionais: number = 0;
+  @Input() opcionais: any = [];
   @Input() valor: number = 0;
   @Input() localEmbarque: ExcursaoLocalEmbarque[] = [];
 
@@ -56,26 +60,33 @@ export class PacotesParticipantesComponent implements OnChanges {
         this.participantes.push(this._createForm());
       }
     }
+
+    this.opcionais.forEach((element: any) => {
+      this.participantes.controls.forEach((item: any) => {
+        (item.get('opcionais') as FormGroup).addControl(element.key, new FormControl(false));
+      });
+    });
   }
 
-  public createReservation() {    
+  public createReservation() {        
     this._dialog.close(this.participantes.getRawValue());
   }
 
   private _createForm() {
     return new FormGroup<any>({
-      nome: new FormControl("", Validators.required),
-      email: new FormControl("", Validators.required),
-      phone: new FormControl("", Validators.required),
-      rg: new FormControl("", [Validators.required, Validators.maxLength(14)]),
-      cpf: new FormControl("", Validators.required),
-      emissor: new FormControl("", Validators.required),
+      nome: new FormControl(""),
+      email: new FormControl(""),
+      phone: new FormControl(""),
+      rg: new FormControl("", [Validators.maxLength(14)]),
+      cpf: new FormControl(""),
+      emissor: new FormControl(""),
       dataNascimento: new FormGroup<any>({
-        dia: new FormControl("", Validators.required),
-        mes: new FormControl("", Validators.required),
-        ano: new FormControl("", Validators.required),
-      }, Validators.required),
-      localEmbarque: new FormControl("", Validators.required),
+        dia: new FormControl(""),
+        mes: new FormControl(""),
+        ano: new FormControl(""),
+      }),
+      localEmbarque: new FormControl(""),
+      opcionais: new FormGroup<any>({}),
     });
   }
 }

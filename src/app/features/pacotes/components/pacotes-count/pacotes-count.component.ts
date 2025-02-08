@@ -42,7 +42,8 @@ export class PacotesCountComponent {
   private _amountHandle() {
     this.amountEmit.emit({
       key: this.key,
-      value: this.control.value!
+      value: this.control.value!,
+      name: this.type
     })
   }
 }

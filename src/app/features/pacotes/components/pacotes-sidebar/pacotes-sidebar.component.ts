@@ -89,11 +89,14 @@ export class PacotesSidebarComponent {
       disableClose: true,
       data: {
         tickets: this._takeAmountTickets(this.amountTickets()),
-        opcionais: this.amountOpcionais(),
+        opcionais: this.opcionaisSelecionados(),
         price: this.valorTransacao(),
         locales: this.locais,
       },
     });
+
+    console.log(this.opcionaisSelecionados());
+    
 
     dialogRef.afterClosed().subscribe((res: any) => {
       if (!res) return;
@@ -137,6 +140,7 @@ export class PacotesSidebarComponent {
   private _formatBirthday(items: Array<any>) {
     return items.map((item: any) => ({
       ...item,
+      opcionais: Object.entries(item.opcionais).map(([id, value]) => ({ id })),
       dataNascimento:
         item.dataNascimento.ano +
         "-" +
