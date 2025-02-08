@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { forkJoin } from "rxjs";
 import { ExcursoesSingleUsecase } from "../../../features/pacotes/services/excursoes-single.usecase";
 import { FeedbackComponent } from "../../../shared/components/feedback/feedback.component";
+import { ToasterService } from "../../../shared/components/toaster/toaster.service";
 import { buildBodyApiPagarme } from "../../../shared/helpers/build-body-api-pagarme.helper";
 import { Cliente } from "../../../shared/models/cliente.type";
 import { AcessoGetDataPessoaUsecase } from "../../acesso/services/acesso-get-data-pessoa.usecase";
@@ -126,7 +127,8 @@ export class CarrinhoService {
     private readonly _user: AcessoGetDataPessoaUsecase,
     private readonly _excursao: ExcursoesSingleUsecase,
     private readonly _dialog: MatDialog,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _toaster: ToasterService
   ) {
     effect(() => {
       localStorage.setItem("cart", JSON.stringify(this._cart()));
@@ -148,7 +150,7 @@ export class CarrinhoService {
 
     return forkJoin(reqReserva).subscribe({
       next: (_) => this._openDialog(),
-      error: (err) => console.error(err),
+      error: (err) => this._toaster.error(err),
     });
   }
 

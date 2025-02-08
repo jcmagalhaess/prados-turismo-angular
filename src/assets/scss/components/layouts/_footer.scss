@@ -72,6 +72,19 @@ $component-name: "footer";
         @include breakpoint(medium-only) {
             justify-content: center;
         }
+        &--secondary {
+            .#{$component-name}__icon {
+                background-color: var(--color-secondary);
+                a {
+                    color: var(--color-light);
+                }
+                &:hover {
+                    a {
+                        color: var(--color-secondary);
+                    }
+                }
+            }
+        }
     }
 
     &__icon {

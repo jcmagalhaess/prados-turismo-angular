@@ -2,12 +2,12 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { AfterViewInit, Component, computed, effect } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Lightbox, LightboxModule } from 'ngx-lightbox';
 import { Swiper } from 'swiper';
 import 'swiper/css'; // Importa estilos gerais
 import 'swiper/css/navigation'; // Estilos específicos para navegação
 import 'swiper/css/thumbs'; // Estilos para os thumbs
 import { Navigation, Thumbs } from 'swiper/modules';
+import { ToasterService } from '../../../../shared/components/toaster/toaster.service';
 import { formatarData } from '../../../../shared/helpers/formatar-data.helper';
 import { ExcursaoImagem } from '../../../../shared/models/excursao.type';
 import { PacotesSidebarComponent } from '../../components/pacotes-sidebar/pacotes-sidebar.component';
@@ -18,10 +18,10 @@ Swiper.use([Navigation, Thumbs]);
 @Component({
   selector: 'app-pacotes-single',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, LightboxModule, PacotesSidebarComponent, RouterModule],
+  imports: [CommonModule, CurrencyPipe, PacotesSidebarComponent, RouterModule],
   templateUrl: './pacotes-single.component.html',
   styleUrl: './pacotes-single.component.scss',
-  providers: [Lightbox, ExcursoesSingleUsecase]
+  providers: [ExcursoesSingleUsecase]
 })
 export class PacotesSingleComponent implements AfterViewInit {
   public form = new FormGroup({
@@ -50,10 +50,10 @@ export class PacotesSingleComponent implements AfterViewInit {
   
   constructor(
     private readonly _service: ExcursoesSingleUsecase,
-    private readonly _router: ActivatedRoute,
-    private readonly _lightbox: Lightbox
+    private readonly _activatedRoute: ActivatedRoute,
+    private readonly _toaster: ToasterService
   ) {
-    this._service.getExcursaoById(this._router.snapshot.params['id']);
+    this._service.getExcursaoById(this._activatedRoute.snapshot.params['id']);
 
     effect(() => {
       this.form.controls['period'].setValue(this.formatandoPeriodo(this.excursao()?.dataInicio!, this.excursao()?.dataFim!));
@@ -95,14 +95,6 @@ export class PacotesSingleComponent implements AfterViewInit {
     }));
   }
 
-  public open(list: any, index: number): void {
-    this._lightbox.open(list, index);
-  }
-
-  public close(): void {
-    this._lightbox.close();
-  }
-
   public formatandoDescricao(description: string) {
     if (!description) return '';
     
@@ -135,5 +127,25 @@ export class PacotesSingleComponent implements AfterViewInit {
       let itensFilted = itens.filter(item => item !== '');
   
       return itensFilted;
+  }
+
+  public shareOnFacebook() {
+    const encodedUrl = encodeURIComponent(window.location.href);
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+    window.open(facebookUrl, '_blank');
+  }  
+
+  public shareMessageOnWhatsApp(message: string): void {
+    const encodedMessage = encodeURIComponent(message + ': ' + window.location.href);
+    const url = `https://wa.me/?text=${encodedMessage}`;
+    window.open(url, '_blank');
+  }
+
+  public clipboard() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      this._toaster.success('Texto copiado para a área de transferência!');
+    }).catch(err => {
+      this._toaster.error(`Erro ao copiar: ${err}`);
+    });
   }
 }
