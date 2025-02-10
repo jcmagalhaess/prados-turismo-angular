@@ -43,7 +43,9 @@ export class AcessoIndexComponent {
       .then((_) => {
         this.formRegister.reset();
 
-        this._toaster.success("Cadastro realizado com sucesso! Confira seu e-mail com os proximos passos!");
+        this._toaster.success(
+          "Cadastro realizado com sucesso! Confira seu e-mail com os proximos passos!"
+        );
       })
       .catch((err) => this._toaster.error(err.error.message));
   }
@@ -51,7 +53,12 @@ export class AcessoIndexComponent {
   public login(login: any) {
     this._login
       .login(login)
-      .then(() => this._router.navigate(["minha-conta"]))
+      .then(() => {
+        let cart = JSON.parse(localStorage.getItem("cart")!);
+
+        if (cart.length) this._router.navigate(["meu-carrinho"]);
+        else this._router.navigate(["minha-conta"]);
+      })
       .catch((err) => this._toaster.error(err.error.message));
   }
 }
