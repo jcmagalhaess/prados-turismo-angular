@@ -25,7 +25,7 @@ export class ClientUseCase {
   public setPaymentLink(reserva: string, linkId: string) {
     this._loading.set(true);
     return this._http
-      .patch<string>(`${env.API}/reserva.set-payment-link/${reserva}/${linkId}`, { responseType: "text" as "json" })
+      .patch<string>(`${env.API}/reserva/set-payment-link/${reserva}/${linkId}`, { responseType: "text" as "json" })
       .pipe(finalize(() => this._loading.set(false)));
   }
 }
