@@ -1,19 +1,24 @@
 export function buildBodyApiPagarme(items: any, customer: any) {
+
+  let excursao = items.filter((item: any) => item.isExcursao)
+  let priceExcursao = excursao.find((item: any) => item.amount >= 200000)
+
+  let amountTickets = items.reduce(
+    (acc: number, item: any) => acc + (item.amount * item.default_quantity),
+    0
+  );
+
+  const installmentsAmount = priceExcursao ? 10 : 5
+
   return {
     is_building: false,
     payment_settings: {
       credit_card_settings: {
         operation_type: "auth_and_capture",
-        installments: [
-          {
-            number: 1,
-            total: 12000,
-          },
-          {
-            number: 2,
-            total: 6000,
-          },
-        ],
+        installments: Array.from({ length: installmentsAmount }, (_, index) => ({
+          number: index + 1,
+          total: Math.round(amountTickets),
+        })),
       },
       accepted_payment_methods: ["credit_card"],
     },

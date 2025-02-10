@@ -8,7 +8,7 @@ import { PagarmeLinkRequestBody } from "../../shared/models/pagarme.type";
   providedIn: "root",
 })
 export class PagarMeService {
-  private _apiUrl = env.pagarmeApiUrl;
+  private _apiUrl = env.API;
   private _apiKey = env.pagarmeApiKey;
   private _loading = signal<boolean>(false);
 
@@ -23,7 +23,7 @@ export class PagarMeService {
     const headers = this.getHeaders();
     return lastValueFrom(
       this.http
-        .post(`${this._apiUrl}/paymentlinks`, data, { headers })
+        .post(`${this._apiUrl}/financeiro/pagarme-payment-link`, data, { responseType: "text" as "json" })
         .pipe(finalize(() => this._loading.set(false)))
     );
   }

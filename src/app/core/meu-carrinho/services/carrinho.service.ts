@@ -48,6 +48,7 @@ export class CarrinhoService {
         name: item.nome,
         description: "",
         default_quantity: amountTickets,
+        isExcursao: true
       };
     })
   );
@@ -67,6 +68,7 @@ export class CarrinhoService {
             ?.nome,
           description: "",
           default_quantity: amountOpcionais,
+          isExcursao: false
         };
       })
   );
@@ -143,7 +145,7 @@ export class CarrinhoService {
 
   public gerarReserva() {
     if (!this._noAuthenticated()) return;
-    
+
     const reqReserva = this._reserva().flatMap((item) =>
       this._client.criarReserva(item)
     );
@@ -163,11 +165,12 @@ export class CarrinhoService {
         )
       )
       .then((data: any) => {
-        this.pagarMeURL.set(data.url);
+        let response = JSON.parse(data)
+        this.pagarMeURL.set(response.url);
 
         localStorage.removeItem("cart");
         this._cart.set([]);
-        
+
         this._router.navigate(["/minha-conta/pedidos"]);
       });
   }
