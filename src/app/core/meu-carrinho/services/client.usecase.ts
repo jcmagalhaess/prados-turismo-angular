@@ -13,12 +13,19 @@ export class ClientUseCase {
     return this._loading;
   }
 
-  constructor(private readonly _http: HttpClient) {}
+  constructor(private readonly _http: HttpClient) { }
 
   public criarReserva(reserva: any) {
     this._loading.set(true);
     return this._http
-        .post<string>(`${env.API}/financeiro/shopping`, reserva, { responseType: "text" as "json" })
-        .pipe(finalize(() => this._loading.set(false)));
+      .post<string>(`${env.API}/financeiro/shopping`, reserva, { responseType: "text" as "json" })
+      .pipe(finalize(() => this._loading.set(false)));
+  }
+
+  public setPaymentLink(reserva: string, linkId: string) {
+    this._loading.set(true);
+    return this._http
+      .patch<string>(`${env.API}/reserva.set-payment-link/${reserva}/${linkId}`, { responseType: "text" as "json" })
+      .pipe(finalize(() => this._loading.set(false)));
   }
 }
