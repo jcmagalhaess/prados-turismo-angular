@@ -8,7 +8,18 @@ export function buildBodyApiPagarme(items: any, customer: any) {
     0
   );
 
+  let discountPix = excursao.map((excursao: any) => {
+    let discountPercent = excursao.amount >= 200000 ? 10 : 6
+    return (excursao.amount * 100) * discountPercent / 100
+  })
+
+  discountPix = discountPix.reduce(
+    (acc: number, item: any) => acc + item,
+    0
+  );
+
   const installmentsAmount = priceExcursao ? 10 : 5
+  const pixSettings = { expires_in: 2, discount: discountPix * 100 }
 
   return {
     is_building: false,
@@ -20,7 +31,10 @@ export function buildBodyApiPagarme(items: any, customer: any) {
           total: Math.round(amountTickets),
         })),
       },
-      accepted_payment_methods: ["credit_card"],
+      pix_settings: {
+        ...pixSettings
+      },
+      accepted_payment_methods: ["credit_card", "pix"],
     },
     cart_settings: {
       items,
