@@ -1,8 +1,8 @@
-<div class="card-event mw-100">
+<div class="card-event mw-100 rounded-3">
     <div class="card-event__content overflow-y-scroll px-4" style="height: 300px">
         @for (item of cart; track $index) {
             <div class="order__resume">
-                <span class="event__price">{{ item.nome }}</span>
+                <span class="event__price text-start">{{ item.nome }}</span>
                 <ul class="event__category">
                     @for (item of item.tickets; track $index) {
                         <li class="d-flex justify-content-between">

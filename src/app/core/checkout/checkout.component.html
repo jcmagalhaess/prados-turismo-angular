@@ -6,25 +6,21 @@
                 <div class="display-6">Termos de uso</div>
                 <hr>
                 
-                <div class="card-event mw-100">
+                <div class="card-event mw-100 rounded-3">
                     <div class="card-event__content overflow-y-scroll p-4" (scroll)="onScroll($event)" style="height: 300px">
-                        <article>
+                        <article class="text-start">
                             CONTRATO DE AQUISIÇÃO DE SERVIÇOS DE VIAGEM
-
 
 
                             IDENTIFICAÇÃO DAS PARTES CONTRATANTES
 
-                                
 
                             CONTRATADO: Prados Turismo, identificada pelo CNPJ 31.853.548/0001-08, registrada no Ministério do Turismo sob o nº 31853548000108 e designada como AGÊNCIA.
 
                                 
-
                             CONTRATANTE: Pessoa física que registrou ou registrará seus dados em nosso site (www.pradosturismo.com.br) no momento da compra, fornecendo nome completo, CPF, número de telefone e e-mail, com o propósito de receber todas as informações e vouchers da viagem. Dessa forma, é considerado o responsável pela contratação do pacote e designado como CLIENTE.
 
                             
-
                             As partes mencionadas anteriormente concordaram e firmaram o presente CONTRATO DE AQUISIÇÃO DE SERVIÇOS DE VIAGEM, o qual será regido pelas cláusulas a seguir descritas.
 
                             
@@ -196,11 +192,11 @@
                             
                         </article>
                     </div>
-                    <div class="card-event__actions align-items-center py-2">
+                    <div class="card-event__actions d-flex flex-row align-items-center py-2">
                         <div class="form-check form-switch d-flex mx-3 justify-content-center" for="flexSwitchCheckDefault">
                             <input class="form-check-input" type="checkbox" [formControl]="terms" role="switch" id="flexSwitchCheckDefault">
                         </div>
-                        <div class="d-flex flex-column w-100">
+                        <div class="d-flex flex-column w-100 fs-6">
                             Li e aceito os termos de uso
                             <span class="text-danger">Use a barra de rolagem para ler os termos até o final</span>
                         </div>
