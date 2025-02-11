@@ -10,7 +10,7 @@ export function buildBodyApiPagarme(items: any, customer: any) {
 
   let discountPix = excursao.map((excursao: any) => {
     let discountPercent = excursao.amount >= 200000 ? 10 : 6
-    return (excursao.amount * 100) * discountPercent / 100
+    return (excursao.amount / 100) * discountPercent / 100
   })
 
   discountPix = discountPix.reduce(
