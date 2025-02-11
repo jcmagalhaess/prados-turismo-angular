@@ -18,6 +18,7 @@ export class PacotesCountComponent {
   @Input() age: string = '';
   @Input() valor: number = 0;
   @Input() nocount: boolean = false;
+  @Input() max: number = 0;
 
   @Output() amountEmit = new EventEmitter<any>()
   

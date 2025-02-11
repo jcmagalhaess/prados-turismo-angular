@@ -74,10 +74,11 @@
           @for (item of opcionais(); track $index) {
             <div class="my-3">
               <app-pacotes-count
-                  [key]="item.id"
-                  [type]="item.nome"
-                  [valor]="item.valor"
-                  (amountEmit)="opcionaisHandle($event, item.valor)">
+                [key]="item.id"
+                [type]="item.nome"
+                [valor]="item.valor"
+                [max]="amountTickets().length"
+                (amountEmit)="opcionaisHandle($event, item.valor)">
               </app-pacotes-count>
             </div>
           }

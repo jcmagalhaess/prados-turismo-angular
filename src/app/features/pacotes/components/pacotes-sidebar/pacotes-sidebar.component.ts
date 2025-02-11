@@ -93,10 +93,7 @@ export class PacotesSidebarComponent {
         price: this.valorTransacao(),
         locales: this.locais,
       },
-    });
-
-    console.log(this.opcionaisSelecionados());
-    
+    });    
 
     dialogRef.afterClosed().subscribe((res: any) => {
       if (!res) return;

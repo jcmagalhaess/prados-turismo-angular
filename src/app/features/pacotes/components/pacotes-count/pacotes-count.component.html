@@ -34,6 +34,7 @@
           <button
             type="button"
             class="input-group-text"
+            [disabled]="control.value === max"
             (click)="increment()"
           >
             <i class="fa-solid fa-plus"></i>
