@@ -90,6 +90,7 @@ export class CarrinhoService {
       clients: item.participantes,
     }))
   );
+  private _idGenerateReserva = signal<string[]>([]);
 
   get cart() {
     return this._cart;
@@ -151,8 +152,11 @@ export class CarrinhoService {
     );
 
     return forkJoin(reqReserva).subscribe({
-      next: (_) => this._openDialog(),
-      error: (err) => this._toaster.error(err),
+      next: (res) => {
+        this._openDialog()
+        this._idGenerateReserva.set(res);
+      },
+      error: (err) => this._toaster.error(JSON.parse(err.error).message[0]),
     });
   }
 
@@ -167,6 +171,8 @@ export class CarrinhoService {
       .then((data: any) => {
         let response = JSON.parse(data)
         this.pagarMeURL.set(response.url);
+        
+        this._vincularReservaComPagarme(this._idGenerateReserva(), response.id);
 
         localStorage.removeItem("cart");
         this._cart.set([]);
@@ -208,5 +214,11 @@ export class CarrinhoService {
       cpf: client.cpf,
       phone: client.telefone,
     };
+  }
+
+  private _vincularReservaComPagarme(reservas: string[], linkId: string) {
+    forkJoin(reservas.map(res => this._client.setPaymentLink(res, linkId))).subscribe({
+      error: (err) => this._toaster.error(JSON.parse(err.error).message[0])
+    });
   }
 }
