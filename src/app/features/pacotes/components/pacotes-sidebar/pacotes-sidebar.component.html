@@ -77,7 +77,7 @@
                 [key]="item.id"
                 [type]="item.nome"
                 [valor]="item.valor"
-                [max]="amountTickets().length"
+                [max]="amountTicketsValues()"
                 (amountEmit)="opcionaisHandle($event, item.valor)">
               </app-pacotes-count>
             </div>

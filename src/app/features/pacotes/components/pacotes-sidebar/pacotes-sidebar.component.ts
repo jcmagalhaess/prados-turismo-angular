@@ -21,6 +21,7 @@ import { PacotesModalComponent } from "../pacotes-modal/pacotes-modal.component"
 })
 export class PacotesSidebarComponent {
   public amountTickets = signal<any>([]);
+  public amountTicketsValues = computed(() => this.amountTickets().reduce((acc: number, item: any) => acc + item.value, 0));
   public amountTicketsNoValueZero = computed(() => this.amountTickets().filter((item: any) => item.value > 0));
   public hasOpcionaisAndTicketsSelecionados = computed(() => this.amountTicketsNoValueZero().length > 0 && this.excursao?.Pacotes?.Produto.length! > 0);
   public opcionais = computed(() => this.excursao?.Pacotes?.Produto);
@@ -57,7 +58,7 @@ export class PacotesSidebarComponent {
     });
 
     effect(() => {
-      console.log(this.amountTicketsNoValueZero());
+      console.log(this.amountTicketsValues());
     });
   }
 
