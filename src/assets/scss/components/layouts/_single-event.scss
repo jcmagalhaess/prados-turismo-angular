@@ -101,6 +101,9 @@ $component-name: 'event';
         }
         &-count {
             width: 50%;
+            @include breakpoint(medium-only) {
+                width: 70%;
+            }
         }
         button {
             background-color: transparent !important;
