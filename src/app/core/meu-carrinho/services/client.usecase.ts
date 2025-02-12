@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, signal } from "@angular/core";
-import { finalize } from "rxjs";
+import { finalize, lastValueFrom } from "rxjs";
 import { env } from "../../../../env/env";
 
 @Injectable({
@@ -24,8 +24,10 @@ export class ClientUseCase {
 
   public setPaymentLink(reserva: string, linkId: string) {
     this._loading.set(true);
-    return this._http
-      .patch<string>(`${env.API}/reserva/set-payment-link/${reserva}/${linkId}`, { responseType: "text" as "json" })
-      .pipe(finalize(() => this._loading.set(false)));
+    return lastValueFrom(
+      this._http
+      .patch<string>(`${env.API}/reserva/set-payment-link/${reserva}/${linkId}`, {}, { responseType: "text" as "json" })
+      .pipe(finalize(() => this._loading.set(false)))
+    )
   }
 }
