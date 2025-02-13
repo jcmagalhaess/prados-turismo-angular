@@ -14,6 +14,6 @@
 ::ng-deep .toaster-error {
     @include toaster(rgba(var(--bs-danger-rgb), 1) !important, #fff);
 }
-::ng-deep .toaster-info {
-    @include toaster(blue, #fff);
+::ng-deep .toaster-alert {
+    @include toaster(rgba(var(--bs-warning-rgb), 1) !important, var(--bs-warning-text-emphasis));
 }

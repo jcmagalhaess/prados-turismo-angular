@@ -1,0 +1,15 @@
+.btn-remove {
+    padding: 0 !important;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    border-radius: 50%;
+    font-size: .8rem;
+    align-items: center;
+    justify-content: center;
+    background: none !important;
+    color: var(--color-secondary);
+    &:hover {
+        background-color: rgba($color: #0F3E68, $alpha: 0.3) !important;
+    }
+}

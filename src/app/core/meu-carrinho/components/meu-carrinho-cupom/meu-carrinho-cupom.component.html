@@ -1,0 +1,25 @@
+<label for="cupom">Cupom de Desconto:</label>
+@if (hasCupom()) {
+    <div class="d-flex align-items-center gap-3 mt-3">
+        {{ cupomControl.value }}
+
+        <button class="btn btn-primary btn-remove" type="button" (click)="removeCupom()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+} @else {
+    <div class="input-group mt-3">
+        <input type="text" id="cupom" class="form-control" placeholder="Código" [formControl]="cupomControl">
+        <button class="btn btn-outline-secondary" [disabled]="loading()" type="button" (click)="validateCupom()">
+            @if (loading()) {
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+
+                <span class="ms-2">Validando...</span>
+            } @else {
+                Adicionar
+            }
+        </button>
+    </div>
+}

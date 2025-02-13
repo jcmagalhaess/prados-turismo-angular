@@ -19,6 +19,10 @@ export class ToasterService {
     this._snackBarModal(toaster, 'toaster-error');
   }
 
+  public alert(toaster: any) {
+    this._snackBarModal(toaster, 'toaster-alert');
+  }
+
   private _snackBarModal(message: string, style: string) {
     this.message.set(message);
 

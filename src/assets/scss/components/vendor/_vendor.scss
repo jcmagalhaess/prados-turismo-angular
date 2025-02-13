@@ -22,12 +22,12 @@ a {
 
 .btn{
     &-outline-primary,
-    &-outline-primary,
+    &-outline-secondary,
     &-primary,
     &-secondary,
     &-success,
     &-light {
-        height: 45px;
+        height: 55px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -38,6 +38,15 @@ a {
         color: var(--color-primary) !important;
         &:hover {
             background-color: var(--color-primary) !important;
+            color: var(--color-light) !important;
+        }
+    }
+
+    &-outline-secondary {
+        border-color: var(--color-secondary) !important;
+        color: var(--color-secondary) !important;
+        &:hover {
+            background-color: var(--color-secondary) !important;
             color: var(--color-light) !important;
         }
     }
@@ -97,10 +106,10 @@ img {
         transition: .2s ease;
         height: 55px !important;
         &:hover {
-            background-color: rgba($color: #000000, $alpha: 0.05) !important;
+            background-color: rgba($color: #000000, $alpha: 0.05);
         }
         &:active {
-            background-color: rgba($color: #112c44, $alpha: 0.5) !important;
+            background-color: rgba($color: #112c44, $alpha: 0.5);
         }
     }
 }

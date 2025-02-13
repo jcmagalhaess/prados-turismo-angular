@@ -29,7 +29,7 @@ export class AuthMasterService {
     return lastValueFrom(
       this._http.post(`${env.API}/usuarios/auth`, {
         username: "PradosAdmin",
-        password: "1234",
+        password: "@pradosAdmin",
       })
     );
   }
