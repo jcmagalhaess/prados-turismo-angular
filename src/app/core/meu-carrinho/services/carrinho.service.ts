@@ -11,10 +11,12 @@ import { AcessoGetDataPessoaUsecase } from "../../acesso/services/acesso-get-dat
 import { PagarMeService } from "../../pagarme/pagarme.service";
 import { MeuCarrinhoReservaComponent } from "../components/meu-carrinho-reserva/meu-carrinho-reserva.component";
 import { ClientUseCase } from "./client.usecase";
+import { CupomDTO } from "./cupom.usecase";
 
 @Injectable({ providedIn: "root" })
 export class CarrinhoService {
   public pagarMeURL = signal<string | null>(null);
+  public cupom = signal<CupomDTO | null>(null);
   private _cart = signal<Array<any>>([]);
   private _amountTickets = computed(() =>
     this._cart()
@@ -88,6 +90,7 @@ export class CarrinhoService {
         .filter((item: any) => item.key === "babies")
         .reduce((acc: number, item: any) => acc + item.value, 0),
       clients: item.participantes,
+      cupom: this.cupom()?.id,
     }))
   );
   private _idGenerateReserva = signal<string[]>([]);
@@ -145,9 +148,14 @@ export class CarrinhoService {
   }
 
   public gerarReserva() {
+    let reservaComDescontos = this._reserva().map((item: any) => ({
+      ...item,
+      total: item.total - (item.total * this.cupom()?.desconto! / 100),
+    }))
+    
     if (!this._noAuthenticated()) return;
 
-    const reqReserva = this._reserva().flatMap((item) =>
+    const reqReserva = reservaComDescontos.flatMap((item) =>
       this._client.criarReserva(item)
     );
 

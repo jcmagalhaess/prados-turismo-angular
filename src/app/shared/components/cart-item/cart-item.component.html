@@ -21,10 +21,17 @@
                         <strong>Data de retorno</strong>
                         {{ item.periodo?.dataFim | date: 'dd/MM/yyyy' }}
                     </li>
-                    @if (item.tickets.length > 1) {
-                        <li class="d-flex flex-column ms-auto text-end">
+                    <span class="flex-flow-1"></span>
+                    @if (cupom()) {
+                        <li class="d-flex flex-column ms-auto text-end text-success">
+                            <strong>Desconto ({{cupom()?.desconto}}%)</strong>
+                            {{ discountedValue(buildPrice(item.tickets)) | currency:'BRL':'symbol':'1.2-2' }}
+                        </li>
+                    }
+                    @if (item.tickets.length > 1 || (item.tickets.length === 1 && cupom())) {
+                        <li class="d-flex flex-column text-end" [ngClass]="{ 'ms-auto': !cupom() }">
                             <strong>Subtotal</strong>
-                            {{ buildPrice(item.tickets) | currency:'BRL':'symbol':'1.2-2' }}
+                            {{ subtotalExcursao(buildPrice(item.tickets)) | currency:'BRL':'symbol':'1.2-2' }}
                         </li>
                     }
                 </ul>
@@ -45,16 +52,11 @@
             </div>
         }
     </div>
-    <div id="order-resume-price" class="card-event__actions align-items-center py-2">
+    <div id="order-resume-price" class="card-event__actions align-items-center py-3">
         <div class="event__totalizers--order-resume w-100">
             <div id="subtotal-label" class="d-flex justify-content-between py-2 w-100">
                 <strong>Total: </strong> {{ totalValue() | currency:'BRL':'symbol':'1.2-2' }}
             </div>
-            <!-- <div id="payment-label">
-                <div class="d-flex justify-content-between text-success">
-                    <span>Pagando à vista:</span> {{ totalValueWithDiscount() | currency:'BRL':'symbol':'1.2-2' }}
-                </div>
-            </div> -->
         </div>
     </div>
 </div>

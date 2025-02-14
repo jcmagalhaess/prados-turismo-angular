@@ -31,6 +31,10 @@ export class MeuCarrinhoComponent implements OnInit {
     return computed(() => this.cart().length === 0);
   }
 
+  get cupom() {
+    return this._carrinho.cupom;
+  }
+
   constructor(
     private readonly _carrinho: CarrinhoService,
     private readonly _cupom: CupomUsecase,
@@ -51,7 +55,10 @@ export class MeuCarrinhoComponent implements OnInit {
   public validateCupom(cupom: string) {
     this._cupom
       .validateCupom(cupom)
-      .then(_ => this.hasCupom.set(true))
+      .then(res => {
+        this.hasCupom.set(true);
+        this._carrinho.cupom.set(res);
+      })
       .catch(_ => this._toaster.alert(`Cupom ${cupom} inválido!`))
   }
 }
