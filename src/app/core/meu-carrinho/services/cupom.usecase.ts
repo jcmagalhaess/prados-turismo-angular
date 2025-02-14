@@ -24,6 +24,6 @@ export class CupomUsecase {
 
     public validateCupom(cupom: string): Promise<CupomDTO> {
         this.loading.set(true);
-        return lastValueFrom(this._http.get<any>(`${env.API}/cupons/find/${cupom}`)).finally(() => this.loading.set(false));
+        return lastValueFrom(this._http.get<any>(`${env.API}/cupons/find/${btoa(cupom)}`)).finally(() => this.loading.set(false));
     }
 }
