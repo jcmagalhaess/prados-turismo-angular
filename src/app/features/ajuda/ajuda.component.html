@@ -14,8 +14,12 @@
     
         <div class="input-group">
             <input type="text" class="form-control" [formControl]="search">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                <i class="fa-solid fa-magnifying-glass"></i>
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="clearSearch()">
+                @if (hasValue) {
+                    <i class="fa-solid fa-xmark"></i>
+                } @else {
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                }
             </button>
         </div>
     </div>
@@ -31,18 +35,22 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="accordion accordion-flush" id="accordionFlushExample">
-                    @for (item of faqList(); track $index) {
-                        <div class="accordion-item">
-                            <div class="accordion-header">
-                                <button class="accordion-button collapsed py-4" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + $index" aria-expanded="true" [attr.aria-controls]="'collapse' + $index">
-                                    {{ item.question }}
-                                </button>
-                            </div>
-                            <div [id]="'collapse' + $index" class="accordion-collapse collapse" data-bs-parent="#accordion">
-                                <div class="accordion-body py-4">
-                                    {{ item.response }}
+                    @for (questions of faqList(); track $index) {
+                        <h3 class="display-5 fs-3 my-3">{{ questions.title }}</h3>
+
+                        <div class="py-3">
+                            @for (item of questions.questions; track $index) {
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <button class="accordion-button collapsed py-4" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + $index" aria-expanded="true" [attr.aria-controls]="'collapse' + $index">
+                                            {{ item.question }}
+                                        </button>
+                                    </div>
+                                    <div [id]="'collapse' + $index" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                                        <div class="accordion-body py-4" [innerHTML]="item.response"></div>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
                     }
 

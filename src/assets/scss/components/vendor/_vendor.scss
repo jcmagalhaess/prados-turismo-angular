@@ -124,3 +124,16 @@ body {
         margin-block-start: 160px;
     }
 }
+
+.accordion {
+    &-button {
+        &:not(.collapsed) {
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+        }
+    }
+    
+    &-body {
+        background-color: #f1f8fd;
+    }
+}

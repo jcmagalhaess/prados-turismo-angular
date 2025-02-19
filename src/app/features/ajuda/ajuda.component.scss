@@ -20,18 +20,18 @@
         .input-group {
             input,
             button {
-                border: 2px solid var(--color-light);
+                border: 2px solid var(--color-light) !important;
                 background-color: transparent;
-                color: var(--color-light);
+                color: var(--color-light) !important;
                 padding-inline: 25px;
             }
             input {
-                border-right: none;
+                border-right: none !important;
                 border-top-left-radius: 30px;
                 border-bottom-left-radius: 30px;
             }
             button {
-                border-left: none;
+                border-left: none !important;
                 border-top-right-radius: 30px;
                 border-bottom-right-radius: 30px;
             }
