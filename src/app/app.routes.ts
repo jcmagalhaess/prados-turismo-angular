@@ -27,7 +27,7 @@ export const routes: Routes = [
     {
         path: 'termos-uso',
         pathMatch: 'full',
-        loadComponent: () => import('./features/termos-uso/termos-uso.component').then(c => c.TermosUsoComponent)
+        loadComponent: () => import('./features/termos-uso/containers/termos-uso.component').then(c => c.TermosUsoComponent)
     },
     {
         path: 'politica-privacidade',

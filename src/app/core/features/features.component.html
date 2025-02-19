@@ -9,6 +9,7 @@
                     @for (item of excursoes(); track $index) {
                         <div class="home__excursao">
                             <app-excursao-card
+                                [shadow]="false"
                                 [id]="item.id"
                                 [thumbnail]="hasUrl(item.Pacotes.Imagem)"
                                 [title]="item.nome"

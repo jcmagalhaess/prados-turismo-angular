@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, OnDestroy, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { TermosUsoContentComponent } from "../../features/termos-uso/components/termos-uso-content/termos-uso-content.component";
 import { CartItemComponent } from "../../shared/components/cart-item/cart-item.component";
 import { AsyncLocalEmbarquePipe } from "../../shared/pipes/async-local-embarque.pipe";
 import { CarrinhoService } from '../meu-carrinho/services/carrinho.service';
@@ -14,6 +15,7 @@ import { CarrinhoService } from '../meu-carrinho/services/carrinho.service';
     ReactiveFormsModule,
     AsyncLocalEmbarquePipe,
     CartItemComponent,
+    TermosUsoContentComponent
   ],
   templateUrl: "./checkout.component.html",
   styleUrl: "./checkout.component.scss",
@@ -50,7 +52,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       const atBottom =
         element.scrollTop + element.clientHeight >= element.scrollHeight;
 
-      // Atualiza o estado do botão baseado na rolagem
       if (atBottom) this.terms.enable();
     }
   }

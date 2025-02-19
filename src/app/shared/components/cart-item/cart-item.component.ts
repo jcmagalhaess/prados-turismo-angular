@@ -21,6 +21,7 @@ export class CartItemComponent implements OnChanges {
   public cupom = input<CupomDTO | null>(null);
   
   @Input({ required: true }) cart: Array<any> = [];
+  @Input() shadow: boolean = true;
 
   get excursao() {
     return this._excursao.excursao();

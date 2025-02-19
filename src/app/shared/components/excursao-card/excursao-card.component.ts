@@ -1,4 +1,4 @@
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Origem, Transport } from '../../models/excursao.type';
@@ -8,7 +8,7 @@ import { FormatarPeriodoExcursao } from '../../pipes/formata-periodo-excursao.pi
 @Component({
   selector: 'app-excursao-card',
   standalone: true,
-  imports: [RouterModule, CurrencyPipe, FormatarPeriodoExcursao, FormataParcelasPipe],
+  imports: [CommonModule, RouterModule, CurrencyPipe, FormatarPeriodoExcursao, FormataParcelasPipe],
   templateUrl: './excursao-card.component.html',
   styleUrl: './excursao-card.component.scss',
   providers: [DatePipe]
@@ -21,6 +21,7 @@ export class ExcursaoCardComponent {
   @Input({ required: true, transform: (value: any) => (Origem.find(item => item.key === value.toString())?.value) }) origem: string = '';
   @Input({ required: true, transform: (value: any) => (Transport.find(item => item.key === value.toString())?.value) }) transport: string = '';
   @Input({ required: true }) price: number = 0;
+  @Input() shadow: boolean = true;
 
   public getLink(id: string) {
     if (id === 'jericoacoara') return `/${id}`;

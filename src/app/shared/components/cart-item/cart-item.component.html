@@ -1,4 +1,4 @@
-<div class="card-event mw-100 rounded-3">
+<div class="card-event mw-100 rounded-3" [ngClass]="{ 'card-event--no-shadow': !shadow }">
     <div class="card-event__content overflow-y-scroll px-4" style="height: 300px">
         @for (item of cart; track $index) {
             <div class="order__resume">

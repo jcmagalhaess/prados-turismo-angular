@@ -133,15 +133,15 @@ body {
     }
 }
 
-.accordion {
-    &-button {
+.accordion.accordion-faq {
+    .accordion-button {
         &:not(.collapsed) {
             background-color: var(--color-secondary);
             color: var(--color-light);
         }
     }
     
-    &-body {
+    .accordion-body {
         background-color: #f1f8fd;
     }
 }

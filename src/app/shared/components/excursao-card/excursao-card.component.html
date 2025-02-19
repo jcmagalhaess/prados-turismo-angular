@@ -1,4 +1,4 @@
-<div class="card-event" [routerLink]="'/pacotes/' + id">
+<div class="card-event" [ngClass]="{ 'card-event--no-shadow': !shadow }" [routerLink]="'/pacotes/' + id">
     <div class="card-event__content">
         <figure class="card-event__thumbnail" style="background-image: url({{ thumbnail }});">
             <div class="card-event__feature">
