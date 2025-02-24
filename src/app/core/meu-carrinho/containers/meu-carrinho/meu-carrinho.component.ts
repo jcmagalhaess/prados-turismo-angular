@@ -59,6 +59,6 @@ export class MeuCarrinhoComponent implements OnInit {
         this.hasCupom.set(true);
         this._carrinho.cupom.set(res);
       })
-      .catch(_ => this._toaster.alert(`Cupom ${cupom} inválido!`))
+      .catch(err => this._toaster.alert(err.error.message))
   }
 }

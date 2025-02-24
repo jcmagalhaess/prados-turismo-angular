@@ -28,7 +28,7 @@ export class PacotesSidebarComponent {
   public opcionaisSelecionados = signal<any>([]);
   public amountOpcionais = computed(() => this.opcionaisSelecionados().reduce((acc: number, item: any) => acc + item.value, 0));
   public valorOpcionais = computed(() => this.opcionaisSelecionados().reduce((acc: number, item: any) => acc + (item.value * item.price), 0));
-  public valorTickets = computed(() => this.amountTicketsNoValueZero().reduce((acc: number, item: any) => acc + (this.excursao!.valor * item.value), 0));
+  public valorTickets = computed(() => this.amountTicketsNoValueZero().filter((item: any) => item.key !== "babies").reduce((acc: number, item: any) => acc + (this.excursao!.valor * item.value), 0));
   public valorTransacao = computed(() => this.valorTickets() + this.valorOpcionais())
   
   public enumCategory = [
@@ -55,10 +55,6 @@ export class PacotesSidebarComponent {
   ) {
     effect(() => {
       this.form.controls["tickets"].setValue(this.amountTickets());
-    });
-
-    effect(() => {
-      console.log(this.amountTicketsValues());
     });
   }
 

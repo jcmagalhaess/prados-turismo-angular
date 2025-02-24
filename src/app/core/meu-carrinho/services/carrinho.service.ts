@@ -16,7 +16,16 @@ import { CupomDTO } from "./cupom.usecase";
 @Injectable({ providedIn: "root" })
 export class CarrinhoService {
   public pagarMeURL = signal<string | null>(null);
-  public cupom = signal<CupomDTO | null>(null);
+  public cupom = signal<CupomDTO | null>({
+    id: '1',
+    nome: 'teste',
+    ativo: true,
+    desconto: 5,
+    dataInicio: 'string',
+    dataFim: 'string',
+    quantidade: 100,
+    usuariosId: '1',
+});
   private _cart = signal<Array<any>>([]);
   private _amountTickets = computed(() =>
     this._cart()
@@ -148,18 +157,21 @@ export class CarrinhoService {
   }
 
   public gerarReserva() {
+    let reserva = this._reserva();
     let reservaComDescontos = this._reserva().map((item: any) => ({
       ...item,
-      total: item.total - (item.total * this.cupom()?.desconto! / 100),
+      total: item.total - (item.total * (this.cupom()?.desconto! / 100)),
     }))
+
+    let reqReserva = this.cupom() ? reservaComDescontos : reserva;
     
     if (!this._noAuthenticated()) return;
-
-    const reqReserva = reservaComDescontos.flatMap((item) =>
+    
+    const reqReservaMap = reqReserva.flatMap((item) =>
       this._client.criarReserva(item)
     );
 
-    return forkJoin(reqReserva).subscribe({
+    return forkJoin(reqReservaMap).subscribe({
       next: (res) => {
         this._openDialog()
         this._idGenerateReserva.set(res);
