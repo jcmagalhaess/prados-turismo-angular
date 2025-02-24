@@ -16,16 +16,7 @@ import { CupomDTO } from "./cupom.usecase";
 @Injectable({ providedIn: "root" })
 export class CarrinhoService {
   public pagarMeURL = signal<string | null>(null);
-  public cupom = signal<CupomDTO | null>({
-    id: '1',
-    nome: 'teste',
-    ativo: true,
-    desconto: 5,
-    dataInicio: 'string',
-    dataFim: 'string',
-    quantidade: 100,
-    usuariosId: '1',
-});
+  public cupom = signal<CupomDTO | null>(null);
   private _cart = signal<Array<any>>([]);
   private _amountTickets = computed(() =>
     this._cart()
