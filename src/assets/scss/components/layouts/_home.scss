@@ -7,7 +7,7 @@ $component-name: "home";
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        height: 500px;
+        height: 100vh;
         position: relative;
         &::before {
             content: '';
@@ -30,6 +30,17 @@ $component-name: "home";
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                gap: 2.5rem;
+                span {
+                    font-size: 6.5rem;
+                    font-weight: 600;
+                    line-height: 90%;
+                }
+                ul {
+                    text-align: center;
+                    font-size: 1.4rem;
+                    font-weight: 400;
+                }
                 i {
                     background-color: #28a745;
                     padding: 2px 3px;
@@ -76,22 +87,21 @@ $component-name: "home";
     }
 
     &__title {
-        &--no-divider {
-            &:before {
-                content: '';
-                display: none;
-            }
-        }
-        &--light {
-            color: var(--color-light);
-        }
         display: flex;
-        flex-direction: row;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
-        text-align: center;
-        margin-block: 20px !important;
-        text-transform: uppercase;
+        h3 {
+            font-size: 6.5rem;
+            text-align: center;
+            line-height: .9;
+            margin-block-end: 0;
+        }
+        span {
+            display: block;
+            font-size: 2rem;
+            text-align: center;
+            margin-block: 40px;
+        }
     }
 
     &__excursoes {

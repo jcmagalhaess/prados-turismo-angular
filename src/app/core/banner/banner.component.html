@@ -1,11 +1,19 @@
 
 <section class="banner mb-5">
   <div class="container">
-    <h2 class="home__title home__title--no-divider">A agência numero 1 de Fortaleza</h2>
+    <h2 class="banner__title">A agência número um de Fortaleza</h2>
 
     <div class="banner__list">
-      @for (item of slides(); track $index) {
-        <a href="http://{{ item.href }}" target="_blank" class="banner__item" style="background-image: url({{ item.imageUrl }})"></a>
+      @for (item of slides(); track item.title) {
+        <div class="banner__item">
+          <div class="banner__info">
+            <h4>{{ item.title }}</h4>
+            <span>{{ item.subtitle }}</span>
+          </div>
+          <div class="banner__icon">
+            <i [ngClass]="item.icon"></i>
+          </div>
+        </div>
       }
     </div>
   </div>

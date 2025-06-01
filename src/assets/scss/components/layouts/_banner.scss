@@ -1,76 +1,59 @@
-@import '../abstract/breakpoint';
+@import "../abstract/breakpoint";
 
-$component-name: 'banner';
+$component-name: "banner";
 
 .#{$component-name} {
-    &__list {
-        display: flex;
-        flex-wrap: wrap;
-        margin-block-start: 40px;
-        @include breakpoint(medium-only) {
-            width: 100%;
-            flex-direction: column;
-        }
+  &__title {
+    font-size: 40px !important;
+    margin-block-end: 0;
+  }
+  
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: 40px;
+    @include breakpoint(medium-only) {
+      width: 100%;
+      flex-direction: column;
     }
-    
-    &__item {
-        margin-inline-end: 50px;
-        flex: 0 0 calc(33.333% - 33.4px);
-        margin-block-end: 50px;
-        height: 350px;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        &:last-child {
-            flex: 0 0 100%;
-            margin-inline-end: 0;
-            @include breakpoint(medium-only) {
-                flex: none;
-                margin: 0;
-            }
-        }
-        &:nth-child(3n) {
-            margin-inline-end: 0;
-        }
-        @include breakpoint(medium-only) {
-            flex: none;
-            margin: 0;
-            margin-block-end: 30px;
-        }
-    }
+  }
 
-    &__image {
-        height: 100%;
-        width: 100%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+  &__item {
+    flex: 0 0 calc(33.333% - 33.4px);
+    background-color: #000;
+    border-radius: 30px;
+    display: flex;
+    position: relative;
+    padding-block: 25px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    @include breakpoint(medium-only) {
+      flex: none;
+      margin: 0;
+      margin-block-end: 30px;
     }
-
-    .cycle-pager {
-        position: absolute;
-        bottom: 10px;
-        z-index: 99999;
-        display: flex;
-        gap: 10px;
-        right: 10px;
-        &-active {
-            background-color: var(--color-primary) !important;
-            color: var(--color-secondary) !important;
-        }
-        span {
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(0, 0, 0, .5);
-            color: #fff;
-            cursor: pointer;
-            &:hover {
-                @extend .cycle-pager-active;
-                opacity: .5;
-            }
-        }
+  }
+  &__info {
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 2;
+    h4 {
+      font-size: 30px;
+      font-weight: 700;
+      margin-block-end: 0;
     }
+  }
+  &__icon {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-primary);
+    border-radius: 20px;
+    right: -15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+  }
 }
