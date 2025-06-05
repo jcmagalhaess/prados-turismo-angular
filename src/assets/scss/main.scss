@@ -1,15 +1,40 @@
-@use './components/variables/colors';
-@use './components/vendor/vendor';
+@use "./components/variables/colors";
+@use "./components/vendor/vendor";
 
-@use './components/layouts/header';
-@use './components/layouts/home';
-@use './components/layouts/login';
-@use './components/layouts/dashboard-menu';
-@use './components/layouts/event';
-@use './components/layouts/single-event';
-@use './components/layouts/panel';
-@use './components/layouts/address';
-@use './components/layouts/order';
-@use './components/layouts/footer';
-@use './components/layouts/banner';
-@use './components/abstract/breakpoint';
+@use "./components/layouts/header";
+@use "./components/layouts/home";
+@use "./components/layouts/login";
+@use "./components/layouts/dashboard-menu";
+@use "./components/layouts/event";
+@use "./components/layouts/single-event";
+@use "./components/layouts/panel";
+@use "./components/layouts/address";
+@use "./components/layouts/order";
+@use "./components/layouts/footer";
+@use "./components/layouts/banner";
+@use "./components/abstract/breakpoint";
+
+.icon-circle-check {
+  width: 100px;
+  height: 100px;
+  background-color: #3b82f6; /* Azul */
+
+  /* Máscara com círculo preto e check branco */
+  mask-image: url("data:image/svg+xml;utf8,\
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
+      <circle cx='50' cy='50' r='48' fill='black' />\
+      <path d='M30 52 L45 67 L70 35' fill='none' stroke='white' stroke-width='10' stroke-linecap='round' stroke-linejoin='round' />\
+    </svg>");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+
+  -webkit-mask-image: url("data:image/svg+xml;utf8,\
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
+      <circle cx='50' cy='50' r='48' fill='black' />\
+      <path d='M30 52 L45 67 L70 35' fill='none' stroke='white' stroke-width='10' stroke-linecap='round' stroke-linejoin='round' />\
+    </svg>");
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}

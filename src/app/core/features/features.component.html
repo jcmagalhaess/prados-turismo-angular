@@ -1,29 +1,32 @@
 <section class="home__features">
-    <div class="container">
-        <div class="home__box">
-            <h3 class="home__title home__title--no-divider home__title--light display-6 fs-3">
-                Pacotes em destaque <i class="fa-solid fa-fire ms-2"></i>
-            </h3>
-            @if (excursoes().length > 0) {
-                <div class="home__excursoes mt-3">
-                    @for (item of excursoes(); track $index) {
-                        <div class="home__excursao">
-                            <app-excursao-card
-                                [shadow]="false"
-                                [id]="item.id"
-                                [thumbnail]="hasUrl(item.Pacotes.Imagem)"
-                                [title]="item.nome"
-                                [duration]="item"
-                                [origem]="item.Pacotes.origem"
-                                [transport]="item.Pacotes.tipoTransporte"
-                                [price]="item.valor">
-                            </app-excursao-card>
-                        </div>
-                    }
-                </div>
-            } @else {
-                <p class="text-center display-6 fs-5 mt-4">Nenhuma excursão encontrada.</p>
-            }
+  <div class="container">
+    <div class="home__box">
+      <div class="home__title text-white">
+        <h3 class="fs-1 text-uppercase">Pacotes em destaque</h3>
+      </div>
+      @if (excursoes().length > 0) {
+      <div class="home__excursoes mt-3">
+        @for (item of excursoes(); track $index) {
+        <div class="home__excursao">
+          <app-excursao-card
+            [shadow]="false"
+            [id]="item.id"
+            [thumbnail]="hasUrl(item.Pacotes.Imagem)"
+            [title]="item.nome"
+            [duration]="item"
+            [origem]="item.Pacotes.origem"
+            [transport]="item.Pacotes.tipoTransporte"
+            [price]="item.valor"
+          >
+          </app-excursao-card>
         </div>
+        }
+      </div>
+      } @else {
+      <span class="d-block text-center display-6 fs-5 mt-4 text-white">
+        Nenhuma excursão encontrada.
+      </span>
+      }
     </div>
+  </div>
 </section>

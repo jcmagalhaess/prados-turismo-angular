@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Círculo preto (será visível) -->
+  <circle cx="50" cy="50" r="48" fill="black"></circle>
+  
+  <!-- Check branco (vai virar "buraco") -->
+  <path d="M30 52 L45 67 L70 35" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>

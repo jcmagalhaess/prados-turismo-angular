@@ -1,19 +1,18 @@
-
 <section class="banner mb-5">
   <div class="container">
     <h2 class="banner__title">A agência número um de Fortaleza</h2>
 
     <div class="banner__list">
       @for (item of slides(); track item.title) {
-        <div class="banner__item">
-          <div class="banner__info">
-            <h4>{{ item.title }}</h4>
-            <span>{{ item.subtitle }}</span>
-          </div>
-          <div class="banner__icon">
-            <i [ngClass]="item.icon"></i>
-          </div>
+      <div class="banner__item">
+        <div class="banner__info">
+          <h4>{{ item.title }}</h4>
+          <span>{{ item.subtitle }}</span>
         </div>
+        <div class="banner__icon">
+          <i [ngClass]="item.icon"></i>
+        </div>
+      </div>
       }
     </div>
   </div>

@@ -1,125 +1,130 @@
-@import '../abstract/breakpoint';
+@import "../abstract/breakpoint";
 
 $component-name: "home";
 
 .#{$component-name} {
-    &__banner {
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100vh;
-        position: relative;
-        &::before {
-            content: '';
-            background-color: rgba($color: #000000, $alpha: 0.3);
-            position: absolute;
-            top: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            position: relative;
-        }
-        &-information {
-            color: #fff !important;
-            &:not(.#{$component-name}__banner-information--faq) {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 2.5rem;
-                span {
-                    font-size: 6.5rem;
-                    font-weight: 600;
-                    line-height: 90%;
-                }
-                ul {
-                    text-align: center;
-                    font-size: 1.4rem;
-                    font-weight: 400;
-                }
-                i {
-                    background-color: #28a745;
-                    padding: 2px 3px;
-                    border-radius: 5px;
-                }
-            }
-        }
+  &__banner {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      position: relative;
     }
-
-    &__features {
-        position: relative;
-        top: -50px;
-        z-index: 9;
-    }
-
-    &__box {
-        border-radius: 30px;
-        padding: 30px;
-        font-size: 1.8rem;
-        background-color: var(--color-primary);
-    }
-    
-    &__list {
-        display: flex;
-        gap: 50px;
-        align-items: center;
-        justify-content: center;
-        @include breakpoint(medium-only) {
-            flex-direction: column;
-            text-align: center;
-            line-height: 1;
-        }
-    }
-
-    &__item {
+    &-information {
+      color: #fff !important;
+      &:not(.#{$component-name}__banner-information--faq) {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 20px;
-        i {
-            font-size: 3rem;
-        }
-    }
-
-    &__title {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        h3 {
-            font-size: 6.5rem;
-            text-align: center;
-            line-height: .9;
-            margin-block-end: 0;
-        }
+        gap: 2.5rem;
         span {
-            display: block;
-            font-size: 2rem;
-            text-align: center;
-            margin-block: 40px;
+          font-size: 6.5rem;
+          font-weight: 600;
+          line-height: 90%;
         }
+        ul {
+          text-align: center;
+          font-size: 1.4rem;
+          font-weight: 400;
+        }
+        i {
+          color: var(--color-primary);
+          padding: 2px 3px;
+          border-radius: 5px;
+        }
+      }
     }
+  }
 
-    &__excursoes {
-        @extend .#{$component-name}__list;
-        font-size: 14px;
-        gap: 30px;
-        margin-block-start: 70px;
-        flex-wrap: wrap;
+  &__features {
+    position: relative;
+    top: -50px;
+    z-index: 9;
+  }
+
+  &__box {
+    border-radius: 30px;
+    padding: 80px 60px;
+    font-size: 1.8rem;
+    background-color: var(--color-primary);
+  }
+
+  &__list {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+    @include breakpoint(medium-only) {
+      flex-direction: column;
+      text-align: center;
+      line-height: 1;
     }
-    &__excursao {
-        width: 100%;
-        border-radius: 30px;
-        flex: 0 0 calc(var(--excursao-width, 440px) - 30px);
-        &:nth-child(3n) {
-            margin-right: 0;
-        }
-        @include breakpoint(medium-only) {
-            flex: 0 0 100%;
-        }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    i {
+      font-size: 3rem;
     }
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &--divider {
+      h3 {
+        &::before {
+          content: "";
+          display: block;
+          background-color: #212529;
+          height: 3px;
+          margin-block-start: 30px;
+          margin-block-end: 60px;
+        }
+      }
+    }
+    h3 {
+      font-size: 5rem;
+      text-align: center;
+      line-height: 0.9;
+      margin-block-end: 0;
+      font-weight: 500;
+    }
+    span {
+      display: block;
+      font-size: 1.5rem;
+      text-align: center;
+      margin-block: 30px;
+    }
+  }
+
+  &__excursoes {
+    @extend .#{$component-name}__list;
+    font-size: 14px;
+    gap: 30px;
+    margin-block-start: 70px;
+    flex-wrap: wrap;
+  }
+  &__excursao {
+    width: 100%;
+    border-radius: 30px;
+    flex: 0 0 calc(var(--excursao-width, 440px) - 30px);
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+    @include breakpoint(medium-only) {
+      flex: 0 0 100%;
+    }
+  }
 }
