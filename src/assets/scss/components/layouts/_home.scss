@@ -112,14 +112,17 @@ $component-name: "home";
   &__excursoes {
     @extend .#{$component-name}__list;
     font-size: 14px;
-    gap: 30px;
-    margin-block-start: 70px;
+    gap: 20px;
     flex-wrap: wrap;
+    margin-block: 30px;
   }
   &__excursao {
     width: 100%;
     border-radius: 30px;
-    flex: 0 0 calc(var(--excursao-width, 440px) - 30px);
+    flex: 0 0 calc(var(--excursao-width, 540px) - 30px);
+    &--featured {
+      flex: 0 0 calc(var(--excursao-width, 600px) - 30px);
+    }
     &:nth-child(3n) {
       margin-right: 0;
     }

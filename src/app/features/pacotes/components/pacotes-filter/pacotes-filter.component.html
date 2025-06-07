@@ -1,4 +1,18 @@
-<div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mb-4">
-    <button class="btn btn-light" [ngClass]="{ 'btn-active': origem() === 1 }" type="button" (click)="origemChoose(1)">Saindo de Fortaleza (CE)</button>
-    <button class="btn btn-light" [ngClass]="{ 'btn-active': origem() === 2 }" type="button" (click)="origemChoose(2)">Saindo de Tianguá (CE)</button>
+<div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+  <button
+    class="btn btn-light"
+    [ngClass]="{ 'btn-active': origem() === 1 }"
+    type="button"
+    (click)="origemChoose(1)"
+  >
+    Saindo de Fortaleza (CE)
+  </button>
+  <button
+    class="btn btn-light"
+    [ngClass]="{ 'btn-active': origem() === 2 }"
+    type="button"
+    (click)="origemChoose(2)"
+  >
+    Saindo de Tianguá (CE)
+  </button>
 </div>

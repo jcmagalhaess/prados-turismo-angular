@@ -71,19 +71,19 @@ export type ExcursaoLocalEmbarque = {
 };
 
 export const Origem: EnumType<string>[] = [
-  { key: '1', value: 'Saindo de Fortaleza - CE' },
-  { key: '2', value: 'Saindo de Tianguá - Ce' }
-]
+  { key: "1", value: "Saindo de Fortaleza - CE" },
+  { key: "2", value: "Saindo de Tianguá - Ce" },
+];
 
 export const Transport: EnumType<string>[] = [
-  { key: '1', value: 'Pacote Terrestre' },
-  { key: '2', value: 'Pacote Aéreo' }
-]
+  { key: "1", value: "Pacote terrestre" },
+  { key: "2", value: "Pacote aéreo" },
+];
 
 export enum TipoPassageiroEnum {
-  adults = 'Adulto',
-  children = 'Criança',
-  babies = 'Crianças de colo'
+  adults = "Adulto",
+  children = "Criança",
+  babies = "Crianças de colo",
 }
 
 export type TipoPassageiroType = keyof typeof TipoPassageiroEnum;

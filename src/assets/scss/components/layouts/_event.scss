@@ -1,124 +1,231 @@
-@import '../abstract/breakpoint';
+@import "../abstract/breakpoint";
 
-$component-name: 'card-event';
+$component-name: "card-event";
 
 .#{$component-name} {
-    border: 1px solid #ccc;
-    border-radius: 30px;
-    width: calc(100% - 20px);
-    cursor: pointer;
-    margin: 20px 10px;
-    box-shadow: 3px 6px 10px #ccc;
-    background-color: #fff !important;
-
-    &--no-shadow {
-        box-shadow: none !important;
-        margin: 0 !important;
+  border: 1px solid #ccc;
+  width: 100%;
+  height: 370px;
+  cursor: pointer;
+  box-shadow: 3px 6px 10px #ccc;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left top;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  &--featured {
+    box-shadow: none;
+    border: none;
+    border-radius: 50px;
+    height: 450px;
+    .#{$component-name}__date {
+      border: none;
+      margin: 0;
     }
-
-    &__content {
-        width: 100%;
-        height: 360px;
-        overflow: hidden;
-        text-align: center;
+    .#{$component-name}__content {
+      padding: 20px;
+      height: 450px;
     }
-
-    &__thumbnail {
-        width: 100%;
-        border-radius: 29px;
-        height: 200px;
-        background-color: #ccc;
-        margin-block-end: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        transition: .3s ease;
-        cursor: pointer;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        &:hover {
-            &::before {
-                content: '';
-                width: 100%;
-                height: 100%;
-                background-color: rgba($color: #000000, $alpha: .4);
-                position: absolute;
-            }
-            .#{$component-name}__date {
-                color: var(--color-secondary);
-                background-color: var(--color-light);
-            }
-        }
+    .#{$component-name}__feature {
+      align-items: flex-start;
     }
-
-    &__category {
-        padding-block: 5px;
-        padding-inline: 20px;
-        border-radius: 20px;
-        color: #fff;
-        background-color: #9e9e9e;
-    }
-
-    &__title {
-        font-size: 1.5rem !important;
-        font-weight: 400 !important;
-        margin-inline: 20px !important;
-        margin-block-end: 0 !important;
-    }
-
-    &__actions {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.3;
-        font-size: 20px;
-        font-weight: 300;
-        padding-inline: 20px;
-    }
-
-    &__price {
-        font-size: 2.3rem;
-        font-weight: 500;
-    }
-
-    &__cart {
-        width: 80px;
-        height: 45px;
-        padding: 10px;
-        background: none;
-        border: none;
-        transition: .3s ease;
-        text-align: center;
-        color: var(--color-secondary);
-        &:hover {
-            background-color: var(--color-secondary);
-            color: var(--color-light);
-        }
-    }
-    
-    &__date {
-        background-color: var(--color-primary);
-        padding: 10px 30px;
-        border-radius: 15px;
-        color: var(--color-light);
-        transition: .3s ease;
-        margin-block: 20px;
-        display: inline-block;
-    }
-
-    &__feature {
+    .#{$component-name}__transport {
+      display: flex;
+      word-break: break-word;
+      width: 120px;
+      text-align: right;
+      text-transform: none;
+      line-height: 1;
+      font-size: 1.8rem;
+      font-weight: 600;
+      background: none;
+      padding: 0;
+      color: var(--color-primary);
+      position: relative;
+      img {
         position: absolute;
-        bottom: -15px;
-        display: flex;
-        gap: 30px;
-        @include breakpoint(small-only) {
-            padding-inline: 10px
-        }
+        top: 30px;
+        right: 120px;
+        width: 75%;
+      }
     }
+    .#{$component-name}__title,
+    .#{$component-name}__actions {
+      text-align: center;
+    }
+    .#{$component-name}__title {
+      margin-block: 40px;
+    }
+    .#{$component-name}__actions {
+      align-items: center;
+      span:last-child {
+        margin-block-start: 20px;
+        background-color: var(--color-primary);
+        border-radius: 50px;
+        padding-inline: 20px;
+      }
+    }
+    .#{$component-name}__price {
+      background-color: #ffffff;
+      color: var(--color-primary);
+      border-radius: 15px;
+      padding: 5px 20px;
+    }
+    .#{$component-name}__lombada {
+      top: -200px;
+      right: 20px;
+      width: 210px;
+      height: 450px;
+      transform: rotate(-58deg);
+      path {
+        fill: #ffffff;
+      }
+    }
+  }
 
-    &__transport {
-        @extend .#{$component-name}__category;
-        background-color: var(--color, #9e9e9e);
+  &--no-shadow {
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.05)
+    );
+  }
+  &__lombada {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 370px;
+    path {
+      fill: var(--color-primary);
     }
+  }
+
+  &__content {
+    width: 100%;
+    height: 370px;
+    position: absolute;
+    z-index: 9;
+    overflow: hidden;
+    text-align: center;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__thumbnail {
+    width: 100%;
+    border-radius: 29px;
+    height: 200px;
+    background-color: #ccc;
+    margin-block-end: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: 0.3s ease;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    &:hover {
+      &::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: rgba($color: #000000, $alpha: 0.4);
+        position: absolute;
+      }
+      .#{$component-name}__date {
+        color: var(--color-secondary);
+        background-color: var(--color-light);
+      }
+    }
+  }
+
+  &__category {
+    padding-block: 7px;
+    padding-inline: 20px;
+    border-radius: 20px;
+    background-color: #9e9e9e;
+    text-transform: capitalize;
+  }
+
+  &__title {
+    font-size: 2rem !important;
+    font-weight: 600 !important;
+    margin-inline: 20px;
+    margin-block-end: 0;
+    text-transform: capitalize;
+    text-align: start;
+    line-height: normal !important;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    font-size: 20px;
+    font-weight: 300;
+    text-align: start;
+  }
+
+  &__price {
+    font-size: 2.3rem;
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  &__cart {
+    width: 80px;
+    height: 45px;
+    padding: 10px;
+    background: none;
+    border: none;
+    transition: 0.3s ease;
+    text-align: center;
+    color: var(--color-secondary);
+    &:hover {
+      background-color: var(--color-secondary);
+      color: var(--color-light);
+    }
+  }
+
+  &__date {
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 2px solid;
+    font-size: 1.2rem;
+    color: var(--color-light);
+    transition: 0.3s ease;
+    margin-block: 20px;
+    display: inline-block;
+  }
+
+  &__feature {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+    @include breakpoint(small-only) {
+      padding-inline: 10px;
+    }
+  }
+
+  &__transport {
+    @extend .#{$component-name}__category;
+    background-color: var(--color, #9e9e9e);
+  }
 }

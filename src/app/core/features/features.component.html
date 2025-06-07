@@ -7,8 +7,9 @@
       @if (excursoes().length > 0) {
       <div class="home__excursoes mt-3">
         @for (item of excursoes(); track $index) {
-        <div class="home__excursao">
+        <div class="home__excursao home__excursao--featured">
           <app-excursao-card
+            [featured]="true"
             [shadow]="false"
             [id]="item.id"
             [thumbnail]="hasUrl(item.Pacotes.Imagem)"

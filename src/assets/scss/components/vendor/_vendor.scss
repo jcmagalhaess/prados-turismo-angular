@@ -1,147 +1,153 @@
-@import '../abstract/breakpoint';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "../abstract/breakpoint";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 ::root {
-    font-family: "Montserrat", serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
-ul, ol {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    font-family: Roboto, sans-serif;
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-family: Roboto, sans-serif;
 }
 
 .spacer {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 a {
-    text-decoration: none;
-    color: var(--color-secondary);
-    transition: .3s ease;
-    &:hover {
-        color: var(--color-primary);
-    }
+  text-decoration: none;
+  color: var(--color-secondary);
+  transition: 0.3s ease;
+  &:hover {
+    color: var(--color-primary);
+  }
 }
 
-.btn{
-    &-outline-primary,
-    &-outline-secondary,
-    &-primary,
-    &-secondary,
-    &-success,
-    &-light {
-        height: 55px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.btn {
+  &-outline-primary,
+  &-outline-secondary,
+  &-primary,
+  &-secondary,
+  &-success,
+  &-light {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    &-outline-primary {
-        border-color: var(--color-primary) !important;
-        color: var(--color-primary) !important;
-        &:hover {
-            background-color: var(--color-primary) !important;
-            color: var(--color-light) !important;
-        }
+  &-outline-primary {
+    border-color: var(--color-primary) !important;
+    color: var(--color-primary) !important;
+    &:hover {
+      background-color: var(--color-primary) !important;
+      color: var(--color-light) !important;
     }
+  }
 
-    &-outline-secondary {
-        border-color: var(--color-secondary) !important;
-        color: var(--color-secondary) !important;
-        &:hover {
-            background-color: var(--color-secondary) !important;
-            color: var(--color-light) !important;
-        }
+  &-outline-secondary {
+    border-color: var(--color-secondary) !important;
+    color: var(--color-secondary) !important;
+    &:hover {
+      background-color: var(--color-secondary) !important;
+      color: var(--color-light) !important;
     }
-    
-    &-primary,
-    &-secondary {
-        &:not(.btn-secondary) {
-            background-color: var(--color-secondary) !important;
-        }
-        border: none !important;
-        padding-inline: 25px !important;
-        &:hover {
-            background-color: var(--color-secondary-dark) !important;
-        }
+  }
+
+  &-primary,
+  &-secondary {
+    &:not(.btn-secondary) {
+      background-color: var(--color-secondary) !important;
     }
-    &-secondary {
-        &:hover {
-            background-color: #484c50 !important;
-        }
+    border: none !important;
+    padding-inline: 25px !important;
+    &:hover {
+      background-color: var(--color-secondary-dark) !important;
     }
-    &-float {
-        position: fixed !important;
-        right: 20px;
-        bottom: 20px;
-        background-color: var(--bs-btn-bg) !important;
-        &:hover {
-            background-color: var(--bs-btn-hover-bg) !important;
-            color: #fff !important;
-        }
+  }
+  &-secondary {
+    &:hover {
+      background-color: #484c50 !important;
     }
+  }
+  &-float {
+    position: fixed !important;
+    right: 20px;
+    bottom: 20px;
+    background-color: var(--bs-btn-bg) !important;
+    &:hover {
+      background-color: var(--bs-btn-hover-bg) !important;
+      color: #fff !important;
+    }
+  }
 }
 
 main:not(main.home) {
-    padding-block: 50px;
-    @include breakpoint(medium-only) {
-        padding-block: 20px;
-    }
+  padding-block: 50px;
+  @include breakpoint(medium-only) {
+    padding-block: 20px;
+  }
 }
 
 img {
-    height: auto;
-    width: 100%;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
+  height: auto;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-.form{
-    &-control, &-select {
-        height: 55px !important;
-    }
+.form {
+  &-control,
+  &-select {
+    height: 55px !important;
+  }
 }
 
 .input-group {
-    align-items: center;
-    button {
-        transition: .2s ease;
-        height: 55px !important;
-        &:hover {
-            background-color: rgba($color: #000000, $alpha: 0.05);
-        }
-        &:active {
-            background-color: rgba($color: #112c44, $alpha: 0.5);
-        }
+  align-items: center;
+  button {
+    transition: 0.2s ease;
+    height: 55px !important;
+    &:hover {
+      background-color: rgba($color: #000000, $alpha: 0.05);
     }
+    &:active {
+      background-color: rgba($color: #112c44, $alpha: 0.5);
+    }
+  }
 }
 
 body {
-    margin: 0;
+  margin: 0;
 }
 
 .mt-80 {
-    margin-block-start: 80px;
-    @include breakpoint(medium-only) {
-        margin-block-start: 160px;
-    }
+  margin-block-start: 80px;
+  @include breakpoint(medium-only) {
+    margin-block-start: 160px;
+  }
 }
 
 .accordion.accordion-faq {
-    .accordion-button {
-        &:not(.collapsed) {
-            background-color: var(--color-secondary);
-            color: var(--color-light);
-        }
+  .accordion-button {
+    &:not(.collapsed) {
+      background-color: var(--color-secondary);
+      color: var(--color-light);
     }
-    
-    .accordion-body {
-        background-color: #f1f8fd;
-    }
+  }
+
+  .accordion-body {
+    background-color: #f1f8fd;
+  }
+}
+
+.container {
+  max-width: 1595px;
 }

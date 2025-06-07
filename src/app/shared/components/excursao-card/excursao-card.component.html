@@ -1,17 +1,44 @@
-<div class="card-event" [ngClass]="{ 'card-event--no-shadow': !shadow }" [routerLink]="'/pacotes/' + id">
-    <div class="card-event__content">
-        <figure class="card-event__thumbnail" style="background-image: url({{ thumbnail }});">
-            <div class="card-event__feature">
-                <div class="card-event__transport" style="--color: {{ transport.includes('Terrestre') ? 'green' : '#4bb6ff' }}">{{ transport }}</div>
-                <div class="card-event__category">{{ origem }}</div>
-            </div>
-        </figure>
-        <h2 class="card-event__title" [title]="title">{{ title }}</h2>
-        <span class="card-event__date">{{ duration | periodoExcursao }}</span>
+<div
+  class="card-event"
+  [ngClass]="{ 'card-event--featured': featured }"
+  [routerLink]="'/pacotes/' + id"
+  style="background-image: url({{ thumbnail }});"
+>
+  <div class="card-event__content">
+    <!-- <figure class="card-event__thumbnail">
+    </figure> -->
+    <div class="card-event__feature">
+      <span class="card-event__date">{{ duration | periodoExcursao }}</span>
+      <div
+        class="card-event__transport"
+        style="--color: {{
+          transport.includes('Terrestre') ? 'green' : '#4bb6ff'
+        }}"
+      >
+        @if (featured) {
+        <img src="assets/images/{{ getTipoTransporte(transport) }}.png" />
+        }
+        {{ transport }}
+      </div>
     </div>
+    <h2 class="card-event__title" [title]="title">{{ title }}</h2>
+    <div class="flex-grow-1"></div>
     <div class="card-event__actions">
-        Por apenas
-        <span class="card-event__price">{{ price | currency:'BRL':'symbol':'1.2-2' }}</span>
+      @if (!featured) { por apenas }
+
+      <span class="card-event__price">
+        R$ <strong>{{ price | number : "1.2-2" }}</strong>
+      </span>
+      <span>{{ price | formataParcelas }}</span>
+
+      @if (featured) { <span>saiba mais</span> }
     </div>
-    <p class="my-3 text-center">{{ price | formataParcelas }}</p>
+  </div>
+  <svg
+    class="card-event__lombada"
+    viewBox="0 0 80 360"
+    preserveAspectRatio="none"
+  >
+    <path [attr.d]="featured ? pathFeatured : pathNormal" />
+  </svg>
 </div>
