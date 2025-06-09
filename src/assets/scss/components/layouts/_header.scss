@@ -1,159 +1,191 @@
-@import '../abstract/breakpoint';
+@import "../abstract/breakpoint";
 
-$component-name: 'header';
+$component-name: "header";
 
 .#{$component-name} {
+  text-decoration: none;
+  color: var(--color-light);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  font-size: 1.5rem;
+  transition: background 0.5s ease, color 0.5s ease, box-shadow 0.5s ease,
+    padding 0.3s ease;
+  @include breakpoint(medium-only) {
+    padding-block-start: 40px;
+  }
+  &--scrolled {
+    @include breakpoint(medium-only) {
+      padding-block-start: 0;
+    }
+    .#{$component-name} {
+      &__topbar {
+        background: linear-gradient(
+          0deg,
+          rgba(19, 48, 70, 1) 0%,
+          rgba(22, 23, 36, 1) 100%
+        );
+        height: 80px;
+        @include breakpoint(medium-only) {
+          height: 160px;
+        }
+      }
+
+      &__logo {
+        height: 60px;
+      }
+    }
+  }
+
+  a {
     text-decoration: none;
     color: var(--color-light);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 999;
-    transition: background 0.5s ease, color 0.5s ease, box-shadow 0.5s ease, padding 0.3s ease;
+  }
+
+  &__flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
     @include breakpoint(medium-only) {
-        padding-block-start: 40px;
+      flex-direction: column;
+      gap: 0;
     }
-    &--scrolled {
-        @include breakpoint(medium-only) {
-            padding-block-start: 0;
-        }
-        .#{$component-name} {
+  }
 
-            &__topbar {
-                background: linear-gradient(0deg, rgba(19, 48, 70, 1) 0%, rgba(22, 23, 36, 1) 100%);
-                height: 80px;
-                @include breakpoint(medium-only) {
-                    height: 160px;
-                }
-            }
+  &__topbar {
+    display: flex;
+    align-items: center;
+    height: 120px;
+    padding-inline: 15px;
+    background-color: transparent;
+    transition: 0.5s ease;
+  }
 
-            &__logo {
-                height: 60px;
-            }
-        }
-    }
-
+  &__account,
+  &__menu {
     a {
-        text-decoration: none;
-        color: var(--color-light);
+      display: flex;
+      align-items: center;
     }
+    i {
+      color: var(--color-primary);
+    }
+    &:hover {
+      a {
+        color: var(--color-primary);
+      }
+    }
+  }
 
-    &__flex {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 30px;
-        @include breakpoint(medium-only) {
-            flex-direction: column;
-            gap: 0;
-        }
-    }
-    
-    &__topbar {
-        display: flex;
-        align-items: center;
-        height: 120px;
-        padding-inline: 15px;
-        background-color: transparent;
-        transition: .5s ease;
-    }
+  &__menu i {
+    font-size: 2rem;
+  }
 
-    &__account,
-    &__menu {
-        &:hover {
-            i, a {
-                color: var(--color-primary);
-            }
-        }
+  &__account a {
+    padding: 13px 18px;
+    border-radius: 10px;
+    i {
+      color: #ffffff;
     }
+    &:hover {
+      i {
+        color: #ffffff !important;
+      }
+      color: #ffffff !important;
+      background-color: var(--color-primary);
+    }
+  }
 
-    &__social-icons {
-        list-style: none;
-        display: flex;
-        gap: 10px;
-        li a {
-            display: flex;
-            align-items: center;
-            &:hover {
-                color: var(--color-primary);
-                .#{$component-name}__icon {
-                    background-color: var(--color-primary);
-                }
-            }
-        }
+  &__social-icons {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    li a {
+      display: flex;
+      align-items: center;
+      &:hover {
+        color: var(--color-primary);
+      }
     }
+  }
 
-    &__icon {
-        background-color: rgba($color: #f5f5f5, $alpha: 0.23);
-        width: 30px;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        cursor: pointer;
-        color: var(--color-light);
-        transition: .5s ease;
+  &__icon {
+    // background-color: rgba($color: #f5f5f5, $alpha: 0.23);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--color-light);
+    transition: 0.5s ease;
+    font-size: 2rem;
+    i {
+      color: var(--color-primary);
     }
+  }
 
-    &__logo {
-        margin: 0;
-        display: flex;
-        align-items: center;
-        transition: .5s ease;
-        cursor: pointer;
-        img {
-            height: 100%;
-        }
+  &__logo {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    transition: 0.5s ease;
+    cursor: pointer;
+    img {
+      height: 100%;
     }
+  }
 
-    &__list {
-        display: flex;
-        gap: 30px;
-    }
+  &__list {
+    display: flex;
+    gap: 30px;
+  }
 
-    &__item {
-        .activated {
-            color: var(--color-primary);
-        }
-        a {
-            text-transform: uppercase;
-            text-decoration: none;
-            color: #333333;
-            transition: .3s ease;
-            &:hover {
-                @extend .activated;
-            }
-        }
+  &__item {
+    .activated {
+      color: var(--color-primary);
     }
+    a {
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #333333;
+      transition: 0.3s ease;
+      &:hover {
+        @extend .activated;
+      }
+    }
+  }
 
-    &__cart {
-        display: flex;
-        gap: 10px;
-        padding: 15px;
-        cursor: pointer;
-        border-radius: 10px;
-        transition: .5s ease;
-        &:hover {
-            background-color: var(--color-primary);
-        }
+  &__cart {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.5s ease;
+    &:hover {
+      background-color: var(--color-primary);
     }
+  }
 
-    &__amount {
-        position: relative;
-    }
+  &__amount {
+    position: relative;
+  }
 
-    &__badge {
-        position: absolute;
-        right: -9px;
-        top: -9px;
-        border-radius: 50%;
-        width: 17px;
-        height: 17px;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #d9534f;
-    }
+  &__badge {
+    position: absolute;
+    right: -9px;
+    top: -9px;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9534f;
+  }
 }

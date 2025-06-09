@@ -12,7 +12,7 @@
       <div
         class="card-event__transport"
         style="--color: {{
-          transport.includes('Terrestre') ? 'green' : '#4bb6ff'
+          transport.toLowerCase().includes('terrestre') ? 'green' : '#4bb6ff'
         }}"
       >
         @if (featured) {

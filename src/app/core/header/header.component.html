@@ -8,23 +8,12 @@
         <div class="spacer"></div>
         <ul class="header__social-icons">
           <li>
-            <a href="https://www.facebook.com/pradosturismo" target="_blank">
-              <div class="header__icon">
-                <i class="fa-brands fa-facebook"></i>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/pradosturismo" target="_blank">
-              <div class="header__icon">
-                <i class="fa-brands fa-instagram"></i>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="https://api.whatsapp.com/send/?phone=5585997460786&text&type=phone_number&app_absent=0" target="_blank">
+            <a
+              href="https://api.whatsapp.com/send/?phone=5585997460786&text&type=phone_number&app_absent=0"
+              target="_blank"
+            >
               <div class="header__icon me-4">
-                <i class="fa-brands fa-whatsapp"></i> 
+                <i class="fa-brands fa-whatsapp"></i>
               </div>
 
               +55 85 9 9746-0786
@@ -37,13 +26,13 @@
               <i class="fa-solid fa-circle-question me-4"></i> Ajuda
             </a>
           </div>
-          <div class="header__account ms-3">
-            <i class="fa-regular fa-user me-4"></i>
-            @if (client) {
-            <a routerLink="/minha-conta">{{ client.nome }}</a>
-            } @else {
-            <a routerLink="/login">Entre ou Cadastre-se</a>
-            }
+          <div class="header__account ms-5">
+            <a [routerLink]="getLink(client)">
+              <i class="fa-regular fa-user" [ngClass]="{ 'me-4': client }"></i>
+              @if (client) {
+              {{ client.nome }}
+              }
+            </a>
           </div>
           <div
             class="header__cart ms-3"
@@ -51,9 +40,6 @@
             data-bs-target="#offcanvasRight"
             aria-controls="offcanvasRight"
           >
-            <!-- <div class="header__value">
-              {{ valoresCarrinho() | currency : "BRL" : 'symbol' : "1.2-2" }}
-            </div> -->
             <div class="header__amount">
               <i class="fa-solid fa-basket-shopping"></i>
               <span class="header__badge">{{ totalCarrinho }}</span>

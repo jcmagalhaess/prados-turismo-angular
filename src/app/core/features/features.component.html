@@ -1,13 +1,13 @@
 <section class="home__features">
   <div class="container">
     <div class="home__box">
-      <div class="home__title text-white">
+      <div class="home__title text-white mb-5">
         <h3 class="fs-1 text-uppercase">Pacotes em destaque</h3>
       </div>
       @if (excursoes().length > 0) {
-      <div class="home__excursoes mt-3">
+      <div class="home__excursoes home__excursoes--featured mt-3">
         @for (item of excursoes(); track $index) {
-        <div class="home__excursao home__excursao--featured">
+        <div class="home__excursao">
           <app-excursao-card
             [featured]="true"
             [shadow]="false"

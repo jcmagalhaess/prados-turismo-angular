@@ -2,6 +2,7 @@ import { CommonModule, CurrencyPipe } from "@angular/common";
 import { Component } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { ExcursoesListUsecase } from "../../features/pacotes/services/excursoes-list.usecase";
+import { Cliente } from "../../shared/models/cliente.type";
 import { AcessoGetDataPessoaUsecase } from "../acesso/services/acesso-get-data-pessoa.usecase";
 import { MeuCarrinhoOffcanvasComponent } from "../meu-carrinho/components/meu-carrinho-offcanvas/meu-carrinho-offcanvas.component";
 import { CarrinhoService } from "../meu-carrinho/services/carrinho.service";
@@ -44,5 +45,10 @@ export class HeaderComponent {
 
   public navigate(route: string) {
     this._router.navigate([route]);
+  }
+
+  public getLink(client: Cliente | null) {
+    if (!client) return "/login";
+    return "/minha-conta";
   }
 }
