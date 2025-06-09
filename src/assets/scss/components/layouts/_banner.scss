@@ -8,6 +8,10 @@ $component-name: "banner";
   &__title {
     font-size: 2.5rem !important;
     margin-block-end: 0;
+    @include breakpoint(medium-only) {
+      text-align: center;
+      line-height: 1 !important;
+    }
   }
 
   &__list {
@@ -17,6 +21,9 @@ $component-name: "banner";
     @include breakpoint(medium-only) {
       width: 100%;
       flex-direction: column;
+      gap: 50px;
+      align-items: center;
+      margin-block-start: 60px;
     }
   }
 
@@ -31,9 +38,10 @@ $component-name: "banner";
     align-items: center;
     justify-content: center;
     @include breakpoint(medium-only) {
-      flex: none;
-      margin: 0;
-      margin-block-end: 30px;
+      // flex: none;
+      width: 80%;
+      // margin: 0;
+      // margin-block-end: 30px;
     }
   }
   &__info {
@@ -60,5 +68,10 @@ $component-name: "banner";
     align-items: center;
     justify-content: center;
     font-size: 25px;
+    @include breakpoint(medium-only) {
+      left: 50%;
+      transform: translateX(-50%);
+      top: -30px;
+    }
   }
 }

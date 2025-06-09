@@ -32,6 +32,8 @@ $component-name: "footer";
     justify-content: center;
     @include breakpoint(medium-only) {
       width: 40%;
+      margin: auto;
+      margin-block-end: 20px;
     }
   }
 
