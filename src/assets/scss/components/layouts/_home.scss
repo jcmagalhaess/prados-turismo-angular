@@ -9,6 +9,10 @@ $component-name: "home";
     background-repeat: no-repeat;
     height: 100vh;
     position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* não precisa mais do fixed */
+    background-position: center;
     .container {
       display: flex;
       align-items: center;

@@ -1,64 +1,72 @@
-<section
-  class="home__banner"
-  style="background-image: url(/assets/images/home.png)"
->
-  <div class="container">
-    <div class="home__banner-information">
-      <span class="mb-3 display-6 text-center"
-        >Construa memorias inesquecíveis</span
-      >
-      <ul class="d-flex flex-column flex-sm-row justify-content-between gap-3">
-        <li>
-          <i class="fa-solid fa-circle-check"></i>
-          Suporte durante toda a viagem
-        </li>
-        <li>
-          <i class="fa-solid fa-circle-check"></i>
-          Parcelamento sem juros
-        </li>
-        <li>
-          <i class="fa-solid fa-circle-check"></i>
-          Acumule pontos e ganhe benefícios
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<app-features></app-features>
-
-<section class="home__pacotes mb-5">
-  <div class="container">
-    <div class="home__title home__title--divider">
-      <h3>
-        Qual será seu <br />
-        próximo destino?
-      </h3>
-      <span>Confira abaixo os <strong>pacotes disponíveis:</strong></span>
-    </div>
-
-    <app-pacotes-filter (origemEmit)="getOrigem($event)"></app-pacotes-filter>
-
-    @if (excursoes().length > 0) {
-    <div class="home__excursoes">
-      @for (item of excursoes(); track $index) {
-      <div class="home__excursao">
-        <app-excursao-card
-          [id]="item.id"
-          [thumbnail]="hasUrl(item.Pacotes.Imagem)"
-          [title]="item.nome"
-          [duration]="item"
-          [origem]="item.Pacotes.origem"
-          [transport]="item.Pacotes.tipoTransporte"
-          [price]="item.valor"
-        />
+<div data-scroll-container>
+  <section
+    class="home__banner"
+    style="background-image: url(/assets/images/home.png)"
+    [ngStyle]="{ 'background-position-y': backgroundPosition + 'px' }"
+    data-scroll
+  >
+    <div class="container">
+      <div class="home__banner-information">
+        <span class="mb-3 display-6 text-center"
+          >Construa memorias inesquecíveis</span
+        >
+        <ul
+          class="d-flex flex-column flex-sm-row justify-content-between gap-3"
+        >
+          <li>
+            <i class="fa-solid fa-circle-check"></i>
+            Suporte durante toda a viagem
+          </li>
+          <li>
+            <i class="fa-solid fa-circle-check"></i>
+            Parcelamento sem juros
+          </li>
+          <li>
+            <i class="fa-solid fa-circle-check"></i>
+            Acumule pontos e ganhe benefícios
+          </li>
+        </ul>
       </div>
+    </div>
+  </section>
+
+  <app-features data-scroll></app-features>
+
+  <section class="home__pacotes mb-5">
+    <div class="container">
+      <div class="home__title home__title--divider">
+        <h3>
+          Qual será seu <br />
+          próximo destino?
+        </h3>
+        <span>Confira abaixo os <strong>pacotes disponíveis:</strong></span>
+      </div>
+
+      <app-pacotes-filter (origemEmit)="getOrigem($event)"></app-pacotes-filter>
+
+      @if (excursoes().length > 0) {
+      <div class="home__excursoes">
+        @for (item of excursoes(); track $index) {
+        <div class="home__excursao">
+          <app-excursao-card
+            [id]="item.id"
+            [thumbnail]="hasUrl(item.Pacotes.Imagem)"
+            [title]="item.nome"
+            [duration]="item"
+            [origem]="item.Pacotes.origem"
+            [transport]="item.Pacotes.tipoTransporte"
+            [price]="item.valor"
+          />
+        </div>
+        }
+      </div>
+      } @else {
+      <p class="text-center display-6 fs-5 mt-4">
+        Nenhuma excursão encontrada.
+      </p>
       }
     </div>
-    } @else {
-    <p class="text-center display-6 fs-5 mt-4">Nenhuma excursão encontrada.</p>
-    }
-  </div>
-</section>
+  </section>
 
-<app-banner></app-banner>
+  <app-banner></app-banner>
+</div>
