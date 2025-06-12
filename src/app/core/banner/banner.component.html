@@ -1,24 +1,22 @@
-<section class="banner my-5">
-  <div class="container">
-    <h2 class="banner__title">A agência número um de Fortaleza</h2>
+<section class="banner">
+  <h2 class="banner__title">A agência número um de Fortaleza</h2>
 
-    <div class="banner__list">
-      @for (item of slides(); track item.title) {
-      <div class="banner__item">
-        <div class="banner__info">
-          <h4>{{ item.title }}</h4>
-          <span>{{ item.subtitle }}</span>
-        </div>
-        <div class="banner__icon">
-          <i [ngClass]="item.icon"></i>
-        </div>
+  <div class="banner__list">
+    @for (item of slides(); track item.title) {
+    <div class="banner__item">
+      <div class="banner__icon">
+        <i [ngClass]="item.icon"></i>
       </div>
-      }
+      <div class="banner__info">
+        <h4>{{ item.title }}</h4>
+        <span>{{ item.subtitle }}</span>
+      </div>
     </div>
+    }
   </div>
 </section>
 
-<section class="p-0 p-md-5">
+<section class="p-0 px-md-5">
   @for (item of familiaPrados(); track $index) {
   <a href="{{ item.href }}" class="banner__familia-prados-item">
     <img [src]="item.imageUrl" [alt]="item.title" />

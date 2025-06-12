@@ -13,16 +13,35 @@ export class BannerComponent {
   public slides = signal([
     {
       title: "Suporte 24h",
-      subtitle: "Durante sua viagem",
+      subtitle: "Suporte 24h durante toda a viagem.",
       icon: "fa-brands fa-whatsapp",
     },
     {
-      title: "Acumule viagens",
-      subtitle: "e ganhe benefícios",
+      title: "Programa de fidelidade",
+      subtitle:
+        "Acumule viagens e ganhe benefícios com o programa de fidelidade da Familia Prados.",
+      icon: "fa-solid fa-trophy",
+    },
+    {
+      title: "Melhor custo-benefício",
+      subtitle:
+        "Nossos roteiros são pensados em aproveitar o máximo pagando pouco.",
+      icon: "fa-brands fa-whatsapp",
+    },
+    {
+      title: "Acompanhante",
+      subtitle:
+        "Acompanhamento presencial de um representante da Prados durante a viagem.",
+      icon: "fa-brands fa-whatsapp",
+    },
+    {
+      title: "Grupo no whatsapp",
+      subtitle: "Grupo de viagem no Whatsapp para passar dicas e informações.",
       icon: "fa-solid fa-trophy",
     },
     {
       title: "Site seguro",
+      subtitle: "Nosso site é totalmente seguro para pagamentos online.",
       icon: "fa-solid fa-shield",
     },
   ]);
