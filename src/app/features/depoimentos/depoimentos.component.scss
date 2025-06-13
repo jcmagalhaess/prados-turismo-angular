@@ -6,7 +6,7 @@ $component-name: "depoimentos";
   background-image: url("../../../assets/images/bg-dep.png");
   display: flex;
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   margin-block-end: 150px;
   @include breakpoint(medium-only) {
     background-position: left;

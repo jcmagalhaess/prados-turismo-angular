@@ -32,67 +32,71 @@
 
   <app-features data-scroll></app-features>
 
-  <section class="home__pacotes mb-5">
-    <div class="container">
-      <div class="home__title home__title--divider">
-        <h3>
-          Qual será seu <br />
-          próximo destino?
-        </h3>
-        <span>Confira abaixo os <strong>pacotes disponíveis:</strong></span>
-      </div>
+  <div class="home__mask">
+    <section class="home__pacotes mb-5">
+      <div class="container">
+        <div class="home__title home__title--divider">
+          <h3>
+            Qual será seu <br />
+            próximo destino?
+          </h3>
+          <span>Confira abaixo os <strong>pacotes disponíveis:</strong></span>
+        </div>
 
-      <app-pacotes-filter (origemEmit)="getOrigem($event)"></app-pacotes-filter>
+        <app-pacotes-filter
+          (origemEmit)="getOrigem($event)"
+        ></app-pacotes-filter>
 
-      @if (excursoes().length > 0) {
-      <div class="home__excursoes">
-        @for (item of excursoes(); track $index) {
-        <div class="home__excursao">
-          <app-excursao-card
-            [id]="item.id"
-            [thumbnail]="hasUrl(item.Pacotes.Imagem)"
-            [title]="item.nome"
-            [duration]="item"
-            [origem]="item.Pacotes.origem"
-            [transport]="item.Pacotes.tipoTransporte"
-            [price]="item.valor"
-          />
+        @if (excursoes().length > 0) {
+        <div class="home__excursoes">
+          @for (item of excursoes(); track $index) {
+          <div class="home__excursao">
+            <app-excursao-card
+              [id]="item.id"
+              [thumbnail]="hasUrl(item.Pacotes.Imagem)"
+              [title]="item.nome"
+              [duration]="item"
+              [origem]="item.Pacotes.origem"
+              [transport]="item.Pacotes.tipoTransporte"
+              [price]="item.valor"
+            />
+          </div>
+          } @for (item of excursoes(); track $index) {
+          <div class="home__excursao">
+            <app-excursao-card
+              [id]="item.id"
+              [thumbnail]="hasUrl(item.Pacotes.Imagem)"
+              [title]="item.nome"
+              [duration]="item"
+              [origem]="item.Pacotes.origem"
+              [transport]="item.Pacotes.tipoTransporte"
+              [price]="item.valor"
+            />
+          </div>
+          } @for (item of excursoes(); track $index) {
+          <div class="home__excursao">
+            <app-excursao-card
+              [id]="item.id"
+              [thumbnail]="hasUrl(item.Pacotes.Imagem)"
+              [title]="item.nome"
+              [duration]="item"
+              [origem]="item.Pacotes.origem"
+              [transport]="item.Pacotes.tipoTransporte"
+              [price]="item.valor"
+            />
+          </div>
+          }
         </div>
-        } @for (item of excursoes(); track $index) {
-        <div class="home__excursao">
-          <app-excursao-card
-            [id]="item.id"
-            [thumbnail]="hasUrl(item.Pacotes.Imagem)"
-            [title]="item.nome"
-            [duration]="item"
-            [origem]="item.Pacotes.origem"
-            [transport]="item.Pacotes.tipoTransporte"
-            [price]="item.valor"
-          />
-        </div>
-        } @for (item of excursoes(); track $index) {
-        <div class="home__excursao">
-          <app-excursao-card
-            [id]="item.id"
-            [thumbnail]="hasUrl(item.Pacotes.Imagem)"
-            [title]="item.nome"
-            [duration]="item"
-            [origem]="item.Pacotes.origem"
-            [transport]="item.Pacotes.tipoTransporte"
-            [price]="item.valor"
-          />
-        </div>
+        } @else {
+        <p class="text-center display-6 fs-5 mt-4">
+          Nenhuma excursão encontrada.
+        </p>
         }
       </div>
-      } @else {
-      <p class="text-center display-6 fs-5 mt-4">
-        Nenhuma excursão encontrada.
-      </p>
-      }
-    </div>
-  </section>
+    </section>
 
-  <app-banner></app-banner>
+    <app-banner></app-banner>
+  </div>
 
   <app-depoimentos></app-depoimentos>
 </div>
