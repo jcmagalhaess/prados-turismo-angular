@@ -1,0 +1,32 @@
+<section class="depoimentos">
+  <div class="container">
+    <h4 class="depoimentos__title">Prados Turismo <span>Depoimentos</span></h4>
+
+    <div class="depoimentos__list">
+      @for (item of depoimentos(); track $index) {
+      <div class="depoimentos__item">
+        <div class="depoimentos__content">
+          <div class="depoimentos__header">
+            <figure
+              class="depoimentos__avatar"
+              style="--background: {{ item.avatar }}"
+            ></figure>
+            <div class="depoimentos__user">
+              <h5>{{ item.user }}</h5>
+              <div class="depoimentos__hate">
+                @for (item of [].constructor(item.hate); track $index) {
+                <i class="fa-solid fa-star"></i>
+                }
+              </div>
+            </div>
+          </div>
+          <p class="my-4">{{ item.comment }}</p>
+        </div>
+        <button mat-icon-button>
+          <i class="fa-regular fa-thumbs-up"></i>
+        </button>
+      </div>
+      }
+    </div>
+  </div>
+</section>

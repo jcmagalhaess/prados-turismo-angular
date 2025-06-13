@@ -12,6 +12,7 @@ import { FeaturesComponent } from "../../core/features/features.component";
 import { HeaderStyleService } from "../../core/header/header-style.interceptor";
 import { ExcursaoCardComponent } from "../../shared/components/excursao-card/excursao-card.component";
 import { ExcursaoImagem } from "../../shared/models/excursao.type";
+import { DepoimentosComponent } from "../depoimentos/depoimentos.component";
 import { PacotesFilterComponent } from "../pacotes/components/pacotes-filter/pacotes-filter.component";
 import { ExcursoesListUsecase } from "../pacotes/services/excursoes-list.usecase";
 
@@ -25,6 +26,7 @@ import { ExcursoesListUsecase } from "../pacotes/services/excursoes-list.usecase
     ExcursaoCardComponent,
     PacotesFilterComponent,
     RouterModule,
+    DepoimentosComponent
   ],
   templateUrl: "./home-index.component.html",
   styleUrl: "./home-index.component.scss",
