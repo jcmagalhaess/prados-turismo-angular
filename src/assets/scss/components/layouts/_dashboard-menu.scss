@@ -1,38 +1,73 @@
-@import '../abstract/breakpoint';
+@import "../abstract/breakpoint";
 
-$component-name: 'dashboard';
+$component-name: "dashboard";
 
 .#{$component-name} {
-    &__menu {
-        width: 300px;
-        margin-inline-end: 30px;
-        @include breakpoint(medium-only) {
-            display: flex;
-            width: 100%;
-            margin: 0;
-            margin-block-end: 20px;
-            justify-content: space-between;
-        }
+  &__menu {
+    width: 400px;
+    margin-inline-end: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @include breakpoint(medium-only) {
+      display: flex;
+      width: 100%;
+      margin: 0;
+      margin-block-end: 20px;
+      justify-content: space-between;
     }
-    &__item {
-        a {
-            display: block;
-            width: 100%;
-            padding-inline: 30px;
-            padding-block: 20px;
-            border-right: 3px solid transparent;
-            &:hover,
-            &:focus,
-            &:active,
-            &.#{$component-name}--activated {
-                background-color: rgba($color: #ed7b1d, $alpha: 0.05);
-                color: var(--color-primary);
-                border-color: var(--color-primary);
-            }
-            @include breakpoint(medium-only) {
-                border-right: none;
-                border-bottom: 3px solid transparent;
-            }
-        }
+  }
+  &__item {
+    &:nth-child(odd) a {
+      &:hover,
+      &:focus,
+      &:active,
+      &.#{$component-name}--activated {
+        background: linear-gradient(
+          0deg,
+          rgba(19, 48, 70, 1) 0%,
+          rgba(22, 23, 36, 1) 100%
+        );
+      }
     }
+
+    &:nth-child(even) a {
+      &:hover,
+      &:focus,
+      &:active,
+      &.#{$component-name}--activated {
+        background: linear-gradient(
+          0deg,
+          rgba(22, 23, 36, 1) 0%,
+          rgba(19, 48, 70, 1) 100%
+        );
+      }
+    }
+    a {
+      display: block;
+      width: 100%;
+      padding-inline: 30px;
+      padding-block: 20px;
+      border-right: 3px solid transparent;
+      border-radius: 10px;
+      box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+      &:hover,
+      &:focus,
+      &:active,
+      &.#{$component-name}--activated {
+        // background-color: rgba($color: #ed7b1d, $alpha: 0.05);
+        color: var(--color-light) !important;
+        // border-color: var(--color-primary);
+        i {
+          color: var(--color-primary);
+        }
+      }
+      @include breakpoint(medium-only) {
+        border-right: none;
+        border-bottom: 3px solid transparent;
+      }
+    }
+  }
 }

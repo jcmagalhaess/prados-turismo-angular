@@ -1,64 +1,82 @@
-<section class="home__banner" style="background-image: url(/assets/images/sac.png)">
-    <div class="container">
-        <div class="home__banner-information home__banner-information--faq">
-            <span class="mb-3 display-6 text-center">
-                <i class="fa-solid fa-circle-question me-4"></i>Ajuda
-            </span>
-        </div>
-    </div>
-</section>
+<app-banner-cabecalho titulo="Ajuda" background="assets/images/sac.png" />
 
 <section class="faq">
-    <div class="faq--filter">
-        <span class="d-block mb-4 display-6 text-center text-white">Como podemos ajudar?</span>
-    
-        <div class="input-group">
-            <input type="text" class="form-control" [formControl]="search">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="clearSearch()">
-                @if (hasValue) {
-                    <i class="fa-solid fa-xmark"></i>
-                } @else {
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                }
-            </button>
-        </div>
+  <div class="faq--filter">
+    <span class="d-block mb-4 display-6 text-center text-white"
+      >Como podemos ajudar?</span
+    >
+
+    <div class="input-group">
+      <input type="text" class="form-control" [formControl]="search" />
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        id="button-addon2"
+        (click)="clearSearch()"
+      >
+        @if (hasValue) {
+        <i class="fa-solid fa-xmark"></i>
+        } @else {
+        <i class="fa-solid fa-magnifying-glass"></i>
+        }
+      </button>
     </div>
+  </div>
 </section>
 
 <div class="questions mb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <span class="d-block mb-4 display-6 text-center">Perguntas Frequentes</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="accordion accordion-faq accordion-flush" id="accordionFlushExample">
-                    @for (questions of faqList(); track $index) {
-                        <h3 class="display-5 fs-3 my-3">{{ questions.title }}</h3>
-
-                        <div class="py-3">
-                            @for (item of questions.questions; track $index) {
-                                <div class="accordion-item">
-                                    <div class="accordion-header">
-                                        <button class="accordion-button collapsed py-4" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + $index" aria-expanded="true" [attr.aria-controls]="'collapse' + $index">
-                                            {{ item.question }}
-                                        </button>
-                                    </div>
-                                    <div [id]="'collapse' + $index" class="accordion-collapse collapse" data-bs-parent="#accordion">
-                                        <div class="accordion-body py-4" [innerHTML]="item.response"></div>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    }
-
-                    @if (faqList().length === 0) {
-                        <span class="d-block my-4 display-6 fs-5 text-center">Nenhuma pergunta encontrada.</span>
-                    }
-                  </div>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <span class="d-block mb-4 display-6 text-center"
+          >Perguntas Frequentes</span
+        >
+      </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div
+          class="accordion accordion-faq accordion-flush"
+          id="accordionFlushExample"
+        >
+          @for (questions of faqList(); track $index) {
+          <h3 class="display-5 fs-3 my-3">{{ questions.title }}</h3>
+
+          <div class="py-3">
+            @for (item of questions.questions; track $index) {
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <button
+                  class="accordion-button collapsed py-4"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#collapse' + $index"
+                  aria-expanded="true"
+                  [attr.aria-controls]="'collapse' + $index"
+                >
+                  {{ item.question }}
+                </button>
+              </div>
+              <div
+                [id]="'collapse' + $index"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordion"
+              >
+                <div
+                  class="accordion-body py-4"
+                  [innerHTML]="item.response"
+                ></div>
+              </div>
+            </div>
+            }
+          </div>
+          } @if (faqList().length === 0) {
+          <span class="d-block my-4 display-6 fs-5 text-center"
+            >Nenhuma pergunta encontrada.</span
+          >
+          }
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
