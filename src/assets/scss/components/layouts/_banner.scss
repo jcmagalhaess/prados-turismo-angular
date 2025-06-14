@@ -71,7 +71,7 @@ $component-name: "banner";
     padding-block: 25px;
     color: #000000;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 230px;
     height: 230px;
     transition: 0.3s ease-in-out;
@@ -101,7 +101,7 @@ $component-name: "banner";
       margin-block-start: 20px;
       margin-block-end: 0;
       display: block;
-      width: 60%;
+      width: 70%;
       line-height: 1;
       text-transform: uppercase;
     }

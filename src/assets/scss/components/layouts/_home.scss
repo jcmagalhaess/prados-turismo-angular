@@ -36,6 +36,9 @@ $component-name: "home";
         flex-direction: column;
         align-items: center;
         gap: 2.5rem;
+        strong {
+          color: var(--color-primary);
+        }
         span {
           font-size: 6.5rem;
           font-weight: 600;

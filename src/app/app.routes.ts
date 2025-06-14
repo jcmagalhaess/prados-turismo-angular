@@ -58,6 +58,14 @@ export const routes: Routes = [
       import("./features/ajuda/ajuda.component").then((c) => c.AjudaComponent),
   },
   {
+    path: "fidelidade",
+    pathMatch: "full",
+    loadComponent: () =>
+      import("./features/fidelidade/fidelidade.component").then(
+        (c) => c.FidelidadeComponent
+      ),
+  },
+  {
     path: "login",
     pathMatch: "full",
     canActivate: [clientNoAuthGuard],
