@@ -1,4 +1,23 @@
-<main id="excursao-loaded" class="mt-80">
+<main id="excursao-loaded" class="pacotes__single mt-80">
+  <section class="mb-4">
+    <div
+      style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+      class="swiper mySwiper2"
+    >
+      <div class="swiper-wrapper">
+        @for (item of excursao()?.Pacotes?.Galeria; track $index) {
+        <div class="swiper-slide">
+          <img [src]="item.url" [title]="item.nome" />
+        </div>
+        }
+      </div>
+      <div class="container">
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </section>
+
   <div class="container">
     <div class="d-flex mb-3">
       <a routerLink="/" type="button" class="btn btn-secondary me-3">
@@ -8,21 +27,26 @@
       <div class="d-flex align-items-center">
         <span class="me-3">Gostou e gostaria de compartilhar com alguém?</span>
         <ul class="footer__social-icons footer__social-icons--secondary">
-            <li class="footer__icon">
-              <a href="Javascript:;" (click)="shareOnFacebook()">
-                <i class="fa-brands fa-facebook"></i>
-              </a>
-            </li>
-            <li class="footer__icon">
-              <a href="Javascript:;" (click)="shareMessageOnWhatsApp('Olha essa atividade que encontrei')">
-                <i class="fa-brands fa-whatsapp"></i> 
-              </a>
-            </li>
-            <li class="footer__icon">
-              <a href="Javascript:;" (click)="clipboard()">
-                <i class="fa-solid fa-paperclip"></i>
-              </a>
-            </li>
+          <li class="footer__icon">
+            <a href="Javascript:;" (click)="shareOnFacebook()">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+          </li>
+          <li class="footer__icon">
+            <a
+              href="Javascript:;"
+              (click)="
+                shareMessageOnWhatsApp('Olha essa atividade que encontrei')
+              "
+            >
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </li>
+          <li class="footer__icon">
+            <a href="Javascript:;" (click)="clipboard()">
+              <i class="fa-solid fa-paperclip"></i>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -35,48 +59,23 @@
             <span class="event__price">
               {{ excursao()?.valor | currency : "BRL" : true : "1.2-2" }}
             </span>
-            <section class="my-4">
-              <div
-                style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
-                class="swiper mySwiper2"
-              >
-                <div class="swiper-wrapper">
-                  @for (item of excursao()?.Pacotes?.Galeria; track $index) {
-                    <div class="swiper-slide">
-                      <img [src]="item.url" [title]="item.nome" />
-                    </div>
-                  }
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-              </div>
-
-              <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                  @for (item of excursao()?.Pacotes?.Galeria; track $index) {
-                    <div class="swiper-slide">
-                      <img [src]="item.url" [title]="item.nome" />
-                    </div>
-                  }
-                </div>
-              </div>
-            </section>
             <p [innerHTML]="excursao()?.Pacotes?.descricao"></p>
             <table class="event__table table">
               <tbody>
                 @if (inclusos()?.length) {
-                  <tr>
-                    <th scope="row">Incluso</th>
-                    <td class="event__inclusos">
-                      <ul class="d-flex flex-wrap">
-                        @for (item of inclusos(); track $index) {
-                          <li>
-                            <i class="fa-solid fa-check text-success me-3"></i>{{ item.nome }}
-                          </li>
-                        }
-                      </ul>
-                    </td>
-                  </tr>
+                <tr>
+                  <th scope="row">Incluso</th>
+                  <td class="event__inclusos">
+                    <ul class="d-flex flex-wrap">
+                      @for (item of inclusos(); track $index) {
+                      <li>
+                        <i class="fa-solid fa-check text-success me-3"></i
+                        >{{ item.nome }}
+                      </li>
+                      }
+                    </ul>
+                  </td>
+                </tr>
                 }
               </tbody>
             </table>
