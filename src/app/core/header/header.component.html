@@ -27,11 +27,16 @@
             </a>
           </div>
           <div class="header__account ms-5">
-            <a [routerLink]="getLink(client)">
-              <i class="fa-regular fa-user" [ngClass]="{ 'me-4': client }"></i>
+            <a
+              [routerLink]="getLink(client)"
+              [matTooltip]="client!.nome"
+              [matTooltipDisabled]="!client"
+            >
+              <i class="fa-regular fa-user"></i>
+              <!-- <i class="fa-regular fa-user" [ngClass]="{ 'me-4': client }"></i>
               @if (client) {
               {{ client.nome }}
-              }
+              } -->
             </a>
           </div>
           <div

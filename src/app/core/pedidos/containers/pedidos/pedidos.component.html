@@ -1,35 +1,46 @@
-<table class="table table-scroll">
-  <thead>
-    <tr>
-      <th scope="col">Pedido</th>
-      <th scope="col">Data</th>
-      <th scope="col">Status</th>
-      <th scope="col">Total</th>
-      <th scope="col" class="text-center">Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    @if (noReservas()) {
+<div class="login__box">
+  <table class="table table-scroll">
+    <thead>
+      <tr>
+        <th scope="col">Pedido</th>
+        <th scope="col">Data</th>
+        <th scope="col">Status</th>
+        <th scope="col">Total</th>
+        <th scope="col" class="text-center">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (noReservas()) {
       <tr>
         <td colspan="5" class="text-center">
-          <span class="display-6 fs-5 my-4 d-block">Nenhum pedido realizado.</span></td>
+          <span class="display-6 fs-5 my-4 d-block"
+            >Nenhum pedido realizado.</span
+          >
+        </td>
       </tr>
-    }
-    
-    @for (item of reservas(); track $index) {
-        <tr>
-          <th scope="row" class="w-25">{{ item.reserva | labelReserva }}</th>
-          <td class="w-25">{{ item.dataCadastro | date: 'dd/MM/yyyy' }}</td>
-          <td class="w-25">{{ statusLabel(item.status) }}</td>
-          <td class="w-25">{{ item.valorTotal | currency:'BRL':'symbol':'1.2-2' }} </td><!-- de 2 ingressos -->
-          <td class="d-flex justify-content-center flex-sm-row flex-column">
-            <button class="btn btn-primary" (click)="visualizar(item.id)">
-              <i class="fa-regular fa-eye me-2"></i>Visualizar</button>
-            <button class="btn btn-success mt-3 mt-sm-0 ms-sm-3" (click)="voucher(item.id)" [disabled]="!item.status">
-              <i class="fa-solid fa-ticket me-2"></i> Voucher</button>
-          </td>
-        </tr>
-    }
-  </tbody>
-</table>
+      } @for (item of reservas(); track $index) {
+      <tr>
+        <th scope="row" class="w-25">{{ item.reserva | labelReserva }}</th>
+        <td class="w-25">{{ item.dataCadastro | date : "dd/MM/yyyy" }}</td>
+        <td class="w-25">{{ statusLabel(item.status) }}</td>
+        <td class="w-25">
+          {{ item.valorTotal | currency : "BRL" : "symbol" : "1.2-2" }}
+        </td>
+        <!-- de 2 ingressos -->
+        <td class="d-flex justify-content-center flex-sm-row flex-column">
+          <button class="btn btn-primary" (click)="visualizar(item.id)">
+            <i class="fa-regular fa-eye me-2"></i>Visualizar
+          </button>
+          <button
+            class="btn btn-success mt-3 mt-sm-0 ms-sm-3"
+            (click)="voucher(item.id)"
+            [disabled]="!item.status"
+          >
+            <i class="fa-solid fa-ticket me-2"></i> Voucher
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

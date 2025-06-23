@@ -1,5 +1,6 @@
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import { Component } from "@angular/core";
+import { MatTooltip } from "@angular/material/tooltip";
 import { Router, RouterModule } from "@angular/router";
 import { ExcursoesListUsecase } from "../../features/pacotes/services/excursoes-list.usecase";
 import { Cliente } from "../../shared/models/cliente.type";
@@ -16,6 +17,7 @@ import { HeaderStyleService } from "./header-style.interceptor";
     RouterModule,
     CurrencyPipe,
     MeuCarrinhoOffcanvasComponent,
+    MatTooltip,
   ],
   templateUrl: "./header.component.html",
   styleUrl: "./header.component.scss",

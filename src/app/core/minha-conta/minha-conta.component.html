@@ -1,27 +1,30 @@
 <main class="my-account mt-80">
   <div class="container">
     <div class="d-flex flex-column flex-lg-row">
-      <div>
-        <h5 class="display-6 fs-4 mb-4">Administrar sua conta</h5>
-        <ul class="dashboard__menu">
-          @for (item of menu; track $index) {
-          <li class="dashboard__item">
-            <a
-              [routerLink]="[item.route]"
-              routerLinkActive="dashboard--activated"
-              [routerLinkActiveOptions]="{ exact: true }"
-              ><i [ngClass]="item.icon" class="me-3"></i> {{ item.label }}</a
-            >
-          </li>
-          }
-          <li class="dashboard__item">
-            <a type="button" (click)="logout()"
-              ><i class="fa-solid fa-arrow-right-from-bracket me-3"></i>Sair</a
-            >
-          </li>
-        </ul>
+      <div class="my-account__menu">
+        <div>
+          <h5 class="display-6 fs-4 mb-4">Administrar sua conta</h5>
+          <ul class="dashboard__menu">
+            @for (item of menu; track $index) {
+            <li class="dashboard__item">
+              <a
+                [routerLink]="[item.route]"
+                routerLinkActive="dashboard--activated"
+                [routerLinkActiveOptions]="{ exact: true }"
+                ><i [ngClass]="item.icon" class="me-3"></i> {{ item.label }}</a
+              >
+            </li>
+            }
+            <li class="dashboard__item">
+              <a type="button" (click)="logout()"
+                ><i class="fa-solid fa-arrow-right-from-bracket me-3"></i
+                >Sair</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="login__box w-100 w-sm-75">
+      <div class="w-100 w-sm-75">
         <div class="my-account__panel">
           <router-outlet></router-outlet>
         </div>

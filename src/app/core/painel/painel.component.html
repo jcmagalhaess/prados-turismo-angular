@@ -1,4 +1,27 @@
-<div class="w-100">
+<div class="my-account__profile">
+  <div class="my-account__person">
+    <span class="my-account__category">categoria</span>
+    <h3>{{ client?.nome }}</h3>
+    <div class="my-account__travels">
+      <span class="my-account__travels-title">Suas viagens acumuladas</span>
+      <span class="my-account__travels-count">00</span>
+    </div>
+  </div>
+
+  <div class="my-account__beneficios">
+    <div class="my-account__beneficios-content">
+      <p><strong>Benefícios pela sua categoria</strong></p>
+      <ul>
+        <li>hue</li>
+        <li>hue</li>
+        <li>hue</li>
+      </ul>
+      <a href="">Conferir mais benefícios</a>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="w-100">
     <div class="d-flex flex-column-reverse flex-sm-row">
         <div class="login__box w-100 w-sm-50">
             <div class="my-account__avatar">
@@ -41,9 +64,6 @@
                         <div class="my-account__name">
                             <strong>Evento: </strong> {{ pedido().Excursao?.nome }}
                         </div>
-                        <!-- <div class="my-account__amout">
-                            <strong>Quantidade de participantes: </strong> 2
-                        </div> -->
                         <div class="my-account__date">
                             <strong>Data do evento:</strong> {{ pedido().Excursao | periodo }}
                         </div>
@@ -61,4 +81,4 @@
         <a [routerLink]="['/pacotes']">Pacotes</a>
         <a [routerLink]="['/meu-carrinho']">Carrinho</a>
     </div>
-</div>
+</div> -->
