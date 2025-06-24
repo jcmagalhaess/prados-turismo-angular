@@ -29,7 +29,7 @@ export class MinhaContaComponent {
     },
     {
       label: "Próxima categoria",
-      route: "/minha-conta/pedidos",
+      route: "/programa-de-fidelidade",
       icon: "fa-solid fa-arrow-right",
     },
     {

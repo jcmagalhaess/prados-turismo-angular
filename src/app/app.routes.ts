@@ -58,7 +58,7 @@ export const routes: Routes = [
       import("./features/ajuda/ajuda.component").then((c) => c.AjudaComponent),
   },
   {
-    path: "fidelidade",
+    path: "programa-de-fidelidade",
     pathMatch: "full",
     loadComponent: () =>
       import("./features/fidelidade/containers/fidelidade.component").then(

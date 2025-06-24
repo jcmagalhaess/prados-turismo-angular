@@ -19,6 +19,13 @@ export type Cliente = {
   usuarioCadastro: string;
   rankingClientesId: string;
   userId: string;
-  Ranking: number;
+  Ranking: {
+    id: string;
+    nome: string;
+    qtdMinViagens: number;
+    qtdMaxViagens: number;
+    dataCadastro: string;
+    usuariosId: string;
+  };
   Reservas: ReservaOutput[];
 };

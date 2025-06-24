@@ -10,7 +10,7 @@
     </figure>
 
     <div class="programa-fidelidade__beneficios">
-      @for (item of beneficios; track item.nome) {
+      @for (item of beneficios(); track item.nome) {
       <app-fidelidade-beneficio
         [urlImagem]="item.urlImagem"
         [nome]="item.nome"

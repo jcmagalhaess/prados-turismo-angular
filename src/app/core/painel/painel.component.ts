@@ -1,36 +1,40 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
 import { Component, computed } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { LabelReservaPipe } from '../../shared/pipes/label-reserva.pipe';
-import { PeriodoPipe } from '../../shared/pipes/periodo.pipe';
-import { ThumbnailPipe } from '../../shared/pipes/thumbnail.pipe';
+import { benefitsList } from "../../features/fidelidade/services/fidelidade.entity";
 import { AcessoGetDataPessoaUsecase } from "../acesso/services/acesso-get-data-pessoa.usecase";
-import { PedidosService } from "../pedidos/pedidos.service";
 
 @Component({
   selector: "app-painel",
   standalone: true,
-  imports: [CommonModule, RouterModule, LabelReservaPipe, ThumbnailPipe, PeriodoPipe],
+  imports: [CommonModule, RouterModule],
   templateUrl: "./painel.component.html",
   styleUrl: "./painel.component.scss",
 })
 export class PainelComponent {
-  public valorPedido = computed(() => this.pedido().Transacoes.reduce((acc: number, item: any) => acc + item.valor, 0));
-  
+  public qtdViagens = computed(() =>
+    this._formartNumber(this.client()?.Reservas.length || 0)
+  );
+
+  public rankingName = computed(() => {
+    const ranking = this.client()?.Ranking;
+    return ranking ? ranking.nome : "Sem Ranking";
+  });
+
   get client() {
-    return this._userClient.clientAuthenticated();
+    return this._userClient.clientAuthenticated;
   }
 
-  get pedido() {
-    return this._pedido.lastReserva;
+  constructor(private readonly _userClient: AcessoGetDataPessoaUsecase) {}
+
+  private _formartNumber(value: number): string {
+    return value.toString().padStart(2, "0");
   }
 
-  get ranking() {
-    return this._pedido.client?.Ranking;
+  public pegarBeneficios(rankingName: string): string[] {
+    const benefit = benefitsList.find(
+      (benefit) => benefit.nome === rankingName
+    );
+    return benefit ? benefit.beneficios : [];
   }
-
-  constructor(
-    private readonly _userClient: AcessoGetDataPessoaUsecase,
-    private readonly _pedido: PedidosService
-  ) {}
 }
