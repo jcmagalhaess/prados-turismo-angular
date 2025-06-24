@@ -1,5 +1,5 @@
 import { CommonModule, CurrencyPipe } from "@angular/common";
-import { Component, Input, OnChanges } from "@angular/core";
+import { Component, Input, OnChanges, OnInit } from "@angular/core";
 import {
   FormArray,
   FormControl,
@@ -12,6 +12,7 @@ import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatInputModule } from "@angular/material/input";
 import { NgxMaskDirective } from "ngx-mask";
+import { SeletorQuartoComponent } from "../../../../shared/components/seletor-quarto/seletor-quarto.component";
 import { yearList } from "../../../../shared/helpers/year-list.helper";
 import { ExcursaoLocalEmbarque } from "../../../../shared/models/excursao.type";
 import { Months } from "../../../../shared/models/global.type";
@@ -27,24 +28,29 @@ import { Months } from "../../../../shared/models/global.type";
     MatExpansionModule,
     MatButtonModule,
     MatDialogModule,
-    NgxMaskDirective
+    NgxMaskDirective,
+    SeletorQuartoComponent,
   ],
   templateUrl: "./pacotes-participantes.component.html",
   styleUrl: "./pacotes-participantes.component.scss",
 })
-export class PacotesParticipantesComponent implements OnChanges {
+export class PacotesParticipantesComponent implements OnChanges, OnInit {
   public months = Months;
   public years = yearList(1900);
   public form = new FormGroup<any>({
     participantes: new FormArray<any>([]),
+    tipoQuarto: new FormControl(""),
   });
 
   get participantes() {
     return this.form.get("participantes") as FormArray;
   }
-  
+
   get amountOpcionais() {
-    return this.opcionais.reduce((acc: number, item: any) => acc + item.value, 0);
+    return this.opcionais.reduce(
+      (acc: number, item: any) => acc + item.value,
+      0
+    );
   }
 
   @Input() amountTickets: number = 0;
@@ -63,29 +69,38 @@ export class PacotesParticipantesComponent implements OnChanges {
 
     this.opcionais.forEach((element: any) => {
       this.participantes.controls.forEach((item: any) => {
-        (item.get('opcionais') as FormGroup).addControl(element.key, new FormControl(false));
+        (item.get("opcionais") as FormGroup).addControl(
+          element.key,
+          new FormControl(false)
+        );
       });
     });
   }
 
-  public createReservation() {        
-    this._dialog.close(this.participantes.getRawValue());
+  public ngOnInit() {
+    this.form.valueChanges.subscribe((value) => {
+      console.log(value);
+    });
+  }
+
+  public createReservation() {
+    this._dialog.close(this.form.getRawValue());
   }
 
   private _createForm() {
     return new FormGroup<any>({
-      nome: new FormControl(""),
-      email: new FormControl(""),
-      phone: new FormControl(""),
-      rg: new FormControl("", [Validators.maxLength(14)]),
-      cpf: new FormControl(""),
-      emissor: new FormControl(""),
+      nome: new FormControl("", Validators.required),
+      email: new FormControl("", Validators.required),
+      phone: new FormControl("", Validators.required),
+      rg: new FormControl("", [Validators.required, Validators.maxLength(14)]),
+      cpf: new FormControl("", Validators.required),
+      emissor: new FormControl("", Validators.required),
       dataNascimento: new FormGroup<any>({
-        dia: new FormControl(""),
-        mes: new FormControl(""),
-        ano: new FormControl(""),
+        dia: new FormControl("", Validators.required),
+        mes: new FormControl("", Validators.required),
+        ano: new FormControl("", Validators.required),
       }),
-      localEmbarque: new FormControl(""),
+      localEmbarque: new FormControl("", Validators.required),
       opcionais: new FormGroup<any>({}),
     });
   }

@@ -61,30 +61,6 @@
               [price]="item.valor"
             />
           </div>
-          } @for (item of excursoes(); track $index) {
-          <div class="home__excursao">
-            <app-excursao-card
-              [id]="item.id"
-              [thumbnail]="hasUrl(item.Pacotes.Imagem)"
-              [title]="item.nome"
-              [duration]="item"
-              [origem]="item.Pacotes.origem"
-              [transport]="item.Pacotes.tipoTransporte"
-              [price]="item.valor"
-            />
-          </div>
-          } @for (item of excursoes(); track $index) {
-          <div class="home__excursao">
-            <app-excursao-card
-              [id]="item.id"
-              [thumbnail]="hasUrl(item.Pacotes.Imagem)"
-              [title]="item.nome"
-              [duration]="item"
-              [origem]="item.Pacotes.origem"
-              [transport]="item.Pacotes.tipoTransporte"
-              [price]="item.valor"
-            />
-          </div>
           }
         </div>
         } @else {

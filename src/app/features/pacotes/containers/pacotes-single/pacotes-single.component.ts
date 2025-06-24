@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, computed, effect } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, RouterModule } from "@angular/router";
@@ -21,7 +21,7 @@ Swiper.use([Navigation, Thumbs]);
   imports: [CommonModule, PacotesSidebarComponent, RouterModule],
   templateUrl: "./pacotes-single.component.html",
   styleUrl: "./pacotes-single.component.scss",
-  providers: [ExcursoesSingleUsecase, DatePipe],
+  providers: [ExcursoesSingleUsecase],
 })
 export class PacotesSingleComponent implements AfterViewInit {
   public form = new FormGroup({
@@ -77,6 +77,20 @@ export class PacotesSingleComponent implements AfterViewInit {
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1.2,
+        },
+        480: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1024: {
+          slidesPerView: 3.5,
+        },
       },
     });
   }

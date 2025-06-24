@@ -1,31 +1,41 @@
 <main class="mt-80">
-    <div class="container">
-        <div class="display-6">Meu carrinho</div>
-        <hr>
+  <div class="container">
+    <div class="display-6">Meu carrinho</div>
+    <hr />
 
-        @if (hasntItems()) {
-            <div class="d-flex flex-column align-items-center justify-content-centr">
-                <span class="display-6 fs-5 text-center d-block my-4">Seu carrinho está vazio</span>
-    
-                <button [routerLink]="['/pacotes']" class="btn btn-outline-primary">Escolha um pacote</button>
-            </div>
-        } @else {
-            <app-cart-item [cupom]="cupom()" [shadow]="false" [cart]="cart()" />
-    
-            <div class="d-flex justify-content-between align-items-end mt-3">
-                <app-meu-carrinho-cupom
-                    [hasCupom]="hasCupom()"
-                    [loading]="loadingCupom()"
-                    (cupomEmit)="validateCupom($event)"
-                    />
-                
-                <app-action-button
-                    labelLoading="Gerando..."
-                    label="Fazer reserva"
-                    [loading]="loadingReserva()"
-                    (action)="pagar()"
-                    />
-            </div>
-        }
+    @if (hasntItems()) {
+    <div class="d-flex flex-column align-items-center justify-content-centr">
+      <span class="display-6 fs-5 text-center d-block my-4"
+        >Seu carrinho está vazio</span
+      >
+
+      <button [routerLink]="['/pacotes']" class="btn btn-outline-primary">
+        Escolha um pacote
+      </button>
     </div>
+    } @else {
+    <app-cart-item [cupom]="cupom()" [shadow]="false" [cart]="cart()" />
+
+    <div class="row align-items-end jus mt-3">
+      <div class="col-md-3">
+        <app-meu-carrinho-cupom
+          [hasCupom]="hasCupom()"
+          [loading]="loadingCupom()"
+          class="w-100"
+          (cupomEmit)="validateCupom($event)"
+        />
+      </div>
+
+      <div class="col-md-3 offset-md-6 mt-md-0 mt-3">
+        <app-action-button
+          labelLoading="Gerando..."
+          label="Fazer reserva"
+          class="w-100"
+          [loading]="loadingReserva()"
+          (action)="pagar()"
+        />
+      </div>
+    </div>
+    }
+  </div>
 </main>

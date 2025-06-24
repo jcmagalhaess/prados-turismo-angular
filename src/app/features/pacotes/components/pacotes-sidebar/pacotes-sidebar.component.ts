@@ -141,7 +141,8 @@ export class PacotesSidebarComponent {
         tickets: this.amountTickets()
           .filter((item: any) => item.value > 0)
           .map((item: any) => ({ ...item, price: this._buildPrice(item) })),
-        participantes: this._formatBirthday(res),
+        participantes: this._formatBirthday(res.participantes),
+        tipoQuarto: res.tipoQuarto,
         opcionais: this.opcionaisSelecionados(),
       };
 

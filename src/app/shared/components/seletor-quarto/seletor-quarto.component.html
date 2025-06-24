@@ -1,0 +1,11 @@
+<label class="form-label">{{ label() }}</label>
+<select
+  class="form-select"
+  (change)="onSelectChange($event)"
+  aria-label="Default select example"
+>
+  <option [value]="null" selected></option>
+  @for (item of quartos(); track $index) {
+  <option [value]="item.id">{{ item.nome }}</option>
+  }
+</select>

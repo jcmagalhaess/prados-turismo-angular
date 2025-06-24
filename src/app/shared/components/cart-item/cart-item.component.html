@@ -1,62 +1,85 @@
-<div class="card-event mw-100 rounded-3" [ngClass]="{ 'card-event--no-shadow': !shadow }">
-    <div class="card-event__content overflow-y-scroll px-4" style="height: 300px">
-        @for (item of cart; track $index) {
-            <div class="order__resume">
-                <span class="event__price text-start">{{ item.nome }}</span>
-                <ul class="event__category">
-                    @for (item of item.tickets; track $index) {
-                        <li class="d-flex justify-content-between">
-                            <span>{{ item.value }}x {{ formatPassageiroTypeLabel(item.key) }}</span>
-                            <span>{{ item.price | currency:'BRL':'symbol':'1.2-2' }}</span>
-                        </li>
-                        <hr>
-                    }
-                </ul>
-                <ul class="d-flex gap-4">
-                    <li class="d-flex flex-column">
-                        <strong>Data de embarque</strong>
-                        {{ item.periodo?.dataInicio | date: 'dd/MM/yyyy' }}
-                    </li>
-                    <li class="d-flex flex-column">
-                        <strong>Data de retorno</strong>
-                        {{ item.periodo?.dataFim | date: 'dd/MM/yyyy' }}
-                    </li>
-                    <span class="flex-flow-1"></span>
-                    @if (cupom()) {
-                        <li class="d-flex flex-column ms-auto text-end text-success">
-                            <strong>Desconto ({{cupom()?.desconto}}%)</strong>
-                            {{ discountedValue(buildPrice(item.tickets)) | currency:'BRL':'symbol':'1.2-2' }}
-                        </li>
-                    }
-                    @if (item.tickets.length > 1 || (item.tickets.length === 1 && cupom())) {
-                        <li class="d-flex flex-column text-end" [ngClass]="{ 'ms-auto': !cupom() }">
-                            <strong>Subtotal</strong>
-                            {{ subtotalExcursao(buildPrice(item.tickets)) | currency:'BRL':'symbol':'1.2-2' }}
-                        </li>
-                    }
-                </ul>
-
-                @if (item.opcionais.length) {
-                    <strong class="d-flex my-3 display-6 fs-5">Opcionais</strong>
-    
-                    <ul class="event__category">
-                        @for (item of item.opcionais; track $index) {
-                            <li class="d-flex justify-content-between">
-                                <span>{{ item.value }}x {{ item.key | asyncOpcionais | async }}</span>
-                                <span>{{ item.price * item.value | currency:'BRL':'symbol':'1.2-2' }}</span>
-                            </li>
-                            <hr>
-                        }
-                    </ul>
-                }
-            </div>
+<div
+  class="border mw-100 rounded-3"
+  [ngClass]="{ 'card-event--no-shadow': !shadow }"
+>
+  <div class="overflow-y-scroll px-4" style="height: 300px">
+    @for (item of cart; track $index) {
+    <div class="order__resume">
+      <span class="event__price text-start">{{ item.nome }}</span>
+      <ul class="event__category">
+        @for (item of item.tickets; track $index) {
+        <li class="d-flex justify-content-between">
+          <span
+            >{{ item.value }}x {{ formatPassageiroTypeLabel(item.key) }}</span
+          >
+          <span>{{ item.price | currency : "BRL" : "symbol" : "1.2-2" }}</span>
+        </li>
+        <hr />
         }
+      </ul>
+      <ul class="d-flex gap-4">
+        <li class="d-flex flex-column">
+          <strong>Data de embarque</strong>
+          {{ item.periodo?.dataInicio | date : "dd/MM/yyyy" }}
+        </li>
+        <li class="d-flex flex-column">
+          <strong>Data de retorno</strong>
+          {{ item.periodo?.dataFim | date : "dd/MM/yyyy" }}
+        </li>
+        <span class="flex-flow-1"></span>
+        @if (cupom()) {
+        <li class="d-flex flex-column ms-auto text-end text-success">
+          <strong>Desconto ({{ cupom()?.desconto }}%)</strong>
+          {{
+            discountedValue(buildPrice(item.tickets))
+              | currency : "BRL" : "symbol" : "1.2-2"
+          }}
+        </li>
+        } @if (item.tickets.length > 1 || (item.tickets.length === 1 &&
+        cupom())) {
+        <li
+          class="d-flex flex-column text-end"
+          [ngClass]="{ 'ms-auto': !cupom() }"
+        >
+          <strong>Subtotal</strong>
+          {{
+            subtotalExcursao(buildPrice(item.tickets))
+              | currency : "BRL" : "symbol" : "1.2-2"
+          }}
+        </li>
+        }
+      </ul>
+
+      @if (item.opcionais.length) {
+      <strong class="d-flex my-3 display-6 fs-5">Opcionais</strong>
+
+      <ul class="event__category">
+        @for (item of item.opcionais; track $index) {
+        <li class="d-flex justify-content-between">
+          <span>{{ item.value }}x {{ item.key | asyncOpcionais | async }}</span>
+          <span>{{
+            item.price * item.value | currency : "BRL" : "symbol" : "1.2-2"
+          }}</span>
+        </li>
+        <hr />
+        }
+      </ul>
+      }
     </div>
-    <div id="order-resume-price" class="card-event__actions align-items-center py-3">
-        <div class="event__totalizers--order-resume w-100">
-            <div id="subtotal-label" class="d-flex justify-content-between py-2 w-100">
-                <strong>Total: </strong> {{ totalValue() | currency:'BRL':'symbol':'1.2-2' }}
-            </div>
-        </div>
+    }
+  </div>
+  <div
+    id="order-resume-price"
+    class="card-event__actions align-items-center py-3"
+  >
+    <div class="event__totalizers--order-resume w-100">
+      <div
+        id="subtotal-label"
+        class="d-flex justify-content-between py-2 w-100"
+      >
+        <strong>Total: </strong>
+        {{ totalValue() | currency : "BRL" : "symbol" : "1.2-2" }}
+      </div>
     </div>
+  </div>
 </div>

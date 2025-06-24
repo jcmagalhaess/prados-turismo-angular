@@ -50,7 +50,7 @@ export class CarrinhoService {
         name: item.nome,
         description: "",
         default_quantity: amountTickets,
-        isExcursao: true
+        isExcursao: true,
       };
     })
   );
@@ -70,7 +70,7 @@ export class CarrinhoService {
             ?.nome,
           description: "",
           default_quantity: amountOpcionais,
-          isExcursao: false
+          isExcursao: false,
         };
       })
   );
@@ -90,6 +90,7 @@ export class CarrinhoService {
         .filter((item: any) => item.key === "babies")
         .reduce((acc: number, item: any) => acc + item.value, 0),
       clients: item.participantes,
+      tipoQuarto: item.tipoQuarto,
       cupom: this.cupom()?.id,
     }))
   );
@@ -151,20 +152,20 @@ export class CarrinhoService {
     let reserva = this._reserva();
     let reservaComDescontos = this._reserva().map((item: any) => ({
       ...item,
-      total: item.total - (item.total * (this.cupom()?.desconto! / 100)),
-    }))
+      total: item.total - item.total * (this.cupom()?.desconto! / 100),
+    }));
 
     let reqReserva = this.cupom() ? reservaComDescontos : reserva;
-    
+
     if (!this._noAuthenticated()) return;
-    
+
     const reqReservaMap = reqReserva.flatMap((item) =>
       this._client.criarReserva(item)
     );
 
     return forkJoin(reqReservaMap).subscribe({
       next: (res) => {
-        this._openDialog()
+        this._openDialog();
         this._idGenerateReserva.set(res);
       },
       error: (err) => this._toaster.error(JSON.parse(err.error).message[0]),
@@ -180,9 +181,9 @@ export class CarrinhoService {
         )
       )
       .then((data: any) => {
-        let response = JSON.parse(data)
+        let response = JSON.parse(data);
         this.pagarMeURL.set(response.url);
-        
+
         this._vincularReservaComPagarme(this._idGenerateReserva(), response.id);
 
         localStorage.removeItem("cart");
@@ -201,7 +202,7 @@ export class CarrinhoService {
           title: "Acesso Negado",
           description: "Você precisa estar logado para realizar essa ação.",
           color: "danger",
-        }
+        },
       });
 
       return false;
@@ -228,8 +229,10 @@ export class CarrinhoService {
   }
 
   private _vincularReservaComPagarme(reservas: string[], linkId: string) {
-    forkJoin(reservas.map(res => this._client.setPaymentLink(res, linkId))).subscribe({
-      error: (err) => this._toaster.error(JSON.parse(err.error).message[0])
+    forkJoin(
+      reservas.map((res) => this._client.setPaymentLink(res, linkId))
+    ).subscribe({
+      error: (err) => this._toaster.error(JSON.parse(err.error).message[0]),
     });
   }
 }
