@@ -1,19 +1,22 @@
+<app-pacotes-price [price]="valor" (showDatesEmit)="getShowDates($event)" />
+
+@if (showDates()) {
 <form [formGroup]="form">
   <div class="row">
     <div class="col-md-12">
-        <label for="period">
-            <i class="fa-regular fa-clock me-3 mb-3"></i>Selecione o período
-        </label>
-        <select
-            class="form-select"
-            required
-            name="period"
-            formControlName="period"
-            aria-label="Default select example"
-        >
-            <option [value]="null"></option>
-            <option [value]="excursao! | periodo">{{ excursao! | periodo }}</option>
-        </select>
+      <label for="period">
+        <i class="fa-regular fa-clock me-3 mb-3"></i>Selecione o período
+      </label>
+      <select
+        class="form-select"
+        required
+        name="period"
+        formControlName="period"
+        aria-label="Default select example"
+      >
+        <option [value]="null"></option>
+        <option [value]="excursao! | periodo">{{ excursao! | periodo }}</option>
+      </select>
     </div>
   </div>
   <div class="row my-4">
@@ -45,45 +48,46 @@
             data-bs-parent="#accordionFlushExample"
           >
             <div class="accordion-body">
-                @for (item of enumCategory; track $index) {
-                    <div class="my-3">
-                        <app-pacotes-count
-                            [key]="item.key"
-                            [type]="item.value"
-                            [age]="item.age"
-                            [valor]="valor"
-                            (amountEmit)="amountHandle($event)">
-                        </app-pacotes-count>
-                    </div>
-                }
+              @for (item of enumCategory; track $index) {
+              <div class="my-3">
+                <app-pacotes-count
+                  [key]="item.key"
+                  [type]="item.value"
+                  [age]="item.age"
+                  [valor]="valor"
+                  (amountEmit)="amountHandle($event)"
+                >
+                </app-pacotes-count>
+              </div>
+              }
             </div>
           </div>
         </div>
       </div>
 
       @if (hasOpcionaisAndTicketsSelecionados()) {
-        <div class="border rounded-1 p-3 mt-4">
-          <div class="d-flex align-items-center">
-            <i class="fa-solid fa-star me-3"></i>
-            <div class="d-flex flex-column">
-              <strong>Melhore sua experiência</strong>
-              <span>com nossos opcionais</span>
-            </div>
+      <div class="border rounded-1 p-3 mt-4">
+        <div class="d-flex align-items-center">
+          <i class="fa-solid fa-star me-3"></i>
+          <div class="d-flex flex-column">
+            <strong>Melhore sua experiência</strong>
+            <span>com nossos opcionais</span>
           </div>
-          
-          @for (item of opcionais(); track $index) {
-            <div class="my-3">
-              <app-pacotes-count
-                [key]="item.id"
-                [type]="item.nome"
-                [valor]="item.valor"
-                [max]="amountTicketsValues()"
-                (amountEmit)="opcionaisHandle($event, item.valor)">
-              </app-pacotes-count>
-            </div>
-          }
-          
         </div>
+
+        @for (item of opcionais(); track $index) {
+        <div class="my-3">
+          <app-pacotes-count
+            [key]="item.id"
+            [type]="item.nome"
+            [valor]="item.valor"
+            [max]="amountTicketsValues()"
+            (amountEmit)="opcionaisHandle($event, item.valor)"
+          >
+          </app-pacotes-count>
+        </div>
+        }
+      </div>
       }
     </div>
   </div>
@@ -101,3 +105,4 @@
     </div>
   </div>
 </form>
+}

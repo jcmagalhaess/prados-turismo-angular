@@ -1,5 +1,5 @@
 <main id="excursao-loaded" class="pacotes__single mt-80">
-  <section class="mb-4">
+  <section>
     <div
       style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
       class="swiper mySwiper2"
@@ -18,8 +18,8 @@
     </div>
   </section>
 
-  <div class="container">
-    <div class="d-flex mb-3">
+  <div class="my-5 container">
+    <!-- <div class="d-flex mb-3">
       <a routerLink="/" type="button" class="btn btn-secondary me-3">
         <i class="fa-solid fa-arrow-left-long me-2"></i>Voltar
       </a>
@@ -49,44 +49,35 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
 
     <div class="d-flex flex-column-reverse flex-sm-row">
       <div class="event__main">
         <div class="row">
           <div class="col-md-12">
-            <p class="display-6">{{ excursao()?.nome }}</p>
-            <span class="event__price">
+            <h2 class="event__title">{{ excursao()?.nome }}</h2>
+            <!-- <span class="event__price">
               {{ excursao()?.valor | currency : "BRL" : true : "1.2-2" }}
-            </span>
-            <p [innerHTML]="excursao()?.Pacotes?.descricao"></p>
-            <table class="event__table table">
-              <tbody>
-                @if (inclusos()?.length) {
-                <tr>
-                  <th scope="row">Incluso</th>
-                  <td class="event__inclusos">
-                    <ul class="d-flex flex-wrap">
-                      @for (item of inclusos(); track $index) {
-                      <li>
-                        <i class="fa-solid fa-check text-success me-3"></i
-                        >{{ item.nome }}
-                      </li>
-                      }
-                    </ul>
-                  </td>
-                </tr>
+            </span> -->
+            @if (inclusos()?.length) {
+            <div class="event__includes">
+              <h3>O que está incluso?</h3>
+              <ul>
+                @for (item of inclusos(); track $index) {
+                <li>
+                  <i class="fa-solid fa-check text-success me-3"></i
+                  >{{ item.nome }}
+                </li>
                 }
-              </tbody>
-            </table>
+              </ul>
+            </div>
+            }
+            <p [innerHTML]="excursao()?.Pacotes?.descricao"></p>
           </div>
         </div>
       </div>
       <div class="event__sidebar">
-        <app-pacotes-sidebar
-          [form]="form"
-          [excursao]="excursao()"
-        ></app-pacotes-sidebar>
+        <app-pacotes-sidebar [form]="form" [excursao]="excursao()" />
       </div>
     </div>
   </div>

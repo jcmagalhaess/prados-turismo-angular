@@ -29,7 +29,7 @@
       <span class="card-event__price">
         R$ <strong>{{ price | number : "1.2-2" }}</strong>
       </span>
-      <span>{{ transport | formataParcelas }}</span>
+      <span>{{ price + "" | formataParcelas }}</span>
 
       @if (featured) { <span>saiba mais</span> }
     </div>

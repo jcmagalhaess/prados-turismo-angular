@@ -11,26 +11,61 @@ import {
 import { PeriodoPipe } from "../../../../shared/pipes/periodo.pipe";
 import { PacotesCountComponent } from "../pacotes-count/pacotes-count.component";
 import { PacotesModalComponent } from "../pacotes-modal/pacotes-modal.component";
+import { PacotesPriceComponent } from "../pacotes-price/pacotes-price.component";
 
 @Component({
   selector: "app-pacotes-sidebar",
   standalone: true,
-  imports: [CommonModule, PacotesCountComponent, ReactiveFormsModule, PeriodoPipe],
+  imports: [
+    CommonModule,
+    PacotesCountComponent,
+    ReactiveFormsModule,
+    PeriodoPipe,
+    PacotesPriceComponent,
+  ],
   templateUrl: "./pacotes-sidebar.component.html",
   styleUrl: "./pacotes-sidebar.component.scss",
 })
 export class PacotesSidebarComponent {
   public amountTickets = signal<any>([]);
-  public amountTicketsValues = computed(() => this.amountTickets().reduce((acc: number, item: any) => acc + item.value, 0));
-  public amountTicketsNoValueZero = computed(() => this.amountTickets().filter((item: any) => item.value > 0));
-  public hasOpcionaisAndTicketsSelecionados = computed(() => this.amountTicketsNoValueZero().length > 0 && this.excursao?.Pacotes?.Produto.length! > 0);
+  public amountTicketsValues = computed(() =>
+    this.amountTickets().reduce((acc: number, item: any) => acc + item.value, 0)
+  );
+  public amountTicketsNoValueZero = computed(() =>
+    this.amountTickets().filter((item: any) => item.value > 0)
+  );
+  public hasOpcionaisAndTicketsSelecionados = computed(
+    () =>
+      this.amountTicketsNoValueZero().length > 0 &&
+      this.excursao?.Pacotes?.Produto.length! > 0
+  );
   public opcionais = computed(() => this.excursao?.Pacotes?.Produto);
   public opcionaisSelecionados = signal<any>([]);
-  public amountOpcionais = computed(() => this.opcionaisSelecionados().reduce((acc: number, item: any) => acc + item.value, 0));
-  public valorOpcionais = computed(() => this.opcionaisSelecionados().reduce((acc: number, item: any) => acc + (item.value * item.price), 0));
-  public valorTickets = computed(() => this.amountTicketsNoValueZero().filter((item: any) => item.key !== "babies").reduce((acc: number, item: any) => acc + (this.excursao!.valor * item.value), 0));
-  public valorTransacao = computed(() => this.valorTickets() + this.valorOpcionais())
-  
+  public amountOpcionais = computed(() =>
+    this.opcionaisSelecionados().reduce(
+      (acc: number, item: any) => acc + item.value,
+      0
+    )
+  );
+  public valorOpcionais = computed(() =>
+    this.opcionaisSelecionados().reduce(
+      (acc: number, item: any) => acc + item.value * item.price,
+      0
+    )
+  );
+  public valorTickets = computed(() =>
+    this.amountTicketsNoValueZero()
+      .filter((item: any) => item.key !== "babies")
+      .reduce(
+        (acc: number, item: any) => acc + this.excursao!.valor * item.value,
+        0
+      )
+  );
+  public valorTransacao = computed(
+    () => this.valorTickets() + this.valorOpcionais()
+  );
+  public showDates = signal<boolean>(false);
+
   public enumCategory = [
     { key: "adults", value: "Adultos", age: "+12 anos" },
     { key: "children", value: "Crianças", age: "6 a 12 anos" },
@@ -90,7 +125,7 @@ export class PacotesSidebarComponent {
         price: this.valorTransacao(),
         locales: this.locais,
       },
-    });    
+    });
 
     dialogRef.afterClosed().subscribe((res: any) => {
       if (!res) return;
@@ -117,18 +152,25 @@ export class PacotesSidebarComponent {
   }
 
   public opcionaisHandle(values: any, price: number) {
-    if (this.opcionaisSelecionados().find((item: any) => item.key === values.key)) {
+    if (
+      this.opcionaisSelecionados().find((item: any) => item.key === values.key)
+    ) {
       let filter = this.opcionaisSelecionados().filter(
         (item: any) => item.key !== values.key
       );
-      this.opcionaisSelecionados.set((filter || []).concat({ ...values, price}));
-    } else this.opcionaisSelecionados.set((this.opcionaisSelecionados() || []).concat({ ...values, price}));
+      this.opcionaisSelecionados.set(
+        (filter || []).concat({ ...values, price })
+      );
+    } else
+      this.opcionaisSelecionados.set(
+        (this.opcionaisSelecionados() || []).concat({ ...values, price })
+      );
   }
 
   private _buildPrice(item: any) {
     if (item.key === "babies") return 0;
 
-    return (this.excursao?.valor ?? 0) * item.value
+    return (this.excursao?.valor ?? 0) * item.value;
   }
 
   private _formatBirthday(items: Array<any>) {
@@ -152,5 +194,9 @@ export class PacotesSidebarComponent {
     let filter = tickets.filter((item: any) => item.key !== "babies");
 
     return this._takeAmountTickets(filter) * price;
+  }
+
+  public getShowDates(show: boolean) {
+    this.showDates.set(show);
   }
 }

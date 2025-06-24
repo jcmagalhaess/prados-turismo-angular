@@ -1,4 +1,4 @@
-import { CommonModule, CurrencyPipe } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { AfterViewInit, Component, computed, effect } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, RouterModule } from "@angular/router";
@@ -18,10 +18,10 @@ Swiper.use([Navigation, Thumbs]);
 @Component({
   selector: "app-pacotes-single",
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, PacotesSidebarComponent, RouterModule],
+  imports: [CommonModule, PacotesSidebarComponent, RouterModule],
   templateUrl: "./pacotes-single.component.html",
   styleUrl: "./pacotes-single.component.scss",
-  providers: [ExcursoesSingleUsecase],
+  providers: [ExcursoesSingleUsecase, DatePipe],
 })
 export class PacotesSingleComponent implements AfterViewInit {
   public form = new FormGroup({

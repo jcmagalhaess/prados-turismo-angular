@@ -7,6 +7,7 @@ import { Cliente } from "../../shared/models/cliente.type";
 import { AcessoGetDataPessoaUsecase } from "../acesso/services/acesso-get-data-pessoa.usecase";
 import { MeuCarrinhoOffcanvasComponent } from "../meu-carrinho/components/meu-carrinho-offcanvas/meu-carrinho-offcanvas.component";
 import { CarrinhoService } from "../meu-carrinho/services/carrinho.service";
+import { HeaderStyleService } from "./header-style.interceptor";
 
 @Component({
   selector: "app-header",
@@ -42,7 +43,8 @@ export class HeaderComponent {
   constructor(
     private readonly _router: Router,
     private readonly _cart: CarrinhoService,
-    private readonly _userClient: AcessoGetDataPessoaUsecase
+    private readonly _userClient: AcessoGetDataPessoaUsecase,
+    private readonly _headerInterceptor: HeaderStyleService
   ) {
     this._cart.pegarCarrinho();
   }
