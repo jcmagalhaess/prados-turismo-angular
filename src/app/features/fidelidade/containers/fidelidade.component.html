@@ -1,0 +1,23 @@
+<app-banner-cabecalho
+  [titulo]="titulo"
+  background="../../../assets/images/rio.jpg"
+/>
+
+<div class="programa-fidelidade">
+  <div class="container">
+    <figure class="programa-fidelidade__banner">
+      <img src="../../../assets/images/fidelidade.png" alt="" />
+    </figure>
+
+    <div class="programa-fidelidade__beneficios">
+      @for (item of beneficios; track item.nome) {
+      <app-fidelidade-beneficio
+        [urlImagem]="item.urlImagem"
+        [nome]="item.nome"
+        [qtdViagens]="item.qtdViagens"
+        [beneficio]="item.beneficios"
+      />
+      }
+    </div>
+  </div>
+</div>

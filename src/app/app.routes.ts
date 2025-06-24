@@ -61,7 +61,7 @@ export const routes: Routes = [
     path: "fidelidade",
     pathMatch: "full",
     loadComponent: () =>
-      import("./features/fidelidade/fidelidade.component").then(
+      import("./features/fidelidade/containers/fidelidade.component").then(
         (c) => c.FidelidadeComponent
       ),
   },

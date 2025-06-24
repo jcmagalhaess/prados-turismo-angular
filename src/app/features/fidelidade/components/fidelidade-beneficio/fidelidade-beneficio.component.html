@@ -1,0 +1,15 @@
+<figure class="programa-fidelidade__icon">
+  <img [src]="urlImagem()" [alt]="urlAlt()" />
+</figure>
+<div class="programa-fidelidade__content">
+  <div class="programa-fidelidade__ranking">
+    <span>{{ nome() }}</span
+    >{{ formatedTravel(qtdViagens()!) }}
+  </div>
+  <div class="programa-fidelidade__beneficios">
+    <i class="fa-solid fa-award"></i>
+    <span>
+      Recompensas: <strong>{{ formatedBenefits(beneficio()!) }}</strong>
+    </span>
+  </div>
+</div>

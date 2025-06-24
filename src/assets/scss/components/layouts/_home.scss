@@ -44,7 +44,7 @@ $component-name: "home";
           font-weight: 600;
           line-height: 90%;
           @include breakpoint(medium-only) {
-            font-size: 4rem;
+            font-size: 3rem;
           }
         }
         ul {

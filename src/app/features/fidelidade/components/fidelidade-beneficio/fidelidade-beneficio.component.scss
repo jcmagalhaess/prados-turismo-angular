@@ -1,0 +1,171 @@
+@import "../../../../../assets/scss/components/abstract/breakpoint";
+
+$component-name: "programa-fidelidade";
+
+:host {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 20px;
+  @include breakpoint(medium-only) {
+    flex-direction: column;
+  }
+  &:hover {
+    .#{$component-name} {
+      &__icon {
+        padding: 5px;
+        background-color: #ffffff;
+        transform: scale(1.1);
+      }
+      &__content {
+        transform: translateX(10px);
+        box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+          0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+          0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+        @include breakpoint(medium-only) {
+          transform: none;
+          transform: translateY(-10px);
+        }
+      }
+    }
+  }
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+    &:hover {
+      .#{$component-name} {
+        &__content {
+          transform: translateX(-10px);
+
+          @include breakpoint(medium-only) {
+            transform: none;
+            transform: translateY(-10px);
+          }
+        }
+      }
+    }
+    .#{$component-name} {
+      &__icon {
+        left: auto;
+        right: -30px;
+        @include breakpoint(medium-only) {
+          right: 10px;
+        }
+      }
+      &__content {
+        margin: 0;
+        padding: 0;
+        margin-inline-end: 90px;
+        border-radius: 0;
+        border-top-left-radius: 40px;
+        border-bottom-left-radius: 40px;
+        @include breakpoint(medium-only) {
+          margin: 0;
+          border-radius: 40px;
+        }
+      }
+      &__ranking {
+        text-align: right;
+        padding-inline-start: 10px;
+        padding-inline-end: 60px;
+        @include breakpoint(medium-only) {
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          line-height: 1;
+          font-size: 1.3rem;
+        }
+      }
+      &__beneficios {
+        background-color: var(--color-primary);
+        padding-block: 10px;
+        padding-inline-start: 10px;
+        padding-inline-end: 60px;
+        text-align: right;
+        @include breakpoint(medium-only) {
+          text-align: center;
+          padding: 20px;
+        }
+      }
+    }
+  }
+  .#{$component-name} {
+    &__icon {
+      width: 170px;
+      height: 170px;
+      margin: 0;
+      position: absolute;
+      left: -30px;
+      border-radius: 100%;
+      z-index: 9;
+      transition: all 0.1s ease-in-out;
+      @include breakpoint(medium-only) {
+        width: 90px;
+        height: 90px;
+        top: -40px;
+        left: 10px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    &__content {
+      width: 670px;
+      margin-inline-start: 90px;
+      border-top-right-radius: 40px;
+      border-bottom-right-radius: 40px;
+      overflow: hidden;
+      transition: all 0.1s ease-in-out;
+      @include breakpoint(medium-only) {
+        width: auto;
+        margin: 0;
+        border-radius: 40px;
+      }
+    }
+    &__ranking {
+      font-size: 2rem;
+      padding-block: 20px;
+      padding-inline-start: 60px;
+      padding-inline-end: 10px;
+      background-color: #f2f2f2ff;
+      @include breakpoint(medium-only) {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1;
+        font-size: 1.3rem;
+      }
+      span {
+        font-weight: 700;
+        color: var(--color-primary);
+        @include breakpoint(medium-only) {
+          font-size: 2rem;
+        }
+        &::after {
+          content: " - ";
+          color: #000000;
+          font-weight: 500;
+          @include breakpoint(medium-only) {
+            display: none;
+          }
+        }
+      }
+    }
+    &__beneficios {
+      background-color: var(--color-primary);
+      padding-block: 10px;
+      padding-inline-start: 60px;
+      padding-inline-end: 10px;
+      color: #ffffff;
+      font-size: 1rem;
+      @include breakpoint(medium-only) {
+        text-align: center;
+        padding: 20px;
+      }
+    }
+  }
+}
