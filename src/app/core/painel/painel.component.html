@@ -11,6 +11,9 @@
   <div class="my-account__beneficios">
     <div class="my-account__beneficios-content">
       <p><strong>Benefícios pela sua categoria</strong></p>
+      @if (rankingName() == 'Sem Ranking') {
+      <p class="my-3">Você ainda não possui benefícios.</p>
+      } @else {
       <ul>
         @for (beneficio of pegarBeneficios(rankingName()); track $index) {
         <li>
@@ -18,6 +21,7 @@
         </li>
         }
       </ul>
+      }
       <a href="/programa-de-fidelidade">Conferir mais benefícios</a>
     </div>
   </div>

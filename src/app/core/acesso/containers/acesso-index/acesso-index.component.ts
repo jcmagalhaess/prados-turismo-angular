@@ -20,6 +20,7 @@ export class AcessoIndexComponent {
     cpf: new FormControl("", Validators.required),
     nome: new FormControl("", Validators.required),
     phone: new FormControl("", Validators.required),
+    password: new FormControl("", Validators.required),
   });
 
   get loadingRegister() {
