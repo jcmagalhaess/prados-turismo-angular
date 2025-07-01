@@ -9,7 +9,7 @@ $component-name: "header";
   width: 100%;
   top: 0;
   z-index: 999;
-  font-size: 1.5rem;
+  font-size: 1rem;
   transition: background 0.5s ease, color 0.5s ease, box-shadow 0.5s ease,
     padding 0.3s ease;
   @include breakpoint(medium-only) {
@@ -102,6 +102,9 @@ $component-name: "header";
     list-style: none;
     display: flex;
     gap: 10px;
+    @include breakpoint(medium-only) {
+      display: none;
+    }
     li a {
       display: flex;
       align-items: center;
