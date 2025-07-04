@@ -96,6 +96,13 @@ export const routes: Routes = [
       ).then((c) => c.MeuCarrinhoComponent),
   },
   {
+    path: "documentos-viagem",
+    loadComponent: () =>
+      import("./features/documentos-viagem/documentos-viagem.component").then(
+        (c) => c.DocumentosViagemComponent
+      ),
+  },
+  {
     path: "**",
     component: NotFoundComponent,
   },

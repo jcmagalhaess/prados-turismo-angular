@@ -34,12 +34,12 @@ export class MinhaContaComponent {
     },
     {
       label: "Documentos de viagem",
-      route: "/minha-conta/pedidos",
+      route: "/documentos-viagem",
       icon: "fa-solid fa-passport",
     },
     {
       label: "Formas de pagamento",
-      route: "/minha-conta/pedidos",
+      route: "/formas-pagamento",
       icon: "fa-solid fa-cash-register",
     },
   ];

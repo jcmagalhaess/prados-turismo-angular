@@ -1,16 +1,17 @@
-import { NgStyle } from "@angular/common";
+import { NgClass, NgStyle } from "@angular/common";
 import { Component, HostListener, input } from "@angular/core";
 
 @Component({
   selector: "app-banner-cabecalho",
   standalone: true,
-  imports: [NgStyle],
+  imports: [NgStyle, NgClass],
   templateUrl: "./banner-cabecalho.component.html",
   styleUrl: "./banner-cabecalho.component.scss",
 })
 export class BannerCabecalhoComponent {
   public titulo = input<string>();
   public background = input<string>();
+  public desfoque = input<boolean>();
 
   backgroundPosition: number = 0;
 

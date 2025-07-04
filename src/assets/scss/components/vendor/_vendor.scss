@@ -10,9 +10,11 @@
 
 ul,
 ol {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+  &:not(article ul, article ol) {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
   font-family: Roboto, sans-serif;
 }
 

@@ -1,10 +1,10 @@
 <div data-scroll-container>
-  <section
-    class="home__banner"
-    style="background-image: url(/assets/images/home.png)"
-    [ngStyle]="{ 'background-position-y': backgroundPosition + 'px' }"
-    data-scroll
-  >
+  <section class="home__banner" data-scroll>
+    <div
+      class="home__banner-background"
+      style="background-image: url(/assets/images/home.png)"
+      [ngStyle]="{ 'background-position-y': backgroundPosition + 'px' }"
+    ></div>
     <div class="container">
       <div class="home__banner-information">
         <span class="mb-3 display-6 text-center"
