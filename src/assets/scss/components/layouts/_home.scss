@@ -43,7 +43,7 @@ $component-name: "home";
           font-size: 6.5rem;
           font-weight: 600;
           line-height: 90%;
-          @include breakpoint(medium-only) {
+          @include breakpoint(small-only) {
             font-size: 3rem;
           }
         }
@@ -74,7 +74,7 @@ $component-name: "home";
     padding: 80px 60px;
     font-size: 1.8rem;
     background-color: var(--color-primary);
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       margin: 0;
       width: auto;
       padding: 40px 20px;
@@ -86,7 +86,7 @@ $component-name: "home";
     gap: 50px;
     align-items: center;
     justify-content: center;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       flex-direction: column;
       text-align: center;
       line-height: 1;
@@ -126,8 +126,8 @@ $component-name: "home";
       line-height: 0.9;
       margin-block-end: 0;
       font-weight: 500;
-      @include breakpoint(medium-only) {
-        font-size: 4rem;
+      @include breakpoint(small-only) {
+        font-size: 2.5rem;
       }
     }
     span {
@@ -135,6 +135,9 @@ $component-name: "home";
       font-size: 1.5rem;
       text-align: center;
       margin-block: 30px;
+      @include breakpoint(small-only) {
+        font-size: 1rem;
+      }
     }
   }
 
@@ -158,7 +161,7 @@ $component-name: "home";
     &:nth-child(3n) {
       margin-right: 0;
     }
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       flex: 0 0 100% !important;
     }
   }
@@ -174,6 +177,9 @@ $component-name: "home";
       clip-path: polygon(0% 0%, 0% 100%, 100% 100%);
       z-index: -1;
       background-color: var(--color-primary);
+      @include breakpoint(small-only) {
+        height: 50%;
+      }
     }
   }
 }

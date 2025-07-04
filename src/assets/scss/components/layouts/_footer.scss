@@ -14,7 +14,7 @@ $component-name: "footer";
     justify-content: center;
     gap: 150px;
     padding-block: 3rem;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       flex-direction: column;
       align-items: center;
       padding-inline: 30px;
@@ -29,7 +29,7 @@ $component-name: "footer";
     display: flex;
     align-items: center;
     justify-content: center;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       width: 70%;
       margin: auto;
       margin-block-end: 20px;
@@ -39,7 +39,7 @@ $component-name: "footer";
   &__title {
     color: var(--color-primary);
     font-size: 1rem;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       text-align: center;
     }
   }
@@ -47,7 +47,7 @@ $component-name: "footer";
   &__content {
     color: var(--color-light);
     margin-inline-end: 20px;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       margin-block-end: 50px;
     }
 
@@ -62,7 +62,7 @@ $component-name: "footer";
 
   &__list {
     @extend .#{$component-name}__content;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       margin-block-end: 0;
     }
     li {
@@ -82,7 +82,7 @@ $component-name: "footer";
     justify-content: center;
     gap: 10px;
     width: 100%;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       justify-content: center;
       margin-block-start: 50px;
     }
@@ -123,7 +123,9 @@ $component-name: "footer";
   &__copyright {
     padding-block: 20px;
     color: var(--color-light);
-    // background-color: var(--color-secondary-dark);
     position: relative;
+    @include breakpoint(small-only) {
+      text-align: center;
+    }
   }
 }

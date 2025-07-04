@@ -15,7 +15,7 @@ $component-name: "event";
   &__main {
     width: calc(65% - 30px);
     margin-inline-end: 30px;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       width: auto;
       margin: 0;
     }
@@ -53,7 +53,7 @@ $component-name: "event";
     border-radius: 5px;
     padding: 20px;
     margin-block-end: 25px;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       width: auto;
       margin-block-end: 20px;
     }
@@ -122,7 +122,7 @@ $component-name: "event";
     }
     &-count {
       width: 50%;
-      @include breakpoint(medium-only) {
+      @include breakpoint(small-only) {
         width: 70%;
       }
     }

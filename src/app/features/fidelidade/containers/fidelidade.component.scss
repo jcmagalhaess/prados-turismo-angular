@@ -14,7 +14,7 @@ $component-name: "programa-fidelidade";
     align-items: center;
     margin-block: 100px;
 
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       gap: 60px;
     }
   }

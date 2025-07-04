@@ -7,7 +7,7 @@ $component-name: "programa-fidelidade";
   align-items: center;
   position: relative;
   gap: 20px;
-  @include breakpoint(medium-only) {
+  @include breakpoint(small-only) {
     flex-direction: column;
   }
   &:hover {
@@ -23,7 +23,7 @@ $component-name: "programa-fidelidade";
           0px 4px 5px 0px rgba(0, 0, 0, 0.14),
           0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 
-        @include breakpoint(medium-only) {
+        @include breakpoint(small-only) {
           transform: none;
           transform: translateY(-10px);
         }
@@ -37,7 +37,7 @@ $component-name: "programa-fidelidade";
         &__content {
           transform: translateX(-10px);
 
-          @include breakpoint(medium-only) {
+          @include breakpoint(small-only) {
             transform: none;
             transform: translateY(-10px);
           }
@@ -48,7 +48,7 @@ $component-name: "programa-fidelidade";
       &__icon {
         left: auto;
         right: -30px;
-        @include breakpoint(medium-only) {
+        @include breakpoint(small-only) {
           right: 10px;
         }
       }
@@ -59,7 +59,7 @@ $component-name: "programa-fidelidade";
         border-radius: 0;
         border-top-left-radius: 40px;
         border-bottom-left-radius: 40px;
-        @include breakpoint(medium-only) {
+        @include breakpoint(small-only) {
           margin: 0;
           border-radius: 40px;
         }
@@ -68,7 +68,7 @@ $component-name: "programa-fidelidade";
         text-align: right;
         padding-inline-start: 10px;
         padding-inline-end: 60px;
-        @include breakpoint(medium-only) {
+        @include breakpoint(small-only) {
           padding: 20px;
           display: flex;
           flex-direction: column;
@@ -83,7 +83,7 @@ $component-name: "programa-fidelidade";
         padding-inline-start: 10px;
         padding-inline-end: 60px;
         text-align: right;
-        @include breakpoint(medium-only) {
+        @include breakpoint(small-only) {
           text-align: center;
           padding: 20px;
         }
@@ -100,7 +100,7 @@ $component-name: "programa-fidelidade";
       border-radius: 100%;
       z-index: 9;
       transition: all 0.1s ease-in-out;
-      @include breakpoint(medium-only) {
+      @include breakpoint(small-only) {
         width: 90px;
         height: 90px;
         top: -40px;
@@ -119,7 +119,7 @@ $component-name: "programa-fidelidade";
       border-bottom-right-radius: 40px;
       overflow: hidden;
       transition: all 0.1s ease-in-out;
-      @include breakpoint(medium-only) {
+      @include breakpoint(small-only) {
         width: auto;
         margin: 0;
         border-radius: 40px;
@@ -131,7 +131,7 @@ $component-name: "programa-fidelidade";
       padding-inline-start: 60px;
       padding-inline-end: 10px;
       background-color: #f2f2f2ff;
-      @include breakpoint(medium-only) {
+      @include breakpoint(small-only) {
         padding: 20px;
         display: flex;
         flex-direction: column;
@@ -142,14 +142,14 @@ $component-name: "programa-fidelidade";
       span {
         font-weight: 700;
         color: var(--color-primary);
-        @include breakpoint(medium-only) {
+        @include breakpoint(small-only) {
           font-size: 2rem;
         }
         &::after {
           content: " - ";
           color: #000000;
           font-weight: 500;
-          @include breakpoint(medium-only) {
+          @include breakpoint(small-only) {
             display: none;
           }
         }
@@ -162,7 +162,7 @@ $component-name: "programa-fidelidade";
       padding-inline-end: 10px;
       color: #ffffff;
       font-size: 1rem;
-      @include breakpoint(medium-only) {
+      @include breakpoint(small-only) {
         text-align: center;
         padding: 20px;
       }

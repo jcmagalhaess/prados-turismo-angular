@@ -22,7 +22,7 @@ type AjudaType = {
 export class AjudaComponent implements OnInit {
   private _originalList = [
     {
-      title: "📌 Sobre Reservas e Pacotes",
+      title: "Sobre Reservas e Pacotes",
       questions: [
         {
           question: "Como faço para reservar um pacote de viagem?",
@@ -68,7 +68,7 @@ export class AjudaComponent implements OnInit {
       ],
     },
     {
-      title: "💳 Pagamento e Benefícios",
+      title: "Pagamento e Benefícios",
       questions: [
         {
           question: "Quais são as formas de pagamento aceitas?",
@@ -174,7 +174,7 @@ export class AjudaComponent implements OnInit {
       ],
     },
     {
-      title: "📄 Documentação e Políticas",
+      title: "Documentação e Políticas",
       questions: [
         {
           question: "Quais documentos são necessários para viajar?",
@@ -227,7 +227,7 @@ export class AjudaComponent implements OnInit {
       ],
     },
     {
-      title: "📞 Atendimento e Contato",
+      title: "Atendimento e Contato",
       questions: [
         {
           question: "Como entro em contato com a Prados Turismo?",
@@ -254,7 +254,7 @@ export class AjudaComponent implements OnInit {
       ],
     },
     {
-      title: "🌟 Outros",
+      title: "Outros",
       questions: [
         {
           question:

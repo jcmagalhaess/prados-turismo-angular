@@ -97,7 +97,7 @@ a {
 
 main:not(main.home, main.pacotes__single) {
   padding-block: 50px;
-  @include breakpoint(medium-only) {
+  @include breakpoint(small-only) {
     padding-block: 20px;
   }
 }
@@ -137,7 +137,7 @@ body {
 
 .mt-80 {
   margin-block-start: 80px;
-  @include breakpoint(medium-only) {
+  @include breakpoint(small-only) {
     margin-block-start: 160px;
   }
 }

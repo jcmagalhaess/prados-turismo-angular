@@ -17,7 +17,7 @@ $component-name: "my-account";
     background-color: #ccc;
     border-radius: 80px;
     position: relative;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       width: 100%;
     }
     h3 {
@@ -25,7 +25,7 @@ $component-name: "my-account";
       color: #000000;
       font-size: 2.5rem;
       margin-block: 40px;
-      @include breakpoint(medium-only) {
+      @include breakpoint(small-only) {
         line-height: 1;
         font-size: 2rem;
       }
@@ -53,7 +53,7 @@ $component-name: "my-account";
     padding: 10px 20px;
     color: #ffffff;
     font-size: 1rem;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       width: 80%;
     }
   }
@@ -66,7 +66,7 @@ $component-name: "my-account";
       width: 60%;
       padding: 20px;
       background-color: #ccc;
-      @include breakpoint(medium-only) {
+      @include breakpoint(small-only) {
         width: 100%;
       }
       ul {
@@ -114,13 +114,13 @@ $component-name: "my-account";
     font-size: 180%;
     font-weight: 400;
     margin-block: 20px !important;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       font-size: 130%;
     }
   }
   &__menu {
     display: flex;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       flex-direction: column;
     }
     &::after {

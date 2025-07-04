@@ -19,6 +19,9 @@ $component-name: "card-event";
     border: none;
     border-radius: 50px;
     height: 450px;
+    @include breakpoint(small-only) {
+      height: 420px;
+    }
     .#{$component-name}__date {
       border: none;
       margin: 0;
@@ -26,6 +29,9 @@ $component-name: "card-event";
     .#{$component-name}__content {
       padding: 20px;
       height: 450px;
+      @include breakpoint(small-only) {
+        height: 420px;
+      }
     }
     .#{$component-name}__feature {
       align-items: flex-start;
@@ -43,7 +49,7 @@ $component-name: "card-event";
       padding: 0;
       color: var(--color-primary);
       position: relative;
-      @include breakpoint(medium-only) {
+      @include breakpoint(small-only) {
         font-size: 1.5rem;
       }
       img {
@@ -51,7 +57,7 @@ $component-name: "card-event";
         top: 30px;
         right: 120px;
         width: 75%;
-        @include breakpoint(medium-only) {
+        @include breakpoint(small-only) {
           top: 55px;
           right: 0;
           width: 40%;
@@ -64,6 +70,9 @@ $component-name: "card-event";
     }
     .#{$component-name}__title {
       margin-block: 40px;
+      @include breakpoint(small-only) {
+        margin-block-start: 50px !important;
+      }
     }
     .#{$component-name}__actions {
       align-items: center;
@@ -86,7 +95,7 @@ $component-name: "card-event";
       width: 210px;
       height: 450px;
       transform: rotate(-58deg);
-      @include breakpoint(medium-only) {
+      @include breakpoint(small-only) {
         top: -240px;
         right: 0;
       }
@@ -140,7 +149,7 @@ $component-name: "card-event";
     padding: 30px;
     display: flex;
     flex-direction: column;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       padding: 15px;
     }
   }
@@ -191,9 +200,10 @@ $component-name: "card-event";
     text-transform: capitalize;
     text-align: start;
     line-height: normal !important;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       text-align: start;
-      margin-block-start: 60px !important;
+      margin-block-start: 30px !important;
+      font-size: 1.5rem !important;
     }
   }
 
@@ -237,7 +247,7 @@ $component-name: "card-event";
     transition: 0.3s ease;
     margin-block: 20px;
     display: inline-block;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       margin-block: 0;
     }
   }

@@ -10,6 +10,11 @@ $component-name: "banner";
   flex-direction: column;
   align-items: center;
   margin-block: 100px;
+  @include breakpoint(small-only) {
+    margin: 15px;
+    margin-block: 50px;
+    width: calc(100% - 30px);
+  }
   &__title {
     font-size: 2.5rem !important;
     margin-block-end: 25px !important;
@@ -24,7 +29,7 @@ $component-name: "banner";
       margin-block-start: 20px;
       background-color: var(--color-primary);
     }
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       text-align: center;
       line-height: 1 !important;
     }
@@ -41,7 +46,7 @@ $component-name: "banner";
     gap: 20px;
     position: relative;
     flex-flow: wrap;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       width: 100%;
       flex-direction: column;
       gap: 50px;
@@ -75,7 +80,7 @@ $component-name: "banner";
     width: 230px;
     height: 230px;
     transition: 0.3s ease-in-out;
-    @include breakpoint(medium-only) {
+    @include breakpoint(small-only) {
       width: 100%;
     }
     // @include breakpoint(large-up) {
@@ -89,6 +94,7 @@ $component-name: "banner";
       transform: translateY(-5px);
     }
   }
+
   &__info {
     text-align: center;
     line-height: 1;
@@ -112,6 +118,7 @@ $component-name: "banner";
       width: 60%;
     }
   }
+
   &__icon {
     width: 50px;
     height: 50px;
@@ -130,5 +137,9 @@ $component-name: "banner";
   &__familia-prados {
     padding-inline: 50px;
     padding-block-end: 80px;
+    @include breakpoint(small-only) {
+      padding: 0;
+      // width: calc(100% - 30px);
+    }
   }
 }
