@@ -23,13 +23,13 @@
       @content;
     }
   } @else if $point == large-only {
-    @media (max-width: 74.9375em) {
-      // 1199px
+    @media (max-width: 109.9375em) {
+      // 1629
       @content;
     }
   } @else if $point == large-up {
-    @media (min-width: 75em) {
-      // 1200px
+    @media (min-width: 110em) {
+      // 1630px
       @content;
     }
   } @else {

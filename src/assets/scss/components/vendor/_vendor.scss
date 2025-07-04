@@ -22,6 +22,10 @@ ol {
   flex-grow: 1;
 }
 
+article a {
+  border-block-end: 3px solid;
+}
+
 a {
   text-decoration: none;
   color: var(--color-secondary);
@@ -159,4 +163,24 @@ body {
 
 .container {
   max-width: 1595px;
+}
+
+.mat-mdc-tab {
+  transition: 0.5s ease-in-out;
+  &.mdc-tab {
+    flex-grow: 0 !important;
+    color: var(--color-secondary) !important;
+  }
+  &-labels {
+    border-block-end: 2px solid var(--color-secondary);
+  }
+  &.mdc-tab--active {
+    background-color: var(--color-secondary);
+    .mdc-tab__text-label {
+      color: var(--color-light) !important;
+    }
+  }
+  .mdc-tab-indicator__content--underline {
+    border-color: var(--color-secondary) !important;
+  }
 }

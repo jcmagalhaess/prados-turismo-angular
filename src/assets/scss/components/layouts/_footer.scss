@@ -29,8 +29,8 @@ $component-name: "footer";
     display: flex;
     align-items: center;
     justify-content: center;
-    @include breakpoint(small-only) {
-      width: 70%;
+    @include breakpoint(medium-only) {
+      width: 50%;
       margin: auto;
       margin-block-end: 20px;
     }

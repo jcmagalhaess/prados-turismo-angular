@@ -1,9 +1,34 @@
-<main>
-  <app-banner-cabecalho
-    titulo="Termos de Uso"
-    background="assets/images/termos-de-uso.png"
-  />
+@if (!isCheckout()) {
+<app-banner-cabecalho
+  titulo="Termos de Uso"
+  background="assets/images/Terms-of-use.webp"
+  [desfoque]="true"
+/>
+}
+<section class="py-5" [ngClass]="{ 'py-5': !isCheckout() }">
   <div class="container">
-    <app-termos-uso-content></app-termos-uso-content>
+    <div class="row">
+      <div class="col-md-12">
+        <h2
+          class="my-4 fs-2 text-center d-flex flex-column align-items-center justify-content-center"
+        >
+          Contrato integral de aquisição @if (isCheckout()) { <br />
+          } de serviços de viagem
+        </h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <mat-tab-group>
+          <mat-tab label="Sem áereo">
+            <app-termos-uso-sem-aereo />
+          </mat-tab>
+          <mat-tab label="Com áereo">
+            <app-termos-uso-com-aereo />
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
   </div>
-</main>
+</section>

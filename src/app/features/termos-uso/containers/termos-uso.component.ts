@@ -1,12 +1,23 @@
-import { Component } from "@angular/core";
+import { NgClass } from "@angular/common";
+import { Component, input } from "@angular/core";
+import { MatTabsModule } from "@angular/material/tabs";
 import { BannerCabecalhoComponent } from "../../../shared/components/banner-cabecalho/banner-cabecalho.component";
-import { TermosUsoContentComponent } from "../components/termos-uso-content/termos-uso-content.component";
+import { TermosUsoComAereoComponent } from "../components/termos-uso-com-aereo/termos-uso-com-aereo.component";
+import { TermosUsoSemAereoComponent } from "../components/termos-uso-sem-aereo/termos-uso-sem-aereo.component";
 
 @Component({
   selector: "app-termos-uso",
   standalone: true,
-  imports: [TermosUsoContentComponent, BannerCabecalhoComponent],
+  imports: [
+    MatTabsModule,
+    TermosUsoSemAereoComponent,
+    TermosUsoComAereoComponent,
+    BannerCabecalhoComponent,
+    NgClass,
+  ],
   templateUrl: "./termos-uso.component.html",
   styleUrl: "./termos-uso.component.scss",
 })
-export class TermosUsoComponent {}
+export class TermosUsoComponent {
+  public isCheckout = input<boolean>(false);
+}

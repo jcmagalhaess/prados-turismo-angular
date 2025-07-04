@@ -2,10 +2,10 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, OnDestroy, OnInit, signal } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { TermosUsoContentComponent } from "../../features/termos-uso/components/termos-uso-content/termos-uso-content.component";
+import { TermosUsoComponent } from "../../features/termos-uso/containers/termos-uso.component";
 import { CartItemComponent } from "../../shared/components/cart-item/cart-item.component";
 import { AsyncLocalEmbarquePipe } from "../../shared/pipes/async-local-embarque.pipe";
-import { CarrinhoService } from '../meu-carrinho/services/carrinho.service';
+import { CarrinhoService } from "../meu-carrinho/services/carrinho.service";
 
 @Component({
   selector: "app-checkout",
@@ -15,7 +15,7 @@ import { CarrinhoService } from '../meu-carrinho/services/carrinho.service';
     ReactiveFormsModule,
     AsyncLocalEmbarquePipe,
     CartItemComponent,
-    TermosUsoContentComponent
+    TermosUsoComponent,
   ],
   templateUrl: "./checkout.component.html",
   styleUrl: "./checkout.component.scss",
@@ -58,12 +58,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   public adicionarAoCarrinho() {
     let cart = JSON.parse(localStorage.getItem("cart")!) ?? [];
-    
+
     cart.push(this.pacote());
 
     localStorage.setItem("cart", JSON.stringify(cart));
     this._carrinho.pegarCarrinho();
-    this._router.navigateByUrl('/meu-carrinho')
+    this._router.navigateByUrl("/meu-carrinho");
   }
 
   public ngOnDestroy(): void {

@@ -80,13 +80,15 @@ $component-name: "banner";
     width: 230px;
     height: 230px;
     transition: 0.3s ease-in-out;
+    @include breakpoint(large-only) {
+      width: 30%;
+    }
+    @include breakpoint(medium-only) {
+      width: 45%;
+    }
     @include breakpoint(small-only) {
       width: 100%;
     }
-    // @include breakpoint(large-up) {
-    //   width: 210px;
-    //   height: 210px;
-    // }
     &:hover {
       box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
         0px 4px 5px 0px rgba(0, 0, 0, 0.14),
