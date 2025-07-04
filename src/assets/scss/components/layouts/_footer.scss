@@ -24,14 +24,13 @@ $component-name: "footer";
   }
 
   &__logo {
-    height: 100%;
     margin: 0;
-    width: 10%;
+    // width: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
     @include breakpoint(medium-only) {
-      width: 40%;
+      width: 70%;
       margin: auto;
       margin-block-end: 20px;
     }
@@ -47,11 +46,9 @@ $component-name: "footer";
 
   &__content {
     color: var(--color-light);
+    margin-inline-end: 20px;
     @include breakpoint(medium-only) {
-      text-align: center;
-    }
-    p {
-      margin-bottom: 0;
+      margin-block-end: 50px;
     }
 
     a {
@@ -65,6 +62,12 @@ $component-name: "footer";
 
   &__list {
     @extend .#{$component-name}__content;
+    @include breakpoint(medium-only) {
+      margin-block-end: 0;
+    }
+    li {
+      margin-block-end: 12px;
+    }
   }
 
   &__others {
@@ -76,9 +79,12 @@ $component-name: "footer";
   &__social-icons {
     list-style: none;
     display: flex;
+    justify-content: center;
     gap: 10px;
+    width: 100%;
     @include breakpoint(medium-only) {
       justify-content: center;
+      margin-block-start: 50px;
     }
     &--secondary {
       .#{$component-name}__icon {
@@ -96,19 +102,21 @@ $component-name: "footer";
   }
 
   &__icon {
-    background-color: var(--color-primary);
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     cursor: pointer;
-    color: var(--color-light);
     transition: 0.5s ease;
+    font-size: 1.5rem;
     &:hover {
-      color: var(--color-secondary);
-      background-color: var(--color-light);
+      color: var(--color-light);
+      background-color: rgba($color: #ffffff, $alpha: 0.3);
+    }
+    a {
+      color: var(--color-light);
     }
   }
 

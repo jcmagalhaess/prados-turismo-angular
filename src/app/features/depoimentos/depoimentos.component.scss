@@ -1,4 +1,5 @@
 @import "../../../assets/scss/components/abstract/breakpoint";
+
 $component-name: "depoimentos";
 
 .#{$component-name} {
@@ -59,6 +60,9 @@ $component-name: "depoimentos";
     flex-direction: column;
     justify-content: space-between;
     background-color: #ffffff;
+    @include breakpoint(medium-only) {
+      width: 100%;
+    }
     button {
       font-size: 2.3rem;
       height: 70px;
