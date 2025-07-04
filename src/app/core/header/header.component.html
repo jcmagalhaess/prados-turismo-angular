@@ -28,15 +28,11 @@
           </div>
           <div class="header__account ms-5">
             <a
-              [routerLink]="getLink(client())!"
               [matTooltip]="nomeUsuario()"
               [matTooltipDisabled]="!client()"
+              (click)="authenticate()"
             >
               <i class="fa-regular fa-user"></i>
-              <!-- <i class="fa-regular fa-user" [ngClass]="{ 'me-4': client }"></i>
-              @if (client) {
-              {{ client.nome }}
-              } -->
             </a>
           </div>
           <div
@@ -55,23 +51,4 @@
       </div>
     </div>
   </div>
-  <!-- <div class="header__menu">
-    <div class="container">
-      <div class="header__flex">
-        
-        <ul class="header__list">
-          @for (item of menu(); track $index) {
-          <li class="header__item">
-            <a
-              [routerLink]="item.route"
-              routerLinkActive="activated"
-              [routerLinkActiveOptions]="{ exact: true }"
-              >{{ item.label }}</a
-            >
-          </li>
-          }
-        </ul>
-      </div>
-    </div>
-  </div> -->
 </header>

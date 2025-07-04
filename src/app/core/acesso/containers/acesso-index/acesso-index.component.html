@@ -1,12 +1,23 @@
-<main class="login mt-80">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <app-acesso-login [loading]="loadingLogin" (login)="login($event)"></app-acesso-login>
-            </div>
-            <div class="col-md-6">
-                <app-acesso-cadastro [form]="formRegister" [loading]="loadingRegister" (email)="register($event)"></app-acesso-cadastro>
-            </div>
-        </div>
-    </div>
-</main>
+<div class="p-2">
+  <div class="d-flex justify-content-end">
+    <button mat-icon-button mat-dialog-close>
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <mat-tab-group class="px-4 pb-4">
+    <mat-tab label="Entrar">
+      <div class="pt-5 w-100">
+        <app-acesso-login [loading]="loadingLogin" (login)="login($event)" />
+      </div>
+    </mat-tab>
+    <mat-tab label="Cadastre-se">
+      <div class="pt-5 w-100">
+        <app-acesso-cadastro
+          [form]="formRegister"
+          [loading]="loadingRegister"
+          (email)="register($event)"
+        />
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

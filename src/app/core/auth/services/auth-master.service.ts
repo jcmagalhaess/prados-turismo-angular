@@ -13,16 +13,15 @@ export class AuthMasterService {
   get hasToken() {
     return this._hasToken;
   }
-  
+
   constructor(private readonly _http: HttpClient) {}
 
   public authenticationMaster() {
-    return this._authenticationMasterToken()
-      .then((res: any) => {
-        this._token.set(res.token);
-        localStorage.setItem("authToken", res.token);
-        localStorage.setItem("userId", res.userId);
-      });
+    return this._authenticationMasterToken().then((res: any) => {
+      this._token.set(res.token);
+      localStorage.setItem("authToken", res.token);
+      localStorage.setItem("userId", res.userId);
+    });
   }
 
   private _authenticationMasterToken() {

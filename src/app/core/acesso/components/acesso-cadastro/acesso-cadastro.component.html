@@ -1,94 +1,87 @@
-<div class="display-6 mb-3">Cadastre-se</div>
-
-<div class="login__box">
-  <div class="login__form" [formGroup]="form">
-    <label for="nome" class="form-label">Nome *</label>
-    <input type="text" id="nome" class="form-control" formControlName="nome" />
-
-    <div class="row my-3">
-      <div class="col-md-6">
-        <label for="phone" class="form-label">Telefone *</label>
-        <input
-          type="text"
-          id="phone"
-          mask="(00) 00000-0000"
-          class="form-control"
-          formControlName="phone"
-        />
-      </div>
-      <div class="col-md-6">
-        <label for="cpf" class="form-label">CPF *</label>
-        <input
-          type="text"
-          id="cpf"
-          mask="000.000.000-00"
-          class="form-control"
-          formControlName="cpf"
-        />
-      </div>
-    </div>
-
-    <div class="row my-3">
-      <div class="col-md-6">
-        <label for="email" class="form-label">E-mail *</label>
-        <input
-          type="text"
-          id="email"
-          class="form-control"
-          formControlName="email"
-        />
-      </div>
-      <div class="col-md-6">
-        <label for="password" class="form-label">Senha *</label>
-        <input
-          type="text"
-          id="password"
-          class="form-control"
-          formControlName="password"
-        />
-      </div>
-    </div>
-
-    <p>
-      Um link para definir uma nova senha será enviado para seu endereço de
-      e-mail.
-    </p>
-    <p>
-      Seus dados pessoais serão usados para aprimorar a sua experiência em todo
-      este site, para gerenciar o acesso a sua conta e para outros propósitos,
-      como descritos em nossa
-      <a [routerLink]="['/politica-de-privacidade']">política de privacidade</a>
-      .
-    </p>
-
-    <div class="d-flex align-items-center mb-2">
-      <app-action-button
-        labelLoading="Cadastrando..."
-        label="Cadastre-se"
-        [disabled]="form.invalid || loading"
-        [loading]="loading"
-        (action)="register()"
+<div class="row w-100">
+  <div class="col-md-5">
+    <figure>
+      <img src="../../../../../assets/images/cadastro-banner.png" alt="" />
+    </figure>
+  </div>
+  <div class="col-md-7">
+    <div class="login__form" [formGroup]="form">
+      <label for="nome" class="form-label">Nome *</label>
+      <input
+        type="text"
+        id="nome"
+        class="form-control"
+        formControlName="nome"
       />
-      <!-- <button type="submit" (click)="register()" [disabled]="control.invalid || loading" class="btn btn-primary me-3">Cadastre-se</button> -->
+
+      <div class="row my-3">
+        <div class="col-md-6">
+          <label for="phone" class="form-label">Telefone *</label>
+          <input
+            type="text"
+            id="phone"
+            mask="(00) 00000-0000"
+            class="form-control"
+            formControlName="phone"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="cpf" class="form-label">CPF *</label>
+          <input
+            type="text"
+            id="cpf"
+            mask="000.000.000-00"
+            class="form-control"
+            formControlName="cpf"
+          />
+        </div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-md-6">
+          <label for="email" class="form-label">E-mail *</label>
+          <input
+            type="text"
+            id="email"
+            class="form-control"
+            formControlName="email"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="password" class="form-label">Senha *</label>
+          <input
+            type="text"
+            id="password"
+            class="form-control"
+            formControlName="password"
+          />
+        </div>
+      </div>
+
+      <p>
+        Um link para definir uma nova senha será enviado para seu endereço de
+        e-mail.
+      </p>
+      <p>
+        Seus dados pessoais serão usados para aprimorar a sua experiência em
+        todo este site, para gerenciar o acesso a sua conta e para outros
+        propósitos, como descritos em nossa
+        <a [routerLink]="['/politica-de-privacidade']"
+          >política de privacidade</a
+        >
+        .
+      </p>
+
+      <div class="d-flex align-items-center mb-2">
+        <app-action-button
+          labelLoading="Cadastrando..."
+          label="Cadastre-se"
+          [disabled]="form.invalid || loading"
+          [loading]="loading"
+          (action)="register()"
+        />
+        <!-- <button type="submit" (click)="register()" [disabled]="control.invalid || loading" class="btn btn-primary me-3">Cadastre-se</button> -->
+      </div>
     </div>
   </div>
 </div>
-
-<script type="module">
-  import { registerClient } from "./dist/js/main.min.js";
-
-  const button = document.getElementById("btn-register-client");
-
-  button.addEventListener("click", async (event) => {
-    event.preventDefault();
-    const user = document.getElementById("user-register-email");
-    const data = await registerClient(user.value);
-
-    if (!data) {
-      alert("E-mail já registrado");
-      return;
-    }
-
-    alert("E-mail enviado com sucesso!");
-  });
-</script>

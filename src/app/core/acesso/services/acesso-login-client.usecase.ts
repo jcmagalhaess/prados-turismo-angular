@@ -47,7 +47,9 @@ export class AcessoLoginClientUsecase {
     return lastValueFrom(
       this._http.post(`${env.API}/usuarios/login-user-client`, login).pipe(
         tap((response: any) => this._clientAuthenticated.set(response)),
-        tap((response: any) => localStorage.setItem("clientSession", JSON.stringify(response))),
+        tap((response: any) =>
+          localStorage.setItem("clientSession", JSON.stringify(response))
+        ),
         tap((response: any) => {
           let userClient = response.PessoaVinculada.find(
             (item: any) => item.email === response.email
@@ -56,10 +58,12 @@ export class AcessoLoginClientUsecase {
           localStorage.setItem("userClient", userClient);
           this._userClient.set(userClient);
         }),
-        tap((response: any) => localStorage.setItem("clientToken", response.id)),
+        tap((response: any) =>
+          localStorage.setItem("clientToken", response.id)
+        ),
         finalize(() => this._loading.set(false))
       )
-    )
+    );
   }
 
   public logout() {
@@ -69,7 +73,7 @@ export class AcessoLoginClientUsecase {
     this._clientAuthenticated.set(null);
     this._getUserClient.logout();
 
-    this._router.navigateByUrl("/login");
+    this._router.navigateByUrl("/");
   }
 
   public carregarUsuario() {

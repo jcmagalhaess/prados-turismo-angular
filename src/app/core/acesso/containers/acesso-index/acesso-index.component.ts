@@ -1,5 +1,8 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { MatIconButton } from "@angular/material/button";
+import { MatDialog, MatDialogClose } from "@angular/material/dialog";
+import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import { Router } from "@angular/router";
 import { ToasterService } from "../../../../shared/components/toaster/toaster.service";
 import { AcessoCadastroComponent } from "../../components/acesso-cadastro/acesso-cadastro.component";
@@ -10,7 +13,14 @@ import { AcessoRegisterClientUsecase } from "../../services/acesso-register-clie
 @Component({
   selector: "app-acesso-index",
   standalone: true,
-  imports: [AcessoLoginComponent, AcessoCadastroComponent],
+  imports: [
+    AcessoLoginComponent,
+    AcessoCadastroComponent,
+    MatTabGroup,
+    MatTab,
+    MatIconButton,
+    MatDialogClose,
+  ],
   templateUrl: "./acesso-index.component.html",
   styleUrl: "./acesso-index.component.scss",
 })
@@ -28,14 +38,15 @@ export class AcessoIndexComponent {
   }
 
   get loadingLogin() {
-    return this._register.loading;
+    return this._login.loading;
   }
 
   constructor(
     private readonly _register: AcessoRegisterClientUsecase,
     private readonly _login: AcessoLoginClientUsecase,
     private readonly _router: Router,
-    private readonly _toaster: ToasterService
+    private readonly _toaster: ToasterService,
+    private readonly _dialog: MatDialog
   ) {}
 
   public register(email: string) {
@@ -43,6 +54,7 @@ export class AcessoIndexComponent {
       .register(email)
       .then((_) => {
         this.formRegister.reset();
+        this._dialog.closeAll();
 
         this._toaster.success(
           "Cadastro realizado com sucesso! Confira seu e-mail com os proximos passos!"
@@ -56,6 +68,7 @@ export class AcessoIndexComponent {
       .login(login)
       .then(() => {
         let cart = JSON.parse(localStorage.getItem("cart")!);
+        this._dialog.closeAll();
 
         if (cart.length) this._router.navigate(["meu-carrinho"]);
         else this._router.navigate(["minha-conta"]);

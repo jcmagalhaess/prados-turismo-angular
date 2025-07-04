@@ -25,7 +25,9 @@ export class PainelComponent {
     return this._userClient.clientAuthenticated;
   }
 
-  constructor(private readonly _userClient: AcessoGetDataPessoaUsecase) {}
+  constructor(private readonly _userClient: AcessoGetDataPessoaUsecase) {
+    this._userClient.carregarCliente(localStorage.getItem("userClient")!);
+  }
 
   private _formartNumber(value: number): string {
     return value.toString().padStart(2, "0");
