@@ -49,10 +49,11 @@ $component-name: "depoimentos";
     }
   }
   &__item {
+    width: 33%;
+    min-height: 350px;
     border-radius: 50px;
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
       0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-    height: 350px;
     padding: 50px;
     display: flex;
     flex-direction: column;
@@ -85,6 +86,7 @@ $component-name: "depoimentos";
   &__user h5 {
     font-size: 2rem;
     font-weight: 500;
+    line-height: 1;
   }
   &__hate {
     font-size: 1.3rem;

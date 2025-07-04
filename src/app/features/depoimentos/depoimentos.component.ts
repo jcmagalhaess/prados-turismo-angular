@@ -11,25 +11,25 @@ import { MatIconButton } from "@angular/material/button";
 export class DepoimentosComponent {
   public depoimentos = input<any>([
     {
-      avatar: "./assets/images/avatar.png",
-      user: "Júlio Magalhães",
+      avatar: "./assets/images/depoimentos/ana-caroline.jpeg",
+      user: "Ana Caroline",
       hate: 5,
       comment:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+        "Mais uma viagem sensacional com a Prados! Admiro a organização e o cuidado que vocês tem com a gente. Deixo aqui o meu muito obrigada a Gabi, pessoa incrível e muito atenciosa com o grupo. Essa sem dúvidas, foi uma das melhores viagens da minha vida! Que venham as próximas!!😊👏🏻👏🏻 …",
     },
     {
-      avatar: "./assets/images/avatar.png",
-      user: "Júlio Magalhães",
+      avatar: "./assets/images/depoimentos/divinha-marrocos.jpeg",
+      user: "Divinha Marrocos",
       hate: 4,
       comment:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+        "Adoramos o passeio a Foz do Iguaçu foi um dos momentos mais incríveis da vida!!! A aventura de conhecer as Cataratas do Iguaçu com essa vazão gigante de água!!! A Viagem toda foi maravilhosa!! A Prados Turismos foi perfeita pra gente, desde a recepção no aeroporto, a organização da programação dos passeios, todo dedicado aos clientes! Obrigada Emanuel você é Show! Estaremos juntos em várias outros passeios!!!",
     },
     {
-      avatar: "./assets/images/avatar.png",
-      user: "Júlio Magalhães",
+      avatar: "./assets/images/depoimentos/rita-marcia.png",
+      user: "Rita Marcia Praciano",
       hate: 5,
       comment:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+        "Viagem incrível, custo camarada, roteiro bem planejado, hospedagem de primeira e como sempre a Prados atenciosa e cuidadosa com todos . Uma nota ? 1000",
     },
   ]);
 }
