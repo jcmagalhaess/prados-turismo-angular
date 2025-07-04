@@ -103,6 +103,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: "formas-pagamento",
+    loadComponent: () =>
+      import("./features/formas-pagamento/formas-pagamento.component").then(
+        (c) => c.FormasPagamentoComponent
+      ),
+  },
+  {
     path: "**",
     component: NotFoundComponent,
   },
