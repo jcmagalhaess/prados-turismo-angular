@@ -25,7 +25,7 @@ export class DepoimentosComponent {
         "Adoramos o passeio a Foz do Iguaçu foi um dos momentos mais incríveis da vida!!! A aventura de conhecer as Cataratas do Iguaçu com essa vazão gigante de água!!! A Viagem toda foi maravilhosa!! A Prados Turismos foi perfeita pra gente, desde a recepção no aeroporto, a organização da programação dos passeios, todo dedicado aos clientes! Obrigada Emanuel você é Show! Estaremos juntos em várias outros passeios!!!",
     },
     {
-      avatar: "./assets/images/depoimentos/rita-marcia.png",
+      avatar: "./assets/images/depoimentos/rita-marcia.jpeg",
       user: "Rita Marcia Praciano",
       hate: 5,
       comment:

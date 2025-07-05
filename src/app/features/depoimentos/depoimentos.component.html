@@ -9,7 +9,9 @@
           <div class="depoimentos__header">
             <figure
               class="depoimentos__avatar"
-              style="--background: {{ item.avatar }}"
+              style="--background: {{
+                item.avatar ? 'url(' + item.avatar + ')' : ''
+              }}"
             ></figure>
             <div class="depoimentos__user">
               <h5>{{ item.user }}</h5>

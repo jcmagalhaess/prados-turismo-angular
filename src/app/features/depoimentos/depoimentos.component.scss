@@ -87,7 +87,10 @@ $component-name: "depoimentos";
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../../../assets/images/avatar.png");
+    background-image: var(
+      --background,
+      url("../../../assets/images/avatar.png")
+    );
     background-size: cover;
     background-position: center;
   }
