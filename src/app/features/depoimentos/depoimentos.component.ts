@@ -20,7 +20,7 @@ export class DepoimentosComponent {
     {
       avatar: "./assets/images/depoimentos/divinha-marrocos.jpeg",
       user: "Divinha Marrocos",
-      hate: 4,
+      hate: 5,
       comment:
         "Adoramos o passeio a Foz do Iguaçu foi um dos momentos mais incríveis da vida!!! A aventura de conhecer as Cataratas do Iguaçu com essa vazão gigante de água!!! A Viagem toda foi maravilhosa!! A Prados Turismos foi perfeita pra gente, desde a recepção no aeroporto, a organização da programação dos passeios, todo dedicado aos clientes! Obrigada Emanuel você é Show! Estaremos juntos em várias outros passeios!!!",
     },
