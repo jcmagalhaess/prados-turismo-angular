@@ -14,35 +14,35 @@ export class BannerComponent {
     {
       title: "Suporte 24h",
       subtitle: "Suporte 24h durante toda a viagem.",
-      icon: "fa-brands fa-whatsapp",
+      icon: "suporte-24h.png",
     },
     {
       title: "Programa de fidelidade",
       subtitle:
         "Acumule viagens e ganhe benefícios com o programa de fidelidade da Familia Prados.",
-      icon: "fa-solid fa-trophy",
+      icon: "programa-fidelidade.png",
     },
     {
       title: "Melhor custo-benefício",
       subtitle:
         "Nossos roteiros são pensados em aproveitar o máximo pagando pouco.",
-      icon: "fa-brands fa-whatsapp",
+      icon: "custo-beneficio.png",
     },
     {
       title: "Acompanhante",
       subtitle:
         "Acompanhamento presencial de um representante da Prados durante a viagem.",
-      icon: "fa-brands fa-whatsapp",
+      icon: "acompanhamento.png",
     },
     {
       title: "Grupo no whatsapp",
       subtitle: "Grupo de viagem no Whatsapp para passar dicas e informações.",
-      icon: "fa-solid fa-trophy",
+      icon: "whatsapp.png",
     },
     {
       title: "Site seguro",
       subtitle: "Nosso site é totalmente seguro para pagamentos online.",
-      icon: "fa-solid fa-shield",
+      icon: "site-seguro.png",
     },
   ]);
 
