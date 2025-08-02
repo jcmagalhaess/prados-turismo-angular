@@ -5,18 +5,18 @@ import { lastValueFrom } from "rxjs";
 import { env } from "../../../../env/env";
 
 @Component({
-  selector: "app-seletor-quarto",
-  standalone: true,
-  imports: [],
-  templateUrl: "./seletor-quarto.component.html",
-  styleUrl: "./seletor-quarto.component.scss",
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SeletorQuartoComponent),
-      multi: true,
-    },
-  ],
+    selector: "app-seletor-quarto",
+    imports: [],
+    standalone: true,
+    templateUrl: "./seletor-quarto.component.html",
+    styleUrl: "./seletor-quarto.component.scss",
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => SeletorQuartoComponent),
+            multi: true,
+        },
+    ]
 })
 export class SeletorQuartoComponent implements ControlValueAccessor, OnInit {
   public quartos = signal<any>([]);

@@ -4,11 +4,11 @@ import { RouterModule } from "@angular/router";
 import { AcessoLoginClientUsecase } from "../acesso/services/acesso-login-client.usecase";
 
 @Component({
-  selector: "app-minha-conta",
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: "./minha-conta.component.html",
-  styleUrl: "./minha-conta.component.scss",
+    selector: "app-minha-conta",
+    imports: [CommonModule, RouterModule],
+    standalone: true,
+    templateUrl: "./minha-conta.component.html",
+    styleUrl: "./minha-conta.component.scss"
 })
 export class MinhaContaComponent {
   public menu = [

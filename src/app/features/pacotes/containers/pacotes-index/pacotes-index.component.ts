@@ -7,16 +7,16 @@ import { PacotesFilterComponent } from '../../components/pacotes-filter/pacotes-
 import { ExcursoesListUsecase } from '../../services/excursoes-list.usecase';
 
 @Component({
-  selector: 'app-pacotes-index',
-  standalone: true,
-  imports: [
-    CommonModule,
-    PacotesFilterComponent,
-    ExcursaoCardComponent,
-    MatProgressBarModule
-  ],
-  templateUrl: './pacotes-index.component.html',
-  styleUrl: './pacotes-index.component.scss',
+    selector: 'app-pacotes-index',
+    imports: [
+        CommonModule,
+        PacotesFilterComponent,
+        ExcursaoCardComponent,
+        MatProgressBarModule
+    ],
+    standalone: true,
+    templateUrl: './pacotes-index.component.html',
+    styleUrl: './pacotes-index.component.scss'
 })
 export class PacotesIndexComponent {
   get loading() {

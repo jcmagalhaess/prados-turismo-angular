@@ -5,11 +5,11 @@ import { benefitsList } from "../../features/fidelidade/services/fidelidade.enti
 import { AcessoGetDataPessoaUsecase } from "../acesso/services/acesso-get-data-pessoa.usecase";
 
 @Component({
-  selector: "app-painel",
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: "./painel.component.html",
-  styleUrl: "./painel.component.scss",
+    selector: "app-painel",
+    imports: [CommonModule, RouterModule],
+    standalone: true,
+    templateUrl: "./painel.component.html",
+    styleUrl: "./painel.component.scss"
 })
 export class PainelComponent {
   public qtdViagens = computed(() =>

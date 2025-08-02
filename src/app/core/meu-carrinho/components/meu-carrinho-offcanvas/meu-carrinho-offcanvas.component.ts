@@ -12,13 +12,13 @@ import { ThumbnailPipe } from "../../../../shared/pipes/thumbnail.pipe";
 import { CarrinhoService } from "../../services/carrinho.service";
 
 @Component({
-  selector: "app-meu-carrinho-offcanvas",
-  standalone: true,
-  imports: [CommonModule, ThumbnailPipe, MatButtonModule, RouterModule, ActionButtonComponent, 
-    AsyncOpcionaisPipe
-  ],
-  templateUrl: "./meu-carrinho-offcanvas.component.html",
-  styleUrl: "./meu-carrinho-offcanvas.component.scss",
+    selector: "app-meu-carrinho-offcanvas",
+    imports: [CommonModule, ThumbnailPipe, MatButtonModule, RouterModule, ActionButtonComponent,
+        AsyncOpcionaisPipe
+    ],
+    standalone: true,
+    templateUrl: "./meu-carrinho-offcanvas.component.html",
+    styleUrl: "./meu-carrinho-offcanvas.component.scss"
 })
 export class MeuCarrinhoOffcanvasComponent {
   public hasntItems = computed(() => this._carrinho.cart().length === 0);

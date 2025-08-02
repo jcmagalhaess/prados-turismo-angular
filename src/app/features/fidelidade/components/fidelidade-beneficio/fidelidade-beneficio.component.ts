@@ -2,11 +2,11 @@ import { Component, input } from "@angular/core";
 import { QtdViagens } from "../../services/fidelidade.entity";
 
 @Component({
-  selector: "app-fidelidade-beneficio",
-  standalone: true,
-  imports: [],
-  templateUrl: "./fidelidade-beneficio.component.html",
-  styleUrl: "./fidelidade-beneficio.component.scss",
+    selector: "app-fidelidade-beneficio",
+    imports: [],
+    standalone: true,
+    templateUrl: "./fidelidade-beneficio.component.html",
+    styleUrl: "./fidelidade-beneficio.component.scss"
 })
 export class FidelidadeBeneficioComponent {
   public urlImagem = input<string>();

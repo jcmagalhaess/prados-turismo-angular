@@ -9,11 +9,11 @@ import { RouterModule } from "@angular/router";
 import { ActionButtonComponent } from "../../../../shared/components/action-button/action-button.component";
 
 @Component({
-  selector: "app-acesso-login",
-  standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, ActionButtonComponent],
-  templateUrl: "./acesso-login.component.html",
-  styleUrl: "./acesso-login.component.scss",
+    selector: "app-acesso-login",
+    imports: [ReactiveFormsModule, RouterModule, ActionButtonComponent],
+    standalone: true,
+    templateUrl: "./acesso-login.component.html",
+    styleUrl: "./acesso-login.component.scss"
 })
 export class AcessoLoginComponent {
   public form = new FormGroup<any>({

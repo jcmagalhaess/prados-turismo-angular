@@ -13,11 +13,11 @@ type AjudaType = {
 };
 
 @Component({
-  selector: "app-ajuda",
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BannerCabecalhoComponent],
-  templateUrl: "./ajuda.component.html",
-  styleUrl: "./ajuda.component.scss",
+    selector: "app-ajuda",
+    imports: [CommonModule, ReactiveFormsModule, BannerCabecalhoComponent],
+    standalone: true,
+    templateUrl: "./ajuda.component.html",
+    styleUrl: "./ajuda.component.scss"
 })
 export class AjudaComponent implements OnInit {
   private _originalList = [

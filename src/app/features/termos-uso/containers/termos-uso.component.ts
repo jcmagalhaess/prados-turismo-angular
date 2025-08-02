@@ -6,17 +6,17 @@ import { TermosUsoComAereoComponent } from "../components/termos-uso-com-aereo/t
 import { TermosUsoSemAereoComponent } from "../components/termos-uso-sem-aereo/termos-uso-sem-aereo.component";
 
 @Component({
-  selector: "app-termos-uso",
-  standalone: true,
-  imports: [
-    MatTabsModule,
-    TermosUsoSemAereoComponent,
-    TermosUsoComAereoComponent,
-    BannerCabecalhoComponent,
-    NgClass,
-  ],
-  templateUrl: "./termos-uso.component.html",
-  styleUrl: "./termos-uso.component.scss",
+    selector: "app-termos-uso",
+    imports: [
+        MatTabsModule,
+        TermosUsoSemAereoComponent,
+        TermosUsoComAereoComponent,
+        BannerCabecalhoComponent,
+        NgClass,
+    ],
+    standalone: true,
+    templateUrl: "./termos-uso.component.html",
+    styleUrl: "./termos-uso.component.scss"
 })
 export class TermosUsoComponent {
   public isCheckout = input<boolean>(false);

@@ -16,12 +16,12 @@ import { ExcursoesSingleUsecase } from "../../services/excursoes-single.usecase"
 Swiper.use([Navigation, Thumbs]);
 
 @Component({
-  selector: "app-pacotes-single",
-  standalone: true,
-  imports: [CommonModule, PacotesSidebarComponent, RouterModule],
-  templateUrl: "./pacotes-single.component.html",
-  styleUrl: "./pacotes-single.component.scss",
-  providers: [ExcursoesSingleUsecase],
+    selector: "app-pacotes-single",
+    imports: [CommonModule, PacotesSidebarComponent, RouterModule],
+    standalone: true,
+    templateUrl: "./pacotes-single.component.html",
+    styleUrl: "./pacotes-single.component.scss",
+    providers: [ExcursoesSingleUsecase]
 })
 export class PacotesSingleComponent implements AfterViewInit {
   public form = new FormGroup({

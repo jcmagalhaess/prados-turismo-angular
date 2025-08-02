@@ -2,11 +2,11 @@ import { Component, input } from "@angular/core";
 import { MatIconButton } from "@angular/material/button";
 
 @Component({
-  selector: "app-depoimentos",
-  standalone: true,
-  imports: [MatIconButton],
-  templateUrl: "./depoimentos.component.html",
-  styleUrl: "./depoimentos.component.scss",
+    selector: "app-depoimentos",
+    imports: [MatIconButton],
+    standalone: true,
+    templateUrl: "./depoimentos.component.html",
+    styleUrl: "./depoimentos.component.scss"
 })
 export class DepoimentosComponent {
   public depoimentos = input<any>([

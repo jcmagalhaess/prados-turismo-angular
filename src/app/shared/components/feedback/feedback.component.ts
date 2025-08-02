@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { ActionButtonComponent } from '../action-button/action-button.component';
 
 @Component({
-  selector: 'app-feedback',
-  standalone: true,
-  imports: [MatDialogModule, ActionButtonComponent],
-  templateUrl: './feedback.component.html',
-  styleUrl: './feedback.component.scss'
+    selector: 'app-feedback',
+    imports: [MatDialogModule, ActionButtonComponent],
+    standalone: true,
+    templateUrl: './feedback.component.html',
+    styleUrl: './feedback.component.scss'
 })
 export class FeedbackComponent {
   

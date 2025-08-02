@@ -5,12 +5,12 @@ import { ExcursaoCardComponent } from '../../shared/components/excursao-card/exc
 import { ExcursaoImagem } from '../../shared/models/excursao.type';
 
 @Component({
-  selector: 'app-features',
-  standalone: true,
-  imports: [CommonModule, ExcursaoCardComponent],
-  templateUrl: './features.component.html',
-  styleUrl: './features.component.scss',
-  providers: [ExcursoesListUsecase],
+    selector: 'app-features',
+    imports: [CommonModule, ExcursaoCardComponent],
+    standalone: true,
+    templateUrl: './features.component.html',
+    styleUrl: './features.component.scss',
+    providers: [ExcursoesListUsecase]
 })
 export class FeaturesComponent {
   get excursoes() {

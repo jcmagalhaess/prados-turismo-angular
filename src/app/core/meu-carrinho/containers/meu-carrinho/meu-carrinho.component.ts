@@ -9,11 +9,11 @@ import { CarrinhoService } from "../../services/carrinho.service";
 import { CupomUsecase } from "../../services/cupom.usecase";
 
 @Component({
-  selector: "app-meu-carrinho",
-  standalone: true,
-  imports: [CommonModule, CartItemComponent, ActionButtonComponent, RouterModule, MeuCarrinhoCupomComponent],
-  templateUrl: "./meu-carrinho.component.html",
-  styleUrl: "./meu-carrinho.component.scss",
+    selector: "app-meu-carrinho",
+    imports: [CommonModule, CartItemComponent, ActionButtonComponent, RouterModule, MeuCarrinhoCupomComponent],
+    standalone: true,
+    templateUrl: "./meu-carrinho.component.html",
+    styleUrl: "./meu-carrinho.component.scss"
 })
 export class MeuCarrinhoComponent implements OnInit {
   public cart = signal<Array<any>>([]);

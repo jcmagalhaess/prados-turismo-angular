@@ -5,11 +5,11 @@ import { ActionButtonComponent } from '../../../../shared/components/action-butt
 import { CarrinhoService } from '../../services/carrinho.service';
 
 @Component({
-  selector: 'app-meu-carrinho-reserva',
-  standalone: true,
-  imports: [MatDialogModule, ActionButtonComponent],
-  templateUrl: './meu-carrinho-reserva.component.html',
-  styleUrl: './meu-carrinho-reserva.component.scss'
+    selector: 'app-meu-carrinho-reserva',
+    imports: [MatDialogModule, ActionButtonComponent],
+    standalone: true,
+    templateUrl: './meu-carrinho-reserva.component.html',
+    styleUrl: './meu-carrinho-reserva.component.scss'
 })
 export class MeuCarrinhoReservaComponent {
 

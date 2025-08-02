@@ -8,11 +8,11 @@ import { PacotesCountComponent } from "../../../pacotes/components/pacotes-count
 
 
 @Component({
-  selector: "app-jericoacoara-sidebar",
-  standalone: true,
-  imports: [CommonModule, PacotesCountComponent, ReactiveFormsModule],
-  templateUrl: "./jericoacoara-sidebar.component.html",
-  styleUrl: "./jericoacoara-sidebar.component.scss",
+    selector: "app-jericoacoara-sidebar",
+    imports: [CommonModule, PacotesCountComponent, ReactiveFormsModule],
+    standalone: true,
+    templateUrl: "./jericoacoara-sidebar.component.html",
+    styleUrl: "./jericoacoara-sidebar.component.scss"
 })
 export class JericoacoaraSidebarComponent {
   public whatsappLink = env.WHATSAPP_LINK;

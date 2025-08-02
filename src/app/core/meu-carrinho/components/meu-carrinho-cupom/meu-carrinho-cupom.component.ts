@@ -2,11 +2,11 @@ import { Component, EventEmitter, input, Output, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-meu-carrinho-cupom',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './meu-carrinho-cupom.component.html',
-  styleUrl: './meu-carrinho-cupom.component.scss'
+    selector: 'app-meu-carrinho-cupom',
+    imports: [ReactiveFormsModule],
+    standalone: true,
+    templateUrl: './meu-carrinho-cupom.component.html',
+    styleUrl: './meu-carrinho-cupom.component.scss'
 })
 export class MeuCarrinhoCupomComponent {
   private _resetCupom = signal<boolean>(false);

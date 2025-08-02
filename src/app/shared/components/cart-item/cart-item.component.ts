@@ -6,11 +6,11 @@ import { TipoPassageiroEnum, TipoPassageiroType } from '../../models/excursao.ty
 import { AsyncOpcionaisPipe } from '../../pipes/async-opcionais.pipe';
 
 @Component({
-  selector: 'app-cart-item',
-  standalone: true,
-  imports: [CommonModule, AsyncOpcionaisPipe],
-  templateUrl: './cart-item.component.html',
-  styleUrl: './cart-item.component.scss'
+    selector: 'app-cart-item',
+    imports: [CommonModule, AsyncOpcionaisPipe],
+    standalone: true,
+    templateUrl: './cart-item.component.html',
+    styleUrl: './cart-item.component.scss'
 })
 export class CartItemComponent implements OnChanges {
   public tickets = signal<any>([]);

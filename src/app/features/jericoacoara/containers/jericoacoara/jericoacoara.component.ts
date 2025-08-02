@@ -5,11 +5,11 @@ import { env } from "../../../../../env/env";
 import { JericoacoaraSidebarComponent } from "../../components/jericoacoara-sidebar/jericoacoara-sidebar.component";
 
 @Component({
-  selector: "app-jericoacoara",
-  standalone: true,
-  imports: [CommonModule, CurrencyPipe, JericoacoaraSidebarComponent, LightboxModule],
-  templateUrl: "./jericoacoara.component.html",
-  styleUrl: "./jericoacoara.component.scss",
+    selector: "app-jericoacoara",
+    imports: [CommonModule, CurrencyPipe, JericoacoaraSidebarComponent, LightboxModule],
+    standalone: true,
+    templateUrl: "./jericoacoara.component.html",
+    styleUrl: "./jericoacoara.component.scss"
 })
 export class JericoacoaraComponent {
   public whatsappLink = env.WHATSAPP_LINK;

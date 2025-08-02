@@ -4,11 +4,11 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-pacotes-count',
-  standalone: true,
-  imports: [CurrencyPipe, ReactiveFormsModule, MatInputModule],
-  templateUrl: './pacotes-count.component.html',
-  styleUrl: './pacotes-count.component.scss'
+    selector: 'app-pacotes-count',
+    imports: [CurrencyPipe, ReactiveFormsModule, MatInputModule],
+    standalone: true,
+    templateUrl: './pacotes-count.component.html',
+    styleUrl: './pacotes-count.component.scss'
 })
 export class PacotesCountComponent {
   public control = new FormControl(0, [Validators.min(0)]);

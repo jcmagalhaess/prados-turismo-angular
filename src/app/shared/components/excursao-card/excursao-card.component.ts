@@ -6,17 +6,17 @@ import { FormataParcelasPipe } from "../../pipes/formata-parcelas.pipe";
 import { FormatarPeriodoExcursao } from "../../pipes/formata-periodo-excursao.pipe";
 
 @Component({
-  selector: "app-excursao-card",
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    FormatarPeriodoExcursao,
-    FormataParcelasPipe,
-  ],
-  templateUrl: "./excursao-card.component.html",
-  styleUrl: "./excursao-card.component.scss",
-  providers: [DatePipe],
+    selector: "app-excursao-card",
+    imports: [
+        CommonModule,
+        RouterModule,
+        FormatarPeriodoExcursao,
+        FormataParcelasPipe,
+    ],
+    standalone: true,
+    templateUrl: "./excursao-card.component.html",
+    styleUrl: "./excursao-card.component.scss",
+    providers: [DatePipe]
 })
 export class ExcursaoCardComponent {
   protected readonly pathFeatured = "M80,0 H0 Q25,180 0,360 H80 Z";

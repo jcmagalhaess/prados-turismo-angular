@@ -3,14 +3,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
-  selector: 'app-action-button',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatProgressSpinnerModule
-  ],
-  templateUrl: './action-button.component.html',
-  styleUrl: './action-button.component.scss'
+    selector: 'app-action-button',
+    imports: [
+        CommonModule,
+        MatProgressSpinnerModule
+    ],
+    standalone: true,
+    templateUrl: './action-button.component.html',
+    styleUrl: './action-button.component.scss'
 })
 export class ActionButtonComponent {
   @Input() loading: boolean = false;

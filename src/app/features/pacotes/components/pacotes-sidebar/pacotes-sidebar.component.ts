@@ -14,17 +14,17 @@ import { PacotesModalComponent } from "../pacotes-modal/pacotes-modal.component"
 import { PacotesPriceComponent } from "../pacotes-price/pacotes-price.component";
 
 @Component({
-  selector: "app-pacotes-sidebar",
-  standalone: true,
-  imports: [
-    CommonModule,
-    PacotesCountComponent,
-    ReactiveFormsModule,
-    PeriodoPipe,
-    PacotesPriceComponent,
-  ],
-  templateUrl: "./pacotes-sidebar.component.html",
-  styleUrl: "./pacotes-sidebar.component.scss",
+    selector: "app-pacotes-sidebar",
+    imports: [
+        CommonModule,
+        PacotesCountComponent,
+        ReactiveFormsModule,
+        PeriodoPipe,
+        PacotesPriceComponent,
+    ],
+    standalone: true,
+    templateUrl: "./pacotes-sidebar.component.html",
+    styleUrl: "./pacotes-sidebar.component.scss"
 })
 export class PacotesSidebarComponent {
   public amountTickets = signal<any>([]);

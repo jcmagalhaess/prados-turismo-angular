@@ -8,17 +8,17 @@ import { AsyncLocalEmbarquePipe } from "../../shared/pipes/async-local-embarque.
 import { CarrinhoService } from "../meu-carrinho/services/carrinho.service";
 
 @Component({
-  selector: "app-checkout",
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    AsyncLocalEmbarquePipe,
-    CartItemComponent,
-    TermosUsoComponent,
-  ],
-  templateUrl: "./checkout.component.html",
-  styleUrl: "./checkout.component.scss",
+    selector: "app-checkout",
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        AsyncLocalEmbarquePipe,
+        CartItemComponent,
+        TermosUsoComponent,
+    ],
+    standalone: true,
+    templateUrl: "./checkout.component.html",
+    styleUrl: "./checkout.component.scss"
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
   public terms = new FormControl(

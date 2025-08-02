@@ -9,16 +9,16 @@ import { AcessoClientUpdateUsecase } from "../acesso/services/acesso-client-upda
 import { AcessoGetDataPessoaUsecase } from "../acesso/services/acesso-get-data-pessoa.usecase";
 
 @Component({
-  selector: "app-perfil",
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgxMaskDirective,
-    ActionButtonComponent,
-  ],
-  templateUrl: "./perfil.component.html",
-  styleUrl: "./perfil.component.scss",
+    selector: "app-perfil",
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgxMaskDirective,
+        ActionButtonComponent,
+    ],
+    standalone: true,
+    templateUrl: "./perfil.component.html",
+    styleUrl: "./perfil.component.scss"
 })
 export class PerfilComponent {
   public form = new FormGroup<any>({

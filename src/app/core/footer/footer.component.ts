@@ -7,11 +7,11 @@ import { env } from '../../../env/env';
 
 
 @Component({
-  selector: 'app-footer',
-  standalone: true,
-  imports: [CommonModule, MatButtonModule, MatTooltipModule, RouterModule],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+    selector: 'app-footer',
+    imports: [CommonModule, MatButtonModule, MatTooltipModule, RouterModule],
+    standalone: true,
+    templateUrl: './footer.component.html',
+    styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
   public whatsappLink = env.WHATSAPP_LINK;

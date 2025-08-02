@@ -3,11 +3,11 @@ import { Component, computed, signal } from "@angular/core";
 import { BannerUsecase } from "./banner.usecase";
 
 @Component({
-  selector: "app-banner",
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: "./banner.component.html",
-  styleUrl: "./banner.component.scss",
+    selector: "app-banner",
+    imports: [CommonModule],
+    standalone: true,
+    templateUrl: "./banner.component.html",
+    styleUrl: "./banner.component.scss"
 })
 export class BannerComponent {
   public slides = signal([

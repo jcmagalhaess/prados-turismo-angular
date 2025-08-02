@@ -12,20 +12,20 @@ import { ThumbnailPipe } from "../../../../shared/pipes/thumbnail.pipe";
 import { ReservaService } from "../../reserva.service";
 
 @Component({
-  selector: "app-pedidos-details",
-  standalone: true,
-  imports: [
-    CommonModule,
-    LabelReservaPipe,
-    ThumbnailPipe,
-    PeriodoPipe,
-    AsyncLocalEmbarquePipe,
-    EmptyLabelPipe,
-    MatDialogModule,
-    NgxMaskPipe
-  ],
-  templateUrl: "./pedidos-details.component.html",
-  styleUrl: "./pedidos-details.component.scss",
+    selector: "app-pedidos-details",
+    imports: [
+        CommonModule,
+        LabelReservaPipe,
+        ThumbnailPipe,
+        PeriodoPipe,
+        AsyncLocalEmbarquePipe,
+        EmptyLabelPipe,
+        MatDialogModule,
+        NgxMaskPipe
+    ],
+    standalone: true,
+    templateUrl: "./pedidos-details.component.html",
+    styleUrl: "./pedidos-details.component.scss"
 })
 export class PedidosDetailsComponent {
   public passageiros = signal<any | null>(null);

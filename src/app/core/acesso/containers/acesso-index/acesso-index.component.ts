@@ -11,18 +11,18 @@ import { AcessoLoginClientUsecase } from "../../services/acesso-login-client.use
 import { AcessoRegisterClientUsecase } from "../../services/acesso-register-client.usecase";
 
 @Component({
-  selector: "app-acesso-index",
-  standalone: true,
-  imports: [
-    AcessoLoginComponent,
-    AcessoCadastroComponent,
-    MatTabGroup,
-    MatTab,
-    MatIconButton,
-    MatDialogClose,
-  ],
-  templateUrl: "./acesso-index.component.html",
-  styleUrl: "./acesso-index.component.scss",
+    selector: "app-acesso-index",
+    imports: [
+        AcessoLoginComponent,
+        AcessoCadastroComponent,
+        MatTabGroup,
+        MatTab,
+        MatIconButton,
+        MatDialogClose,
+    ],
+    standalone: true,
+    templateUrl: "./acesso-index.component.html",
+    styleUrl: "./acesso-index.component.scss"
 })
 export class AcessoIndexComponent {
   public formRegister = new FormGroup({

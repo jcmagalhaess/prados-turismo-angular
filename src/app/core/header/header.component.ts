@@ -13,17 +13,17 @@ import { CarrinhoService } from "../meu-carrinho/services/carrinho.service";
 import { HeaderStyleService } from "./header-style.interceptor";
 
 @Component({
-  selector: "app-header",
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    MeuCarrinhoOffcanvasComponent,
-    MatTooltip,
-  ],
-  templateUrl: "./header.component.html",
-  styleUrl: "./header.component.scss",
-  providers: [ExcursoesListUsecase],
+    selector: "app-header",
+    imports: [
+        CommonModule,
+        RouterModule,
+        MeuCarrinhoOffcanvasComponent,
+        MatTooltip,
+    ],
+    standalone: true,
+    templateUrl: "./header.component.html",
+    styleUrl: "./header.component.scss",
+    providers: [ExcursoesListUsecase]
 })
 export class HeaderComponent {
   public nomeUsuario = computed(() => {

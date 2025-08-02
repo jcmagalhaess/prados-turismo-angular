@@ -4,11 +4,11 @@ import { MatSnackBarModule, MatSnackBarRef } from "@angular/material/snack-bar";
 import { ToasterService } from "./toaster.service";
 
 @Component({
-  selector: "app-toaster",
-  standalone: true,
-  imports: [MatSnackBarModule, MatButtonModule],
-  templateUrl: "./toaster.component.html",
-  styleUrl: "./toaster.component.scss",
+    selector: "app-toaster",
+    imports: [MatSnackBarModule, MatButtonModule],
+    standalone: true,
+    templateUrl: "./toaster.component.html",
+    styleUrl: "./toaster.component.scss"
 })
 export class ToasterComponent {
   get message() {

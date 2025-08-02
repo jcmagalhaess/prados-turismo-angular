@@ -2,11 +2,11 @@ import { NgClass, NgStyle } from "@angular/common";
 import { Component, HostListener, input } from "@angular/core";
 
 @Component({
-  selector: "app-banner-cabecalho",
-  standalone: true,
-  imports: [NgStyle, NgClass],
-  templateUrl: "./banner-cabecalho.component.html",
-  styleUrl: "./banner-cabecalho.component.scss",
+    selector: "app-banner-cabecalho",
+    imports: [NgStyle, NgClass],
+    standalone: true,
+    templateUrl: "./banner-cabecalho.component.html",
+    styleUrl: "./banner-cabecalho.component.scss"
 })
 export class BannerCabecalhoComponent {
   public titulo = input<string>();

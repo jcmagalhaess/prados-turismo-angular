@@ -18,21 +18,21 @@ import { ExcursaoLocalEmbarque } from "../../../../shared/models/excursao.type";
 import { Months } from "../../../../shared/models/global.type";
 
 @Component({
-  selector: "app-pacotes-participantes",
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    CurrencyPipe,
-    MatExpansionModule,
-    MatButtonModule,
-    MatDialogModule,
-    NgxMaskDirective,
-    SeletorQuartoComponent,
-  ],
-  templateUrl: "./pacotes-participantes.component.html",
-  styleUrl: "./pacotes-participantes.component.scss",
+    selector: "app-pacotes-participantes",
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        CurrencyPipe,
+        MatExpansionModule,
+        MatButtonModule,
+        MatDialogModule,
+        NgxMaskDirective,
+        SeletorQuartoComponent,
+    ],
+    standalone: true,
+    templateUrl: "./pacotes-participantes.component.html",
+    styleUrl: "./pacotes-participantes.component.scss"
 })
 export class PacotesParticipantesComponent implements OnChanges, OnInit {
   public months = Months;

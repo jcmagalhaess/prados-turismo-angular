@@ -4,11 +4,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-pacotes-filter',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatButtonModule],
-  templateUrl: './pacotes-filter.component.html',
-  styleUrl: './pacotes-filter.component.scss',
+    selector: 'app-pacotes-filter',
+    imports: [CommonModule, ReactiveFormsModule, MatButtonModule],
+    standalone: true,
+    templateUrl: './pacotes-filter.component.html',
+    styleUrl: './pacotes-filter.component.scss'
 })
 export class PacotesFilterComponent {
   public origem = signal<number>(1);

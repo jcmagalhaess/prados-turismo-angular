@@ -17,20 +17,20 @@ import { PacotesFilterComponent } from "../pacotes/components/pacotes-filter/pac
 import { ExcursoesListUsecase } from "../pacotes/services/excursoes-list.usecase";
 
 @Component({
-  selector: "app-home-index",
-  standalone: true,
-  imports: [
-    CommonModule,
-    BannerComponent,
-    FeaturesComponent,
-    ExcursaoCardComponent,
-    PacotesFilterComponent,
-    RouterModule,
-    DepoimentosComponent,
-  ],
-  templateUrl: "./home-index.component.html",
-  styleUrl: "./home-index.component.scss",
-  providers: [ExcursoesListUsecase, HeaderStyleService],
+    selector: "app-home-index",
+    imports: [
+        CommonModule,
+        BannerComponent,
+        FeaturesComponent,
+        ExcursaoCardComponent,
+        PacotesFilterComponent,
+        RouterModule,
+        DepoimentosComponent,
+    ],
+    standalone: true,
+    templateUrl: "./home-index.component.html",
+    styleUrl: "./home-index.component.scss",
+    providers: [ExcursoesListUsecase, HeaderStyleService]
 })
 export class HomeIndexComponent {
   private scroll!: LocomotiveScroll;

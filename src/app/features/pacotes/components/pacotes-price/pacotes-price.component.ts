@@ -3,11 +3,11 @@ import { Component, input, output } from "@angular/core";
 import { FormataParcelasPipe } from "../../../../shared/pipes/formata-parcelas.pipe";
 
 @Component({
-  selector: "app-pacotes-price",
-  standalone: true,
-  imports: [FormataParcelasPipe, DecimalPipe],
-  templateUrl: "./pacotes-price.component.html",
-  styleUrl: "./pacotes-price.component.scss",
+    selector: "app-pacotes-price",
+    imports: [FormataParcelasPipe, DecimalPipe],
+    standalone: true,
+    templateUrl: "./pacotes-price.component.html",
+    styleUrl: "./pacotes-price.component.scss"
 })
 export class PacotesPriceComponent {
   public price = input<number>(0);
