@@ -3,7 +3,13 @@ import {
   LOCALE_ID,
   provideZoneChangeDetection,
 } from "@angular/core";
-import { provideRouter, withViewTransitions } from "@angular/router";
+import {
+  ExtraOptions,
+  provideRouter,
+  withEnabledBlockingInitialNavigation,
+  withInMemoryScrolling,
+  withViewTransitions,
+} from "@angular/router";
 
 import { CurrencyPipe, registerLocaleData } from "@angular/common";
 import { provideHttpClient, withInterceptors } from "@angular/common/http";
@@ -15,11 +21,11 @@ import {
   CURRENCY_MASK_CONFIG,
   CurrencyMaskConfig,
 } from "ngx-currency-mask/src/currency-mask.config";
-import { provideNgxMask } from 'ngx-mask';
+import { provideNgxMask } from "ngx-mask";
 import { routes } from "./app.routes";
 import { AuthMasterInterceptor } from "./core/auth/interceptos/auth-master.interceptor";
 
-registerLocaleData(localePt, 'pt');
+registerLocaleData(localePt, "pt");
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
@@ -31,6 +37,10 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   suffix: "",
   thousands: ".",
 };
+const routerOptions: ExtraOptions = {
+  scrollPositionRestoration: "enabled", // ativa scroll automático ao topo
+  anchorScrolling: "enabled", // opcional, ativa scroll para #id
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -38,7 +48,14 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,
-      withViewTransitions()),
+      withViewTransitions(),
+      withEnabledBlockingInitialNavigation(),
+      withInMemoryScrolling({
+        scrollPositionRestoration: "enabled",
+        anchorScrolling: "enabled",
+      }),
+      withViewTransitions() // se estiver usando transições também
+    ),
     MatDialogModule,
     provideHttpClient(withInterceptors([AuthMasterInterceptor])),
     {
