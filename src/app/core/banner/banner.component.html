@@ -5,7 +5,7 @@
     @for (item of slides(); track item.title) {
     <div class="banner__item">
       <div class="banner__icon">
-        <i [ngClass]="item.icon"></i>
+        <img [src]="'../../../assets/images/' + item.icon" [alt]="item.title" />
       </div>
       <div class="banner__info">
         <h4>{{ item.title }}</h4>
