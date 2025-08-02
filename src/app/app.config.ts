@@ -3,7 +3,7 @@ import {
   LOCALE_ID,
   provideZoneChangeDetection,
 } from "@angular/core";
-import { provideRouter } from "@angular/router";
+import { provideRouter, withViewTransitions } from "@angular/router";
 
 import { CurrencyPipe, registerLocaleData } from "@angular/common";
 import { provideHttpClient, withInterceptors } from "@angular/common/http";
@@ -36,7 +36,9 @@ export const appConfig: ApplicationConfig = {
   providers: [
     BrowserAnimationsModule,
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(
+      routes,
+      withViewTransitions()),
     MatDialogModule,
     provideHttpClient(withInterceptors([AuthMasterInterceptor])),
     {

@@ -26,13 +26,13 @@ import { ExcursoesListUsecase } from "../pacotes/services/excursoes-list.usecase
     ExcursaoCardComponent,
     PacotesFilterComponent,
     RouterModule,
-    DepoimentosComponent
+    DepoimentosComponent,
   ],
   templateUrl: "./home-index.component.html",
   styleUrl: "./home-index.component.scss",
   providers: [ExcursoesListUsecase, HeaderStyleService],
 })
-export class HomeIndexComponent implements AfterViewInit, OnDestroy {
+export class HomeIndexComponent {
   private scroll!: LocomotiveScroll;
   backgroundPosition = 0;
   get excursoes() {
@@ -61,19 +61,5 @@ export class HomeIndexComponent implements AfterViewInit, OnDestroy {
     if (!!image) return image.url;
 
     return "";
-  }
-
-  ngAfterViewInit() {
-    // this.scroll = new LocomotiveScroll({
-    //   el: document.querySelector("[data-scroll-container]") as HTMLElement,
-    //   smooth: true,
-    //   lerp: 0.05, // menor = mais suave (0.05 a 0.1 costuma ser bom)
-    // });
-  }
-
-  ngOnDestroy() {
-    // if (this.scroll) {
-    //   this.scroll.destroy();
-    // }
   }
 }
