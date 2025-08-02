@@ -110,6 +110,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: "sobre-nos",
+    loadComponent: () =>
+      import("./features/sobre-nos/sobre-nos.component").then(
+        (c) => c.SobreNosComponent
+      ),
+  },
+  {
     path: "**",
     component: NotFoundComponent,
   },
