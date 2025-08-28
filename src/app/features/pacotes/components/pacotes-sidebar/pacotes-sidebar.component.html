@@ -1,4 +1,8 @@
-<app-pacotes-price [price]="valor" (showDatesEmit)="getShowDates($event)" />
+<app-pacotes-price
+  [price]="valor"
+  [transport]="excursao?.Pacotes?.tipoTransporte"
+  (showDatesEmit)="getShowDates($event)"
+/>
 
 @if (showDates()) {
 <form [formGroup]="form">

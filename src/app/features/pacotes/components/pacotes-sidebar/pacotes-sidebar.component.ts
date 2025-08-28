@@ -3,6 +3,7 @@ import { Component, computed, effect, Input, signal } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
+import { ToasterService } from "../../../../shared/components/toaster/toaster.service";
 import {
   Excursao,
   TipoPassageiroEnum,
@@ -14,17 +15,17 @@ import { PacotesModalComponent } from "../pacotes-modal/pacotes-modal.component"
 import { PacotesPriceComponent } from "../pacotes-price/pacotes-price.component";
 
 @Component({
-    selector: "app-pacotes-sidebar",
-    imports: [
-        CommonModule,
-        PacotesCountComponent,
-        ReactiveFormsModule,
-        PeriodoPipe,
-        PacotesPriceComponent,
-    ],
-    standalone: true,
-    templateUrl: "./pacotes-sidebar.component.html",
-    styleUrl: "./pacotes-sidebar.component.scss"
+  selector: "app-pacotes-sidebar",
+  imports: [
+    CommonModule,
+    PacotesCountComponent,
+    ReactiveFormsModule,
+    PeriodoPipe,
+    PacotesPriceComponent,
+  ],
+  standalone: true,
+  templateUrl: "./pacotes-sidebar.component.html",
+  styleUrl: "./pacotes-sidebar.component.scss",
 })
 export class PacotesSidebarComponent {
   public amountTickets = signal<any>([]);
@@ -86,7 +87,8 @@ export class PacotesSidebarComponent {
 
   constructor(
     private readonly _dialog: MatDialog,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _toaster: ToasterService
   ) {
     effect(() => {
       this.form.controls["tickets"].setValue(this.amountTickets());
@@ -116,6 +118,15 @@ export class PacotesSidebarComponent {
   }
 
   public createReservation() {
+    if (this.amountTicketsValues() > this.excursao?.vagas!) {
+      this._toaster.alert(
+        `Você selecionou ${this.amountTicketsValues()} passageiros, mas só há ${
+          this.excursao?.vagas
+        } vaga(s) disponível(is). Por favor, ajuste a quantidade de passageiros para continuar.`
+      );
+
+      return;
+    }
     const dialogRef = this._dialog.open(PacotesModalComponent, {
       minWidth: "90vw",
       disableClose: true,

@@ -2,7 +2,8 @@
 <span class="pacotes-price__value">
   <span>R$</span> {{ price() | number : "1.2-2" }}
 </span>
-<span>{{ price() + "" | formataParcelas }}</span>
+
+<span>{{ transport | formataParcelas }}</span>
 
 @if (!showDates) {
 <button
