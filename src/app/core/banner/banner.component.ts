@@ -3,11 +3,11 @@ import { Component, computed, signal } from "@angular/core";
 import { BannerUsecase } from "./banner.usecase";
 
 @Component({
-    selector: "app-banner",
-    imports: [CommonModule],
-    standalone: true,
-    templateUrl: "./banner.component.html",
-    styleUrl: "./banner.component.scss"
+  selector: "app-banner",
+  imports: [CommonModule],
+  standalone: true,
+  templateUrl: "./banner.component.html",
+  styleUrl: "./banner.component.scss",
 })
 export class BannerComponent {
   public slides = signal([
@@ -29,7 +29,7 @@ export class BannerComponent {
       icon: "custo-beneficio.png",
     },
     {
-      title: "Acompanhante",
+      title: "Acompanhamento",
       subtitle:
         "Acompanhamento presencial de um representante da Prados durante a viagem.",
       icon: "acompanhamento.png",

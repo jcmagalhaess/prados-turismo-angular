@@ -1,36 +1,31 @@
 import { CommonModule } from "@angular/common";
-import {
-  AfterViewInit,
-  Component,
-  HostListener,
-  OnDestroy,
-} from "@angular/core";
+import { Component, HostListener } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import LocomotiveScroll from "locomotive-scroll";
 import { BannerComponent } from "../../core/banner/banner.component";
 import { FeaturesComponent } from "../../core/features/features.component";
 import { HeaderStyleService } from "../../core/header/header-style.interceptor";
 import { ExcursaoCardComponent } from "../../shared/components/excursao-card/excursao-card.component";
-import { ExcursaoImagem } from "../../shared/models/excursao.type";
+import { Excursao } from "../../shared/models/excursao.type";
 import { DepoimentosComponent } from "../depoimentos/depoimentos.component";
 import { PacotesFilterComponent } from "../pacotes/components/pacotes-filter/pacotes-filter.component";
 import { ExcursoesListUsecase } from "../pacotes/services/excursoes-list.usecase";
 
 @Component({
-    selector: "app-home-index",
-    imports: [
-        CommonModule,
-        BannerComponent,
-        FeaturesComponent,
-        ExcursaoCardComponent,
-        PacotesFilterComponent,
-        RouterModule,
-        DepoimentosComponent,
-    ],
-    standalone: true,
-    templateUrl: "./home-index.component.html",
-    styleUrl: "./home-index.component.scss",
-    providers: [ExcursoesListUsecase, HeaderStyleService]
+  selector: "app-home-index",
+  imports: [
+    CommonModule,
+    BannerComponent,
+    FeaturesComponent,
+    ExcursaoCardComponent,
+    PacotesFilterComponent,
+    RouterModule,
+    DepoimentosComponent,
+  ],
+  standalone: true,
+  templateUrl: "./home-index.component.html",
+  styleUrl: "./home-index.component.scss",
+  providers: [ExcursoesListUsecase, HeaderStyleService],
 })
 export class HomeIndexComponent {
   private scroll!: LocomotiveScroll;
@@ -57,9 +52,9 @@ export class HomeIndexComponent {
     });
   }
 
-  public hasUrl(image: ExcursaoImagem) {
-    if (!!image) return image.url;
+  public hasUrl(excursao: Excursao) {
+    if (excursao.vagas) return excursao.Pacotes.Imagem.url;
 
-    return "";
+    return excursao.Pacotes.ImagemBloqueado.url;
   }
 }

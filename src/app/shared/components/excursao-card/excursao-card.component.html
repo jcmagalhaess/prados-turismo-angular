@@ -2,7 +2,7 @@
   class="card-event"
   [ngClass]="{ 'card-event--featured': featured }"
   [routerLink]="'/pacotes/' + id"
-  style="background-image: url({{ thumbnail }});"
+  [style.background-image]="'url(' + thumbnail + ')'"
 >
   <div class="card-event__content">
     <div class="card-event__feature">
