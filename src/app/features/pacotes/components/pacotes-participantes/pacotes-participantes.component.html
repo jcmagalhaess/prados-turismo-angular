@@ -213,12 +213,14 @@
         </div>
       </div>
       <hr />
+      @if (participantes.length > 1) {
       <div class="mt-3">
         <app-seletor-quarto
           label="Selecione o tipo de quarto para os participantes"
           formControlName="tipoQuarto"
         />
       </div>
+    }
     </form>
   </div>
 </div>
