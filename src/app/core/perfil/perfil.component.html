@@ -1,7 +1,7 @@
 <div class="login__box">
   <form [formGroup]="form">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="mb-3">
           <label for="name" class="form-label">Nome *</label>
           <input
@@ -11,7 +11,9 @@
             formControlName="nome"
           />
         </div>
-      </div>
+      </div>      
+    </div>
+    <div class="row">   
       <div class="col-md-6">
         <div class="mb-3">
           <label for="cpf" class="form-label">CPF *</label>
@@ -22,23 +24,6 @@
             class="form-control"
             formControlName="cpf"
           />
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="mb-3">
-          <label for="username" class="form-label">Nome de exibição *</label>
-          <input
-            type="text"
-            id="username"
-            class="form-control"
-            formControlName="username"
-          />
-          <em class="form-text"
-            >Será assim que seu nome será exibido na seção da conta e nos
-            comentários.</em
-          >
         </div>
       </div>
       <div class="col-md-6">
