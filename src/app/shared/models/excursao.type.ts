@@ -10,7 +10,7 @@ export type Excursao = {
   dataCadastro: string;
   ativo: boolean;
   gerouFinanceiro: false;
-  vagas: number;
+  vagasDisponiveis: number;
   codigoPacote: string;
   usuarioCadastro: string;
   valor: number;

@@ -118,10 +118,10 @@ export class PacotesSidebarComponent {
   }
 
   public createReservation() {
-    if (this.amountTicketsValues() > this.excursao?.vagas!) {
+    if (this.amountTicketsValues() > this.excursao?.vagasDisponiveis!) {
       this._toaster.alert(
         `Você selecionou ${this.amountTicketsValues()} passageiros, mas só há ${
-          this.excursao?.vagas
+          this.excursao?.vagasDisponiveis
         } vaga(s) disponível(is). Por favor, ajuste a quantidade de passageiros para continuar.`
       );
 

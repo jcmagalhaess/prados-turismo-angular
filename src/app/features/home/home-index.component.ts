@@ -35,7 +35,13 @@ export class HomeIndexComponent {
   }
 
   constructor(private readonly _excursoes: ExcursoesListUsecase) {
-    this.getOrigem({ origem: "1" });
+    this.getOrigem({
+      origem: '1',
+      publicado: true,
+      orderBy: "dataInicio",
+      concluida: false,
+      dataInicio: new Date().toISOString().split('T')[0]
+    });
   }
 
   @HostListener("window:scroll", [])
@@ -53,7 +59,7 @@ export class HomeIndexComponent {
   }
 
   public hasUrl(excursao: Excursao) {
-    if (excursao.vagas) return excursao.Pacotes.Imagem.url;
+    if (excursao.vagasDisponiveis) return excursao.Pacotes.Imagem.url;
 
     return excursao.Pacotes.ImagemBloqueado.url;
   }

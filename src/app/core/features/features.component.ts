@@ -5,12 +5,12 @@ import { ExcursaoCardComponent } from '../../shared/components/excursao-card/exc
 import { ExcursaoImagem } from '../../shared/models/excursao.type';
 
 @Component({
-    selector: 'app-features',
-    imports: [CommonModule, ExcursaoCardComponent],
-    standalone: true,
-    templateUrl: './features.component.html',
-    styleUrl: './features.component.scss',
-    providers: [ExcursoesListUsecase]
+  selector: 'app-features',
+  imports: [CommonModule, ExcursaoCardComponent],
+  standalone: true,
+  templateUrl: './features.component.html',
+  styleUrl: './features.component.scss',
+  providers: [ExcursoesListUsecase]
 })
 export class FeaturesComponent {
   get excursoes() {
@@ -18,7 +18,14 @@ export class FeaturesComponent {
   }
 
   constructor(private readonly _excursoes: ExcursoesListUsecase) {
-    this._excursoes.getExcursoes({ origem: '1', publicado: true, destacado: 'true', orderBy: "dataInicio"}, '2');
+    this._excursoes.getExcursoes({
+      origem: '1',
+      publicado: true,
+      destacado: 'true',
+      orderBy: "dataInicio",
+      concluida: false,
+      dataInicio: new Date().toISOString().split('T')[0]
+    }, '2');
   }
 
   public hasUrl(image: ExcursaoImagem) {

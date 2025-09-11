@@ -7,16 +7,16 @@ import { PacotesFilterComponent } from '../../components/pacotes-filter/pacotes-
 import { ExcursoesListUsecase } from '../../services/excursoes-list.usecase';
 
 @Component({
-    selector: 'app-pacotes-index',
-    imports: [
-        CommonModule,
-        PacotesFilterComponent,
-        ExcursaoCardComponent,
-        MatProgressBarModule
-    ],
-    standalone: true,
-    templateUrl: './pacotes-index.component.html',
-    styleUrl: './pacotes-index.component.scss'
+  selector: 'app-pacotes-index',
+  imports: [
+    CommonModule,
+    PacotesFilterComponent,
+    ExcursaoCardComponent,
+    MatProgressBarModule
+  ],
+  standalone: true,
+  templateUrl: './pacotes-index.component.html',
+  styleUrl: './pacotes-index.component.scss'
 })
 export class PacotesIndexComponent {
   get loading() {
@@ -30,7 +30,13 @@ export class PacotesIndexComponent {
   constructor(
     private readonly _excursoes: ExcursoesListUsecase,
   ) {
-    this.getOrigem({ origem: 1, publicado: true });
+    this.getOrigem({
+      origem: '1',
+      publicado: true,
+      orderBy: "dataInicio",
+      concluida: false,
+      dataInicio: new Date().toISOString().split('T')[0]
+    });
   }
 
   public getOrigem(value: any) {
