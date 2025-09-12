@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { computed, Injectable, signal } from "@angular/core";
-import { lastValueFrom } from "rxjs";
+import { finalize, lastValueFrom } from "rxjs";
 import { env } from "../../../../env/env";
 
 @Injectable({
@@ -9,6 +9,7 @@ import { env } from "../../../../env/env";
 export class AuthMasterService {
   private _token = signal<string | null>(null);
   private _hasToken = computed(() => this._token() !== null);
+  public loadingMaster = signal<boolean>(false);
 
   get hasToken() {
     return this._hasToken;
@@ -25,11 +26,14 @@ export class AuthMasterService {
   }
 
   private _authenticationMasterToken() {
+    this.loadingMaster.set(true);
     return lastValueFrom(
-      this._http.post(`${env.API}/usuarios/auth`, {
-        username: "PradosAdmin",
-        password: "@pradosAdmin",
-      })
+      this._http
+        .post(`${env.API}/usuarios/auth`, {
+          username: "PradosAdmin",
+          password: "@pradosAdmin",
+        })
+        .pipe(finalize(() => this.loadingMaster.set(false)))
     );
   }
 }

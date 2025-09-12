@@ -1,7 +1,8 @@
 import { CommonModule } from "@angular/common";
-import { Component, HostListener } from "@angular/core";
+import { Component, effect, HostListener } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import LocomotiveScroll from "locomotive-scroll";
+import { AuthMasterService } from "../../core/auth/services/auth-master.service";
 import { BannerComponent } from "../../core/banner/banner.component";
 import { FeaturesComponent } from "../../core/features/features.component";
 import { HeaderStyleService } from "../../core/header/header-style.interceptor";
@@ -34,13 +35,19 @@ export class HomeIndexComponent {
     return this._excursoes.excursoes;
   }
 
-  constructor(private readonly _excursoes: ExcursoesListUsecase) {
-    this.getOrigem({
-      origem: '1',
-      publicado: true,
-      orderBy: "dataInicio",
-      concluida: false,
-      dataInicio: new Date().toISOString().split('T')[0]
+  constructor(
+    private readonly _excursoes: ExcursoesListUsecase,
+    private readonly _authMaster: AuthMasterService
+  ) {
+    effect(() => {
+      if (!this._authMaster.loadingMaster())
+        this.getOrigem({
+          origem: "1",
+          publicado: true,
+          orderBy: "dataInicio",
+          concluida: false,
+          dataInicio: new Date().toISOString().split("T")[0],
+        });
     });
   }
 

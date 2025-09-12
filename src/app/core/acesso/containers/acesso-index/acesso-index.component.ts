@@ -5,29 +5,30 @@ import { MatDialog, MatDialogClose } from "@angular/material/dialog";
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import { Router } from "@angular/router";
 import { ToasterService } from "../../../../shared/components/toaster/toaster.service";
+import { cpfCnpjValidator } from "../../../../shared/validators/cpfCnpj.validator";
 import { AcessoCadastroComponent } from "../../components/acesso-cadastro/acesso-cadastro.component";
 import { AcessoLoginComponent } from "../../components/acesso-login/acesso-login.component";
 import { AcessoLoginClientUsecase } from "../../services/acesso-login-client.usecase";
 import { AcessoRegisterClientUsecase } from "../../services/acesso-register-client.usecase";
 
 @Component({
-    selector: "app-acesso-index",
-    imports: [
-        AcessoLoginComponent,
-        AcessoCadastroComponent,
-        MatTabGroup,
-        MatTab,
-        MatIconButton,
-        MatDialogClose,
-    ],
-    standalone: true,
-    templateUrl: "./acesso-index.component.html",
-    styleUrl: "./acesso-index.component.scss"
+  selector: "app-acesso-index",
+  imports: [
+    AcessoLoginComponent,
+    AcessoCadastroComponent,
+    MatTabGroup,
+    MatTab,
+    MatIconButton,
+    MatDialogClose,
+  ],
+  standalone: true,
+  templateUrl: "./acesso-index.component.html",
+  styleUrl: "./acesso-index.component.scss",
 })
 export class AcessoIndexComponent {
   public formRegister = new FormGroup({
     email: new FormControl("", Validators.required),
-    cpf: new FormControl("", Validators.required),
+    cpf: new FormControl("", [Validators.required, cpfCnpjValidator]),
     nome: new FormControl("", Validators.required),
     phone: new FormControl("", Validators.required),
     password: new FormControl("", Validators.required),
