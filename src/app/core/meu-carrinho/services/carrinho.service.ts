@@ -81,10 +81,13 @@ export class CarrinhoService {
       opcionais: item.opcionais.map((item: any) => ({
         id: item.key,
         quantidade: item.value,
+        price: item.price
       })),
       total: item.tickets.reduce(
         (acc: number, item: any) => acc + item.price,
         0
+      ) + item.opcionais.reduce(
+        (acc: number, item: any) => acc + item.price, 0
       ),
       criancas: item.tickets
         .filter((item: any) => item.key === "babies")
@@ -152,7 +155,7 @@ export class CarrinhoService {
     let reserva = this._reserva();
     let reservaComDescontos = this._reserva().map((item: any) => ({
       ...item,
-      total: item.total - item.total * (this.cupom()?.desconto! / 100),
+      total: item.total - item.total * (this.cupom()?.desconto! / 100)
     }));
 
     let reqReserva = this.cupom() ? reservaComDescontos : reserva;
