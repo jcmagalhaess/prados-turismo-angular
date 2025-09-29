@@ -1,4 +1,5 @@
 import {
+  APP_INITIALIZER,
   ApplicationConfig,
   LOCALE_ID,
   provideZoneChangeDetection,
@@ -24,6 +25,7 @@ import {
 import { provideNgxMask } from "ngx-mask";
 import { routes } from "./app.routes";
 import { AuthMasterInterceptor } from "./core/auth/interceptos/auth-master.interceptor";
+import { AuthMasterService } from "./core/auth/services/auth-master.service";
 
 registerLocaleData(localePt, "pt");
 
@@ -41,6 +43,12 @@ const routerOptions: ExtraOptions = {
   scrollPositionRestoration: "enabled", // ativa scroll automático ao topo
   anchorScrolling: "enabled", // opcional, ativa scroll para #id
 };
+
+export function initializeApp(authMasterService: AuthMasterService) {
+  return (): Promise<any> => {
+    return authMasterService.authenticationMaster();
+  };
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -66,5 +74,11 @@ export const appConfig: ApplicationConfig = {
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
     provideAnimationsAsync(),
     provideNgxMask(),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [AuthMasterService],
+      multi: true,
+    },
   ],
 };

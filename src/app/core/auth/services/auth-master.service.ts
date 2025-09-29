@@ -17,12 +17,14 @@ export class AuthMasterService {
 
   constructor(private readonly _http: HttpClient) {}
 
-  public authenticationMaster() {
-    return this._authenticationMasterToken().then((res: any) => {
-      this._token.set(res.token);
-      localStorage.setItem("authToken", res.token);
-      localStorage.setItem("userId", res.userId);
-    });
+  public authenticationMaster(): Promise<any> {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      this._token.set(token);
+      return Promise.resolve();
+    }
+
+    return this._authenticationMasterToken();
   }
 
   private _authenticationMasterToken() {
@@ -34,6 +36,10 @@ export class AuthMasterService {
           password: "@pradosAdmin",
         })
         .pipe(finalize(() => this.loadingMaster.set(false)))
-    );
+    ).then((res: any) => {
+      this._token.set(res.token);
+      localStorage.setItem("authToken", res.token);
+      localStorage.setItem("userId", res.userId);
+    });
   }
 }
