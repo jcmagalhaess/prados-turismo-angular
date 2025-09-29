@@ -120,8 +120,7 @@ export class PacotesSidebarComponent {
   public createReservation() {
     if (this.amountTicketsValues() > this.excursao?.vagasDisponiveis!) {
       this._toaster.alert(
-        `Você selecionou ${this.amountTicketsValues()} passageiros, mas só há ${
-          this.excursao?.vagasDisponiveis
+        `Você selecionou ${this.amountTicketsValues()} passageiros, mas só há ${this.excursao?.vagasDisponiveis
         } vaga(s) disponível(is). Por favor, ajuste a quantidade de passageiros para continuar.`
       );
 
@@ -188,7 +187,7 @@ export class PacotesSidebarComponent {
   private _formatBirthday(items: Array<any>) {
     return items.map((item: any) => ({
       ...item,
-      opcionais: Object.entries(item.opcionais).map(([id, value]) => ({ id })),
+      opcionais: Object.entries(item.opcionais).filter(([_, value]) => value).map(([id, value]) => { if (value) { return id } else { return null }; }),
       dataNascimento:
         item.dataNascimento.ano +
         "-" +

@@ -1,6 +1,7 @@
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import { Component, Input, OnChanges, OnInit } from "@angular/core";
 import {
+  AbstractControl,
   FormArray,
   FormControl,
   FormGroup,
@@ -18,21 +19,21 @@ import { ExcursaoLocalEmbarque } from "../../../../shared/models/excursao.type";
 import { Months } from "../../../../shared/models/global.type";
 
 @Component({
-    selector: "app-pacotes-participantes",
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        CurrencyPipe,
-        MatExpansionModule,
-        MatButtonModule,
-        MatDialogModule,
-        NgxMaskDirective,
-        SeletorQuartoComponent,
-    ],
-    standalone: true,
-    templateUrl: "./pacotes-participantes.component.html",
-    styleUrl: "./pacotes-participantes.component.scss"
+  selector: "app-pacotes-participantes",
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    CurrencyPipe,
+    MatExpansionModule,
+    MatButtonModule,
+    MatDialogModule,
+    NgxMaskDirective,
+    SeletorQuartoComponent,
+  ],
+  standalone: true,
+  templateUrl: "./pacotes-participantes.component.html",
+  styleUrl: "./pacotes-participantes.component.scss"
 })
 export class PacotesParticipantesComponent implements OnChanges, OnInit {
   public months = Months;
@@ -58,7 +59,7 @@ export class PacotesParticipantesComponent implements OnChanges, OnInit {
   @Input() valor: number = 0;
   @Input() localEmbarque: ExcursaoLocalEmbarque[] = [];
 
-  constructor(private readonly _dialog: MatDialogRef<any>) {}
+  constructor(private readonly _dialog: MatDialogRef<any>) { }
 
   public ngOnChanges() {
     if (this.amountTickets) {
@@ -81,6 +82,23 @@ export class PacotesParticipantesComponent implements OnChanges, OnInit {
     this.form.valueChanges.subscribe((value) => {
       console.log(value);
     });
+
+    const participantesArray = this.form.get('participantes') as FormArray;
+
+    participantesArray.controls.forEach((participant: AbstractControl) => {
+      const participantGroup = participant as FormGroup;
+      const opcionaisGroup = participantGroup.get('opcionais') as FormGroup;
+      if (!opcionaisGroup) return;
+
+      Object.keys(opcionaisGroup.controls).forEach(key => {
+        const control = opcionaisGroup.get(key);
+        if (!control) return;
+
+        control.valueChanges.subscribe(() => {
+          this.updateOptionalControls(key);
+        });
+      });
+    });
   }
 
   public createReservation() {
@@ -102,6 +120,31 @@ export class PacotesParticipantesComponent implements OnChanges, OnInit {
       }),
       localEmbarque: new FormControl("", Validators.required),
       opcionais: new FormGroup<any>({}),
+    });
+  }
+
+  private updateOptionalControls(key: string) {
+    const participantesArray = this.form.get('participantes') as FormArray;
+    const maxAmount = this.opcionais.find((o: { key: string; }) => o.key === key)?.value || 1;
+
+    const selectedCount = participantesArray.controls.reduce((count, g) => {
+      const opcGroup = (g as FormGroup).get('opcionais') as FormGroup;
+      if (!opcGroup) return count; 
+      const c = opcGroup.get(key);
+      return count + (c?.value ? 1 : 0);
+    }, 0);
+
+    participantesArray.controls.forEach(g => {
+      const opcGroup = (g as FormGroup).get('opcionais') as FormGroup;
+      if (!opcGroup) return; 
+      const c = opcGroup.get(key);
+      if (!c) return;
+
+      if (!c.value && selectedCount >= maxAmount) {
+        c.disable({ emitEvent: false });
+      } else {
+        c.enable({ emitEvent: false });
+      }
     });
   }
 }
