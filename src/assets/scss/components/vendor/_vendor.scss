@@ -35,6 +35,10 @@ a {
   }
 }
 
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
 .btn {
   &-outline-primary,
   &-outline-secondary,
