@@ -12,20 +12,20 @@ import { ThumbnailPipe } from "../../../../shared/pipes/thumbnail.pipe";
 import { ReservaService } from "../../reserva.service";
 
 @Component({
-    selector: "app-pedidos-details",
-    imports: [
-        CommonModule,
-        LabelReservaPipe,
-        ThumbnailPipe,
-        PeriodoPipe,
-        AsyncLocalEmbarquePipe,
-        EmptyLabelPipe,
-        MatDialogModule,
-        NgxMaskPipe
-    ],
-    standalone: true,
-    templateUrl: "./pedidos-details.component.html",
-    styleUrl: "./pedidos-details.component.scss"
+  selector: "app-pedidos-details",
+  imports: [
+    CommonModule,
+    LabelReservaPipe,
+    ThumbnailPipe,
+    PeriodoPipe,
+    AsyncLocalEmbarquePipe,
+    EmptyLabelPipe,
+    MatDialogModule,
+    NgxMaskPipe
+  ],
+  standalone: true,
+  templateUrl: "./pedidos-details.component.html",
+  styleUrl: "./pedidos-details.component.scss"
 })
 export class PedidosDetailsComponent {
   public passageiros = signal<any | null>(null);
@@ -42,10 +42,7 @@ export class PedidosDetailsComponent {
     )
   );
   public valorIngresso = computed(() =>
-    this.transacoes()!.reduce(
-      (acc: number, item: any) => acc + item.valor,
-      0
-    )
+    this.excursao().valor
   );
 
   public valorTransacoes = computed(() => this.valorIngresso() + this.valorOpcionais());
