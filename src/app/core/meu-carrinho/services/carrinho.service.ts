@@ -92,7 +92,11 @@ export class CarrinhoService {
       criancas: item.tickets
         .filter((item: any) => item.key === "babies")
         .reduce((acc: number, item: any) => acc + item.value, 0),
-      clients: item.participantes,
+      clients: item.participantes.map((participante: any) => ({
+        ...participante,
+        telefone: participante.phone,
+        phone: undefined
+      })),
       tipoQuarto: item.tipoQuarto,
       cupom: this.cupom()?.id,
     }))
