@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, Output, signal } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -9,9 +9,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     styleUrl: './meu-carrinho-cupom.component.scss'
 })
 export class MeuCarrinhoCupomComponent {
-  private _resetCupom = signal<boolean>(false);
   public cupomControl = new FormControl();
-  public hasCupom = input<boolean>(this._resetCupom());
+  public hasCupom = input<boolean>(false);
   public loading = input<boolean>(false);
 
   @Output() cupomEmit = new EventEmitter();
@@ -21,6 +20,7 @@ export class MeuCarrinhoCupomComponent {
   }
 
   public removeCupom() {
-    this._resetCupom.set(false);
+    this.cupomControl.reset();
+    this.cupomEmit.emit(null);
   }
 }

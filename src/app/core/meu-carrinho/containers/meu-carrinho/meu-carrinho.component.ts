@@ -52,7 +52,14 @@ export class MeuCarrinhoComponent implements OnInit {
     this._carrinho.gerarReserva();
   }
 
-  public validateCupom(cupom: string) {
+  public validateCupom(cupom: string | null) {
+    if (cupom === null) {
+      // Remove cupom
+      this.hasCupom.set(false);
+      this._carrinho.cupom.set(null);
+      return;
+    }
+
     this._cupom
       .validateCupom(cupom)
       .then(res => {
