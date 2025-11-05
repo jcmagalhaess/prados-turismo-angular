@@ -54,6 +54,27 @@ export class PacotesParticipantesComponent implements OnChanges, OnInit {
     );
   }
 
+  get allOpcionaisAssigned() {
+    if (this.opcionais.length === 0) {
+      return true; // If there are no opcionais, validation passes
+    }
+
+    const participantesArray = this.form.get('participantes') as FormArray;
+
+    // Check each opcional to see if all purchased units are assigned
+    return this.opcionais.every((opcional: any) => {
+      const selectedCount = participantesArray.controls.reduce((count, participant) => {
+        const opcionaisGroup = (participant as FormGroup).get('opcionais') as FormGroup;
+        if (!opcionaisGroup) return count;
+        const control = opcionaisGroup.get(opcional.key);
+        return count + (control?.value ? 1 : 0);
+      }, 0);
+
+      // The selected count must equal the purchased amount
+      return selectedCount === opcional.value;
+    });
+  }
+
   @Input() amountTickets: number = 0;
   @Input() opcionais: any = [];
   @Input() valor: number = 0;
