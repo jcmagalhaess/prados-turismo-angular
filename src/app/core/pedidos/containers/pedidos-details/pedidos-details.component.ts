@@ -45,7 +45,7 @@ export class PedidosDetailsComponent {
     this.excursao().valor
   );
 
-  public valorTransacoes = computed(() => this.valorIngresso() + this.valorOpcionais());
+  public valorTransacoes = signal<number>(0);
   public hasOptionals = computed(() => this.opcionais().length > 0);
 
   constructor(
@@ -54,7 +54,6 @@ export class PedidosDetailsComponent {
     private readonly _reserva: ReservaService,
   ) {
     this._reserva.consultarReserva(data.id).then((res: any) => {
-      console.log(res);
       this.passageiros.set(res.ExcursaoPassageiros)
       this.cliente.set(res.Pessoa);
       this.reserva.set({
@@ -65,6 +64,12 @@ export class PedidosDetailsComponent {
       this.excursao.set(res.Excursao);
       this.transacoes.set(res.Transacoes);
       this.opcionais.set(res.Opcionais)
+
+      const valorOpcionais = res.Opcionais.filter((item: any) => item.id).reduce(
+        (acc: number, item: any) => acc + (item.qtd * item.Produto.valor),
+        0
+      );
+      this.valorTransacoes.set(res.Excursao.valor * res.ExcursaoPassageiros.length + valorOpcionais);
     })
     // this.reserva.set(
     //   data.client.Reservas.find((item: ReservaOutput) => item.id === data.id)!
