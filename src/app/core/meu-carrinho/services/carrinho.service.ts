@@ -206,8 +206,9 @@ export class CarrinhoService {
         width: "500px",
         disableClose: true,
         data: {
-          title: "Acesso Negado",
-          description: "Você precisa estar logado para realizar essa ação.",
+          title: "Falta só um passo!",
+          type: "warning",
+          description: "Você precisa estar logado para realizar essa ação” para: Entre ou cadastre-se para concluir sua compra com segurança e receber os vouchers no e-mail cadastrado.",
           color: "danger",
         },
       });

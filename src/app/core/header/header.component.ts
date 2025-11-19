@@ -49,7 +49,7 @@ export class HeaderComponent {
     private readonly _userClient: AcessoGetDataPessoaUsecase,
     private readonly _headerInterceptor: HeaderStyleService,
     private readonly _dialog: MatDialog,
-    private readonly _breakpointObserver: BreakpointObserver // adicione isso
+    private readonly _breakpointObserver: BreakpointObserver
   ) {
     this._cart.pegarCarrinho();
   }
