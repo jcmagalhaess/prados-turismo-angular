@@ -26,17 +26,28 @@
         <td class="w-25">
           {{ item.valorTotal | currency : "BRL" : "symbol" : "1.2-2" }}
         </td>
-        <!-- de 2 ingressos -->
-        <td class="d-flex justify-content-center flex-sm-row flex-column">
-          <button class="btn btn-primary" (click)="visualizar(item.id)">
-            <i class="fa-regular fa-eye me-2"></i>Visualizar
+        <td class="d-flex justify-content-center gap-2 flex-sm-row flex-column">
+          <button
+            class="btn btn-info"
+            matTooltip="Visualizar"
+            (click)="visualizar(item.id)"
+          >
+            <i class="fa-regular fa-eye"></i>
           </button>
           <button
-            class="btn btn-success mt-3 mt-sm-0 ms-sm-3"
-            (click)="voucher(item.id)"
-            [disabled]="!item.status"
+            class="btn btn-success"
+            matTooltip="Pagar"
+            (click)="gerarLink(item)"
           >
-            <i class="fa-solid fa-ticket me-2"></i> Voucher
+            <i class="fa-solid fa-credit-card"></i>
+          </button>
+          <button
+            class="btn btn-light"
+            matTooltip="Voucher"
+            (click)="voucher(item)"
+            [disabled]=""
+          >
+            <i class="fa-solid fa-ticket"></i>
           </button>
         </td>
       </tr>

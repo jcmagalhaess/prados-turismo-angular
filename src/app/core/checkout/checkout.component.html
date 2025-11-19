@@ -72,28 +72,39 @@
                 <tbody>
                   <tr>
                     <th scope="row">E-mail</th>
-                    <td>{{ item.email }}</td>
+                    <td>{{ item.email | emptyLabel }}</td>
                   </tr>
                   <tr>
                     <th scope="row">Telefone</th>
-                    <td>{{ item.phone }}</td>
+                    <td>
+                      {{ item.phone | mask : "(00) 00000-0000" | emptyLabel }}
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">RG</th>
-                    <td>{{ item.rg }}</td>
+                    <td>{{ item.rg | emptyLabel }}</td>
                   </tr>
                   <tr>
                     <th scope="row">Órgão emissor</th>
-                    <td>{{ item.emissor | uppercase }}</td>
+                    <td>{{ item.emissor | uppercase | emptyLabel }}</td>
                   </tr>
                   <tr>
                     <th scope="row">Data de nascimento</th>
-                    <td>{{ item.dataNascimento | date : "dd/MM/yyyy" }}</td>
+                    <td>
+                      {{
+                        item.dataNascimento | date : "dd/MM/yyyy" | emptyLabel
+                      }}
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">Locais de embarque</th>
                     <td>
-                      {{ item.localEmbarque | asyncLocalEmbarque | async }}
+                      {{
+                        item.localEmbarque
+                          | asyncLocalEmbarque
+                          | async
+                          | emptyLabel
+                      }}
                     </td>
                   </tr>
                 </tbody>

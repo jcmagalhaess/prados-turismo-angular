@@ -1,15 +1,16 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { ToasterService } from "../../../../shared/components/toaster/toaster.service";
+import { MatTooltip } from "@angular/material/tooltip";
 import { LabelReservaPipe } from "../../../../shared/pipes/label-reserva.pipe";
+import { CarrinhoService } from "../../../meu-carrinho/services/carrinho.service";
 import { PedidosModalComponent } from "../../components/pedidos-modal/pedidos-modal.component";
 import { PedidosService } from "../../pedidos.service";
 import { ReservaService } from "../../reserva.service";
 
 @Component({
   selector: "app-pedidos",
-  imports: [CommonModule, LabelReservaPipe],
+  imports: [CommonModule, LabelReservaPipe, MatTooltip],
   standalone: true,
   templateUrl: "./pedidos.component.html",
   styleUrl: "./pedidos.component.scss",
@@ -32,7 +33,7 @@ export class PedidosComponent {
     private readonly _order: PedidosService,
     private readonly _reserva: ReservaService,
     private readonly _dialog: MatDialog,
-    private readonly _toaster: ToasterService
+    private readonly _carrinho: CarrinhoService
   ) {}
 
   public statusLabel(status: false) {
@@ -54,7 +55,17 @@ export class PedidosComponent {
     });
   }
 
-  public voucher(id: string) {
-    this._reserva.downloadVoucher(id);
+  public voucher(item: any) {
+    if (!item.status) return;
+
+    this._reserva.downloadVoucher(item.id);
+  }
+
+  public gerarLink(item: any) {
+    console.log(item);
+
+    this._carrinho.gerarLinkPagamento().then((_) => {
+      window.open(this._carrinho.pagarMeURL()!, "_blank");
+    });
   }
 }
