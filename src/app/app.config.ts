@@ -4,6 +4,7 @@ import {
   LOCALE_ID,
   provideZoneChangeDetection,
 } from "@angular/core";
+import { DATE_PIPE_DEFAULT_OPTIONS, DatePipeConfig } from "@angular/common";
 import {
   ExtraOptions,
   provideRouter,
@@ -69,6 +70,10 @@ export const appConfig: ApplicationConfig = {
     {
       provide: LOCALE_ID,
       useValue: "pt", // Definindo o locale para pt-BR
+    },
+    {
+      provide: DATE_PIPE_DEFAULT_OPTIONS,
+      useValue: { timezone: "America/Sao_Paulo" } as DatePipeConfig,
     },
     CurrencyPipe,
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
