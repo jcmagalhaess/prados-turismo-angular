@@ -25,10 +25,7 @@ import { CarrinhoService } from "../meu-carrinho/services/carrinho.service";
   styleUrl: "./checkout.component.scss",
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
-  public terms = new FormControl(
-    { value: false, disabled: true },
-    Validators.required
-  );
+  public terms = new FormControl(false, Validators.required);
   public pacote = signal<any>(null);
   public cart = computed(() => [this.pacote()]);
   public participantes = computed(() => this.pacote().participantes);
@@ -49,16 +46,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onScroll(event: Event): void {
-    const element = event.target as HTMLElement;
-
-    if (element) {
-      const atBottom =
-        element.scrollTop + element.clientHeight >= element.scrollHeight;
-
-      if (atBottom) this.terms.enable();
-    }
-  }
 
   public adicionarAoCarrinho() {
     let cart = JSON.parse(localStorage.getItem("cart")!) ?? [];
