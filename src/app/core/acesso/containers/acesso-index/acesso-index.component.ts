@@ -50,16 +50,33 @@ export class AcessoIndexComponent {
     private readonly _dialog: MatDialog
   ) {}
 
-  public register(email: string) {
+  public register(formData: any) {
     this._register
-      .register(email)
+      .register(formData)
       .then((_) => {
+        this._toaster.success(
+          "Cadastro realizado com sucesso! Fazendo login..."
+        );
+
+        // Automatically log in with the registered credentials
+        const loginData = {
+          username: formData.email,
+          password: formData.password
+        };
+
+        return this._login.login(loginData);
+      })
+      .then(() => {
         this.formRegister.reset();
         this._dialog.closeAll();
 
-        this._toaster.success(
-          "Cadastro realizado com sucesso! Confira seu e-mail com os proximos passos!"
-        );
+        let cart = JSON.parse(localStorage.getItem("cart")!);
+
+        if (cart && cart.length) {
+          this._router.navigate(["meu-carrinho"]);
+        } else {
+          this._router.navigate(["minha-conta"]);
+        }
       })
       .catch((err) => this._toaster.error(err.error.message));
   }

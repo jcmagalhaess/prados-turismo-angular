@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ExcursaoCardComponent } from '../../../../shared/components/excursao-card/excursao-card.component';
+import { getCurrentDateSaoPaulo } from '../../../../shared/helpers/get-current-date-sao-paulo.helper';
 import { ExcursaoImagem } from '../../../../shared/models/excursao.type';
 import { PacotesFilterComponent } from '../../components/pacotes-filter/pacotes-filter.component';
 import { ExcursoesListUsecase } from '../../services/excursoes-list.usecase';
@@ -35,7 +36,7 @@ export class PacotesIndexComponent {
       publicado: true,
       orderBy: "dataInicio",
       concluida: false,
-      dataInicio: new Date().toISOString().split('T')[0]
+      dataInicio: getCurrentDateSaoPaulo()
     });
   }
 

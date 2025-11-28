@@ -18,6 +18,7 @@ export class ActionButtonComponent {
   @Input() label: string = '';
   @Input() labelLoading: string = '';
   @Input() color: 'primary' | 'success' | 'danger' = 'primary';
+  @Input() icon: string = ''; // Font Awesome icon class (e.g., 'fa-check')
 
   @Output() action = new EventEmitter<void>();
 

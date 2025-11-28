@@ -7,6 +7,7 @@ import { BannerComponent } from "../../core/banner/banner.component";
 import { FeaturesComponent } from "../../core/features/features.component";
 import { HeaderStyleService } from "../../core/header/header-style.interceptor";
 import { ExcursaoCardComponent } from "../../shared/components/excursao-card/excursao-card.component";
+import { getCurrentDateSaoPaulo } from "../../shared/helpers/get-current-date-sao-paulo.helper";
 import { Excursao } from "../../shared/models/excursao.type";
 import { DepoimentosComponent } from "../depoimentos/depoimentos.component";
 import { PacotesFilterComponent } from "../pacotes/components/pacotes-filter/pacotes-filter.component";
@@ -46,7 +47,7 @@ export class HomeIndexComponent {
           publicado: true,
           orderBy: "dataInicio",
           concluida: false,
-          dataInicio: new Date().toISOString().split("T")[0],
+          dataInicio: getCurrentDateSaoPaulo(),
         });
     });
   }

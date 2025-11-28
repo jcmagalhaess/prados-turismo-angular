@@ -208,7 +208,7 @@ export class CarrinhoService {
         data: {
           title: "Falta só um passo!",
           type: "warning",
-          description: "Você precisa estar logado para realizar essa ação” para: Entre ou cadastre-se para concluir sua compra com segurança e receber os vouchers no e-mail cadastrado.",
+          description: "Entre ou cadastre-se para concluir sua compra com segurança e receber os vouchers no e-mail cadastrado.",
           color: "danger",
         },
       });

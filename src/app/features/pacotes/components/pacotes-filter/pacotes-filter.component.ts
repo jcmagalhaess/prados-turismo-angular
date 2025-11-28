@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, effect, EventEmitter, Output, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { getCurrentDateSaoPaulo } from '../../../../shared/helpers/get-current-date-sao-paulo.helper';
 
 @Component({
   selector: 'app-pacotes-filter',
@@ -21,7 +22,7 @@ export class PacotesFilterComponent {
       publicado: true,
       orderBy: "dataInicio",
       concluida: false,
-      dataInicio: new Date().toISOString().split('T')[0]
+      dataInicio: getCurrentDateSaoPaulo()
     }))
   }
 

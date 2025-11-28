@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ExcursoesListUsecase } from '../../features/pacotes/services/excursoes-list.usecase';
 import { ExcursaoCardComponent } from '../../shared/components/excursao-card/excursao-card.component';
+import { getCurrentDateSaoPaulo } from '../../shared/helpers/get-current-date-sao-paulo.helper';
 import { ExcursaoImagem } from '../../shared/models/excursao.type';
 
 @Component({
@@ -24,7 +25,7 @@ export class FeaturesComponent {
       destacado: 'true',
       orderBy: "dataInicio",
       concluida: false,
-      dataInicio: new Date().toISOString().split('T')[0]
+      dataInicio: getCurrentDateSaoPaulo()
     }, '2');
   }
 
