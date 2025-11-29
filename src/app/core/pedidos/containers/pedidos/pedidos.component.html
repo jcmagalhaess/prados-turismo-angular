@@ -34,7 +34,7 @@
           >
             <i class="fa-regular fa-eye"></i>
           </button>
-          @if (!item.efetivado) {
+          @if (!item.status) {
             <button
               class="btn btn-success"
               matTooltip="Pagar (PagBank)"
@@ -47,7 +47,7 @@
             class="btn btn-light"
             matTooltip="Voucher"
             (click)="voucher(item)"
-            [disabled]="!item.efetivado"
+            [disabled]="!item.status"
           >
             <i class="fa-solid fa-ticket"></i>
           </button>
