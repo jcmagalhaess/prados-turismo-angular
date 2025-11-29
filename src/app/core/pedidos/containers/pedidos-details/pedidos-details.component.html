@@ -96,11 +96,11 @@
                 <td>{{ item.Pessoa.email | emptyLabel }}</td>
               </tr>
               <tr>
-                <th scope="row">Telefone</th>
+                <th scope="row">Whatsapp</th>
                 <td>
                   {{
-                    item.Pessoa.telefone
-                      | mask : "(00) 0000-0000||(00) 00000-0000"
+                    item.Pessoa.telefoneWpp
+                      | mask : "(00) 00000-0000"
                       | emptyLabel
                   }}
                 </td>

@@ -130,7 +130,9 @@ export class PacotesSidebarComponent {
       minWidth: "90vw",
       disableClose: true,
       data: {
-        tickets: this._takeAmountTickets(this.amountTickets()),
+        tickets: this._takeAmountTickets(
+          this.amountTickets().filter((item: any) => item.key !== "babies")
+        ),
         opcionais: this.opcionaisSelecionados(),
         price: this.valorTransacao(),
         locales: this.locais,
