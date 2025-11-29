@@ -6,9 +6,12 @@ import { ExcursoesSingleUsecase } from "../../../features/pacotes/services/excur
 import { FeedbackComponent } from "../../../shared/components/feedback/feedback.component";
 import { ToasterService } from "../../../shared/components/toaster/toaster.service";
 import { buildBodyApiPagarme } from "../../../shared/helpers/build-body-api-pagarme.helper";
+import { buildPagBankRequest } from "../../../shared/helpers/build-request-pagbank.helper";
 import { Cliente } from "../../../shared/models/cliente.type";
+import { PagBankOpcional } from "../../../shared/models/pagbank.type";
 import { AcessoGetDataPessoaUsecase } from "../../acesso/services/acesso-get-data-pessoa.usecase";
 import { PagarMeService } from "../../pagarme/pagarme.service";
+import { PagBankService } from "../../pagbank/pagbank.service";
 import { MeuCarrinhoReservaComponent } from "../components/meu-carrinho-reserva/meu-carrinho-reserva.component";
 import { ClientUseCase } from "./client.usecase";
 import { CupomDTO } from "./cupom.usecase";
@@ -137,6 +140,7 @@ export class CarrinhoService {
 
   constructor(
     private readonly _pagarMeApi: PagarMeService,
+    private readonly _pagBankApi: PagBankService,
     private readonly _client: ClientUseCase,
     private readonly _user: AcessoGetDataPessoaUsecase,
     private readonly _excursao: ExcursoesSingleUsecase,
@@ -242,5 +246,54 @@ export class CarrinhoService {
     ).subscribe({
       error: (err) => this._toaster.error(JSON.parse(err.error).message[0]),
     });
+  }
+
+  public gerarLinkPagamentoPagBank() {
+    const cartItem = this._cart()[0]; // Get first cart item
+    const reservaId = this._idGenerateReserva()[0];
+
+    if (!cartItem || !reservaId) {
+      this._toaster.error("Erro ao gerar link de pagamento");
+      return Promise.reject("No cart item or reservation ID");
+    }
+
+    // Transform opcionais to PagBank format
+    const opcionais: PagBankOpcional[] = cartItem.opcionais?.map((opcional: any) => ({
+      valor: opcional.price,
+      nome: opcional.name,
+      quantidade: opcional.value,
+    })) || [];
+
+    // Calculate passenger amount from tickets
+    const quantidade = cartItem.tickets?.reduce(
+      (acc: number, ticket: any) => acc + ticket.value,
+      0
+    ) || 1;
+
+    // Build PagBank request
+    const pagBankRequest = buildPagBankRequest(
+      this._user.clientAuthenticated()!.id,
+      cartItem.id,
+      reservaId,
+      quantidade,
+      opcionais,
+      ['CREDIT_CARD', 'PIX']
+    );
+
+    return this._pagBankApi
+      .generatePaymentLink(pagBankRequest)
+      .then((data: any) => {
+        this.pagarMeURL.set(data.url);
+
+        localStorage.removeItem("cart");
+        this._cart.set([]);
+
+        this._router.navigate(["/minha-conta/pedidos"]);
+      })
+      .catch((err) => {
+        this._toaster.error("Erro ao gerar link de pagamento PagBank");
+        console.error(err);
+        throw err;
+      });
   }
 }

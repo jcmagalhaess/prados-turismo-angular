@@ -16,13 +16,23 @@ export class MeuCarrinhoReservaComponent {
   get loading() {
     return this._carrinho.loadingPagarMe;
   }
-  
+
   constructor(
     private readonly _carrinho: CarrinhoService,
     private readonly _dialogRef: DialogRef
   ) {}
-  
+
   public redirecionar() {
+    this._carrinho
+      .gerarLinkPagamentoPagBank()
+      .then(_ => {
+        this._dialogRef.close();
+        window.open(this._carrinho.pagarMeURL()!, '_blank');
+      });
+  }
+
+  // Alternative method to use PagarMe (kept for backwards compatibility)
+  public redirecionarPagarMe() {
     this._carrinho
       .gerarLinkPagamento()
       .then(_ => {

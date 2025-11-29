@@ -34,18 +34,20 @@
           >
             <i class="fa-regular fa-eye"></i>
           </button>
-          <button
-            class="btn btn-success"
-            matTooltip="Pagar"
-            (click)="gerarLink(item)"
-          >
-            <i class="fa-solid fa-credit-card"></i>
-          </button>
+          @if (!item.efetivado) {
+            <button
+              class="btn btn-success"
+              matTooltip="Pagar (PagBank)"
+              (click)="gerarLinkPagBank(item)"
+            >
+              <i class="fa-solid fa-credit-card"></i>
+            </button>
+          }
           <button
             class="btn btn-light"
             matTooltip="Voucher"
             (click)="voucher(item)"
-            [disabled]=""
+            [disabled]="!item.efetivado"
           >
             <i class="fa-solid fa-ticket"></i>
           </button>
