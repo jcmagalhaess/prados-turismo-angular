@@ -67,7 +67,14 @@ export class PedidosComponent {
   public voucher(item: any) {
     if (!item.status) return;
 
-    this._reserva.downloadVoucher(item.id);
+    this._toaster.alert("Gerando voucher, por favor aguarde...");
+    this._reserva.downloadVoucher(item.id)
+      .then(() => {
+        this._toaster.success("Voucher baixado com sucesso!");
+      })
+      .catch(() => {
+        this._toaster.error("Erro ao gerar voucher. Tente novamente.");
+      });
   }
 
   public gerarLink(item: any) {
