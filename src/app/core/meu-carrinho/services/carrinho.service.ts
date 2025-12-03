@@ -265,7 +265,9 @@ export class CarrinhoService {
     })) || [];
 
     // Calculate passenger amount from tickets
-    const quantidade = cartItem.tickets?.reduce(
+    const quantidade = cartItem.tickets
+    .filter((item: any) => item.key !== "babies")
+    ?.reduce(
       (acc: number, ticket: any) => acc + ticket.value,
       0
     ) || 1;
