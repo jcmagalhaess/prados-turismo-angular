@@ -24,7 +24,7 @@ export class MeuCarrinhoReservaComponent {
 
   public redirecionar() {
     this._carrinho
-      .gerarLinkPagamentoPagBank()
+      .gerarLinkPagamentoAuto()
       .then(_ => {
         this._dialogRef.close();
         window.open(this._carrinho.pagarMeURL()!, '_blank');

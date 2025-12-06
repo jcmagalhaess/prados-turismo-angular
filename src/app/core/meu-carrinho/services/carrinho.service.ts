@@ -2,6 +2,7 @@ import { computed, effect, Injectable, signal } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { forkJoin } from "rxjs";
+import { env } from "../../../../env/env";
 import { ExcursoesSingleUsecase } from "../../../features/pacotes/services/excursoes-single.usecase";
 import { FeedbackComponent } from "../../../shared/components/feedback/feedback.component";
 import { ToasterService } from "../../../shared/components/toaster/toaster.service";
@@ -297,5 +298,16 @@ export class CarrinhoService {
         console.error(err);
         throw err;
       });
+  }
+
+  public gerarLinkPagamentoAuto() {
+    if (env.paymentProvider === "pagarme") {
+      return this.gerarLinkPagamento();
+    } else if (env.paymentProvider === "pagbank") {
+      return this.gerarLinkPagamentoPagBank();
+    } else {
+      this._toaster.error(`Provider de pagamento não configurado: ${env.paymentProvider}`);
+      return Promise.reject("Invalid payment provider");
+    }
   }
 }

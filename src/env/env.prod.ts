@@ -5,4 +5,5 @@ export const env = {
   allowsUrls: ["/auth", "https://api.pagar.me/core/v5/paymentlinks"],
   pagarmeApiUrl: "https://api.pagar.me/core/v5",
   pagarmeApiKey: "sk_65283e99e84e44598d1307ef859e8151",
+  paymentProvider: "pagbank",
 };

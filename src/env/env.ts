@@ -10,4 +10,5 @@ export const env = {
   ],
   pagarmeApiUrl: "https://payment-link-sdx.pagar.me/api/admin",
   pagarmeApiKey: "sk_test_53a0be2b782b4a70903117a71583d92d",
+  paymentProvider: "pagbank",
 };
