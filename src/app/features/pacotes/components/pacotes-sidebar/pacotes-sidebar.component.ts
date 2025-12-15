@@ -10,6 +10,7 @@ import {
   TipoPassageiroType,
 } from "../../../../shared/models/excursao.type";
 import { PeriodoPipe } from "../../../../shared/pipes/periodo.pipe";
+import { formatDateSaoPaulo } from "../../../../shared/helpers/format-date-sao-paulo.helper";
 import { PacotesCountComponent } from "../pacotes-count/pacotes-count.component";
 import { PacotesModalComponent } from "../pacotes-modal/pacotes-modal.component";
 import { PacotesPriceComponent } from "../pacotes-price/pacotes-price.component";
@@ -190,12 +191,11 @@ export class PacotesSidebarComponent {
     return items.map((item: any) => ({
       ...item,
       opcionais: Object.entries(item.opcionais).filter(([_, value]) => value).map(([id, value]) => { if (value) { return id } else { return null }; }),
-      dataNascimento:
-        item.dataNascimento.ano +
-        "-" +
-        item.dataNascimento.mes.padStart(2, "0") +
-        "-" +
-        item.dataNascimento.dia.padStart(2, "0"),
+      dataNascimento: formatDateSaoPaulo(
+        item.dataNascimento.ano,
+        item.dataNascimento.mes,
+        item.dataNascimento.dia
+      ),
     }));
   }
 
