@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatTooltip } from "@angular/material/tooltip";
+import { env } from "../../../../../env/env";
 import { buildBodyApiPagarme } from "../../../../shared/helpers/build-body-api-pagarme.helper";
 import { buildPagBankRequest } from "../../../../shared/helpers/build-request-pagbank.helper";
 import { LabelReservaPipe } from "../../../../shared/pipes/label-reserva.pipe";
@@ -201,5 +202,15 @@ export class PedidosComponent {
         this._toaster.error("Erro ao gerar link de pagamento PagBank");
         console.error(err);
       });
+  }
+
+  public gerarLinkAuto(item: any) {
+    if (env.paymentProvider === "pagarme") {
+      return this.gerarLink(item);
+    } else if (env.paymentProvider === "pagbank") {
+      return this.gerarLinkPagBank(item);
+    } else {
+      this._toaster.error(`Provider de pagamento não configurado: ${env.paymentProvider}`);
+    }
   }
 }

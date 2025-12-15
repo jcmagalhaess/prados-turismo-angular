@@ -30,14 +30,4 @@ export class MeuCarrinhoReservaComponent {
         window.open(this._carrinho.pagarMeURL()!, '_blank');
       });
   }
-
-  // Alternative method to use PagarMe (kept for backwards compatibility)
-  public redirecionarPagarMe() {
-    this._carrinho
-      .gerarLinkPagamento()
-      .then(_ => {
-        this._dialogRef.close();
-        window.open(this._carrinho.pagarMeURL()!, '_blank');
-      });
-  }
 }
