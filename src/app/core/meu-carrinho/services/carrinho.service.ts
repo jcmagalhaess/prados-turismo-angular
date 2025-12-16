@@ -237,7 +237,7 @@ export class CarrinhoService {
       email: client.email,
       name: client.nome,
       cpf: client.cpf,
-      phone: client.telefone,
+      phone: client.telefoneWpp,
     };
   }
 
