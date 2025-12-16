@@ -117,6 +117,10 @@ export class PedidosComponent {
   private _transformReservaToPagarMeItems(reserva: any): any[] {
     const items: any[] = [];
 
+    console.log(reserva)
+    // Calculate passenger count from ExcursaoPassageiros
+    const passengerCount = reserva.ExcursaoPassageiros?.length || 1;
+
     // Add excursion as an item
     const excursionPrice = reserva.Excursao.valor * 100; // Convert to cents
     items.push({
@@ -124,7 +128,7 @@ export class PedidosComponent {
       amount: Math.round(excursionPrice),
       name: reserva.Excursao.nome,
       description: "",
-      default_quantity: 1,
+      default_quantity: passengerCount,
       isExcursao: true,
     });
 
@@ -177,8 +181,8 @@ export class PedidosComponent {
       quantidade: opcional.qtd,
     })) || [];
 
-    // Calculate passenger amount from clients
-    const quantidade = item.clients?.length || 1;
+    // Calculate passenger amount from ExcursaoPassageiros
+    const quantidade = item.ExcursaoPassageiros?.length || 1;
 
     // Build PagBank request
     const pagBankRequest = buildPagBankRequest(

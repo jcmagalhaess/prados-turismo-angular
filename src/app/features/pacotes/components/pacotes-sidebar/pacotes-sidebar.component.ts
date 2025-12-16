@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, effect, Input, signal } from "@angular/core";
+import { Component, computed, effect, Input, input, signal } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
@@ -39,9 +39,9 @@ export class PacotesSidebarComponent {
   public hasOpcionaisAndTicketsSelecionados = computed(
     () =>
       this.amountTicketsNoValueZero().length > 0 &&
-      this.excursao?.Pacotes?.Produto.length! > 0
+      this.excursao()?.Pacotes?.Produto.length! > 0
   );
-  public opcionais = computed(() => this.excursao?.Pacotes?.Produto);
+  public opcionais = computed(() => this.excursao()?.Pacotes?.Produto);
   public opcionaisSelecionados = signal<any>([]);
   public amountOpcionais = computed(() =>
     this.opcionaisSelecionados().reduce(
@@ -59,7 +59,7 @@ export class PacotesSidebarComponent {
     this.amountTicketsNoValueZero()
       .filter((item: any) => item.key !== "babies")
       .reduce(
-        (acc: number, item: any) => acc + this.excursao!.valor * item.value,
+        (acc: number, item: any) => acc + this.excursao()!.valor * item.value,
         0
       )
   );
@@ -68,22 +68,28 @@ export class PacotesSidebarComponent {
   );
   public showDates = signal<boolean>(false);
 
-  public enumCategory = [
-    { key: "adults", value: "Adultos", age: "+12 anos" },
-    { key: "children", value: "Crianças", age: "6 a 12 anos" },
-    { key: "babies", value: "Crianças de Colo", age: "0 a 5 anos" },
-  ];
-
   @Input() form = new FormGroup<any>({});
   @Input() periodo: string = "";
-  @Input() excursao: Excursao | null = null;
+  public excursao = input<Excursao | null>(null);
+
+  public enumCategory = computed(() => {
+    const isAereo = this.excursao()?.Pacotes?.tipoTransporte === 2;
+    const childrenAge = isAereo ? "2 a 12 anos" : "6 a 12 anos";
+    const babiesAge = isAereo ? "0 a 1 ano e 11 meses" : "0 a 5 anos";
+
+    return [
+      { key: "adults", value: "Adultos", age: "+12 anos" },
+      { key: "children", value: "Crianças", age: childrenAge },
+      { key: "babies", value: "Crianças de Colo", age: babiesAge },
+    ];
+  });
 
   get valor() {
-    return this.excursao?.valor ?? 0;
+    return this.excursao()?.valor ?? 0;
   }
 
   get locais() {
-    return this.excursao?.LocalEmbarque;
+    return this.excursao()?.LocalEmbarque;
   }
 
   constructor(
@@ -119,9 +125,9 @@ export class PacotesSidebarComponent {
   }
 
   public createReservation() {
-    if (this.amountTicketsValues() > this.excursao?.vagasDisponiveis!) {
+    if (this.amountTicketsValues() > this.excursao()?.vagasDisponiveis!) {
       this._toaster.alert(
-        `Você selecionou ${this.amountTicketsValues()} passageiros, mas só há ${this.excursao?.vagasDisponiveis
+        `Você selecionou ${this.amountTicketsValues()} passageiros, mas só há ${this.excursao()?.vagasDisponiveis
         } vaga(s) disponível(is). Por favor, ajuste a quantidade de passageiros para continuar.`
       );
 
@@ -144,12 +150,12 @@ export class PacotesSidebarComponent {
       if (!res) return;
 
       let item = {
-        id: this.excursao?.id,
-        price: this.excursao?.valor,
-        nome: this.excursao?.nome,
+        id: this.excursao()?.id,
+        price: this.excursao()?.valor,
+        nome: this.excursao()?.nome,
         periodo: {
-          dataInicio: this.excursao?.dataInicio,
-          dataFim: this.excursao?.dataFim,
+          dataInicio: this.excursao()?.dataInicio,
+          dataFim: this.excursao()?.dataFim,
         },
         tickets: this.amountTickets()
           .filter((item: any) => item.value > 0)
@@ -184,7 +190,7 @@ export class PacotesSidebarComponent {
   private _buildPrice(item: any) {
     if (item.key === "babies") return 0;
 
-    return (this.excursao?.valor ?? 0) * item.value;
+    return (this.excursao()?.valor ?? 0) * item.value;
   }
 
   private _formatBirthday(items: Array<any>) {

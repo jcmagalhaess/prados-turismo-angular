@@ -1,6 +1,6 @@
 <app-pacotes-price
   [price]="valor"
-  [transport]="excursao?.Pacotes?.tipoTransporte"
+  [transport]="excursao()?.Pacotes?.tipoTransporte"
   (showDatesEmit)="getShowDates($event)"
 />
 
@@ -19,7 +19,7 @@
         aria-label="Default select example"
       >
         <option [value]="null"></option>
-        <option [value]="excursao! | periodo">{{ excursao! | periodo }}</option>
+        <option [value]="excursao()! | periodo">{{ excursao()! | periodo }}</option>
       </select>
     </div>
   </div>
@@ -52,7 +52,7 @@
             data-bs-parent="#accordionFlushExample"
           >
             <div class="accordion-body">
-              @for (item of enumCategory; track $index) {
+              @for (item of enumCategory(); track $index) {
               <div class="my-3">
                 <app-pacotes-count
                   [key]="item.key"
