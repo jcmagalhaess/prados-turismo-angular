@@ -25,6 +25,7 @@ export class CarrinhoService {
   private _amountTickets = computed(() =>
     this._cart()
       .flatMap((item) => item.tickets)
+      .filter((ticket: any) => ticket.key !== "babies")
       .reduce((acc, item) => acc + item.value, 0)
   );
   private _pricesTickets = computed(() =>
@@ -39,11 +40,14 @@ export class CarrinhoService {
   );
   private _pagarMe = computed(() =>
     this._cart().map((item) => {
-      let amountTickets = item.tickets.reduce(
+      // Filter out babies from ticket count and price calculation
+      let ticketsWithoutBabies = item.tickets.filter((ticket: any) => ticket.key !== "babies");
+
+      let amountTickets = ticketsWithoutBabies.reduce(
         (acc: number, item: any) => acc + item.value,
         0
       );
-      let pricesTickets = item.tickets.reduce(
+      let pricesTickets = ticketsWithoutBabies.reduce(
         (acc: number, item: any) => acc + item.price * 100,
         0
       );
@@ -267,11 +271,11 @@ export class CarrinhoService {
 
     // Calculate passenger amount from tickets
     const quantidade = cartItem.tickets
-    .filter((item: any) => item.key !== "babies")
-    ?.reduce(
-      (acc: number, ticket: any) => acc + ticket.value,
-      0
-    ) || 1;
+      .filter((item: any) => item.key !== "babies")
+      ?.reduce(
+        (acc: number, ticket: any) => acc + ticket.value,
+        0
+      ) || 1;
 
     // Build PagBank request
     const pagBankRequest = buildPagBankRequest(

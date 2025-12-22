@@ -19,9 +19,9 @@ export function buildBodyApiPagarme(items: any, customer: any) {
   );
 
   const installmentsAmount = priceExcursao ? 10 : 5
-  const pixSettings = { expires_in: 2, discount: discountPix * 100 }
+  const pixSettings = { expires_in: 2, discount: Math.round(discountPix * 100) }
 
-  return {
+  const payload = {
     is_building: false,
     payment_settings: {
       credit_card_settings: {
@@ -31,9 +31,7 @@ export function buildBodyApiPagarme(items: any, customer: any) {
           total: Math.round(amountTickets),
         })),
       },
-      pix_settings: {
-        ...pixSettings
-      },
+      pix_settings: pixSettings,
       accepted_payment_methods: ["credit_card", "pix"],
     },
     cart_settings: {
@@ -50,4 +48,10 @@ export function buildBodyApiPagarme(items: any, customer: any) {
       primary_color: "#dd7f11",
     },
   };
+
+  console.log('Pagar.me Payload:', JSON.stringify(payload, null, 2));
+  console.log('Items:', JSON.stringify(items, null, 2));
+  console.log('Customer:', JSON.stringify(customer, null, 2));
+
+  return payload;
 }
