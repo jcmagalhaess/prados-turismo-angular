@@ -21,11 +21,46 @@ export class RankingsUsecase {
         .filter((benefit) => benefit.nome === ranking.nome)
         .map((benefit) => benefit.beneficios)
         .flat(),
-      urlImagem: `../../../../assets/images/fidelidade-${ranking.nome.toLowerCase()}.png`,
+      urlImagem: this.getImageUrl(ranking.nome),
     }));
   });
 
   constructor(private readonly _http: HttpClient) {}
+
+  /**
+   * Get the image URL based on the ranking name
+   * Checks if name contains "gold" or "platinum" (case insensitive)
+   */
+  private getImageUrl(rankingName: string): string {
+    const nameLower = rankingName.toLowerCase();
+
+    if (nameLower.includes('gold')) {
+      return '../../../../assets/images/fidelidade-gold.png';
+    }
+
+    if (nameLower.includes('platinum')) {
+      return '../../../../assets/images/fidelidade-platinum.png';
+    }
+
+    if (nameLower.includes('titanium')) {
+      return '../../../../assets/images/fidelidade-titanium.png';
+    }
+
+    if (nameLower.includes('black')) {
+      return '../../../../assets/images/fidelidade-black.png';
+    }
+
+    if (nameLower.includes('classic')) {
+      return '../../../../assets/images/fidelidade-classic.png';
+    }
+
+    if (nameLower.includes('silver')) {
+      return '../../../../assets/images/fidelidade-silver.png';
+    }
+
+    // Fallback to original logic if neither gold nor platinum
+    return `../../../../assets/images/fidelidade-${nameLower}.png`;
+  }
 
   public getRankings() {
     return lastValueFrom(

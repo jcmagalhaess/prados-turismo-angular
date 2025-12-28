@@ -55,7 +55,7 @@ export class AcessoIndexComponent {
       .register(formData)
       .then((_) => {
         this._toaster.success(
-          "Cadastro realizado com sucesso! Fazendo login..."
+          "Cadastro realizado com sucesso! Login efetuado!"
         );
 
         // Automatically log in with the registered credentials
