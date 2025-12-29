@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { inject, Pipe, PipeTransform } from '@angular/core';
+import { parseDateLocal } from '../helpers/formatar-data.helper';
 
 @Pipe({
   name: 'periodoExcursao',
@@ -11,7 +12,7 @@ export class FormatarPeriodoExcursao implements PipeTransform {
   transform(value: any, ...args: any[]): any {
     let dataInicio = value.dataInicio.replace('Z', '');
     let dataFim = value.dataFim.replace('Z', '');
-    let diaDataInicio = new Date(dataInicio).getDate().toString().padStart(2, '0');
+    let diaDataInicio = parseDateLocal(dataInicio).getDate().toString().padStart(2, '0');
     
     if (value) return `${diaDataInicio} a ${this.datePipe.transform(dataFim, 'dd/MM/yyyy')}`;
     

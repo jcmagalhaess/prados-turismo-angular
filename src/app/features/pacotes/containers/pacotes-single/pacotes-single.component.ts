@@ -8,7 +8,7 @@ import "swiper/css/navigation"; // Estilos específicos para navegação
 import "swiper/css/thumbs"; // Estilos para os thumbs
 import { Navigation, Thumbs } from "swiper/modules";
 import { ToasterService } from "../../../../shared/components/toaster/toaster.service";
-import { formatarData } from "../../../../shared/helpers/formatar-data.helper";
+import { formatarData, parseDateLocal } from "../../../../shared/helpers/formatar-data.helper";
 import { ExcursaoImagem } from "../../../../shared/models/excursao.type";
 import { PacotesSidebarComponent } from "../../components/pacotes-sidebar/pacotes-sidebar.component";
 import { ExcursoesSingleUsecase } from "../../services/excursoes-single.usecase";
@@ -134,8 +134,8 @@ export class PacotesSingleComponent implements AfterViewInit {
   }
 
   public formatandoPeriodo(dataInicio: string, dataFim: string) {
-    return `${formatarData(new Date(dataInicio))} à ${formatarData(
-      new Date(dataFim)
+    return `${formatarData(parseDateLocal(dataInicio))} à ${formatarData(
+      parseDateLocal(dataFim)
     )}`;
   }
 

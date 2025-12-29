@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, computed, effect, Input, signal } from "@angular/core";
 import { FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { env } from "../../../../../env/env";
-import { formatarData } from "../../../../shared/helpers/formatar-data.helper";
+import { formatarData, parseDateLocal } from "../../../../shared/helpers/formatar-data.helper";
 import { Excursao, TipoPassageiroEnum, TipoPassageiroType } from "../../../../shared/models/excursao.type";
 import { PacotesCountComponent } from "../../../pacotes/components/pacotes-count/pacotes-count.component";
 
@@ -46,8 +46,8 @@ export class JericoacoaraSidebarComponent {
     });
   }
   public formatandoPeriodo(dataInicio: string, dataFim: string) {
-    return `${formatarData(new Date(dataInicio))} a ${formatarData(
-      new Date(dataFim)
+    return `${formatarData(parseDateLocal(dataInicio))} a ${formatarData(
+      parseDateLocal(dataFim)
     )}`;
   }
 

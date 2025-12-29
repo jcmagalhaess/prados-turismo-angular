@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { formatarData } from '../helpers/formatar-data.helper';
+import { formatarData, parseDateLocal } from '../helpers/formatar-data.helper';
 import { Excursao } from '../models/excursao.type';
 
 @Pipe({
@@ -10,8 +10,8 @@ export class PeriodoPipe implements PipeTransform {
 
   transform(value: Excursao): string {
     if (!value) return '';
-    return `${formatarData(new Date(value.dataInicio))} à ${formatarData(
-      new Date(value.dataFim)
+    return `${formatarData(parseDateLocal(value.dataInicio))} à ${formatarData(
+      parseDateLocal(value.dataFim)
     )}`;
   }
 

@@ -1,7 +1,9 @@
+import { parseDateLocal } from './formatar-data.helper';
+
 export function calcularDiasENoites(dataInicio: string, dataFim: string) {
     // Converte as strings de data para objetos Date
-    const inicio: any = new Date(dataInicio);
-    const fim: any = new Date(dataFim);
+    const inicio: any = parseDateLocal(dataInicio);
+    const fim: any = parseDateLocal(dataFim);
 
     // Calcula a diferença em milissegundos
     const diffEmMilissegundos: number = fim - inicio;
