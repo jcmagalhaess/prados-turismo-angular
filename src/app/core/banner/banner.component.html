@@ -19,7 +19,7 @@
 @if (familiaPrados().length) {
 <section class="banner__familia-prados">
   @for (item of familiaPrados(); track $index) {
-  <a [href]="item.href" target="_blank" rel="noopener noreferrer" class="banner__familia-prados-item">
+  <a [attr.href]="item.href" [attr.target]="'_blank'" [attr.rel]="'noopener noreferrer'" class="banner__familia-prados-item">
     <img [src]="item.imageUrl" [alt]="item.title" />
   </a>
   }

@@ -50,11 +50,7 @@ export class BannerComponent {
   public familiaPrados = computed(() => {
     if (!this._usecase.slides()) return [];
 
-    const items = JSON.parse(this._usecase.slides().configuracao);
-    return items.map((item: any) => ({
-      ...item,
-      href: this._sanitizer.bypassSecurityTrustUrl(item.href)
-    }));
+    return JSON.parse(this._usecase.slides().configuracao);
   });
 
   constructor(
