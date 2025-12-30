@@ -255,7 +255,7 @@ export class CarrinhoService {
 
   public gerarLinkPagamentoPagBank() {
     const cartItem = this._cart()[0]; // Get first cart item
-    const reservaId = this._idGenerateReserva()[0];
+    const reservaId = this._idGenerateReserva()[0];    
 
     if (!cartItem || !reservaId) {
       this._toaster.error("Erro ao gerar link de pagamento");

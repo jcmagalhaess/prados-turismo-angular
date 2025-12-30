@@ -23,6 +23,7 @@ export function buildBodyApiPagarme(items: any, customer: any) {
 
   const payload = {
     is_building: false,
+    pagarmeExpireTime: 45,
     payment_settings: {
       credit_card_settings: {
         operation_type: "auth_and_capture",

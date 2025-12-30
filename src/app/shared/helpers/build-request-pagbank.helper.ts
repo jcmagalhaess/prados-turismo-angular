@@ -8,6 +8,8 @@ export function buildPagBankRequest(
   opcionais: PagBankOpcional[] = [],
   paymentMethods: string[] = ['CREDIT_CARD', 'PIX']
 ): IPagBankRequestBody {
+  var expirationDate = new Date()
+  expirationDate.setHours(new Date().getHours() + 1)
   return {
     opcionais,
     cliente: clienteId,
@@ -15,5 +17,6 @@ export function buildPagBankRequest(
     reservaId,
     paymentMethods,
     quantidade,
+    expiration_date: expirationDate.toISOString()
   };
 }

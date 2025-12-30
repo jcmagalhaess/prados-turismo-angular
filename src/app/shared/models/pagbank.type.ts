@@ -6,6 +6,7 @@ export interface IPagBankRequestBody {
   reservaId: string;
   paymentMethods: string[]; // e.g., ['CREDIT_CARD', 'PIX']
   quantidade: number; // Passenger amount
+  expiration_date: string
 }
 
 export interface PagBankOpcional {
