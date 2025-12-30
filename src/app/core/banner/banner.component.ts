@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, signal } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
 import { BannerUsecase } from "./banner.usecase";
 
 @Component({
@@ -49,10 +50,17 @@ export class BannerComponent {
   public familiaPrados = computed(() => {
     if (!this._usecase.slides()) return [];
 
-    return JSON.parse(this._usecase.slides().configuracao);
+    const items = JSON.parse(this._usecase.slides().configuracao);
+    return items.map((item: any) => ({
+      ...item,
+      href: this._sanitizer.bypassSecurityTrustUrl(item.href)
+    }));
   });
 
-  constructor(private readonly _usecase: BannerUsecase) {
+  constructor(
+    private readonly _usecase: BannerUsecase,
+    private readonly _sanitizer: DomSanitizer
+  ) {
     this._usecase.carregarSlides();
   }
 }
