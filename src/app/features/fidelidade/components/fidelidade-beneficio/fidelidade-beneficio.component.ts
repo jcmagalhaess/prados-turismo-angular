@@ -30,6 +30,6 @@ export class FidelidadeBeneficioComponent {
   }
 
   public formatedBenefits(benefits: string[]): string {
-    return benefits.join(" - ");
+    return benefits.join("\n");
   }
 }

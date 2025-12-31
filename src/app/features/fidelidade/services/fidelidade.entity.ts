@@ -16,30 +16,48 @@ export type RankingsList = {
 export const benefitsList = [
   {
     nome: "CLASSIC",
-    beneficios: ["INGRESSO PARA GRUPO VIP"],
+    beneficios: [
+      "Acesso ao grupo VIP da Prados no WhatsApp",
+      "Imã colecionável do destino de cada viagem"
+    ],
   },
   {
     nome: "SILVER",
-    beneficios: ["MINI KIT VIAGEM DA PRADOS"],
+    beneficios: [
+      "Passaporte da Prados",
+      "Adesivo colecionável do destino de cada viagem",
+      "Imã colecionável do destino de cada viagem"
+    ],
   },
   {
     nome: "GOLD",
-    beneficios: ["PASSAPORTE DA PRADOS"],
+    beneficios: [
+      "Kit Planeje o Próximo Destino (caneta + cofrinho especial)",
+      "Chaveiro exclusivo",
+      "Imã e adesivo colecionável do destino de cada viagem"
+    ],
   },
   {
     nome: "PLATINUM",
     beneficios: [
-      "TROFÉU PLATINUM - ESCOLHER A POLTRONA - ALMOFADA DE PESCOÇO DA PRADOS",
+      "Kit Viagem Conforto (tapa olho + almofada de pescoço exclusiva + tag para mala)",
+      "Imã e adesivo colecionável do destino de cada viagem"
     ],
   },
   {
     nome: "BLACK",
-    beneficios: ["TROFÉU BLACK - ESCOLHER A POLTRONA - KIT VIAGEM DA PRADOS"],
+    beneficios: [
+      "Kit Essencial de Viagem (necessaire exclusiva com itens essenciais para a viagem)",
+      "Imã e adesivo colecionável do destino de cada viagem"
+    ],
   },
   {
     nome: "TITANIUM",
     beneficios: [
-      "TROFÉU TITANIUM - ESCOLHER A POLTRONA - ALMOFADA DE PESCOÇO DA PRADOS - INGRESSO PARA GRUPO TITANIUM - BLUSA DA PRADOS - VIAGEM GRÁTIS",
+      "Acesso ao grupo exclusivo Titanium no WhatsApp",
+      "Camisa oficial da Prados",
+      "Viagem GRÁTIS em pacotes aleatórios com poucos dias de antecedência, sujeito a disponibilidade e divulgada no grupo Titanium no WhatsApp",
+      "Imã e adesivo colecionável do destino de cada viagem"
     ],
   },
 ];
