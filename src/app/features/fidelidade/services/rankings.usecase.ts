@@ -10,17 +10,16 @@ import { benefitsList } from "./fidelidade.entity";
 export class RankingsUsecase {
   private _rankings = signal<any[]>([]);
 
-  public benefitsList = computed(() => {
+  public beneficio = computed(() => {
     return this._rankings().map((ranking) => ({
       ...ranking,
       qtdViagens: {
         qtdMinViagens: ranking.qtdMinViagens,
         qtdMaxViagens: ranking.qtdMaxViagens,
       },
-      beneficios: benefitsList
-        .filter((benefit) => benefit.nome === ranking.nome)
-        .map((benefit) => benefit.beneficios)
-        .flat(),
+      beneficios: benefitsList.find((benefit) =>
+        benefit.nome.toUpperCase() === ranking.nome.toUpperCase()
+      )?.beneficios || [],
       urlImagem: this.getImageUrl(ranking.nome),
     }));
   });

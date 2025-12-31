@@ -79,13 +79,40 @@ $component-name: "programa-fidelidade";
       }
       &__beneficios {
         background-color: var(--color-primary);
-        padding-block: 10px;
+        padding-block: 20px;
         padding-inline-start: 10px;
         padding-inline-end: 60px;
         text-align: right;
         @include breakpoint(small-only) {
           text-align: center;
           padding: 20px;
+        }
+
+        > div {
+          display: flex;
+          align-items: flex-start;
+          gap: 15px;
+          flex-direction: row-reverse;
+
+          @include breakpoint(small-only) {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+          }
+        }
+
+        ul {
+          text-align: left;
+
+          @include breakpoint(small-only) {
+            text-align: center;
+          }
+
+          li {
+            &:hover {
+              transform: translateX(-5px);
+            }
+          }
         }
       }
     }
@@ -157,7 +184,7 @@ $component-name: "programa-fidelidade";
     }
     &__beneficios {
       background-color: var(--color-primary);
-      padding-block: 10px;
+      padding-block: 20px;
       padding-inline-start: 60px;
       padding-inline-end: 10px;
       color: #ffffff;
@@ -165,6 +192,66 @@ $component-name: "programa-fidelidade";
       @include breakpoint(small-only) {
         text-align: center;
         padding: 20px;
+      }
+
+      > div {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+
+        @include breakpoint(small-only) {
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+
+      i {
+        font-size: 1.5rem;
+        margin-top: 3px;
+        flex-shrink: 0;
+
+        @include breakpoint(small-only) {
+          margin-top: 0;
+        }
+      }
+
+      span {
+        font-weight: 600;
+        font-size: 1.3rem;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex: 1;
+
+        li {
+          position: relative;
+          padding-left: 20px;
+          line-height: 1.6;
+          font-size: 1.1rem;
+          transition: all 0.2s ease;
+
+          &::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.9);
+          }
+
+          &:hover {
+            transform: translateX(5px);
+            color: rgba(255, 255, 255, 1);
+          }
+        }
       }
     }
   }

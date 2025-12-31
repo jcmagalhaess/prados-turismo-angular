@@ -1,9 +1,10 @@
+import { UpperCasePipe } from "@angular/common";
 import { Component, input } from "@angular/core";
 import { QtdViagens } from "../../services/fidelidade.entity";
 
 @Component({
     selector: "app-fidelidade-beneficio",
-    imports: [],
+    imports: [UpperCasePipe],
     standalone: true,
     templateUrl: "./fidelidade-beneficio.component.html",
     styleUrl: "./fidelidade-beneficio.component.scss"

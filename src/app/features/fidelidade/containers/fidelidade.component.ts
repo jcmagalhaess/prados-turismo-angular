@@ -15,7 +15,7 @@ export class FidelidadeComponent {
   public titulo = `Viajar com a <strong>Prados Turismo</strong> garante recompensas incríveis!`;
 
   get beneficios() {
-    return this._rankings.benefitsList;
+    return this._rankings.beneficio();
   }
 
   constructor(private readonly _rankings: RankingsUsecase) {

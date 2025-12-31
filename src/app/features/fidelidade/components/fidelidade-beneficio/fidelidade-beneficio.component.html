@@ -3,13 +3,18 @@
 </figure>
 <div class="programa-fidelidade__content">
   <div class="programa-fidelidade__ranking">
-    <span>{{ nome() }}</span
+    <span>{{ nome() | uppercase }}</span
     >{{ formatedTravel(qtdViagens()!) }}
   </div>
   <div class="programa-fidelidade__beneficios">
     <i class="fa-solid fa-award"></i>
-    <span>
-      Recompensas: <strong>{{ formatedBenefits(beneficio()!) }}</strong>
-    </span>
+    <div>
+      <span>Recompensas:</span>
+      <ul>
+        @for (benefit of beneficio(); track $index) {
+          <li>{{ benefit }}</li>
+        }
+      </ul>
+    </div>
   </div>
 </div>
